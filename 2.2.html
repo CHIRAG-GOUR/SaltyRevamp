@@ -1,4 +1,4 @@
-﻿<div>
+<div>
 <div>
 <div>
 <div>
@@ -251,31 +251,7 @@ footer:hover {
 
 
 
-.dark-image {
-    display: none;
-}
 
-@media (prefers-color-scheme: dark) {
-    .light-image {
-        display: none;
-    }
-    .dark-image {
-        display: block;
-    }
-}
-
-body.light .light-image {
-    display: block;
-}
-body.light .dark-image {
-    display: none;
-}
-body:not(.light) .light-image {
-    display: none;
-}
-body:not(.light) .dark-image {
-    display: block;
-}
 
 .side-by-side-images {
     display: flex;
@@ -384,9 +360,9 @@ body:not(.light) .dark-image {
 }
 </style>
 <div class="top-controls">
-<div id="theme-toggle"><span class="icon moon">🌙</span>
+<div id="theme-toggle"><span class="icon moon">??</span>
 <div class="knob">&nbsp;</div>
-<span class="icon sun">☀️</span></div>
+<span class="icon sun">??</span></div>
 <button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
 
 <header>
@@ -464,7 +440,7 @@ audio::-webkit-media-controls-volume-slider {
 
 <p><span style="font-size:18px;"><strong>Salty</strong> views jewellery as more than just adornment; it is wearable art that combines craftsmanship, creativity, and personal expression. Each piece is carefully designed to be visually captivating while serving as a medium of storytelling and identity for the wearer. This concept embraces the idea that jewellery reflects individual style, cultural narratives, and emotion, transforming everyday accessories into pieces of art that carry meaning and character.</span></p>
 
-<div class="wearable-art-container"><img alt="Wearable Art Light Mode" class="light-image" src="https://login.skillizee.io/s/articles/68d4eacef335971c73e0a61e/images/Jewellery as a wearable art.png" /> <img alt="Wearable Art Dark Mode" class="dark-image" src="https://login.skillizee.io/s/articles/68d4eacef335971c73e0a61e/images/Jewellery as a wearable art.png" /></div>
+<div class="wearable-art-container"><img alt="Wearable Art" src="https://login.skillizee.io/s/articles/68d4eacef335971c73e0a61e/images/Jewellery as a wearable art.png" /></div>
 </div>
 </section>
 
@@ -506,3 +482,4 @@ document.addEventListener('DOMContentLoaded', () => {
       fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
   }
 </script>
+

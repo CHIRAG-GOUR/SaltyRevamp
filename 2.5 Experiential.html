@@ -1,6 +1,7 @@
-﻿<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title></title>
-<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" /><link rel="stylesheet" href="universal.css" /><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="universal.css" />
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" /><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style type="text/css">:root {
             --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
             --body-color: #CCC;
@@ -167,7 +168,26 @@
             transition: height 0.2s ease-in-out;
         }
 
+        #theme-toggle {
+            background: var(--button-bg);
+            color: var(--button-color);
+            border: none;
+            border-radius: 15px;
+            padding: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: clamp(14px, 1.1vw, 16px);
+            width: clamp(24px, 2vw, 28px);
+            height: clamp(24px, 2vw, 28px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.1s, color 0.1s;
+        }
 
+        #theme-toggle:hover {
+            background: var(--sparkle-color-to);
+        }
 
         header {
             background: var(--header-bg);
@@ -397,6 +417,12 @@
                 transition: width 0.2s ease-in-out;
             }
 
+            #theme-toggle {
+                margin-top: 0;
+                width: clamp(20px, 2.5vw, 24px);
+                height: clamp(20px, 2.5vw, 24px);
+                font-size: clamp(12px, 2vw, 14px);
+            }
 
             header h2 {
                 font-size: clamp(1.3em, 2.5vw, 1.5em);
@@ -463,6 +489,11 @@
                 height: 600px;
             }
 
+            #theme-toggle {
+                font-size: clamp(16px, 1.1vw, 18px);
+                width: clamp(26px, 2vw, 30px);
+                height: clamp(26px, 2vw, 30px);
+            }
 
             #back-to-top {
                 width: clamp(50px, 3.5vw, 60px);
@@ -507,6 +538,11 @@
                 height: 600px;
             }
 
+            #theme-toggle {
+                font-size: clamp(18px, 1.1vw, 20px);
+                width: clamp(28px, 2vw, 32px);
+                height: clamp(28px, 2vw, 32px);
+            }
 
             .sidebar {
                 width: 40px;
@@ -531,17 +567,13 @@
         }
 </style>
 <!-- Background Emojis -->
-<p><span class="emoji-bg">âœ¨</span> <span class="emoji-bg">ðŸ’Ž</span> <span class="emoji-bg">ðŸ“¿</span> <span class="emoji-bg">âœ¨</span> <span class="emoji-bg">ðŸ’Ž</span> <span class="emoji-bg">ðŸ“¿</span> <span class="emoji-bg">âœ¨</span> <span class="emoji-bg">ðŸ’Ž</span> <span class="emoji-bg">ðŸ“¿</span> <span class="emoji-bg">âœ¨</span> <span class="emoji-bg">ðŸ’Ž</span> <span class="emoji-bg">ðŸ“¿</span> <span class="emoji-bg">âœ¨</span> <span class="emoji-bg">ðŸ’Ž</span> <span class="emoji-bg">ðŸ“¿</span> <span class="emoji-bg">âœ¨</span> <span class="emoji-bg">ðŸ’Ž</span> <span class="emoji-bg">ðŸ“¿</span> <span class="emoji-bg">âœ¨</span> <span class="emoji-bg">ðŸ’Ž</span> <!-- Sidebar with Progress Bar and Theme Toggle --></p>
+<p><span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span></p>
 
-<div class="sidebar">
-<div class="progress-bar">
-<div class="progress-fill" id="progress-fill" style="height: 0%;">&nbsp;</div>
-</div>
 <div class="top-controls">
 <div id="theme-toggle"><span class="icon moon">&#127769;</span>
 <div class="knob">&nbsp;</div>
 <span class="icon sun">&#9728;&#65039;</span></div>
-<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div><script></p>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
 
 <header>
 <h1><strong><span class="theme-text">Experiential Activity: Product Cost Calculator</span></strong></h1>
@@ -622,26 +654,41 @@
         // Theme Toggle
         const themeToggle = document.getElementById("theme-toggle");
         themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("light-theme");
             document.body.classList.toggle("light");
-            document.querySelector(".sidebar").classList.toggle("light");
-            document.querySelector(".progress-bar").classList.toggle("light");
-            document.querySelector("header").classList.toggle("light");
+            const isLight = document.body.classList.contains("light");
+            themeToggle.classList.toggle("active", isLight);
+            
+            document.querySelectorAll("header").forEach(h => h.classList.toggle("light"));
             document.querySelectorAll(".content-section").forEach(section => section.classList.toggle("light"));
             document.querySelectorAll("h3").forEach(heading => heading.classList.toggle("light"));
             document.querySelectorAll("h4").forEach(heading => heading.classList.toggle("light"));
             document.querySelectorAll(".emoji-bg").forEach(emoji => emoji.classList.toggle("light"));
-            document.querySelector("footer").classList.toggle("light");
-            document.querySelector("#back-to-top").classList.toggle("light");
+            document.querySelectorAll("footer").forEach(f => f.classList.toggle("light"));
+            document.querySelectorAll("#back-to-top").forEach(b => b.classList.toggle("light"));
             document.querySelectorAll(".progress-fill").forEach(fill => fill.classList.toggle("light"));
             document.querySelectorAll("li").forEach(item => item.classList.toggle("light"));
             document.querySelectorAll(".pathfinder-iframe").forEach(iframe => iframe.classList.toggle("light"));
             document.querySelectorAll(".activity-section input").forEach(input => input.classList.toggle("light"));
             document.querySelectorAll(".activity-section button").forEach(button => button.classList.toggle("light"));
             document.querySelectorAll(".confirmation-message").forEach(message => message.classList.toggle("light"));
-            themeToggle.textContent = document.body.classList.contains("light") ? "â˜€ï¸" : "ðŸŒ™";
         });
 
-        // Fullscreen Toggle
+        // Fullscreen Global Button
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        if (fullscreenBtn) {
+            fullscreenBtn.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(err => {
+                        console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            });
+        }
+
+        // Fullscreen Activity Toggle
         const fullscreenToggle = document.getElementById("fullscreen-toggle");
         const iframe = document.querySelector(".pathfinder-iframe");
         fullscreenToggle.addEventListener("click", () => {
@@ -733,30 +780,3 @@
             }, 3000);
         }
     </script></p>
-
-
-<script>
-  // Global Top Controls Script (Theme & Fullscreen)
-  const themeToggleUI = document.getElementById('theme-toggle');
-  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
-  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
-  if(themeToggleUI) {
-      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
-  }
-  if(fullscreenToggleBtnUI) {
-      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
-  }
-</script>
-
-<script>
-  // Global Top Controls Script (Theme & Fullscreen)
-  const themeToggleUI = document.getElementById('theme-toggle');
-  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
-  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
-  if(themeToggleUI) {
-      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
-  }
-  if(fullscreenToggleBtnUI) {
-      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
-  }
-</script>
