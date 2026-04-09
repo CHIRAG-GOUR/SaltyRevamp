@@ -767,11 +767,28 @@
     @media (max-width: 768px) {
     /* Mobile Rules for 1.2 and Glossary */
     .drag-area {
-      flex-direction: column !important;
-      gap: 15px !important;
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      gap: 10px !important;
     }
     .drag-items, .drop-zones {
-      width: 100% !important;
+      width: 48% !important;
+      flex: 0 0 48% !important;
+      padding: 5px !important;
+    }
+    .drag-item {
+      font-size: 13px !important;
+      padding: 8px !important;
+      margin: 8px 0 !important;
+    }
+    .drop-zone {
+      min-height: 120px !important;
+      margin: 8px 0 !important;
+      padding: 8px !important;
+    }
+    .drop-zone img {
+      max-width: 60px !important;
+      max-height: 60px !important;
     }
     .timeline-nav {
       flex-direction: column !important;
