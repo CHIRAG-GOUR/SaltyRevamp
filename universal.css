@@ -797,6 +797,10 @@
         max-width: 200px;
         max-height: 200px;
         overflow: hidden;
+        margin: 15px auto; /* Centered visually in the card */
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .chapter-image img {
@@ -832,28 +836,37 @@
       }
 
       .game-area {
-        flex-direction: column;
-        gap: 20px;
+        flex-direction: row; /* Changed to row to place columns in front of each other */
+        justify-content: space-between;
+        gap: 10px;
         min-height: auto;
         padding: 5px;
       }
 
       .items, .categories {
-        width: 100%;
+        width: 48%; /* Each column takes up roughly half the screen */
+        padding: 0;
       }
 
-      .item {
+      .item, .category {
         padding: 5px;
-        margin: 0;
-        max-width: 150px;
-        max-height: 150px;
+        margin: 5px 0;
+        max-width: 100%;
+        max-height: 100px; /* Reduced from 150px */
+        height: 80px; /* Keep text boxes smaller on app view */
       }
 
       .item img {
-        max-width: 150px;
-        max-height: 150px;
-        width: 100%;
+        max-width: 100%;
+        max-height: 100px;
+        width: auto;
+        height: 100%;
         aspect-ratio: 1 / 1;
+      }
+
+      .category .theme-font-22 {
+        font-size: 14px !important; /* Smaller text inside boxes for app view */
+        word-break: break-word;
       }
 
       .video-container iframe {
