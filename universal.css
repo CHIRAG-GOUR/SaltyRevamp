@@ -790,23 +790,26 @@
       }
 
       .chapter-text, .chapter-image {
-        flex: none;
-        width: 100%;
+        flex: none !important;
+        width: 100% !important;
       }
 
       .chapter-image {
-        max-width: 200px;
-        max-height: 200px;
+        display: block !important;
+        margin: 20px auto !important;
+        text-align: center !important;
+        width: 200px !important;
+        max-width: 100% !important;
         overflow: hidden;
-        margin: 15px auto; /* Centered visually in the card */
-        display: flex;
-        justify-content: center;
-        align-items: center;
       }
 
       .chapter-image img {
-        width: calc(100% - 20px);
-        height: calc(100% - 20px);
+        width: 200px !important;
+        height: 200px !important;
+        max-width: 100% !important;
+        object-fit: cover !important;
+        margin: 0 auto !important;
+        display: inline-block !important;
         aspect-ratio: 1 / 1;
       }
 
@@ -837,32 +840,44 @@
       }
 
       .game-area {
-        flex-direction: row; /* Changed to row to place columns in front of each other */
-        justify-content: space-between;
-        gap: 10px;
-        min-height: auto;
-        padding: 5px;
+        display: flex !important;
+        flex-direction: row !important; /* Forces side-by-side elements */
+        justify-content: space-between !important;
+        align-items: stretch !important;
+        gap: 4% !important;
+        min-height: auto !important;
+        padding: 10px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        flex-wrap: nowrap !important;
       }
 
       .items, .categories {
-        width: 48%; /* Each column takes up roughly half the screen */
-        padding: 0;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 48% !important; /* strictly forces each column into half */
+        flex: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
 
       .item, .category {
-        padding: 5px;
-        margin: 5px 0;
-        max-width: 100%;
-        max-height: 100px; /* Reduced from 150px */
-        height: 80px; /* Keep text boxes smaller on app view */
+        padding: 5px !important;
+        margin: 5px 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 80px !important; /* Keep text boxes smaller on app view */
+        box-sizing: border-box !important;
+        flex: none !important;
       }
 
       .item img {
-        max-width: 100%;
-        max-height: 100px;
-        width: auto;
-        height: 100%;
+        max-width: 100% !important;
+        max-height: 70px !important;
+        width: auto !important;
+        height: 100% !important;
         aspect-ratio: 1 / 1;
+        object-fit: contain !important;
       }
 
       .category .theme-font-22 {
