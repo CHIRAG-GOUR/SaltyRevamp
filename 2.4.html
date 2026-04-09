@@ -1,0 +1,718 @@
+﻿<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+<style type="text/css">:root {
+    --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+    --body-color: #CCC;
+    --header-bg: #4B3A6F;
+    --header-color: #E0E0E0;
+    --h-color: #B19CD9;
+    --chapter-bg: #2A2244;
+    --text-p-color: #BBB;
+    --topic-bg: #3C2F5F;
+    --footer-bg: #4B3A6F;
+    --footer-color: #E0E0E0;
+    --popup-bg: #B19CD9;
+    --popup-color: #000;
+    --shimmer-color: rgba(177, 156, 217, 0.2);
+    --sparkle-color-from: #B19CD9;
+    --sparkle-color-to: #8A7DB5;
+    --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+    --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+    --shadow-small: rgba(255,255,255,0.05);
+    --arrow-stroke: #B19CD9;
+    --theme-text-color: #ffffff;
+    --button-bg: #B19CD9;
+    --button-color: #000;
+    --popup-shadow: rgba(255, 255, 255, 0.5);
+    --correct-color: #4CAF50;
+    --incorrect-color: #F44336;
+}
+
+.light {
+    --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+    --body-color: #333;
+    --header-bg: #7b46ac;
+    --header-color: white;
+    --h-color: #9846ac;
+    --chapter-bg: #fff;
+    --text-p-color: #444;
+    --topic-bg: #D0C3F1;
+    --footer-bg: #7b46ac;
+    --footer-color: white;
+    --popup-bg: #9846ac;
+    --popup-color: white;
+    --shimmer-color: rgba(123, 70, 172, 0.2);
+    --sparkle-color-from: #9846ac;
+    --sparkle-color-to: #7b46ac;
+    --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+    --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+    --shadow-small: rgba(0,0,0,0.05);
+    --arrow-stroke: #9846ac;
+    --theme-text-color: #ecf0f1;
+    --button-bg: #9846ac;
+    --button-color: white;
+    --popup-shadow: rgba(0, 0, 0, 0.2);
+    --correct-color: #4CAF50;
+    --incorrect-color: #F44336;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: var(--body-bg);
+    color: var(--body-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: var(--header-bg);
+    color: var(--header-color);
+    padding: 10px;
+    text-align: center;
+    font-family: 'Michroma', sans-serif;
+    width: 100%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+header:hover {
+    transform: scale(1.01);
+    background-color: var(--popup-bg);
+}
+
+h1, h2 {
+    font-family: 'Michroma', sans-serif;
+    color: var(--h-color);
+}
+
+.chapter-section {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 1100px;
+    background: var(--chapter-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    width: 90%;
+}
+
+.chapter-text {
+    padding: 10px;
+}
+
+.chapter-text h2 {
+    margin-bottom: 5px;
+}
+
+.chapter-text p {
+    line-height: 1.7;
+    font-size: 18px;
+    color: var(--text-p-color);
+}
+
+.chapter-text ul {
+    line-height: 1.7;
+    font-size: 18px;
+    color: var(--text-p-color);
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.chapter-text li {
+    margin-bottom: 10px;
+}
+
+.chapter-text img.center {
+    display: block;
+    margin: 10px auto;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px var(--shadow-small);
+    transition: transform 0.4s ease, border 0.3s ease;
+    cursor: pointer;
+}
+
+.chapter-text img.right {
+    float: right;
+    margin: 10px 0 10px 20px;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px var(--shadow-small);
+    transition: transform 0.4s ease, border 0.3s ease;
+    cursor: pointer;
+}
+
+.chapter-text img:hover {
+    transform: scale(1.03);
+}
+
+.chapter-text img.highlight {
+    border: 2px solid var(--arrow-stroke);
+}
+
+.large-image-container {
+    max-width: 1100px;
+    width: 90%;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.large-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.large-image img {
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px var(--shadow-small);
+    transition: transform 0.4s ease, border 0.3s ease;
+    cursor: pointer;
+}
+
+.large-image img:hover {
+    transform: scale(1.03);
+}
+
+.large-image img.highlight {
+    border: 2px solid var(--arrow-stroke);
+}
+
+.topic-card {
+    margin: 5px auto;
+    padding: 10px;
+    max-width: 800px;
+    background: var(--topic-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    text-align: center;
+    transition: 0.3s ease;
+    font-family: 'Michroma', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    width: 90%;
+}
+
+.topic-card:hover {
+    animation: flash 0.8s linear;
+    background: var(--sparkle-color-from);
+    color: var(--popup-color);
+    transform: scale(1.03);
+}
+
+@keyframes flash {
+    0% { background-color: var(--topic-bg); }
+    50% { background-color: var(--header-bg); color: var(--header-color); }
+    100% { background-color: var(--sparkle-color-from); }
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--footer-bg);
+    color: var(--footer-color);
+    font-size: 18px;
+    width: 100%;
+    margin-top: auto;
+    transition: transform 0.3s ease;
+}
+
+footer:hover {
+    transform: scale(1.01);
+}
+
+
+
+
+
+
+
+.dark-image {
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .light-image {
+        display: none;
+    }
+    .dark-image {
+        display: block;
+    }
+}
+
+body.light .light-image {
+    display: block;
+}
+body.light .dark-image {
+    display: none;
+}
+body:not(.light) .light-image {
+    display: none;
+}
+body:not(.light) .dark-image {
+    display: block;
+}
+
+.iframe-container {
+    max-width: 1100px;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    background: var(--chapter-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    text-align: center;
+}
+
+.iframe-container iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px var(--shadow-small);
+}
+
+.quiz-container {
+    max-width: 1100px;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    background: var(--chapter-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    text-align: center;
+}
+
+.quiz-container p {
+    line-height: 1.7;
+    font-size: 18px;
+    color: var(--text-p-color);
+}
+
+.quiz-container button {
+    padding: 10px;
+    margin: 5px;
+    font-family: 'Michroma', sans-serif;
+    font-size: 16px;
+    background: var(--button-bg);
+    color: var(--button-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+    max-width: 500px;
+}
+
+.quiz-container button:hover {
+    animation: flash 0.8s linear;
+    background: var(--sparkle-color-from);
+    color: var(--popup-color);
+}
+
+.quiz-container button.correct {
+    background: var(--correct-color);
+    color: white;
+}
+
+.quiz-container button.incorrect {
+    background: var(--incorrect-color);
+    color: white;
+}
+
+.quiz-container #feedback {
+    margin-top: 20px;
+    font-size: 18px;
+    color: var(--text-p-color);
+}
+
+.quiz-container #score {
+    margin-top: 10px;
+    font-size: 20px;
+    font-family: 'Michroma', sans-serif;
+    color: var(--h-color);
+}
+
+@media (max-width: 768px) {
+    .chapter-section {
+        padding: 5px;
+        margin: 10px auto;
+    }
+    .chapter-text {
+        padding: 5px;
+    }
+    .chapter-text img.center, .chapter-text img.right {
+        max-width: 300px;
+    }
+    .large-image img {
+        max-width: 400px;
+    }
+
+
+
+
+    .iframe-container iframe {
+        height: 600px;
+    }
+    .quiz-container button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+.theme-text {
+    color: var(--theme-text-color);
+}
+</style>
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">&#127769;</span>
+<div class="knob">&nbsp;</div>
+<span class="icon sun">&#9728;&#65039;</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
+
+<header>
+<h1><strong><span class="theme-text">Chapter 4: Innovation, Manufacturing and R&amp;D</span></strong></h1>
+
+<p><strong><span style="font-size:20px;">Pushing Boundaries with Materials and Technology</span></strong></p>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/Salty%202.4.mp3" /> Your browser does not support the audio element.</audio>
+</div>
+<style type="text/css">.audio-container {
+  position: relative;
+  background: url('/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+  background-size: contain; /* keeps the GIF's aspect ratio */
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  margin: 1.5rem auto;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 1920 / 1080; /* maintain original proportion */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  padding-bottom: 2rem;
+}
+
+/* Modern styled audio */
+.audio-container audio {
+  width: 90%;
+  border-radius: 12px;
+  border: 2px solid #2D2B7E;
+  background: #F5F5FF;
+  height: 50px;
+  padding: 4px;
+  box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
+}
+
+/* Lavender-toned player controls */
+audio::-webkit-media-controls-panel {
+  background-color: #E6E6FA;
+  border-radius: 12px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-volume-slider {
+  filter: hue-rotate(240deg) saturate(1.2);
+}
+</style>
+<div class="topic-card"><strong>Material Innovation and Selection</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<p><span style="font-size:18px;">Salty Jewellery&rsquo;s commitment to affordable luxury is deeply rooted in its careful material selection and innovative R&amp;D processes. Each material is chosen after evaluating durability, comfort, aesthetic value, and environmental compatibility. The brand focuses on materials that not only look premium but also ensure long-lasting wear for customers across different lifestyles.</span></p>
+<img alt="Gemini" class="center" src="/s/articles/68e8bac4ee88ee12754b22ce/images/Material innovation and Selection 2.png" /></div>
+</section>
+
+<div class="topic-card"><strong>Metals: Durability Meets Design</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>Benefits and Rationale:</strong></h2>
+<img alt="Jewellery Design Light Mode" class="center light-image" src="/s/articles/68e8bac4ee88ee12754b22ce/images/Jewellery design Light.png" /> <img alt="Jewellery Design Dark Mode" class="center dark-image" src="/s/articles/68e8bac4ee88ee12754b22ce/images/Jewellery design dark.png" />
+<h2><strong>Usage in Collections:</strong></h2>
+
+<ul>
+	<li><strong>Everyday Jewellery:</strong> Brass alloy, copper alloy, and stainless steel dominate daily-wear pieces like studs, hoops, and adjustable rings.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<ul>
+	<li><strong>Premium Lines:</strong> Electroplated variants with 14K or 18K gold plating and sterling silver are used to elevate select collections, ensuring a luxury finish ideal for special occasions.</li>
+</ul>
+</div>
+</section>
+
+<div class="large-image-container">&nbsp;</div>
+
+<div class="topic-card"><strong>Enamel: Colour and Creativity</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text"><img alt="Enamel" class="right" src="/s/articles/68e8bac4ee88ee12754b22ce/images/enamel.png" />
+<h2><strong>Benefits and Rationale:</strong></h2>
+
+<ul>
+	<li><strong>Aesthetic Enhancement:</strong> Enamel brings in a range of shades and styles, appealing to trend-driven youth audiences.</li>
+	<li><strong>Lightweight Appeal:</strong> Offers a vivid, polished finish without adding much weight to the product.</li>
+	<li><strong>Cost-Effective Design:</strong> Keeps overall production cost moderate while maintaining a premium, handcrafted feel.</li>
+</ul>
+
+<h2><strong>Usage in Collections:</strong></h2>
+
+<ul>
+	<li>Used in fashion-forward pieces like imitation Korean-style earrings, stackable rings, and themed bracelet sets that reflect global trends and festive inspirations.</li>
+</ul>
+</div>
+</section>
+
+<div class="topic-card"><strong>Crystals and Stones: Sparkle with Affordability</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text"><img alt="Crystals" class="right" src="/s/articles/68e8bac4ee88ee12754b22ce/images/Cubic zicronia.png" />
+<h2><strong>Benefits and Rationale:</strong></h2>
+
+<ul>
+	<li><strong>Luxury Look:</strong> Offers a diamond-like sparkle, enhancing the brand&rsquo;s &ldquo;affordable luxury&rdquo; image.</li>
+	<li><strong>Precision Setting:</strong> Each piece is carefully set for long-lasting shine and resistance to loosening.</li>
+	<li><strong>Versatile Styling:</strong> Allows designers to explore modern, minimal, or statement aesthetics suitable for varied customer preferences.</li>
+</ul>
+</div>
+</section>
+
+<div class="topic-card"><strong>Anti-Tarnish Technology: Enduring Beauty</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text"><img alt="Anti-Tarnish" class="right" src="/s/articles/68e8bac4ee88ee12754b22ce/images/Anti tarnish jew.png" />
+<h2><strong>Benefits and Rationale:</strong></h2>
+
+<ul>
+	<li><strong>Extended Shine:</strong> The protective layer ensures jewellery retains its new-look shine for longer periods.</li>
+	<li><strong>Ease of Maintenance:</strong> Reduces the need for frequent cleaning, providing customers with convenience.</li>
+	<li><strong>Enhanced Value:</strong> Extends product life, making pieces ideal for everyday wear and gifting.</li>
+	<li><strong>Market Differentiation:</strong> Positions Salty as a trustworthy brand that blends beauty, comfort, and science-backed quality.</li>
+</ul>
+
+<h2><strong>Usage in Collections:</strong></h2>
+
+<ul>
+	<li><strong>Anti-Tarnish Range:</strong> Rings, earrings, necklaces, and bracelets treated with special anti-tarnish coating.</li>
+	<li><strong>Target Audience:</strong> Young professionals and style-conscious users seeking reliable, long-lasting accessories.</li>
+</ul>
+
+<div class="iframe-container"><iframe frameborder="0" scrolling="yes" src="https://chirag-gour.github.io/Audio_SkilliZee/Salty%20Anti/index.html" title="Salty Anti-Tarnish Line"></iframe></div>
+</div>
+</section>
+
+<div class="topic-card"><strong>Research, Design and Market Alignment</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text"><img alt="R&amp;D Process" class="right" src="/s/articles/68e8bac4ee88ee12754b22ce/images/Key r&amp;d focus.png" />
+<h2><strong>Key R&amp;D Focus Areas:</strong></h2>
+
+<ul>
+	<li>Continuous testing for skin-safety and durability under varying conditions.</li>
+	<li>Innovative approaches to blending style and functionality for daily use.</li>
+	<li>Adapting a lean inventory model that enables quick product updates in response to market feedback.</li>
+	<li>Offering eco-conscious packaging and storage recommendations (airtight, cloth-lined boxes) to maintain longevity and support sustainable practices.</li>
+</ul>
+</div>
+</section>
+
+<div class="topic-card"><strong>Quiz: Test Your Knowledge</strong></div>
+
+<section class="quiz-container">
+<h2><strong>Test Your Knowledge on Salty Jewellery&#39;s Innovation</strong></h2>
+
+<p><span style="font-size:18px;">Answer the following questions to test your understanding of Salty Jewellery&rsquo;s materials and R&amp;D processes!</span></p>
+
+<div id="quiz-question">&nbsp;</div>
+
+<div id="quiz-options">&nbsp;</div>
+
+<div id="feedback">&nbsp;</div>
+
+<div id="score">Score: 0/5</div>
+<button id="next-question" style="display: none;">Next Question</button></section>
+
+<footer><span style="font-size:18px;">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    
+
+    // Image Highlight Toggle
+    const images = document.querySelectorAll('.chapter-text img, .large-image img');
+    images.forEach(img => {
+        img.addEventListener('click', () => {
+            img.classList.toggle('highlight');
+        });
+    });
+
+    // Quiz Logic
+    const quizQuestions = [
+        {
+            question: "What is a key factor in Salty Jewelleryâ€™s material selection process?",
+            options: [
+                "Cost reduction only",
+                "Durability, comfort, aesthetic value, and environmental compatibility",
+                "Using only precious metals",
+                "Random selection based on trends"
+            ],
+            correct: 1
+        },
+        {
+            question: "Which metal is NOT primarily used by Salty Jewellery?",
+            options: [
+                "Brass alloy",
+                "Copper alloy",
+                "Stainless steel",
+                "Platinum"
+            ],
+            correct: 3
+        },
+        {
+            question: "What is a benefit of using enamel in Saltyâ€™s designs?",
+            options: [
+                "Increases weight significantly",
+                "Appeals to trend-driven youth audiences",
+                "Reduces durability",
+                "Increases production costs"
+            ],
+            correct: 1
+        },
+        {
+            question: "What technology is used in Saltyâ€™s anti-tarnish line to resist oxidation?",
+            options: [
+                "Special surface treatments and protective coatings",
+                "High-temperature forging",
+                "Silver polishing",
+                "Diamond embedding"
+            ],
+            correct: 0
+        },
+        {
+            question: "What is one of Saltyâ€™s key R&D focus areas?",
+            options: [
+                "Developing heavy jewellery",
+                "Continuous testing for skin-safety and durability",
+                "Using non-recyclable packaging",
+                "Ignoring market feedback"
+            ],
+            correct: 1
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    const questionElement = document.getElementById('quiz-question');
+    const optionsElement = document.getElementById('quiz-options');
+    const feedbackElement = document.getElementById('feedback');
+    const scoreElement = document.getElementById('score');
+    const nextButton = document.getElementById('next-question');
+
+    function loadQuestion() {
+        const q = quizQuestions[currentQuestion];
+        questionElement.innerHTML = `<p>${q.question}</p>`;
+        optionsElement.innerHTML = '';
+        q.options.forEach((option, index) => {
+            const button = document.createElement('button');
+            button.textContent = option;
+            button.onclick = () => checkAnswer(index);
+            optionsElement.appendChild(button);
+        });
+        feedbackElement.textContent = '';
+        nextButton.style.display = 'none';
+    }
+
+    function checkAnswer(selectedIndex) {
+        const q = quizQuestions[currentQuestion];
+        const buttons = optionsElement.getElementsByTagName('button');
+        for (let button of buttons) {
+            button.disabled = true;
+        }
+        if (selectedIndex === q.correct) {
+            score++;
+            feedbackElement.textContent = 'Correct!';
+            buttons[selectedIndex].classList.add('correct');
+        } else {
+            feedbackElement.textContent = 'Incorrect. The correct answer is: ' + q.options[q.correct];
+            buttons[selectedIndex].classList.add('incorrect');
+            buttons[q.correct].classList.add('correct');
+        }
+        scoreElement.textContent = `Score: ${score}/${quizQuestions.length}`;
+        nextButton.style.display = currentQuestion < quizQuestions.length - 1 ? 'block' : 'none';
+        if (currentQuestion === quizQuestions.length - 1) {
+            feedbackElement.textContent += ` Quiz completed! Your final score is ${score}/${quizQuestions.length}.`;
+        }
+    }
+
+    nextButton.onclick = () => {
+        currentQuestion++;
+        loadQuestion();
+    };
+
+    loadQuestion();
+});
+</script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>

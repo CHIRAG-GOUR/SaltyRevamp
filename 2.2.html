@@ -1,0 +1,521 @@
+﻿<div>
+<div>
+<div>
+<div>
+<div><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></div>
+</div>
+</div>
+</div>
+</div>
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+<style type="text/css">:root {
+    --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+    --body-color: #CCC;
+    --header-bg: #4B3A6F;
+    --header-color: #E0E0E0;
+    --h-color: #B19CD9;
+    --chapter-bg: #2A2244;
+    --text-p-color: #BBB;
+    --topic-bg: #3C2F5F;
+    --footer-bg: #4B3A6F;
+    --footer-color: #E0E0E0;
+    --popup-bg: #B19CD9;
+    --popup-color: #000;
+    --shimmer-color: rgba(177, 156, 217, 0.2);
+    --sparkle-color-from: #B19CD9;
+    --sparkle-color-to: #8A7DB5;
+    --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+    --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+    --shadow-small: rgba(255,255,255,0.05);
+    --arrow-stroke: #B19CD9;
+    --theme-text-color: #ffffff;
+    --button-bg: #B19CD9;
+    --button-color: #000;
+    --popup-shadow: rgba(255, 255, 255, 0.5);
+}
+
+.light {
+    --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+    --body-color: #333;
+    --header-bg: #7b46ac;
+    --header-color: white;
+    --h-color: #9846ac;
+    --chapter-bg: #fff;
+    --text-p-color: #444;
+    --topic-bg: #D0C3F1;
+    --footer-bg: #7b46ac;
+    --footer-color: white;
+    --popup-bg: #9846ac;
+    --popup-color: white;
+    --shimmer-color: rgba(123, 70, 172, 0.2);
+    --sparkle-color-from: #9846ac;
+    --sparkle-color-to: #7b46ac;
+    --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+    --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+    --shadow-small: rgba(0,0,0,0.05);
+    --arrow-stroke: #9846ac;
+    --theme-text-color: #ecf0f1;
+    --button-bg: #9846ac;
+    --button-color: white;
+    --popup-shadow: rgba(0, 0, 0, 0.2);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: var(--body-bg);
+    color: var(--body-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: var(--header-bg);
+    color: var(--header-color);
+    padding: 10px;
+    text-align: center;
+    font-family: 'Michroma', sans-serif;
+    width: 100%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+header:hover {
+    transform: scale(1.01);
+    background-color: var(--popup-bg);
+}
+
+h1, h2 {
+    font-family: 'Michroma', sans-serif;
+    color: var(--h-color);
+}
+
+.chapter-section {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 1100px;
+    background: var(--chapter-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    width: 90%;
+    gap: 10px;
+}
+
+.chapter-section:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.chapter-text {
+    flex: 1;
+    padding: 10px;
+    align-self: stretch;
+}
+
+.chapter-text h2 {
+    margin-bottom: 5px;
+}
+
+.chapter-text p {
+    line-height: 1.7;
+    font-size: 18px;
+    color: var(--text-p-color);
+}
+
+.chapter-text ul {
+    line-height: 1.7;
+    font-size: 18px;
+    color: var(--text-p-color);
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.chapter-text li {
+    margin-bottom: 10px;
+}
+
+.chapter-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    max-width: none;
+    height: 100%;
+    overflow: hidden;
+    align-self: stretch;
+}
+
+.chapter-image img {
+    width: 100%;
+    max-width: 500px;
+    max-height: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px var(--shadow-small);
+    transition: transform 0.4s ease, border 0.3s ease;
+    margin: 0;
+    cursor: pointer;
+}
+
+.chapter-image img:hover {
+    transform: scale(1.03);
+}
+
+.chapter-image img.highlight {
+    border: 2px solid var(--arrow-stroke);
+}
+
+.large-image-container {
+    max-width: 1100px;
+    width: 90%;
+    margin: 10px auto;
+    text-align: center;
+}
+
+.large-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.large-image img {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px var(--shadow-small);
+    transition: transform 0.4s ease, border 0.3s ease;
+    cursor: pointer;
+}
+
+.large-image img:hover {
+    transform: scale(1.03);
+}
+
+.large-image img.highlight {
+    border: 2px solid var(--arrow-stroke);
+}
+
+.topic-card {
+    margin: 25px auto;
+    padding: 10px;
+    max-width: 800px;
+    background: var(--topic-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    text-align: center;
+    transition: 0.3s ease;
+    font-family: 'Michroma', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    width: 90%;
+}
+
+.topic-card:hover {
+    animation: flash 0.8s linear;
+    background: var(--sparkle-color-from);
+    color: var(--popup-color);
+    transform: scale(1.03);
+}
+
+@keyframes flash {
+    0% { background-color: var(--topic-bg); }
+    50% { background-color: var(--header-bg); color: var(--header-color); }
+    100% { background-color: var(--sparkle-color-from); }
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--footer-bg);
+    color: var(--footer-color);
+    font-size: 18px;
+    width: 100%;
+    margin-top: auto;
+    transition: transform 0.3s ease;
+}
+
+footer:hover {
+    transform: scale(1.01);
+}
+
+
+
+
+
+
+
+.dark-image {
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .light-image {
+        display: none;
+    }
+    .dark-image {
+        display: block;
+    }
+}
+
+body.light .light-image {
+    display: block;
+}
+body.light .dark-image {
+    display: none;
+}
+body:not(.light) .light-image {
+    display: none;
+}
+body:not(.light) .dark-image {
+    display: block;
+}
+
+.side-by-side-images {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.wearable-art-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 10px auto;
+}
+
+.wearable-art-container img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px var(--shadow-small);
+    transition: transform 0.4s ease, border 0.3s ease;
+    cursor: pointer;
+}
+
+.wearable-art-container img:hover {
+    transform: scale(1.03);
+}
+
+.wearable-art-container img.highlight {
+    border: 2px solid var(--arrow-stroke);
+}
+
+.iframe-container {
+    max-width: 1100px;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    background: var(--chapter-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    text-align: center;
+}
+
+.iframe-container iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px var(--shadow-small);
+}
+
+@media (max-width: 768px) {
+    .chapter-section {
+        flex-direction: column;
+        padding: 5px;
+        margin: 10px auto;
+    }
+    .chapter-text, .chapter-image {
+        flex: none;
+        width: 100%;
+        padding: 5px;
+    }
+    .chapter-image {
+        max-width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .chapter-image img {
+        max-width: 300px;
+        max-height: 100%;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        margin: 0;
+    }
+    .chapter-image img:hover {
+        transform: scale(1.03);
+    }
+    .large-image img {
+        max-width: 400px;
+    }
+
+
+
+
+    .side-by-side-images {
+        flex-direction: column;
+        align-items: center;
+    }
+    .wearable-art-container {
+        max-width: 300px;
+    }
+    .wearable-art-container img {
+        max-height: 300px;
+    }
+    .iframe-container iframe {
+        height: 400px;
+    }
+}
+
+.theme-text {
+    color: var(--theme-text-color);
+}
+</style>
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">&#127769;</span>
+<div class="knob">&nbsp;</div>
+<span class="icon sun">&#9728;&#65039;</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
+
+<header>
+<h1><strong><span class="theme-text">Chapter 2: Creativity in Action: From Trends to Design</span></strong></h1>
+
+<p><strong><span style="font-size:20px;">Crafting Jewellery with Global Inspiration</span></strong></p>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/2.2.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
+</div>
+<style type="text/css">.audio-container {
+  position: relative;
+  background: url('/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+  background-size: contain; /* keeps the GIF's aspect ratio */
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 1920 / 1080; /* maintain original proportion */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Modern styled audio */
+.audio-container audio {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #2D2B7E;
+  background: #F5F5FF;
+  height: 50px;
+  padding: 4px;
+  box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
+}
+
+/* Lavender-toned player controls */
+audio::-webkit-media-controls-panel {
+  background-color: #E6E6FA;
+  border-radius: 12px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-volume-slider {
+  filter: hue-rotate(240deg) saturate(1.2);
+}
+</style>
+<div class="topic-card"><strong>Where Ideas Begin</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>How new collections are imagined</strong></h2>
+
+<p><span style="font-size:18px;"><strong>Salty&rsquo;s </strong>design inspiration is a creative fusion of art, culture, lifestyle, and youth trends. The design team collaborates closely with marketing experts to analyze emerging fashion trends and cultural shifts. This ensures their collections resonate with the fast-evolving preferences of modern consumers who are digitally connected and style-savvy. Designers draw from a wide palette of influences including K-style fashion, Western trends, street culture, and youth aspirations to create fresh, statement-worthy jewellery pieces that are both fashionable and wearable.</span></p>
+
+<div class="iframe-container"><iframe src="https://pm-lang.github.io/Salty/" title="Salty New Launch"></iframe></div>
+</div>
+</section>
+
+<div class="large-image-container">
+<div class="large-image"><img alt="Design Inspiration Light Mode" class="light-image" src="/s/articles/68df8baf85586e173c3ee756/images/design philosophy light.png" /> <img alt="Design Inspiration Dark Mode" class="dark-image" src="/s/articles/68df8baf85586e173c3ee756/images/design philosophy dark.png" /></div>
+</div>
+
+<div class="topic-card"><strong>Art You Can Wear</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>&ldquo;Jewellery as wearable art&rdquo;</strong></h2>
+
+<p><span style="font-size:18px;"><strong>Salty</strong> views jewellery as more than just adornment; it is wearable art that combines craftsmanship, creativity, and personal expression. Each piece is carefully designed to be visually captivating while serving as a medium of storytelling and identity for the wearer. This concept embraces the idea that jewellery reflects individual style, cultural narratives, and emotion, transforming everyday accessories into pieces of art that carry meaning and character.</span></p>
+
+<div class="wearable-art-container"><img alt="Wearable Art Light Mode" class="light-image" src="/s/articles/68d4eacef335971c73e0a61e/images/Jewellery as a wearable art.png" /> <img alt="Wearable Art Dark Mode" class="dark-image" src="/s/articles/68d4eacef335971c73e0a61e/images/Jewellery as a wearable art.png" /></div>
+</div>
+</section>
+
+<div class="topic-card"><strong>Trends to Treasures</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>How global fashion trends inspire new products</strong></h2>
+
+<div class="large-image-container">
+<div class="large-image"><img alt="Fashion Trends Light Mode" class="light-image" src="/s/articles/68df8baf85586e173c3ee756/images/fashion strategy dark.png" /> <img alt="Fashion Trends Dark Mode" class="dark-image" src="/s/articles/68df8baf85586e173c3ee756/images/fashion strategy light.png" /></div>
+</div>
+</div>
+</section>
+
+<footer><span style="font-size:18px;">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    
+
+    // Image Highlight Toggle
+    const images = document.querySelectorAll('.chapter-image img, .large-image img, .wearable-art-container img');
+    images.forEach(img => {
+        img.addEventListener('click', () => {
+            img.classList.toggle('highlight');
+        });
+    });
+});
+</script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>

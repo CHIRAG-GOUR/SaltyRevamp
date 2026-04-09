@@ -1,0 +1,842 @@
+﻿<div>
+<div>
+<div>
+<div>
+<div><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></div>
+</div>
+</div>
+</div>
+</div>
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+<style type="text/css">:root {
+            --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+            --body-color: #CCC;
+            --header-bg: #4B3A6F;
+            --header-color: #E0E0E0;
+            --h-color: #B19CD9;
+            --chapter-bg: #2A2244;
+            --text-p-color: #BBB;
+            --topic-bg: #3C2F5F;
+            --footer-bg: #4B3A6F;
+            --footer-color: #E0E0E0;
+            --activity-bg: linear-gradient(135deg, #3C2F5F, #2A2244);
+            --activity-border: #B19CD9;
+            --item-bg: #2A2244;
+            --dropzone-border: #B19CD9;
+            --button-bg: #B19CD9;
+            --button-color: #000;
+            --score-bg: #2A2244;
+            --correct-bg: #388E3C;
+            --wrong-bg: #D32F2F;
+            --popup-bg: #B19CD9;
+            --popup-color: #000;
+            --shimmer-color: rgba(177, 156, 217, 0.2);
+            --sparkle-color-from: #B19CD9;
+            --sparkle-color-to: #8A7DB5;
+            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+            --shadow-small: rgba(255,255,255,0.05);
+            --arrow-stroke: #B19CD9;
+            --theme-text-color: #ffffff;
+            --popup-shadow: rgba(255, 255, 255, 0.5);
+        }
+
+        .light {
+            --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+            --body-color: #333;
+            --header-bg: #7b46ac;
+            --header-color: white;
+            --h-color: #9846ac;
+            --chapter-bg: #fff;
+            --text-p-color: #444;
+            --topic-bg: #D0C3F1;
+            --footer-bg: #7b46ac;
+            --footer-color: white;
+            --activity-bg: linear-gradient(135deg, #D0C3F1, #e8e1f7);
+            --activity-border: #9846ac;
+            --item-bg: #fff;
+            --dropzone-border: #7b46ac;
+            --button-bg: linear-gradient(135deg, #7b46ac, #9846ac);
+            --button-color: white;
+            --score-bg: #fff;
+            --correct-bg: #4caf50;
+            --wrong-bg: #d32f2f;
+            --popup-bg: #9846ac;
+            --popup-color: white;
+            --shimmer-color: rgba(123, 70, 172, 0.2);
+            --sparkle-color-from: #9846ac;
+            --sparkle-color-to: #7b46ac;
+            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+            --shadow-small: rgba(0,0,0,0.05);
+            --arrow-stroke: #9846ac;
+            --theme-text-color: #ecf0f1;
+            --popup-shadow: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: var(--body-bg);
+            color: var(--body-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-color);
+            padding: 10px;
+            text-align: center;
+            font-family: 'Michroma', sans-serif;
+            width: 100%;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        header:hover {
+            transform: scale(1.01);
+            background-color: var(--popup-bg);
+        }
+
+        h1, h2, .activity-container h3 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--h-color);
+        }
+
+        .chapter-section {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            margin: 10px auto;
+            padding: 10px;
+            max-width: 1100px;
+            background: var(--chapter-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-main);
+            width: 90%;
+            gap: 10px;
+        }
+
+        .chapter-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .chapter-text {
+            flex: 1;
+            padding: 10px;
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chapter-text h2 {
+            margin-bottom: 5px;
+        }
+
+        .chapter-text p {
+            line-height: 1.7;
+            font-size: 18px;
+            color: var(--text-p-color);
+            margin: 0;
+        }
+
+        .chapter-text ul {
+            line-height: 1.7;
+            font-size: 18px;
+            color: var(--text-p-color);
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .chapter-text li {
+            margin-bottom: 10px;
+        }
+
+        .chapter-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            max-width: 100%;
+            overflow: hidden;
+            align-self: stretch;
+        }
+
+        .chapter-image img {
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+            max-height: 800px;
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            box-shadow: 0px 4px 20px var(--shadow-small);
+            transition: transform 0.4s ease, border 0.3s ease;
+            margin: 0 auto;
+            cursor: pointer;
+            object-fit: contain;
+        }
+
+        .chapter-image img:hover {
+            transform: scale(1.03);
+        }
+
+        .chapter-image img.highlight {
+            border: 2px solid var(--arrow-stroke);
+        }
+
+        .large-image-container {
+            max-width: 1100px;
+            width: 90%;
+            margin: 10px auto;
+            text-align: center;
+        }
+
+        .large-image img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 20px var(--shadow-small);
+            transition: transform 0.4s ease, border 0.3s ease;
+            cursor: pointer;
+        }
+
+        .large-image img:hover {
+            transform: scale(1.03);
+        }
+
+        .large-image img.highlight {
+            border: 2px solid var(--arrow-stroke);
+        }
+
+        .topic-card {
+            margin: 25px auto;
+            padding: 10px;
+            max-width: 800px;
+            background: var(--topic-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-main);
+            text-align: center;
+            transition: 0.3s ease;
+            font-family: 'Michroma', sans-serif;
+            font-size: 20px;
+            cursor: pointer;
+            width: 90%;
+        }
+
+        .topic-card:hover {
+            animation: flash 0.8s linear;
+            background: var(--sparkle-color-from);
+            color: var(--popup-color);
+            transform: scale(1.03);
+        }
+
+        @keyframes flash {
+            0% { background-color: var(--topic-bg); }
+            50% { background-color: var(--header-bg); color: var(--header-color); }
+            100% { background-color: var(--sparkle-color-from); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--footer-bg);
+            color: var(--footer-color);
+            font-size: 18px;
+            width: 100%;
+            margin-top: auto;
+            transition: transform 0.3s ease;
+        }
+
+        footer:hover {
+            transform: scale(1.01);
+        }
+
+
+
+
+
+
+
+        .activity-container {
+            max-width: 1100px;
+            width: 90%;
+            padding: 15px;
+            background: var(--activity-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-main);
+            margin: 10px auto;
+            border: 1px solid var(--activity-border);
+        }
+
+        .activity-container h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 0 1px 2px var(--shadow-small);
+        }
+
+        .activity-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .draggable-items, .drop-zones {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 220px;
+        }
+
+        .draggable-item {
+            padding: 12px;
+            background: var(--item-bg);
+            border-radius: 10px;
+            box-shadow: 0px 3px 12px var(--shadow-small);
+            text-align: center;
+            font-size: 16px;
+            color: var(--text-p-color);
+            cursor: grab;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .draggable-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 5px 15px var(--shadow-glow);
+        }
+
+        .draggable-item.dragging {
+            animation: premiumDrag 0.5s ease-in-out, premiumRotate 1s ease-in-out infinite;
+            cursor: grabbing;
+        }
+
+        .drop-zone {
+            padding: 12px;
+            background: var(--item-bg);
+            border-radius: 10px;
+            box-shadow: 0px 3px 12px var(--shadow-small);
+            text-align: center;
+            font-size: 16px;
+            color: var(--text-p-color);
+            border: 2px dashed var(--dropzone-border);
+            cursor: default;
+            transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drop-zone.drag-over {
+            animation: premiumGlow 0.5s ease-in-out;
+        }
+
+        .drop-zone.correct {
+            border: 2px solid var(--correct-bg);
+            background: #e8f5e8;
+            animation: premiumGlow 0.5s ease-in-out;
+        }
+
+        .drop-zone.incorrect {
+            border: 2px solid var(--wrong-bg);
+            background: #ffe8e8;
+            animation: premiumFlash 0.5s ease-in-out;
+        }
+
+        .activity-button {
+            display: block;
+            margin: 15px auto;
+            padding: 12px 24px;
+            background: var(--button-bg);
+            color: var(--button-color);
+            border: none;
+            border-radius: 10px;
+            font-family: 'Michroma', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 3px 10px var(--shadow-small);
+        }
+
+        .activity-button:hover {
+            animation: premiumBounce 0.4s ease-in-out;
+            box-shadow: 0px 5px 15px var(--shadow-glow);
+        }
+
+        .score-display {
+            text-align: center;
+            font-family: 'Michroma', sans-serif;
+            font-size: 18px;
+            color: var(--h-color);
+            margin-top: 10px;
+            padding: 8px;
+            background: var(--score-bg);
+            border-radius: 8px;
+            box-shadow: 0px 2px 10px var(--shadow-small);
+        }
+
+        .side-by-side-images {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .material-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: nowrap;
+        }
+
+        .material-item .chapter-image {
+            flex: 0 0 auto;
+            max-width: 150px;
+            min-width: 150px;
+        }
+
+        .material-item .chapter-image img {
+            max-width: 150px;
+            max-height: 150px;
+        }
+
+        .material-item p {
+            flex: 1;
+        }
+
+        @keyframes premiumDrag {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.9; }
+            100% { transform: scale(1.05); opacity: 1; }
+        }
+
+        @keyframes premiumRotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes premiumGlow {
+            0% { box-shadow: 0px 3px 12px var(--shimmer-color); }
+            50% { box-shadow: 0px 5px 20px var(--shadow-glow); }
+            100% { box-shadow: 0px 3px 12px var(--shimmer-color); }
+        }
+
+        @keyframes premiumFlash {
+            0% { border: 2px dashed var(--dropzone-border); background: var(--item-bg); }
+            50% { border: 2px solid var(--wrong-bg); box-shadow: 0px 5px 15px var(--popup-shadow); background: #ffe8e8; }
+            100% { border: 2px dashed var(--dropzone-border); background: var(--item-bg); }
+        }
+
+        @keyframes premiumBounce {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        .dark-image {
+            display: none;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .light-image {
+                display: none;
+            }
+            .dark-image {
+                display: block;
+            }
+        }
+
+        body.light .light-image {
+            display: block;
+        }
+        body.light .dark-image {
+            display: none;
+        }
+
+        body:not(.light) .light-image {
+            display: none;
+        }
+        body:not(.light) .dark-image {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .chapter-section {
+                flex-direction: column;
+                padding: 5px;
+                margin: 10px auto;
+            }
+            .chapter-text, .chapter-image {
+                flex: none;
+                width: 100%;
+                padding: 5px;
+            }
+            .chapter-image {
+                max-width: 100%;
+                height: auto;
+                overflow: hidden;
+            }
+            .chapter-image img {
+                width: 100%;
+                height: auto;
+                max-width: 300px;
+                max-height: 300px;
+                aspect-ratio: 1 / 1;
+                margin: 0 auto;
+                object-fit: contain;
+            }
+            .chapter-image img:hover {
+                transform: scale(1.03);
+            }
+            .large-image img {
+                max-width: 400px;
+            }
+            .activity-content {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .draggable-item, .drop-zone {
+                font-size: 14px;
+                padding: 8px;
+                min-height: 40px;
+            }
+            .draggable-items, .drop-zones {
+                min-height: auto;
+            }
+            .activity-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .score-display {
+                font-size: 16px;
+                padding: 6px;
+            }
+
+
+
+
+            .side-by-side-images {
+                flex-direction: column;
+                align-items: center;
+            }
+            .material-item {
+                flex-direction: column;
+                align-items: center;
+            }
+            .material-item .chapter-image {
+                max-width: 100px;
+                min-width: 100px;
+            }
+            .material-item .chapter-image img {
+                max-width: 100px;
+                max-height: 100px;
+            }
+        }
+
+        .theme-text {
+            color: var(--theme-text-color);
+        }
+</style>
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">&#127769;</span>
+<div class="knob">&nbsp;</div>
+<span class="icon sun">&#9728;&#65039;</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
+
+<header>
+<h1><strong><span class="theme-text">Chapter 3: The Science Behind Durability and Shine</span></strong></h1>
+
+<p><strong><span style="font-size:20px;">Crafting Jewellery with Global Inspiration</span></strong></p>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/2.3.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
+</div>
+<style type="text/css">.audio-container {
+  position: relative;
+  background: url('/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+  background-size: contain; /* keeps the GIF's aspect ratio */
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  margin: 1.5rem auto;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 1920 / 1080; /* maintain original proportion */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  padding-bottom: 2rem;
+}
+
+/* Modern styled audio */
+.audio-container audio {
+  width: 90%;
+  border-radius: 12px;
+  border: 2px solid #2D2B7E;
+  background: #F5F5FF;
+  height: 50px;
+  padding: 4px;
+  box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
+}
+
+/* Lavender-toned player controls */
+audio::-webkit-media-controls-panel {
+  background-color: #E6E6FA;
+  border-radius: 12px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-volume-slider {
+  filter: hue-rotate(240deg) saturate(1.2);
+}
+</style>
+<div class="topic-card"><strong>Materials that Matter</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>Choices and Criteria of Materials</strong></h2>
+
+<div class="material-item">
+<div class="chapter-image"><img alt="Brass Alloy Light Mode" class="light-image" src="/s/articles/68d51c536a80e8694a1495a7/images/brass alloy.jpg" /> <img alt="Brass Alloy Dark Mode" class="dark-image" src="/s/articles/68d51c536a80e8694a1495a7/images/brass alloy.jpg" /></div>
+
+<p><span style="font-size:18px;"><strong>Brass Alloy</strong>: This metal is valued for its durability and tarnish resistance, making it ideal for long-lasting jewellery that withstands daily wear while maintaining its shine.</span></p>
+</div>
+
+<div class="material-item">
+<div class="chapter-image"><img alt="Stainless Steel Light Mode" class="light-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Stainless steel coil.jpg" /> <img alt="Stainless Steel Dark Mode" class="dark-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Stainless steel coil.jpg" /></div>
+
+<p><span style="font-size:18px;"><strong>Stainless Steel</strong>: Known for being skin-friendly, stainless steel is perfect for wearers with sensitive skin, offering comfort and resistance to corrosion for everyday use.</span></p>
+</div>
+
+<div class="material-item">
+<div class="chapter-image"><img alt="Enamel Light Mode" class="light-image" src="/s/articles/68d51c536a80e8694a1495a7/images/enamel.png" /> <img alt="Enamel Dark Mode" class="dark-image" src="/s/articles/68d51c536a80e8694a1495a7/images/enamel.png" /></div>
+
+<p><span style="font-size:18px;"><strong>Enamel</strong>: Applied to jewellery, enamel provides a vibrant artistic finish, adding bold colors and creative designs that enhance aesthetic appeal without increasing weight.</span></p>
+</div>
+
+<div class="material-item">
+<div class="chapter-image"><img alt="Cubic Zirconia Light Mode" class="light-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Cubic zicronia.png" /> <img alt="Cubic Zirconia Dark Mode" class="dark-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Cubic zicronia.png" /></div>
+
+<p><span style="font-size:18px;"><strong>Cubic Zirconia</strong>: This material brings sparkle and a luxury-like appeal to Salty&rsquo;s pieces, mimicking the brilliance of diamonds at an affordable price point.</span></p>
+</div>
+</div>
+</section>
+
+<div class="activity-container">
+<h3>Activity: Match the Material to Its Property</h3>
+
+<div class="activity-content">
+<div class="draggable-items">
+<div class="draggable-item" data-match="durability" draggable="true">Brass Alloy</div>
+
+<div class="draggable-item" data-match="skin-friendly" draggable="true">Stainless Steel</div>
+
+<div class="draggable-item" data-match="vibrant" draggable="true">Enamel</div>
+
+<div class="draggable-item" data-match="sparkle" draggable="true">Cubic Zirconia</div>
+</div>
+
+<div class="drop-zones">
+<div class="drop-zone" data-target="durability">Durability and Tarnish Resistance</div>
+
+<div class="drop-zone" data-target="skin-friendly">Skin-Friendly</div>
+
+<div class="drop-zone" data-target="vibrant">Vibrant Artistic Finish</div>
+
+<div class="drop-zone" data-target="sparkle">Sparkle and Luxury-Like Appeal</div>
+</div>
+</div>
+<button class="activity-button" fdprocessedid="amwq4b">Reset Activity</button>
+
+<div class="score-display">Score: 0/4</div>
+</div>
+
+<div class="topic-card"><strong>Metals for Every Mood</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>Which metals does Salty prefer for everyday versus premium pieces?</strong></h2>
+
+<p><span style="font-size:18px;">Salty Jewellery prefers different metals based on the intended wear and price positioning of the pieces:</span></p>
+
+<p><span style="font-size:18px;"><strong>Everyday Pieces:</strong> Salty primarily uses brass alloy, copper alloy, and stainless steel for their everyday jewellery. These metals offer good durability, tarnish resistance, and are skin-friendly, making them suitable for frequent use and affordable price points. Brass and copper alloys form the base for most casual and trendy designs.</span></p>
+
+<div class="side-by-side-images">
+<div class="chapter-image"><img alt="Everyday Piece 1 Light Mode" class="light-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Everyday piece 2.png" /> <img alt="Everyday Piece 1 Dark Mode" class="dark-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Everyday piece 2.png" /></div>
+
+<div class="chapter-image"><img alt="Everyday Piece 2 Light Mode" class="light-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Everyday piece 1.png" /> <img alt="Everyday Piece 2 Dark Mode" class="dark-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Everyday piece 1.png" /></div>
+</div>
+
+<p><span style="font-size:18px;"><strong>Premium Pieces:</strong> For higher-end or &ldquo;premium&rdquo; collections, Salty uses electroplated metals with 14K or 18K gold plating as well as some sterling silver elements to give a more luxurious finish and durability. These materials elevate the look and feel for special occasion pieces or more refined designs while maintaining affordability.</span></p>
+
+<div class="side-by-side-images">
+<div class="chapter-image"><img alt="Premium Piece 1 Light Mode" class="light-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Premium piece 1.png" /> <img alt="Premium Piece 1 Dark Mode" class="dark-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Premium piece 1.png" /></div>
+
+<div class="chapter-image"><img alt="Premium Piece 2 Light Mode" class="light-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Premium piece 2.png" /> <img alt="Premium Piece 2 Dark Mode" class="dark-image" src="/s/articles/68d51c536a80e8694a1495a7/images/Premium piece 2.png" /></div>
+</div>
+
+<p><span style="font-size:18px;">This approach allows Salty to maintain its core promise of affordable luxury by balancing material cost, durability, and aesthetics to suit varied customer needs and occasions.</span></p>
+</div>
+</section>
+
+<div class="topic-card"><strong>Which Salty products are marketed as anti-tarnish and why?</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><span style="font-size:26px;"><strong>Which Salty products are marketed as anti-tarnish and why?</strong></span></h2>
+
+<p><span style="font-size:18px;">Salty markets a special line of Anti-Tarnish Jewellery, which includes rings, earrings, </span></p>
+
+<p><span style="font-size:18px;">necklaces, and bracelets specifically treated to resist tarnishing and maintain their </span></p>
+
+<p><span style="font-size:18px;">shine and appearance over time.</span></p>
+
+<div class="chapter-image"><img alt="Anti-Tarnish Light Mode" class="light-image" src="/s/articles/68d51c536a80e8694a1495a7/images/anti tarnish light 1.png" /> <img alt="Anti-Tarnish Dark Mode" class="dark-image" src="/s/articles/68d51c536a80e8694a1495a7/images/anti tarnish dark 1.png" style="width: 90%; height: 900px;" /></div>
+</div>
+</section>
+
+<footer><span style="font-size:18px;">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+
+            // Image Highlight Toggle
+            const images = document.querySelectorAll('.chapter-image img, .large-image img');
+            images.forEach(img => {
+                img.addEventListener('click', () => {
+                    img.classList.toggle('highlight');
+                });
+            });
+
+            // Activity Drag and Drop
+            const draggableItemsContainer = document.querySelector('.draggable-items');
+            const dropZones = document.querySelectorAll('.drop-zone');
+            const resetButton = document.querySelector('.activity-button');
+            const scoreDisplay = document.querySelector('.score-display');
+            let score = 0;
+
+            // Fisher-Yates shuffle algorithm to randomize items
+            function shuffleItems() {
+                const items = Array.from(draggableItemsContainer.querySelectorAll('.draggable-item'));
+                for (let i = items.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [items[i], items[j]] = [items[j], items[i]];
+                }
+                items.forEach(item => draggableItemsContainer.appendChild(item));
+            }
+
+            // Initialize draggable items
+            const draggableItems = document.querySelectorAll('.draggable-item');
+            draggableItems.forEach(item => {
+                item.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/plain', item.dataset.match);
+                    item.classList.add('dragging');
+                });
+                item.addEventListener('dragend', () => {
+                    item.classList.remove('dragging');
+                });
+            });
+
+            // Drop zone event listeners
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    zone.classList.add('drag-over');
+                });
+
+                zone.addEventListener('dragleave', () => {
+                    zone.classList.remove('drag-over');
+                });
+
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    zone.classList.remove('drag-over');
+                    const match = e.dataTransfer.getData('text/plain');
+                    const draggedItem = document.querySelector(`.draggable-item[data-match="${match}"]`);
+                    
+                    if (match === zone.dataset.target && !zone.querySelector('.draggable-item')) {
+                        zone.appendChild(draggedItem);
+                        zone.classList.add('correct');
+                        score = Array.from(dropZones).reduce((total, z) => {
+                            const item = z.querySelector('.draggable-item');
+                            return total + (item && item.dataset.match === z.dataset.target ? 1 : 0);
+                        }, 0);
+                    } else {
+                        zone.classList.add('incorrect');
+                        setTimeout(() => {
+                            zone.classList.remove('incorrect');
+                            if (draggedItem && !zone.querySelector('.draggable-item')) {
+                                draggableItemsContainer.appendChild(draggedItem);
+                            }
+                        }, 500);
+                    }
+                    scoreDisplay.textContent = `Score: ${score}/4`;
+                });
+            });
+
+            // Reset button event listener
+            resetButton.addEventListener('click', () => {
+                dropZones.forEach(zone => {
+                    const item = zone.querySelector('.draggable-item');
+                    if (item) {
+                        draggableItemsContainer.appendChild(item);
+                    }
+                    zone.classList.remove('correct');
+                    zone.style.border = '2px dashed var(--dropzone-border)';
+                    zone.style.background = 'var(--item-bg)';
+                });
+                score = 0;
+                scoreDisplay.textContent = `Score: ${score}/4`;
+                shuffleItems();
+            });
+
+            // Shuffle items when the page loads
+            shuffleItems();
+        });
+    </script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>

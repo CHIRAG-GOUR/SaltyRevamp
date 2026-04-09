@@ -1,0 +1,1056 @@
+﻿<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" /><link rel="stylesheet" href="universal.css" /><script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<style type="text/css">:root {
+      --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+      --body-color: #CCC;
+      --header-bg: #4B3A6F;
+      --header-color: #E0E0E0;
+      --h-color: #B19CD9;
+      --chapter-bg: #2A2244;
+      --text-p-color: #BBB;
+      --topic-bg: #3C2F5F;
+      --game-container-bg: #2A2244;
+      --game-area-bg: #1C172B;
+      --item-bg: #3C2F5F;
+      --category-bg: #4B3A6F;
+      --category-color: #E0E0E0;
+      --results-bg: #1C172B;
+      --footer-bg: #4B3A6F;
+      --footer-color: #E0E0E0;
+      --correct-bg: #388E3C;
+      --wrong-bg: #D32F2F;
+      --popup-bg: #B19CD9;
+      --popup-color: #000;
+      --shimmer-color: rgba(177, 156, 217, 0.2);
+      --sparkle-color-from: #B19CD9;
+      --sparkle-color-to: #8A7DB5;
+      --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+      --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+      --shadow-small: rgba(255,255,255,0.05);
+      --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+      --arrow-stroke: #B19CD9;
+      --theme-text-color: #ffffff;
+      --timeline-bg: #3C2F5F;
+      --timeline-color: #E0E0E0;
+      --button-bg: #B19CD9;
+      --button-color: #000;
+      --popup-shadow: rgba(255, 255, 255, 0.5);
+      --score-bg: #4B3A6F;
+      --score-color: #E0E0E0;
+    }
+
+    .light {
+      --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+      --body-color: #333;
+      --header-bg: #7b46ac;
+      --header-color: white;
+      --h-color: #9846ac;
+      --chapter-bg: #fff;
+      --text-p-color: #444;
+      --topic-bg: #D0C3F1;
+      --game-container-bg: #fff;
+      --game-area-bg: #f9f9f9;
+      --item-bg: #D0C3F1;
+      --category-bg: #7b46ac;
+      --category-color: white;
+      --results-bg: #f9f9f9;
+      --footer-bg: #7b46ac;
+      --footer-color: white;
+      --correct-bg: #4caf50;
+      --wrong-bg: #ff4444;
+      --popup-bg: #9846ac;
+      --popup-color: white;
+      --shimmer-color: rgba(123, 70, 172, 0.2);
+      --sparkle-color-from: #9846ac;
+      --sparkle-color-to: #7b46ac;
+      --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+      --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+      --shadow-small: rgba(0,0,0,0.05);
+      --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+      --image-shadow: 0px 4px 20px rgba(0,0,0,0.15);
+      --arrow-stroke: #9846ac;
+      --theme-text-color: #ecf0f1;
+      --timeline-bg: #D0C3F1;
+      --timeline-color: #444;
+      --button-bg: #9846ac;
+      --button-color: white;
+      --popup-shadow: rgba(0, 0, 0, 0.2);
+      --score-bg: #7b46ac;
+      --score-color: #333;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: var(--body-bg);
+      color: var(--body-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background-color: var(--header-bg);
+      color: var(--header-color);
+      padding: 10px;
+      text-align: center;
+      font-family: 'Michroma', sans-serif;
+      width: 100%;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    header:hover {
+      transform: scale(1.01);
+      background-color: var(--popup-bg);
+    }
+
+    h1, h2 {
+      font-family: 'Michroma', sans-serif;
+      color: var(--h-color);
+    }
+
+    .chapter-section {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      margin: 10px auto;
+      padding: 10px;
+      max-width: 1100px;
+      background: var(--chapter-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow-main);
+      width: 90%;
+      gap: 10px;
+    }
+
+    .chapter-section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .chapter-text {
+      flex: 1;
+      padding: 10px;
+      align-self: stretch;
+    }
+
+    .chapter-text h2 {
+      margin-bottom: 5px;
+    }
+
+    .chapter-text p {
+      line-height: 1.7;
+      font-size: 18px;
+      color: var(--text-p-color);
+    }
+
+    .chapter-text ul {
+      line-height: 1.7;
+      font-size: 18px;
+      color: var(--text-p-color);
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+
+    .chapter-text li {
+      margin-bottom: 10px;
+    }
+
+    .chapter-image {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 5px;
+      max-width: none;
+      height: 100%;
+      overflow: hidden;
+      align-self: stretch;
+    }
+
+    .chapter-image img {
+      width: 100%;
+      max-width: 500px;
+      max-height: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px var(--shadow-small);
+      transition: transform 0.4s ease, border 0.3s ease;
+      margin: 5px auto;
+      cursor: pointer;
+    }
+
+    .chapter-image img:hover {
+      transform: scale(1.03);
+    }
+
+    .chapter-image iframe {
+      width: 100%;
+      max-width: 315px;
+      height: 560px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px var(--shadow-small);
+      margin: 5px auto;
+    }
+
+    .video-placeholder {
+      margin: 10px auto;
+      padding: 10px;
+      max-width: 900px;
+      width: 90%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .video-placeholder iframe {
+      width: 100%;
+      max-width: 315px;
+      height: 560px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px var(--shadow-small);
+    }
+
+    .topic-card {
+      margin: 25px auto;
+      padding: 10px;
+      max-width: 800px;
+      background: var(--topic-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow-main);
+      text-align: center;
+      transition: 0.3s ease;
+      font-family: 'Michroma', sans-serif;
+      font-size: 20px;
+      cursor: pointer;
+      width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .topic-card.products-of-salty {
+      max-width: 900px;
+      padding: 15px;
+    }
+
+    .topic-card:hover {
+      animation: flash 0.8s linear;
+      background: var(--sparkle-color-from);
+      color: var(--popup-color);
+      transform: scale(1.03);
+    }
+
+    @keyframes flash {
+      0% { background-color: var(--topic-bg); }
+      50% { background-color: var(--header-bg); color: var(--header-color); }
+      100% { background-color: var(--sparkle-color-from); }
+    }
+.spectre .carousel {
+    background: rgba(0, 0, 0, 0);
+    display: block;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    width: 100%;
+}
+    .carousel {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-inner {
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 12px;
+      box-shadow: var(--shadow-main);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.6s ease-in-out;
+      text-align: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide img {
+      max-width: 320px;
+      width: 100%;
+      aspect-ratio: 12/9;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 15px var(--shadow-main);
+      margin-bottom: 10px;
+    }
+
+    .slide h3 {
+      font-family: 'Michroma', sans-serif;
+      font-size: 18px;
+      margin: 5px 0;
+      color: var(--h-color);
+    }
+
+    .slide p {
+      font-size: 14px;
+      color: var(--text-p-color);
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--button-bg);
+      color: var(--button-color);
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.3s;
+    }
+
+    .prev { left: 15px; }
+    .next { right: 15px; }
+    .prev:hover, .next:hover { background: var(--header-bg); }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 12px;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .dot.active {
+      background: var(--h-color);
+    }
+
+    .activity-container {
+      max-width: 1100px;
+      margin: 5px auto;
+      padding: 10px 20px;
+      background: var(--game-container-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow-main);
+      text-align: center;
+      width: 90%;
+    }
+
+    .activity-container h2 {
+      font-family: 'Michroma', sans-serif;
+      color: var(--h-color);
+      margin: 0 0 5px;
+    }
+
+    .blank-section {
+      margin: 5px 0;
+      padding: 10px 20px;
+      background: var(--results-bg);
+      border-radius: 12px;
+      box-shadow: 0 2px 10px var(--shadow-small);
+      position: relative;
+    }
+
+    .question-text {
+      font-size: 18px;
+      margin: 0 0 5px;
+      color: var(--text-p-color);
+      line-height: 1.6;
+    }
+
+    .options-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 5px 0 0;
+      flex-wrap: wrap;
+    }
+
+    .option-item {
+      padding: 10px 15px;
+      background: var(--item-bg);
+      border-radius: 8px;
+      cursor: grab;
+      font-size: 16px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      min-width: 120px;
+      text-align: center;
+      border: 2px solid transparent;
+    }
+
+    .option-item:hover {
+      transform: scale(1.02);
+      background-color: var(--category-bg);
+      color: var(--category-color);
+    }
+
+    .option-item.dragging {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+
+    .blank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 150px;
+      height: 40px;
+      padding: 10px;
+      border: 2px dashed var(--arrow-stroke);
+      border-radius: 8px;
+      margin: 0 10px;
+      font-size: 16px;
+      color: #666;
+      transition: all 0.3s ease;
+      background: var(--chapter-bg);
+    }
+
+    .blank.filled {
+      border-style: solid;
+    }
+
+    .blank.correct {
+      border-color: var(--correct-bg);
+      background-color: #e8f5e8;
+      color: var(--correct-bg);
+      animation: pulse 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .blank.wrong {
+      animation: shake 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      border-color: var(--wrong-bg);
+      background-color: #ffe8e8;
+      color: var(--wrong-bg);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .blank.dragging-over {
+      border-color: var(--sparkle-color-from);
+      border-style: solid;
+      background-color: var(--item-bg);
+    }
+
+    .reset-btn {
+      margin: 10px 5px;
+      padding: 10px 20px;
+      background: var(--button-bg);
+      color: var(--button-color);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Michroma', sans-serif;
+      font-size: 16px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .reset-btn:hover {
+      background: var(--header-bg);
+      transform: scale(1.05);
+    }
+
+    .score-container {
+      display: inline-block;
+      margin: 10px 5px;
+      padding: 8px 15px;
+      background: var(--score-bg);
+      color: var(--score-color);
+      border-radius: 8px;
+      font-family: 'Michroma', sans-serif;
+      font-size: 16px;
+      box-shadow: var(--shadow-main);
+      border: 1px solid var(--sparkle-color-from);
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--popup-bg);
+      color: var(--popup-color);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-main), var(--shadow-glow);
+      font-family: 'Michroma', sans-serif;
+      font-size: 24px;
+      text-align: center;
+      z-index: 1000;
+      display: none;
+      animation: popupFade 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes popupFade {
+      0% { opacity: 0; transform: translate(-50%, -60%); }
+      100% { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+
+
+
+
+
+
+    @media (max-width: 768px) {
+      .chapter-section {
+        flex-direction: column;
+        padding: 5px;
+        margin: 10px auto;
+      }
+      .options-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+      }
+      .option-item {
+        width: 80%;
+        max-width: 200px;
+      }
+      .blank {
+        display: block;
+        margin: 5px auto;
+      }
+      .chapter-image video {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 9/16;
+      }
+      .chapter-image img {
+        width: 95%;
+        height: auto;
+        margin: 5px auto;
+      }
+      .chapter-section, .activity-container, .topic-card {
+        width: 95%;
+        margin: 5px auto;
+        padding: 10px 20px;
+      }
+      .video-placeholder iframe {
+        width: 100%;
+        max-width: 280px;
+        height: 500px;
+      }
+      .chapter-image iframe {
+        width: 100%;
+        max-width: 280px;
+        height: 500px;
+      }
+      .slide img {
+        max-width: 225px;
+        aspect-ratio: 9/16;
+        margin: 5px auto;
+      }
+      .slide p {
+        max-width: 225px;
+      }
+      .prev, .next {
+        padding: 8px;
+        font-size: 16px;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+      }
+      .score-container {
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+      .popup {
+        font-size: 18px;
+        padding: 15px;
+        width: 80%;
+      }
+
+
+
+
+    }
+
+    .theme-text {
+      color: var(--theme-text-color);
+    }
+
+
+    /* Added style for quote icon */
+    .quote-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-left: 10px;
+      vertical-align: middle;
+      box-shadow: var(--item-shadow);
+    }
+</style>
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">ðŸŒ™</span>
+<div class="knob">&nbsp;</div>
+<span class="icon sun">â˜€ï¸</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
+
+<header>
+<h1><strong><span class="theme-text">Chapter 1: Salty&#39;s Product World: Categories &amp; Accessories</span></strong></h1>
+
+<p><strong><span style="font-size:20px;">Explore the range of jewelry and accessories</span></strong></p>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/2.1.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
+</div>
+<style type="text/css">.audio-container {
+  position: relative;
+  background: url('/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+  background-size: contain; /* keeps the GIF's aspect ratio */
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 1920 / 1080; /* maintain original proportion */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Modern styled audio */
+.audio-container audio {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #2D2B7E;
+  background: #F5F5FF;
+  height: 50px;
+  padding: 4px;
+  box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
+}
+
+/* Lavender-toned player controls */
+audio::-webkit-media-controls-panel {
+  background-color: #E6E6FA;
+  border-radius: 12px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-volume-slider {
+  filter: hue-rotate(240deg) saturate(1.2);
+}
+</style>
+<div class="topic-card"><strong>What We Offer</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>Product Categories</strong></h2>
+
+<div class="chapter-text">
+<div class="carousel">
+<div class="carousel-inner" id="carouselInner">
+<div class="slide active"><img alt="Necklaces" src="/s/articles/68d4be752d7f77673ea01706/images/EN24149-G-GRN_2.jpg" />
+<h3>Necklaces</h3>
+
+<p>Express your style with chains, pendants, and statement pieces.</p>
+</div>
+
+<div class="slide"><img alt="Bracelets" src="/s/articles/68e0e12d2517dc7e36d4aaab/images/MB1S0714_Model_2.jpg" />
+<h3>Bracelets</h3>
+
+<p>Express your style with chains, pendants, and statement pieces.</p>
+</div>
+
+<div class="slide"><img alt="Earrings" src="https://salty.co.in/cdn/shop/files/ES14251-G_5.jpg?v=1751919386&amp;width=1800" />
+<h3>Earrings</h3>
+
+<p>Express your style with chains, pendants, and statement pieces.</p>
+</div>
+
+<div class="slide"><img alt="Watches" src="https://salty.co.in/cdn/shop/files/WT-S-0030-G-PK_White_20_282_29.jpg?v=1756479204&amp;width=1800" />
+<h3>Watches</h3>
+
+<p>Express your style with chains, pendants, and statement pieces.</p>
+</div>
+</div>
+<button class="prev" fdprocessedid="bp0uw">â®</button><button class="next" fdprocessedid="lrzbep">â¯</button></div>
+
+<div class="dots" id="dots">&nbsp;</div>
+</div>
+
+<p data-end="198" data-start="70"><strong data-end="79" data-start="70">Salty</strong>, the Indian D2C brand known for <strong data-end="138" data-is-only-node="" data-start="112">trendsetting jewellery</strong>, has <strong data-end="166" data-start="144">expanded its range</strong> into <strong data-end="195" data-start="172">fashion accessories</strong>.</p>
+
+<p data-end="310" data-start="201">-&gt; The new categories include <strong data-end="307" data-start="228">Hats &amp; Caps, Sunglasses, Watches, Hair Accessories, Bag Charms, and Scarves</strong>.</p>
+
+<p data-end="310" data-start="201">-&gt; With this launch, Salty aims to be the <strong data-end="397" data-start="352">go-to destination for fashion accessories</strong> for <strong data-end="419" data-start="402">men and women</strong>.</p>
+
+<p data-end="526" data-start="425">-&gt; The collection spans <strong data-end="523" data-start="446">edgy caps, chic watches, playful bag charms, and stylish hair accessories</strong>.</p>
+
+<p data-end="646" data-start="529">-&gt; This marks a <strong data-end="573" data-start="542">bold step in Salty&rsquo;s vision</strong> to offer <strong data-end="615" data-start="583">complete accessory solutions</strong> for the <strong data-end="643" data-start="624">modern wardrobe</strong>.</p>
+
+<blockquote data-end="871" data-is-last-node="" data-start="688">
+<p data-end="871" data-is-last-node="" data-start="690">&ldquo;<em>Expanding into new categories was a natural step. Our new lines bring fresh designs and bold ideas&mdash;cementing Salty&rsquo;s place as the go-to brand for making every look uniquely yours.</em>&rdquo;</p>
+
+<p data-end="871" data-is-last-node="" data-start="690"><img alt="Twishaa Gupta Icon" class="quote-icon" src="/s/articles/68d775d96fc2753d4f8919ab/images/Twishaa Gupta-modified.png" /> <strong data-end="677" data-start="649">- Co-Founder Twishaa Gupta. </strong></p>
+
+<p>&nbsp;</p>
+</blockquote>
+</div>
+</section>
+
+<div class="video-placeholder"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/i5a2IuH5x3w?rel=0"></iframe><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/BbYcEi_34hw?rel=0"></iframe></div>
+
+<div class="topic-card"><strong>Growing Our Range</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>Expansion of New Product Lines</strong></h2>
+
+<ul>
+	<li><span style="font-size:18px;"><strong>Hats &amp; Caps:</strong> Street-style to smart casuals, perfect for every vibe</span></li>
+	<li><span style="font-size:18px;"><strong>Sunglasses:</strong> UV-protected, fashion-first eyewear for sunny days and selfies</span></li>
+	<li><span style="font-size:18px;"><strong>Watches:</strong> Sleek timepieces that double as fashion statements</span></li>
+	<li><span style="font-size:18px;"><strong>Bag Charms:</strong> Quirky add-ons to personalize your bags with flair</span></li>
+	<li><span style="font-size:18px;"><strong>Hair Accessories:</strong> From scrunchies to clips&mdash;little details that complete the look</span></li>
+	<li><span style="font-size:18px;"><strong>Scarves &amp; Stoles:</strong> Stylish layers that add colour, texture, and effortless elegance to any look.</span></li>
+</ul>
+</div>
+
+<div class="chapter-image"><img alt="Salty Expansion" src="/s/articles/68d4be752d7f77673ea01706/images/Products image.png" /></div>
+</section>
+
+<div class="topic-card"><strong>Salty&#39;s Men&#39;s Collection</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>The Men&#39;s Section at Salty Jewellery</strong></h2>
+
+<p>The men&#39;s section at Salty Jewellery offers a curated range of fashion accessories and jewellery tailored specifically to men&rsquo;s style preferences.</p>
+
+<p><strong>Product Types:</strong></p>
+
+<ul>
+	<li>Chains (necklaces)</li>
+	<li>Bracelets</li>
+	<li>Rings</li>
+	<li>Statement studs (earrings)</li>
+</ul>
+
+<p><strong>Style Focus:</strong> The men&rsquo;s accessories are designed to complement contemporary fashion trends for men, combining style with a statement-making edge. The collection includes both casual and formal styles to suit different occasions.</p>
+
+<p><strong>Material Use:</strong> Products in the men&rsquo;s line utilize durable metals such as stainless steel, brass alloy, and electroplated alloys for longevity and skin-friendliness. Some pieces also feature premium finishes like gold plating for a refined look.</p>
+
+<p><strong>Price Point:</strong> As with the broader Salty brand, the men&rsquo;s collection upholds the &ldquo;affordable luxury&rdquo; promise, offering stylish and high-quality pieces accessible to young men and professionals without a premium price tag.</p>
+
+<p><strong>Package Options:</strong> The men&rsquo;s collection is available both as individual items and in combo packs, allowing customers to build coordinated looks or gift sets easily.</p>
+
+<p><strong>Marketing &amp; Target Audience:</strong> The men&rsquo;s section is targeted primarily at Gen Z and young professionals seeking trendy, expressive, and durable fashion accessories that align with current style aesthetics.</p>
+</div>
+
+<div class="chapter-image"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="560" scrolling="no" src="https://www.youtube.com/embed/yH6PG6wALo4?rel=0"></iframe><img height="1080" src="/s/articles/68d4be752d7f77673ea01706/images/men's jewellery 1.png" width="1080" /></div>
+</section>
+
+<div class="topic-card"><strong>Overcoming the Odds</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>Navigating Industry Challenges</strong></h2>
+
+<p>The jewellery industry poses several challenges, from quality concerns to inventory management. Salty has addressed these by prioritizing material quality, implementing a lean inventory model, and offering curated product bundles to mitigate dead stock. The brand has navigated these challenges by embracing a data-driven and customer-centric approach while maintaining steady growth.</p>
+
+<p><img alt="Design Inspiration Dark Mode" src="/s/articles/68d4be752d7f77673ea01706/images/Navigating industry challenges 4.png" style="width: 900px; height: 700px;" /></p>
+</div>
+</section>
+
+<div class="topic-card"><strong>Activity: Fill in the Blanks</strong></div>
+
+<div class="activity-container">
+<h2><strong>Fill in the Blanks: Salty&#39;s Product Categories</strong></h2>
+
+<p>Drag the correct product category to complete each sentence. One of the two options is correct for each blank.</p>
+
+<div class="blank-section">
+<div class="question-text">Salty offers <span class="blank" data-answer="Necklaces" id="blank1">________</span> with various styles like chains, pendants, layered necklaces, and statement pieces suitable for casual and formal occasions.</div>
+
+<div class="options-container">
+<div class="option-item" data-answer="Necklaces" draggable="true">Necklaces</div>
+
+<div class="option-item" data-answer="Watches" draggable="true">Watches</div>
+</div>
+</div>
+
+<div class="blank-section">
+<div class="question-text">Choose <span class="blank" data-answer="Earrings" id="blank2">________</span> such as studs, hoops, dangles, and imitation Korean-style earrings in different designs and materials.</div>
+
+<div class="options-container">
+<div class="option-item" data-answer="Bracelets" draggable="true">Bracelets</div>
+
+<div class="option-item" data-answer="Earrings" draggable="true">Earrings</div>
+</div>
+</div>
+
+<div class="blank-section">
+<div class="question-text">Explore <span class="blank" data-answer="Rings" id="blank3">________</span> including adjustable rings, stackable sets, and the &#39;Girl Boss Watch Ring&#39; in rose gold and silver finishes.</div>
+
+<div class="options-container">
+<div class="option-item" data-answer="Rings" draggable="true">Rings</div>
+
+<div class="option-item" data-answer="Sunglasses" draggable="true">Sunglasses</div>
+</div>
+</div>
+
+<div class="blank-section">
+<div class="question-text">Find fashion <span class="blank" data-answer="Bracelets" id="blank4">________</span> like bangles and matching sets to complement your style.</div>
+
+<div class="options-container">
+<div class="option-item" data-answer="Hair Accessories" draggable="true">Hair Accessories</div>
+
+<div class="option-item" data-answer="Bracelets" draggable="true">Bracelets</div>
+</div>
+</div>
+
+<div class="button-container">
+<div class="score-container">Score: <span id="score">0</span>/4</div>
+<button class="reset-btn" fdprocessedid="4si3op" onclick="resetActivity()">Reset Activity</button></div>
+
+<div class="popup" id="resultPopup">&nbsp;</div>
+</div>
+
+<p>
+<audio id="correctSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Sounds/Correct.mp3">&nbsp;</audio>
+
+<audio id="incorrectSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Sounds/Wrong.mp3">&nbsp;</audio>
+
+<audio id="winSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Sounds/Win.mp3">&nbsp;</audio>
+
+<audio id="confettiSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Confetti%20pop.mp3">&nbsp;</audio>
+</p>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+
+      // Carousel Functionality
+      const slides = document.querySelectorAll('.slide');
+      const prevBtn = document.querySelector('.prev');
+      const nextBtn = document.querySelector('.next');
+      const dotsContainer = document.getElementById('dots');
+      let currentSlide = 0;
+
+      // Create dots
+      slides.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (idx === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(idx));
+        dotsContainer.appendChild(dot);
+      });
+      const dots = document.querySelectorAll('.dot');
+
+      function updateCarousel() {
+        slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+        dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+      }
+
+      function goToSlide(n) {
+        currentSlide = n;
+        updateCarousel();
+      }
+
+      prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        updateCarousel();
+      });
+
+      nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateCarousel();
+      });
+
+      // Drag and Drop Functionality
+      const blanks = document.querySelectorAll('.blank');
+      const optionItems = document.querySelectorAll('.option-item');
+      const scoreDisplay = document.getElementById('score');
+      const resultPopup = document.getElementById('resultPopup');
+      const correctSound = document.getElementById('correctSound');
+      const incorrectSound = document.getElementById('incorrectSound');
+      const winSound = document.getElementById('winSound');
+      const confettiSound = document.getElementById('confettiSound');
+      let score = 0;
+      let answeredBlanks = 0;
+      const maxScore = blanks.length;
+
+      function triggerConfetti() {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#FFD700', '#C0C0C0']
+        });
+        confettiSound.play().catch(error => console.log('Error playing confetti sound:', error));
+      }
+
+      function showPopup(message) {
+        resultPopup.textContent = message;
+        resultPopup.style.display = 'block';
+        setTimeout(() => {
+          resultPopup.style.display = 'none';
+        }, 3000);
+      }
+
+      optionItems.forEach(item => {
+        item.addEventListener('dragstart', e => {
+          e.dataTransfer.setData('text/plain', e.target.dataset.answer);
+          e.target.classList.add('dragging');
+        });
+        item.addEventListener('dragend', e => {
+          e.target.classList.remove('dragging');
+        });
+      });
+
+      blanks.forEach(blank => {
+        blank.addEventListener('dragover', e => {
+          e.preventDefault();
+          blank.classList.add('dragging-over');
+        });
+        blank.addEventListener('dragleave', e => {
+          blank.classList.remove('dragging-over');
+        });
+        blank.addEventListener('drop', e => {
+          e.preventDefault();
+          const draggedAnswer = e.dataTransfer.getData('text/plain');
+          const correctAnswer = blank.dataset.answer;
+          blank.textContent = draggedAnswer;
+          blank.classList.add('filled');
+          if (draggedAnswer === correctAnswer) {
+            blank.classList.add('correct');
+            blank.classList.remove('wrong');
+            score++;
+            answeredBlanks++;
+            scoreDisplay.textContent = score;
+            correctSound.play().catch(error => console.log('Error playing correct sound:', error));
+            triggerConfetti();
+            document.querySelectorAll(`.option-item[data-answer="${draggedAnswer}"]`).forEach(item => item.style.display = 'none');
+            if (answeredBlanks === maxScore) {
+              setTimeout(() => {
+                if (score >= 3) {
+                  showPopup('Yay! Way to go');
+                  winSound.play().catch(error => console.log('Error playing win sound:', error));
+                  triggerConfetti();
+                } else {
+                  showPopup('No Worries, You can always learn');
+                }
+              }, 800);
+            }
+          } else {
+            blank.classList.add('wrong');
+            incorrectSound.play().catch(error => console.log('Error playing incorrect sound:', error));
+            setTimeout(() => {
+              blank.classList.remove('wrong');
+              blank.textContent = '________';
+              blank.classList.remove('filled');
+            }, 1000);
+          }
+          blank.classList.remove('dragging-over');
+        });
+      });
+
+      window.resetActivity = function() {
+        blanks.forEach(blank => {
+          blank.textContent = '________';
+          blank.classList.remove('filled', 'correct', 'wrong');
+        });
+        optionItems.forEach(item => item.style.display = 'inline-block');
+        score = 0;
+        answeredBlanks = 0;
+        scoreDisplay.textContent = score;
+      };
+    });
+  </script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>

@@ -766,24 +766,27 @@
 
     @media (max-width: 768px) {
     /* Mobile Rules for 1.2 and Glossary */
-    .drag-area {
+    .drag-area, .activity-content, .match-cards-container {
+      display: flex !important;
       flex-direction: row !important;
       flex-wrap: nowrap !important;
       gap: 2% !important;
       box-sizing: border-box !important;
       align-items: stretch !important;
     }
-    .drag-items, .drop-zones {
+    .drag-items, .drop-zones, .draggable-items {
       width: 49% !important;
       flex: 0 0 49% !important;
       padding: 5px !important;
       box-sizing: border-box !important;
       min-width: 0 !important;
     }
-    .drag-item {
+    .drag-item, .draggable-item, .drop-zone {
       font-size: 13px !important;
       padding: 8px !important;
       margin: 8px 0 !important;
+      box-sizing: border-box !important;
+      word-wrap: break-word !important;
     }
     .drop-zone {
       min-height: 120px !important;
