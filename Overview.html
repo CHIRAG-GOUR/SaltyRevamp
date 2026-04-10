@@ -569,7 +569,7 @@
         }
         @keyframes moveSqu_01 {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-300px); border-radius: 0; }
+            100% { transform: translateX(-40vw); border-radius: 0; }
         }
         @keyframes moveSqu_02 {
             0% { transform: translateX(0); }
@@ -577,7 +577,7 @@
         }
         @keyframes moveSqu_03 {
             0% { transform: translateX(0); }
-            100% { transform: translateX(300px); border-radius: 0; }
+            100% { transform: translateX(40vw); border-radius: 0; }
         }
         .start {
             position: absolute;
@@ -601,11 +601,37 @@
             opacity: 0;
             animation: end 0.8s 5.7s forwards;
         }
-        .start div:nth-child(1) { background: var(--salty-light); transform: translateX(-400px); }
-        .start div:nth-child(2) { background: var(--sparkle-color-from); transform: translateX(-200px); }
-        .start div:nth-child(3) { background: transparent; transform: translateX(0px); }
-        .start div:nth-child(4) { background: var(--popup-bg); transform: translateX(200px); }
-        .start div:nth-child(5) { background: var(--h-color); transform: translateX(400px); }
+        @media screen and (max-width: 768px) {
+            .start div {
+                width: 60px;
+                height: 60px;
+                font-size: 40px;
+                line-height: 60px;
+                top: calc(50% - 30px);
+                left: calc(50% - 30px);
+            }
+            .squ div {
+                 top: calc((50% - 30px));
+                 left: calc((50% - 30px));
+                 width: 60px;
+                 height: 60px;
+            }
+            @keyframes animateAppStart {
+                0% { transform: translateX(0px); }
+            }
+            .start div:nth-child(1) { background: var(--salty-light); transform: translateX(-150px); }
+            .start div:nth-child(2) { background: var(--sparkle-color-from); transform: translateX(-75px); }
+            .start div:nth-child(3) { background: transparent; transform: translateX(0px); }
+            .start div:nth-child(4) { background: var(--popup-bg); transform: translateX(75px); }
+            .start div:nth-child(5) { background: var(--h-color); transform: translateX(150px); }
+        }
+        @media screen and (min-width: 769px) {
+            .start div:nth-child(1) { background: var(--salty-light); transform: translateX(-400px); }
+            .start div:nth-child(2) { background: var(--sparkle-color-from); transform: translateX(-200px); }
+            .start div:nth-child(3) { background: transparent; transform: translateX(0px); }
+            .start div:nth-child(4) { background: var(--popup-bg); transform: translateX(200px); }
+            .start div:nth-child(5) { background: var(--h-color); transform: translateX(400px); }
+        }
         @keyframes end {
             100% { opacity: 1; }
         }
@@ -681,22 +707,20 @@
 </div>
 
 <div class="main-content">
-<p><button id="theme-toggle"></button></p>
-
 <header>
 <div class="container mx-auto px-4">
-<div class="flex items-center justify-between">
-<div>
-<h1 class="text-3xl md:text-4xl font-bold theme-text">💎 <span style="font-size:28px;">SALTY JEWELLERY INTERNSHIP</span></h1>
+<div class="flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="text-center md:text-left">
+<h1 class="text-2xl md:text-4xl font-bold theme-text" style="font-size: 24px;">💎 <span>SALTY JEWELLERY INTERNSHIP</span></h1>
 
-<p class="mt-2 text-lg md:text-xl theme-font-18">Skillizee X Salty Virtual Internship &ndash; Crafting Fashion That Defines You</p>
+<p class="mt-2 text-sm md:text-xl theme-font-18" style="font-size: 14px;">Skillizee X Salty Virtual Internship &ndash; Crafting Fashion That Defines You</p>
 </div>
-<span class="premium-badge">Internship</span></div>
+<span class="premium-badge mt-2 md:mt-0">Internship</span></div>
 </div>
 </header>
 
 <main class="flex-grow container mx-auto px-4 py-8">
-<div class="mx-4 p-6 text-center jewel-bounce"><img alt="Salty Logo" class="max-w-full mx-auto" src="/articles/68d23d77a7630123724ed226/images/salty logo frame.png" style="max-width: 600px; width: 851px; height: 315px;" /></div>
+<div class="mx-4 p-6 text-center jewel-bounce"><img alt="Salty Logo" class="max-w-full mx-auto" src="https://login.skillizee.io/s/articles/68d23d77a7630123724ed226/images/salty logo frame.png" style="max-width: 100%; height: auto; object-fit: contain;" /></div>
 
 <div style="position: relative; overflow: hidden; aspect-ratio: 1920/1080"><iframe allow="encrypted-media; fullscreen; microphone;" allowfullscreen="" loading="lazy" src="https://share.synthesia.io/embeds/videos/cc64ad12-1e99-476f-a2ec-95f3ad524915" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0; overflow:hidden;" title="Synthesia video player - Overview - Salty 2"></iframe></div>
 
