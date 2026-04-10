@@ -1,0 +1,434 @@
+<div>
+<div><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></div>
+</div>
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="universal.css" />
+<style type="text/css">:root {
+    --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+    --body-color: #CCC;
+    --header-bg: #4B3A6F;
+    --header-color: #E0E0E0;
+    --h-color: #B19CD9;
+    --chapter-bg: #2A2244;
+    --text-p-color: #BBB;
+    --topic-bg: #3C2F5F;
+    --footer-bg: #4B3A6F;
+    --footer-color: #E0E0E0;
+    --popup-bg: #B19CD9;
+    --popup-color: #000;
+    --shimmer-color: rgba(177, 156, 217, 0.2);
+    --sparkle-color-from: #B19CD9;
+    --sparkle-color-to: #8A7DB5;
+    --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+    --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+    --shadow-small: rgba(255,255,255,0.05);
+    --arrow-stroke: #B19CD9;
+    --theme-text-color: #ffffff;
+    --button-bg: #B19CD9;
+    --button-color: #000;
+    --popup-shadow: rgba(255, 255, 255, 0.5);
+    --correct-color: #4CAF50;
+    --incorrect-color: #F44336;
+}
+
+.light {
+    --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+    --body-color: #333;
+    --header-bg: #7b46ac;
+    --header-color: white;
+    --h-color: #9846ac;
+    --chapter-bg: #fff;
+    --text-p-color: #444;
+    --topic-bg: #D0C3F1;
+    --footer-bg: #7b46ac;
+    --footer-color: white;
+    --popup-bg: #9846ac;
+    --popup-color: white;
+    --shimmer-color: rgba(123, 70, 172, 0.2);
+    --sparkle-color-from: #9846ac;
+    --sparkle-color-to: #7b46ac;
+    --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+    --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+    --shadow-small: rgba(0,0,0,0.05);
+    --arrow-stroke: #9846ac;
+    --theme-text-color: #ecf0f1;
+    --button-bg: #9846ac;
+    --button-color: white;
+    --popup-shadow: rgba(0, 0, 0, 0.2);
+    --correct-color: #4CAF50;
+    --incorrect-color: #F44336;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: var(--body-bg);
+    color: var(--body-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: var(--header-bg);
+    color: var(--header-color);
+    padding: 10px;
+    text-align: center;
+    font-family: 'Michroma', sans-serif;
+    width: 100%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+header:hover {
+    transform: scale(1.01);
+    background-color: var(--popup-bg);
+}
+
+h1, h2 {
+    font-family: 'Michroma', sans-serif;
+    color: var(--h-color);
+}
+
+.chapter-section {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 1100px;
+    background: var(--chapter-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    width: 90%;
+}
+
+.chapter-text {
+    padding: 10px;
+    text-align: center;
+}
+
+.chapter-text h2 {
+    margin-bottom: 5px;
+}
+
+.chapter-text p {
+    line-height: 1.7;
+    font-size: 18px;
+    color: var(--text-p-color);
+}
+
+.chapter-text ul {
+    line-height: 1.7;
+    font-size: 18px;
+    color: var(--text-p-color);
+    margin: 10px 0;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.chapter-text li {
+    margin-bottom: 10px;
+}
+
+.topic-card {
+    margin: 5px auto;
+    padding: 10px;
+    max-width: 800px;
+    background: var(--topic-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    text-align: center;
+    transition: 0.3s ease;
+    font-family: 'Michroma', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    width: 90%;
+}
+
+.topic-card:hover {
+    animation: flash 0.8s linear;
+    background: var(--sparkle-color-from);
+    color: var(--popup-color);
+    transform: scale(1.03);
+}
+
+@keyframes flash {
+    0% { background-color: var(--topic-bg); }
+    50% { background-color: var(--header-bg); color: var(--header-color); }
+    100% { background-color: var(--sparkle-color-from); }
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--footer-bg);
+    color: var(--footer-color);
+    font-size: 18px;
+    width: 100%;
+    margin-top: auto;
+    transition: transform 0.3s ease;
+}
+
+footer:hover {
+    transform: scale(1.01);
+}
+
+#theme-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 30px;
+    background: var(--button-bg);
+    border-radius: 15px;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    transition: background 0.3s ease;
+}
+
+#theme-toggle::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: var(--button-color);
+    border-radius: 50%;
+    position: absolute;
+    left: 3px;
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle::after {
+    content: 'OFF';
+    color: var(--button-color);
+    font-family: 'Michroma', sans-serif;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+}
+
+#theme-toggle.on::before {
+    transform: translateX(30px);
+}
+
+#theme-toggle.on::after {
+    content: 'ON';
+    left: 10px;
+    right: auto;
+}
+
+#theme-toggle:hover {
+    background: var(--header-bg);
+}
+
+@media (max-width: 768px) {
+    .chapter-section {
+        padding: 5px;
+        margin: 10px auto;
+    }
+    .chapter-text {
+        padding: 5px;
+    }
+    #theme-toggle {
+        width: 50px;
+        height: 25px;
+    }
+    #theme-toggle::before {
+        width: 20px;
+        height: 20px;
+    }
+    #theme-toggle.on::before {
+        transform: translateX(25px);
+    }
+    #theme-toggle::after, #theme-toggle.on::after {
+        font-size: 10px;
+    }
+}
+
+.theme-text {
+    color: var(--theme-text-color);
+}
+</style>
+<style>
+/* Capstone SVG override */
+#fullscreen-btn svg {
+  width: 32px !important;
+  height: 32px !important;
+}
+@media (max-width: 768px) {
+  #fullscreen-btn svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+</style>
+
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
+</div>
+
+<header>
+<h1><strong><span class="theme-text">Capstone Project B: Jewellery Review Video</span></strong></h1>
+
+<p><strong><span style="font-size:20px;">Share Your Sparkly Thoughts with the World!</span></strong></p>
+</header>
+
+<div class="topic-card"><strong>Introduction</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<p><span style="font-size:18px;">Hey kids! You&#39;ve learned all about the awesome world of jewellery design during your internship. Now it&rsquo;s time to shine like a star by creating a short video (60-90 seconds, portrait mode) to share your review, feedback, or opinion about Salty Jewellery&mdash;or any other jewellery product you love!</span></p>
+
+<p><span style="font-size:18px;">You&rsquo;ll record a fun video, upload it to Instagram, and submit the link to your LMS (like Google Classroom or whatever your school uses). This project is your chance to show off what you&rsquo;ve learned about jewellery and have fun being creative. Let&rsquo;s get started!</span></p>
+
+<ul>
+	<li><strong>Option 1:</strong> Review Salty Jewellery, talking about their cool materials like brass alloy, enamel, or anti-tarnish tech.</li>
+	<li><strong>Option 2:</strong> Pick any jewellery product you like (like a favorite necklace or ring) and share why it&rsquo;s special.</li>
+</ul>
+</div>
+</section>
+
+<div class="topic-card"><strong>Part 1: Creating Your Review Video</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<p><span style="font-size:18px;">Making a short video is super fun and easy! Follow these steps to create a sparkly review. It should take about 30-60 minutes!</span></p>
+
+<h2><strong>Step 1: Plan Your Video</strong></h2>
+
+<ul>
+	<li>Decide what to say! For Salty Jewellery, you could mention:</li>
+	<li>Why you like their jewellery (e.g., &quot;It&rsquo;s shiny and doesn&rsquo;t tarnish!&quot;).</li>
+	<li>Cool facts from the course, like &quot;They use cubic zirconia for a diamond-like sparkle!&quot;</li>
+	<li>Your favorite piece (e.g., &quot;I love their colorful enamel earrings!&quot;).</li>
+	<li>Write a short script (1-2 sentences per point) to keep it under 90 seconds.</li>
+	<li>Practice saying it out loud to sound confident and excited!</li>
+</ul>
+
+<h2><strong>Step 2: Record in Portrait Mode</strong></h2>
+
+<ul>
+	<li>Use your phone or tablet&rsquo;s camera (ask a grown-up if needed).</li>
+	<li>Hold the device vertically for portrait mode (like Instagram Reels).</li>
+	<li>Find a bright, quiet spot with good lighting (near a window works great).</li>
+	<li>Show a jewellery piece if you have one, or draw a quick sketch to hold up!</li>
+	<li>Record yourself talking&mdash;smile, be clear, and have fun! Do a few takes to pick the best one.</li>
+</ul>
+
+<h2><strong>Step 3: Edit Your Video (Optional)</strong></h2>
+
+<ul>
+	<li>Use a free app like CapCut, InShot, or Instagram&rsquo;s built-in editor to make it fancy.</li>
+	<li>Add text like &quot;Salty Jewellery Rocks!&quot; or sparkly effects for that jewellery vibe.</li>
+	<li>Keep it short (60-90 seconds) and save the video to your device.</li>
+</ul>
+</div>
+</section>
+
+<div class="topic-card"><strong>Part 2: Uploading and Submitting</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<p><span style="font-size:18px;">Now, share your video with the world and submit it to your LMS!</span></p>
+
+<h2><strong>Step 1: Upload to Instagram</strong></h2>
+
+<ul>
+	<li>Open Instagram on your phone (use your account or a grown-up&rsquo;s with permission).</li>
+	<li>Tap the &quot;+&quot; button and choose &quot;Reel&quot; to upload your portrait video.</li>
+	<li>Add a caption like &quot;My Salty Jewellery Review! #JewelleryDesign&quot; and fun hashtags.</li>
+	<li>Post it publicly or privately (ask your teacher what&rsquo;s okay).</li>
+	<li>Copy the video link: Tap the three dots on your post, then &quot;Copy Link&quot;.</li>
+</ul>
+
+<h2><strong>Step 2: Create the Submission Document</strong></h2>
+
+<ul>
+	<li>Open a new document in Google Docs, Word, or any word processor.</li>
+	<li>At the top, write:</li>
+	<li><strong>Name:</strong> [Your Full Name]</li>
+	<li><strong>Grade:</strong> [Your Grade, e.g., 5th Grade]</li>
+	<li><strong>Date:</strong> October 13, 2025</li>
+	<li><strong>Video Link:</strong> Paste the Instagram link here (e.g., https://www.instagram.com/reel/your-video-link).</li>
+	<li>Keep it simple&mdash;one page is perfect!</li>
+</ul>
+
+<h2><strong>Step 3: Save and Export the Document</strong></h2>
+
+<ul>
+	<li>Save the file as &quot;[Your Name] - Jewellery Review Video.docx&quot; or &quot;.pdf&quot;.</li>
+	<li>If your LMS needs a PDF, export it (in Google Docs, go to File &gt; Download &gt; PDF).</li>
+</ul>
+
+<h2><strong>Step 4: Submit to LMS</strong></h2>
+
+<ul>
+	<li>Log in to your school&rsquo;s LMS (ask your teacher if you&rsquo;re not sure how).</li>
+	<li>Find the &quot;Capstone Project B&quot; assignment and click &quot;Submit&quot; or &quot;Turn In&quot;.</li>
+	<li>Upload your document file.</li>
+	<li>If there&rsquo;s a text box, paste your Instagram video link there too, just in case.</li>
+	<li>Hit submit&mdash;done! Your teacher will be amazed!</li>
+</ul>
+
+<p><span style="font-size:18px;">Awesome work, jewellery star! Your video shows off what you&rsquo;ve learned about Salty Jewellery or your favorite piece. If you have questions, ask your teacher. Keep shining! ✨</span></p>
+</div>
+</section>
+
+<footer><span style="font-size:18px;">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggleUI = document.getElementById('theme-toggle');
+  
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    if(themeToggleUI) themeToggleUI.classList.add('on');
+  }
+  
+  if(themeToggleUI) {
+    themeToggleUI.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      themeToggleUI.classList.toggle('on');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+  }
+  
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if(fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {});
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        document.exitFullscreen();
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement) {
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+  }
+
+  // Topic Card Animation
+  const topicCards = document.querySelectorAll('.topic-card');
+  topicCards.forEach(card => {
+      card.addEventListener('click', () => {
+          card.classList.toggle('highlight');
+      });
+  });
+});
+</script>

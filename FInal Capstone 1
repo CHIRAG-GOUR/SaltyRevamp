@@ -1,0 +1,454 @@
+<div>
+<div>
+<div>
+<div><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></div>
+</div>
+</div>
+</div>
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="universal.css" />
+<style type="text/css">:root {
+    --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+    --body-color: #CCC;
+    --header-bg: #4B3A6F;
+    --header-color: #E0E0E0;
+    --h-color: #B19CD9;
+    --chapter-bg: #2A2244;
+    --text-p-color: #BBB;
+    --topic-bg: #3C2F5F;
+    --footer-bg: #4B3A6F;
+    --footer-color: #E0E0E0;
+    --popup-bg: #B19CD9;
+    --popup-color: #000;
+    --shimmer-color: rgba(177, 156, 217, 0.2);
+    --sparkle-color-from: #B19CD9;
+    --sparkle-color-to: #8A7DB5;
+    --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+    --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+    --shadow-small: rgba(255,255,255,0.05);
+    --arrow-stroke: #B19CD9;
+    --theme-text-color: #ffffff;
+    --button-bg: #B19CD9;
+    --button-color: #000;
+    --popup-shadow: rgba(255, 255, 255, 0.5);
+    --correct-color: #4CAF50;
+    --incorrect-color: #F44336;
+}
+
+.light {
+    --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+    --body-color: #333;
+    --header-bg: #7b46ac;
+    --header-color: white;
+    --h-color: #9846ac;
+    --chapter-bg: #fff;
+    --text-p-color: #444;
+    --topic-bg: #D0C3F1;
+    --footer-bg: #7b46ac;
+    --footer-color: white;
+    --popup-bg: #9846ac;
+    --popup-color: white;
+    --shimmer-color: rgba(123, 70, 172, 0.2);
+    --sparkle-color-from: #9846ac;
+    --sparkle-color-to: #7b46ac;
+    --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+    --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+    --shadow-small: rgba(0,0,0,0.05);
+    --arrow-stroke: #9846ac;
+    --theme-text-color: #ecf0f1;
+    --button-bg: #9846ac;
+    --button-color: white;
+    --popup-shadow: rgba(0, 0, 0, 0.2);
+    --correct-color: #4CAF50;
+    --incorrect-color: #F44336;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: var(--body-bg);
+    color: var(--body-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: var(--header-bg);
+    color: var(--header-color);
+    padding: 10px;
+    text-align: center;
+    font-family: 'Michroma', sans-serif;
+    width: 100%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+header:hover {
+    transform: scale(1.01);
+    background-color: var(--popup-bg);
+}
+
+h1, h2 {
+    font-family: 'Michroma', sans-serif;
+    color: var(--h-color);
+}
+
+.chapter-section {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 1100px;
+    background: var(--chapter-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    width: 90%;
+}
+
+.chapter-text {
+    padding: 10px;
+    text-align: center;
+}
+
+.chapter-text h2 {
+    margin-bottom: 5px;
+}
+
+.chapter-text p {
+    line-height: 1.7;
+    font-size: 18px;
+    color: var(--text-p-color);
+}
+
+.chapter-text ul {
+    line-height: 1.7;
+    font-size: 18px;
+    color: var(--text-p-color);
+    margin: 10px 0;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.chapter-text li {
+    margin-bottom: 10px;
+}
+
+.topic-card {
+    margin: 5px auto;
+    padding: 10px;
+    max-width: 800px;
+    background: var(--topic-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-main);
+    text-align: center;
+    transition: 0.3s ease;
+    font-family: 'Michroma', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    width: 90%;
+}
+
+.topic-card:hover {
+    animation: flash 0.8s linear;
+    background: var(--sparkle-color-from);
+    color: var(--popup-color);
+    transform: scale(1.03);
+}
+
+@keyframes flash {
+    0% { background-color: var(--topic-bg); }
+    50% { background-color: var(--header-bg); color: var(--header-color); }
+    100% { background-color: var(--sparkle-color-from); }
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--footer-bg);
+    color: var(--footer-color);
+    font-size: 18px;
+    width: 100%;
+    margin-top: auto;
+    transition: transform 0.3s ease;
+}
+
+footer:hover {
+    transform: scale(1.01);
+}
+
+#theme-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 30px;
+    background: var(--button-bg);
+    border-radius: 15px;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    transition: background 0.3s ease;
+}
+
+#theme-toggle::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: var(--button-color);
+    border-radius: 50%;
+    position: absolute;
+    left: 3px;
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle::after {
+    content: 'OFF';
+    color: var(--button-color);
+    font-family: 'Michroma', sans-serif;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+}
+
+#theme-toggle.on::before {
+    transform: translateX(30px);
+}
+
+#theme-toggle.on::after {
+    content: 'ON';
+    left: 10px;
+    right: auto;
+}
+
+#theme-toggle:hover {
+    background: var(--header-bg);
+}
+
+@media (max-width: 768px) {
+    .chapter-section {
+        padding: 5px;
+        margin: 10px auto;
+    }
+    .chapter-text {
+        padding: 5px;
+    }
+    #theme-toggle {
+        width: 50px;
+        height: 25px;
+    }
+    #theme-toggle::before {
+        width: 20px;
+        height: 20px;
+    }
+    #theme-toggle.on::before {
+        transform: translateX(25px);
+    }
+    #theme-toggle::after, #theme-toggle.on::after {
+        font-size: 10px;
+    }
+}
+
+.theme-text {
+    color: var(--theme-text-color);
+}
+</style>
+<style>
+/* Capstone SVG override */
+#fullscreen-btn svg {
+  width: 32px !important;
+  height: 32px !important;
+}
+@media (max-width: 768px) {
+  #fullscreen-btn svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+</style>
+
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
+</div>
+
+<header>
+<h1><strong><span class="theme-text">Capstone Project: Create Your Jewellery Website</span></strong></h1>
+
+<p><strong><span style="font-size:20px;">Show Off Your Creativity with Salty Jewellery!</span></strong></p>
+</header>
+
+<div class="topic-card"><strong>Introduction</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<p><span style="font-size:18px;">Hey kids! Congratulations on reaching the end of the course. For your capstone project, you&#39;ll get to be a real designer and create a fun website or landing page for Salty Jewellery using Gamma (<a href="https://gamma.app">gamma.app</a>). Gamma is like a magic AI tool that helps you build beautiful pages super easily&mdash;no coding needed!</span></p>
+
+<p><br />
+<span style="font-size:18px;">You can choose:</span></p>
+
+<ul>
+	<li><strong>Option 1:</strong> Make your own jewellery website, showing off imaginary or real pieces you design (like bracelets, necklaces, or earrings inspired by the sea).</li>
+	<li><strong>Option 2:</strong> Create a landing page for Salty Jewellery, highlighting their cool collections, materials, and why they&#39;re awesome.</li>
+</ul>
+
+<p><span style="font-size:18px;">This project is all about creativity, so add pictures, colors, and fun facts from what you&#39;ve learned in the course. Once done, you&#39;ll share the link in a simple document and submit it to your LMS (like Google Classroom or whatever your school uses). Let&#39;s make it sparkle!</span></p>
+</div>
+</section>
+
+<div class="topic-card"><strong>Part 1: Creating Your Project in Gamma</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<p><span style="font-size:18px;">Gamma makes this fun and fast. Follow these steps to build your page. It should take about 30-60 minutes!</span></p>
+
+<h2><strong>Step 1: Sign Up and Start for Free</strong></h2>
+
+<ul>
+	<li>Go to <a href="https://gamma.app">gamma.app</a> on your computer or tablet.</li>
+	<li>Click &quot;Start for free&quot; and make an account (ask a grown-up if you need help&mdash;it&rsquo;s quick and free!).</li>
+	<li>Once logged in, click &quot;Create new&quot; to start a new project. Choose &quot;Webpage&quot; or &quot;Landing page&quot; mode.</li>
+</ul>
+
+<h2><strong>Step 2: Plan Your Idea</strong></h2>
+
+<ul>
+	<li>Think about what to include! For Salty Jewellery, add sections like:</li>
+	<li>A welcome title: &quot;Welcome to Salty Jewellery &ndash; Sparkly Treasures from the Sea!&quot;</li>
+	<li>Pictures of jewellery (upload your drawings or use free images from the course).</li>
+	<li>Fun facts: &quot;Made with brass alloy for durability!&quot; or &quot;Anti-tarnish so it shines forever!&quot;</li>
+	<li>A call to action: &quot;Buy now or design your own!&quot;</li>
+	<li>Type a simple prompt like: &quot;Create a landing page for Salty Jewellery with sections for designs, materials, and contact.&quot; Gamma&rsquo;s AI will generate a starting page for you!</li>
+</ul>
+
+<h2><strong>Step 3: Add Content with AI Help</strong></h2>
+
+<ul>
+	<li>Gamma will create a basic page&mdash;now customize it!</li>
+	<li>Add text: Click on a section and type about the jewellery. Use AI by clicking &quot;Generate&quot; to make it fancier, like &quot;Make this description more exciting for kids!&quot;</li>
+	<li>Add images: Upload photos of jewellery or use AI to generate ones (type &quot;Generate image of a shiny necklace with crystals&quot;). Make it colorful with blues and sparkles for that salty vibe.</li>
+	<li>Add sections: Use the + button to include lists of materials (like enamel for color) or benefits (from the course, e.g., &quot;Skin-friendly and affordable!&quot;).</li>
+</ul>
+
+<h2><strong>Step 4: Customize and Make It Pretty</strong></h2>
+
+<ul>
+	<li>Choose a theme: Pick a fun, bright one from Gamma&rsquo;s 100+ options&mdash;maybe something ocean-themed with waves or gems.</li>
+	<li>Edit layouts: Drag and drop sections to rearrange. Add buttons like &quot;Learn More&quot; or sliders to show multiple jewellery pieces.</li>
+	<li>Preview: Click &quot;Preview&quot; to see how it looks on a phone or computer. Make sure it&rsquo;s easy to read and super sparkly!</li>
+</ul>
+
+<h2><strong>Step 5: Share Your Creation</strong></h2>
+
+<ul>
+	<li>Click &quot;Publish&quot; or &quot;Share&quot; to get a link to your page.</li>
+	<li>Copy the URL&mdash;that&rsquo;s your website link! Test it by opening in a new tab to make sure it works.</li>
+</ul>
+
+<p><span style="font-size:18px;">Your page is now live! Show it to your family for feedback.</span></p>
+</div>
+</section>
+
+<div class="topic-card"><strong>Part 2: Submitting Your Project in the LMS</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<p><span style="font-size:18px;">Now, submit your awesome work! You&rsquo;ll create a simple document (like in Google Docs or Microsoft Word) and upload it to your LMS.</span></p>
+
+<h2><strong>Step 1: Create the Submission Document</strong></h2>
+
+<ul>
+	<li>Open a new document in Google Docs, Word, or any word processor.</li>
+	<li>At the top, write:</li>
+	<li><strong>Name:</strong> [Your Full Name]</li>
+	<li><strong>Grade:</strong> [Your Grade, e.g., 5th Grade]</li>
+	<li><strong>Date:</strong> October 10, 2025</li>
+	<li>Then, add:</li>
+	<li><strong>Website Link:</strong> Paste the Gamma URL here (e.g., https://gamma.app/your-project-link).</li>
+	<li><strong>Key Features:</strong> List 3-5 cool things about your page, like:</li>
+	<li>&quot;Fun welcome section with a big jewellery photo!&quot;</li>
+	<li>&quot;List of materials like brass and enamel with pictures.&quot;</li>
+	<li>&quot;AI-generated images of sparkly designs.&quot;</li>
+	<li>&quot;Easy-to-read info on anti-tarnish technology.&quot;</li>
+	<li>&quot;Colorful theme inspired by the sea.&quot;</li>
+	<li>Keep it short and fun&mdash;1 page is enough!</li>
+</ul>
+
+<h2><strong>Step 2: Save and Export the Document</strong></h2>
+
+<ul>
+	<li>Save the file as &quot;[Your Name] - Salty Jewellery Project.docx&quot; or &quot;.pdf&quot;.</li>
+	<li>If your LMS needs a PDF, export it as one (in Google Docs, go to File &gt; Download &gt; PDF).</li>
+</ul>
+
+<h2><strong>Step 3: Upload to LMS</strong></h2>
+
+<ul>
+	<li>Log in to your school&rsquo;s LMS (ask your teacher if you&rsquo;re not sure how).</li>
+	<li>Go to the assignment for &quot;Capstone Project&quot; and click &quot;Submit&quot; or &quot;Turn In&quot;.</li>
+	<li>Upload your document file.</li>
+	<li>If there&rsquo;s a text box, paste your website link there too, just in case.</li>
+	<li>Hit submit&mdash;done! Your teacher will love it.</li>
+</ul>
+
+<p><span style="font-size:18px;">Great job, young designer! This project shows off what you&rsquo;ve learned about Salty Jewellery&rsquo;s cool materials and innovations. If you have questions, ask your teacher. Have fun creating! ✨</span></p>
+</div>
+</section>
+
+<footer><span style="font-size:18px;">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggleUI = document.getElementById('theme-toggle');
+  
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    if(themeToggleUI) themeToggleUI.classList.add('on');
+  }
+  
+  if(themeToggleUI) {
+    themeToggleUI.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      themeToggleUI.classList.toggle('on');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+  }
+  
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if(fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {});
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        document.exitFullscreen();
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement) {
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+  }
+
+  // Topic Card Animation
+  const topicCards = document.querySelectorAll('.topic-card');
+  topicCards.forEach(card => {
+      card.addEventListener('click', () => {
+          card.classList.toggle('highlight');
+      });
+  });
+});
+</script>
