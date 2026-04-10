@@ -458,11 +458,11 @@
             height: 20px;
             border-radius: 50%;
         }
-        .circle div:nth-child(1) { background: var(--salty-light); animation: anim_01 1.5s forwards; }
-        .circle div:nth-child(2) { background: var(--sparkle-color-from); animation: move_01 1.5s 1.5s; }
-        .circle div:nth-child(3) { background: var(--sparkle-color-to); animation: move_02 1.5s 1.5s; }
-        .circle div:nth-child(4) { background: var(--popup-bg); animation: move_03 1.5s 1.5s; }
-        .circle div:nth-child(5) { background: var(--h-color); animation: move_04 1.5s 1.5s; }
+        .circle div:nth-child(1) { background: var(--salty-light); animation: anim_01 1.5s ease-in-out forwards; }
+        .circle div:nth-child(2) { background: var(--sparkle-color-from); animation: move_01 1.5s 1.5s ease-in-out forwards; }
+        .circle div:nth-child(3) { background: var(--sparkle-color-to); animation: move_02 1.5s 1.5s ease-in-out forwards; }
+        .circle div:nth-child(4) { background: var(--popup-bg); animation: move_03 1.5s 1.5s ease-in-out forwards; }
+        .circle div:nth-child(5) { background: var(--h-color); animation: move_04 1.5s 1.5s ease-in-out forwards; }
         @keyframes anim_01 {
             0% { transform: scale(0); }
             20% { transform: scale(3); }
@@ -518,11 +518,11 @@
             border-radius: 50%;
             transform: scale(0);
         }
-        .big div:nth-child(1) { background: var(--salty-light); animation: big 0.4s 3s forwards; }
-        .big div:nth-child(2) { background: var(--sparkle-color-from); animation: big 0.4s 3.4s forwards; }
-        .big div:nth-child(3) { background: var(--sparkle-color-to); animation: big 0.4s 3.8s forwards; }
-        .big div:nth-child(4) { background: var(--popup-bg); animation: big 0.4s 4.2s forwards; }
-        .big div:nth-child(5) { background: var(--h-color); animation: big 0.4s 4.6s forwards; }
+        .big div:nth-child(1) { background: var(--salty-light); animation: big 0.4s 3s ease-in-out forwards; }
+        .big div:nth-child(2) { background: var(--sparkle-color-from); animation: big 0.4s 3.4s ease-in-out forwards; }
+        .big div:nth-child(3) { background: var(--sparkle-color-to); animation: big 0.4s 3.8s ease-in-out forwards; }
+        .big div:nth-child(4) { background: var(--popup-bg); animation: big 0.4s 4.2s ease-in-out forwards; }
+        .big div:nth-child(5) { background: var(--h-color); animation: big 0.4s 4.6s ease-in-out forwards; }
         @keyframes big {
             0% { transform: scale(0); }
             100% { transform: scale(1); }
@@ -536,7 +536,7 @@
             border-left: 150vw solid rgba(255, 0, 0, 0);
             border-right: 150vw solid rgba(255, 0, 0, 0);
             border-bottom: 300vw solid var(--popup-bg);
-            animation: tri 0.5s 4s linear forwards;
+            animation: tri 0.5s 4s ease-in-out forwards;
         }
         @keyframes tri {
             100% { transform: translateY(-300vw); }
@@ -558,9 +558,9 @@
             transform: scale(0);
         }
         .squ div:nth-child(1) { background: var(--salty-dark); animation: squ 0.5s 4.5s cubic-bezier(0, 0.73, 0.54, 2.4) forwards; }
-        .squ div:nth-child(2) { background: var(--sparkle-color-from); animation: moveSqu_01 0.6s 5s forwards; }
-        .squ div:nth-child(3) { background: var(--sparkle-color-to); animation: moveSqu_02 0.6s 5s forwards; }
-        .squ div:nth-child(4) { background: var(--h-color); animation: moveSqu_03 0.6s 5s forwards; }
+        .squ div:nth-child(2) { background: var(--sparkle-color-from); animation: moveSqu_01 0.6s 5s ease-in-out forwards; }
+        .squ div:nth-child(3) { background: var(--sparkle-color-to); animation: moveSqu_02 0.6s 5s ease-in-out forwards; }
+        .squ div:nth-child(4) { background: var(--h-color); animation: moveSqu_03 0.6s 5s ease-in-out forwards; }
         @keyframes squ {
             0% { transform: translateY(100px) scale(0); }
             20% { transform: translateY(100px) scale(1); }
@@ -599,7 +599,7 @@
             background: var(--salty-light);
             border-radius: 0;
             opacity: 0;
-            animation: end 0.8s 5.7s forwards;
+            animation: end 1.2s 5.5s ease-in-out forwards;
         }
         @media screen and (max-width: 768px) {
             .start div {
@@ -880,11 +880,7 @@ Activities: Q&amp;A: Ask the Founder, Quiz Module 5, Experiential Learning: Chal
 </footer>
 </div>
 <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light');
-            themeToggle.classList.toggle('on');
-        });
+
 
         function navigateTo(action) {
             if (action === 'next') {
@@ -1008,3 +1004,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
+< / b o d y > < / h t m l > 
+ 
+ < / b o d y > < / h t m l > 
+ 
+ 
+
