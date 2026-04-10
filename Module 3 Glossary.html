@@ -1,0 +1,475 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+    <link rel="stylesheet" href="universal.css" />
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+<style type="text/css">:root {
+            --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+            --body-color: #CCC;
+            --header-bg: #4B3A6F;
+            --header-color: #E0E0E0;
+            --h-color: #B19CD9;
+            --chapter-bg: #2A2244;
+            --text-p-color: #BBB;
+            --topic-bg: #3C2F5F;
+            --game-container-bg: #2A2244;
+            --game-area-bg: #1C172B;
+            --item-bg: #3C2F5F;
+            --category-bg: #4B3A6F;
+            --category-color: #E0E0E0;
+            --results-bg: #1C172B;
+            --footer-bg: #4B3A6F;
+            --footer-color: #E0E0E0;
+            --correct-bg: #388E3C;
+            --wrong-bg: #D32F2F;
+            --popup-bg: #B19CD9;
+            --popup-color: #000;
+            --shimmer-color: rgba(177, 156, 217, 0.2);
+            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+            --shadow-small: rgba(255,255,255,0.05);
+            --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+            --arrow-stroke: #B19CD9;
+            --theme-text-color: #ffffff;
+            --timeline-bg: #3C2F5F;
+            --timeline-color: #E0E0E0;
+            --button-bg: #B19CD9;
+            --button-color: #000;
+            --popup-shadow: rgba(255, 255, 255, 0.5);
+        }
+
+        .light {
+            --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+            --body-color: #333;
+            --header-bg: #7b46ac;
+            --header-color: #333;
+            --h-color: #333;
+            --chapter-bg: #fff;
+            --text-p-color: #444;
+            --topic-bg: #D0C3F1;
+            --game-container-bg: #fff;
+            --game-area-bg: #f9f9f9;
+            --item-bg: #D0C3F1;
+            --category-bg: #7b46ac;
+            --category-color: white;
+            --results-bg: #f9f9f9;
+            --footer-bg: #7b46ac;
+            --footer-color: white;
+            --correct-bg: #4caf50;
+            --wrong-bg: red;
+            --popup-bg: #9846ac;
+            --popup-color: white;
+            --shimmer-color: rgba(123, 70, 172, 0.2);
+            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+            --shadow-small: rgba(0,0,0,0.05);
+            --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            --arrow-stroke: #9846ac;
+            --theme-text-color: #333;
+            --timeline-bg: #D0C3F1;
+            --timeline-color: #444;
+            --button-bg: #9846ac;
+            --button-color: white;
+            --popup-shadow: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Michroma', sans-serif;
+            background: var(--body-bg);
+            color: var(--body-color);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-color);
+            padding: 10px;
+            text-align: center;
+            font-family: 'Michroma', sans-serif;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+            animation: shimmer 3s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        h1, h2, h3 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--h-color);
+            position: relative;
+        }
+
+        h1::after, h2::after, h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--h-color), transparent);
+        }
+
+        .section-bg {
+            background: var(--chapter-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-main), var(--shadow-glow);
+            padding: 20px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1100px;
+            text-align: center;
+        }
+
+        .jewel-bounce {
+            animation: jewelBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes jewelBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .premium-badge {
+            background: var(--button-bg);
+            color: var(--button-color);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .table-container {
+            background: var(--game-container-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-main);
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--category-bg);
+        }
+
+        th {
+            background: var(--category-bg);
+            color: var(--category-color);
+            font-size: 18px;
+        }
+
+        td {
+            background: var(--item-bg);
+            color: var(--theme-text-color);
+            font-size: 16px;
+        }
+
+        td span.video-link {
+            color: var(--button-bg);
+            cursor: pointer;
+        }
+
+        td span.video-link:hover {
+            color: var(--header-bg);
+        }
+
+        .video-player {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .video-player iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-main);
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            max-width: 600px;
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        #theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: 30px;
+            background: var(--button-bg);
+            border-radius: 15px;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5px;
+            transition: background 0.3s ease;
+        }
+
+        #theme-toggle::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: var(--button-color);
+            border-radius: 50%;
+            position: absolute;
+            left: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        #theme-toggle::after {
+            content: 'OFF';
+            color: var(--button-color);
+            font-family: 'Michroma', sans-serif;
+            font-size: 12px;
+            position: absolute;
+            right: 10px;
+        }
+
+        #theme-toggle.on::before {
+            transform: translateX(30px);
+        }
+
+        #theme-toggle.on::after {
+            content: 'ON';
+            left: 10px;
+            right: auto;
+        }
+
+        #theme-toggle:hover {
+            background: var(--header-bg);
+        }
+
+        @media (max-width: 768px) {
+            .video-player iframe {
+                height: 300px;
+            }
+            .section-bg {
+                padding: 10px;
+            }
+            .logo-container img {
+                width: 100%;
+                height: auto;
+            }
+            #theme-toggle {
+                width: 50px;
+                height: 25px;
+            }
+            #theme-toggle::before {
+                width: 20px;
+                height: 20px;
+            }
+            #theme-toggle.on::before {
+                transform: translateX(25px);
+            }
+            #theme-toggle::after, #theme-toggle.on::after {
+                font-size: 10px;
+            }
+        }
+
+        
+
+        .theme-font-18 {
+            font-size: 18px;
+        }
+
+        html, body, .container, .card, .chapter-section, .iframe-container {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        @media (max-width: 768px) {
+            body { overflow-x: hidden !important; }
+            .chapter-section { flex-direction: column; padding: 5px; }
+            .chapter-text, .chapter-image { width: 100% !important; max-width: 100% !important; }
+            
+            iframe[width="360"], iframe[height="640"], iframe[src*="shorts"], iframe[width="315"], iframe[height="560"] { 
+                aspect-ratio: 9/16 !important; 
+                max-width: 90vw !important; 
+                max-height: 80vh !important; 
+                height: 80vh !important; 
+                width: auto !important;
+                margin: 0 auto !important; 
+                display: block !important; 
+            }
+            img { max-width: 100% !important; }
+        }
+
+</style>
+
+
+
+<p></p>
+
+
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span>
+<div class="knob">&nbsp;</div>
+<span class="icon sun">☀️</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
+
+
+<header>
+<h1><strong><span class="theme-text">💎 SALTY JEWELLERY EXPERIENCE: Glossary</span></strong></h1>
+
+<p><span class="theme-font-18">Skillizee X Salty Virtual Internship &ndash; Module 3 Key Terms and Concepts</span></p>
+</header>
+
+<main>
+<div class="logo-container jewel-bounce"><img alt="Salty Logo" src="https://login.skillizee.io/s/articles/68e0f0618c80e9370492f7e4/images/Salty circle logo.png" /></div>
+
+<section class="section-bg">
+<h2>About This Glossary</h2>
+
+<p class="text-sm md:text-base" style="color: var(--text-p-color); margin-top: 1rem;">This glossary provides definitions and explanations of key terms related to the Salty Jewellery Experience, helping you understand the core concepts covered in Module 3 of the Skillizee X Salty Virtual Internship.</p>
+
+<h2>Module 3: Glossary</h2>
+
+<div class="video-player" id="videoPlayer"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/mwkS3JWaOlE?rel=0&amp;showinfo=0"></iframe></div>
+
+<div class="table-container">
+<table>
+	<thead>
+		<tr>
+			<th>Term</th>
+			<th>Meaning (Simplified)</th>
+			<th>Videos</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Cubic Zirconia</strong></td>
+			<td>Diamond-like affordable stone</td>
+			<td><span class="video-link" onclick="playVideo('tKLm9fMKUYs')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Electroplating</strong></td>
+			<td>Coating metal with a thin layer for durability or shine</td>
+			<td><span class="video-link" onclick="playVideo('v0ma4AB2zNg')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Dark Stores</strong></td>
+			<td>Local mini-warehouses for fast delivery</td>
+			<td><span class="video-link" onclick="playVideo('mxEegif9FiI')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Quick Commerce</strong></td>
+			<td>Ultra-fast delivery through platforms</td>
+			<td><span class="video-link" onclick="playVideo('AndwbRz6iX4')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Value Proposition</strong></td>
+			<td>The promise or benefit a brand offers</td>
+			<td><span class="video-link" onclick="playVideo('EhVRGXffJwk')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Customer Segments</strong></td>
+			<td>Targeted buyer groups</td>
+			<td><span class="video-link" onclick="playVideo('H5lbGkuMAHM')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Business Model Canvas</strong></td>
+			<td>Strategy framework with 9 elements</td>
+			<td><span class="video-link" onclick="playVideo('UBqLZeW2i7Y')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>API Integration</strong></td>
+			<td>Syncing product inventory with platforms</td>
+			<td><span class="video-link" onclick="playVideo('J6fUk8Mdm3A')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Inclusivity</strong></td>
+			<td>Serving diverse customer bases</td>
+			<td><span class="video-link" onclick="playVideo('ychqPKwrePs')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Seed Funding</strong></td>
+			<td>Initial investment to grow a startup</td>
+			<td><span class="video-link" onclick="playVideo('IMZfsBcTYIo')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Tier 2/3 Cities</strong></td>
+			<td>Smaller but fast-growing urban markets</td>
+			<td><span class="video-link" onclick="playVideo('c8GtnNGKfNQ')">Watch Video</span></td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</section>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const toggleBtn = document.getElementById('theme-toggle');
+            toggleBtn.addEventListener('click', () => {
+                body.classList.toggle('light');
+                toggleBtn.classList.toggle('on');
+            });
+
+            window.playVideo = function(videoId, startTime = 0, endTime = null) {
+                const player = document.querySelector('#videoPlayer iframe');
+                let src = `https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&start=${startTime}`;
+                if (endTime) {
+                    src += `&end=${endTime}`;
+                }
+                player.src = src;
+                document.getElementById('videoPlayer').scrollIntoView({ behavior: 'smooth' });
+                return false;
+            };
+        });
+</script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>
+</body>
+</html>

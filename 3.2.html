@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+    <link rel="stylesheet" href="universal.css" />
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+<style type="text/css">:root {
+    --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+    --body-color: #CCC;
+    --header-bg: #4B3A6F;
+    --header-color: #E0E0E0;
+    --h-color: #B19CD9;
+    --chapter-bg: #2A2244;
+    --text-p-color: #BBB;
+    --topic-bg: #3C2F5F;
+    --game-container-bg: #2A2244;
+    --game-area-bg: #1C172B;
+    --item-bg: #3C2F5F;
+    --category-bg: #4B3A6F;
+    --category-color: #E0E0E0;
+    --results-bg: #1C172B;
+    --footer-bg: #4B3A6F;
+    --footer-color: #E0E0E0;
+    --correct-bg: #388E3C;
+    --wrong-bg: #D32F2F;
+    --popup-bg: #B19CD9;
+    --popup-color: #000;
+    --shimmer-color: rgba(177, 156, 217, 0.2);
+    --sparkle-color-from: #B19CD9;
+    --sparkle-color-to: #8A7DB5;
+    --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+    --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+    --shadow-small: rgba(255,255,255,0.05);
+    --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+    --arrow-stroke: #B19CD9;
+    --theme-text-color: #ffffff;
+    --timeline-bg: #3C2F5F;
+    --timeline-color: #E0E0E0;
+    --button-bg: #B19CD9;
+    --button-color: #000;
+    --popup-shadow: rgba(255, 255, 255, 0.5);
+}
+.light {
+    --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+    --body-color: #333;
+    --header-bg: #7b46ac;
+    --header-color: #fff;
+    --h-color: #333;
+    --chapter-bg: #fff;
+    --text-p-color: #444;
+    --topic-bg: #D0C3F1;
+    --game-container-bg: #fff;
+    --game-area-bg: #f9f9f9;
+    --item-bg: #D0C3F1;
+    --category-bg: #7b46ac;
+    --category-color: #333;
+    --results-bg: #f9f9f9;
+    --footer-bg: #7b46ac;
+    --footer-color: #333;
+    --correct-bg: #4caf50;
+    --wrong-bg: red;
+    --popup-bg: #9846ac;
+    --popup-color: #333;
+    --shimmer-color: rgba(123, 70, 172, 0.2);
+    --sparkle-color-from: #9846ac;
+    --sparkle-color-to: #7b46ac;
+    --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+    --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+    --shadow-small: rgba(0,0,0,0.05);
+    --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    --arrow-stroke: #9846ac;
+    --theme-text-color: #333;
+    --timeline-bg: #D0C3F1;
+    --timeline-color: #444;
+    --button-bg: #9846ac;
+    --button-color: #333;
+    --popup-shadow: rgba(0, 0, 0, 0.2);
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: var(--body-bg);
+    color: var(--body-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* (All your existing styles remain exactly the same - omitted here for brevity, but fully included below) */
+header { background-color: var(--header-bg); color: var(--header-color); padding: 10px 20px; text-align: center; font-family: 'Michroma', sans-serif; width: 100%; position: relative; overflow: hidden; }
+header::before { content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent); animation: shimmer 3s infinite linear; }
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+header h1.theme-text { color: white; }
+h1, h2 { font-family: 'Michroma', sans-serif; color: var(--h-color); position: relative; }
+h1::after, h2::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 50%; height: 2px; background: linear-gradient(to right, transparent, var(--h-color), transparent); }
+@keyframes sparkle { 0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; } 50% { transform: translateY(-50%) scale(1.2); opacity: 0.7; } }
+.chapter-section { display: flex; align-items: flex-start; justify-content: space-between; margin: 5px auto; padding: 15px; max-width: 1100px; background: var(--chapter-bg); border-radius: 12px; box-shadow: var(--shadow-main), var(--shadow-glow); gap: 20px; width: 90%; overflow: hidden; }
+.chapter-section:nth-child(even) { flex-direction: row; }
+.chapter-section.price-tiers { justify-content: center; max-width: 1200px; padding: 20px; }
+.chapter-text { padding: 10px; margin: 0; box-sizing: border-box; overflow: hidden; }
+.chapter-text h2 { margin: 0 0 10px; }
+.chapter-text p { line-height: 1.7; font-size: 18px; color: var(--text-p-color); margin: 10px 0; word-wrap: break-word; }
+.chapter-image { max-width: 400px; margin: 0; padding: 10px; box-sizing: border-box; }
+.chapter-section.affordable-luxury .chapter-image { float: right; margin-left: 20px; }
+.chapter-section:nth-child(even) .chapter-image { float: left; margin-right: 20px; margin-left: 0; }
+.chapter-section.price-tiers .chapter-image { width: 100%; max-width: 1000px; float: none; margin: 0 auto; }
+.chapter-image img { width: 100%; height: auto; max-width: 400px; max-height: 450px; aspect-ratio: 4/5; border-radius: 12px; box-shadow: 0px 4px 20px var(--shadow-small); object-fit: contain; display: block; box-sizing: border-box; }
+.chapter-section.price-tiers .chapter-image img { max-width: 1000px; max-height: 600px; width: 100%; height: auto; margin: 0 auto; }
+.chapter-image img:hover { animation: bounce 0.5s ease-in-out; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+body:not(.light) .chapter-section.price-tiers .chapter-image img { border: 2px solid var(--theme-text-color); box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.2), 0px 0px 15px rgba(255, 255, 255, 0.4); }
+.topic-card { margin: 25px auto; padding: 10px 20px; max-width: 800px; background: var(--topic-bg); border-radius: 12px; box-shadow: var(--shadow-main), var(--shadow-glow); text-align: center; transition: opacity 0.5s ease, transform 0.5s ease; font-family: 'Michroma', sans-serif; font-size: 20px; cursor: pointer; width: 90%; position: relative; color: var(--theme-text-color); }
+.topic-card::before, .topic-card::after { content: '✨'; position: absolute; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--sparkle-color-from); animation: sparkle 1.5s infinite ease-in-out; }
+.topic-card::before { left: 10px; }
+.topic-card::after { right: 10px; }
+.topic-card:hover { animation: flash 0.8s linear; background: var(--sparkle-color-from); color: var(--popup-color); transform: scale(1.03); }
+@keyframes flash { 0% { background-color: var(--topic-bg); } 50% { background-color: var(--header-bg); color: var(--header-color); } 100% { background-color: var(--sparkle-color-from); } }
+.activity-container { max-width: 1100px; margin: 25px auto; padding: 10px 20px; background: var(--game-container-bg); border-radius: 12px; box-shadow: var(--shadow-main), var(--shadow-glow); text-align: center; width: 90%; }
+.activity-container h2 { font-family: 'Michroma', sans-serif; color: var(--h-color); margin: 0 0 5px; }
+.drag-area { display: flex; justify-content: space-between; gap: 10px; position: relative; padding: 10px; background: var(--game-area-bg); border-radius: 10px; box-shadow: 0px 2px 10px var(--shadow-small); width: 100%; }
+.drag-items, .drop-zones { flex: 1; padding: 10px; }
+.drag-item { padding: 10px; margin: 10px 0; background: var(--item-bg); border-radius: 8px; cursor: grab; text-align: center; font-size: 16px; position: relative; transition: transform 0.3s ease-in-out; }
+.drag-item.dragging { opacity: 0.5; transform: scale(1.05); }
+.drop-zone { padding: 10px; margin: 10px 0; background: var(--category-bg); color: var(--category-color); border-radius: 8px; min-height: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.3s ease-in-out; }
+.drop-zone.correct { background: var(--correct-bg); animation: pulse 0.5s ease-in-out; }
+.drop-zone.wrong { animation: shake 0.5s ease-in-out; background: var(--wrong-bg); }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+button#resetActivity { margin: 10px 0 0; padding: 10px 20px; background: var(--button-bg); color: var(--button-color); border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s ease-in-out; }
+button#resetActivity:hover { background: var(--header-bg); }
+footer { text-align: center; padding: 10px; background-color: var(--footer-bg); color: var(--footer-color); font-size: 14px; width: 100%; margin-top: auto; position: relative; overflow: hidden; }
+footer::before { content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent); animation: shimmer 3s infinite linear; }
+#theme-toggle { position: fixed; top: 10px; right: 10px; width: 60px; height: 30px; background: var(--button-bg); border-radius: 15px; cursor: pointer; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 5px; transition: background 0.3s ease; }
+#theme-toggle::before { content: ''; width: 24px; height: 24px; background: var(--button-color); border-radius: 50%; position: absolute; left: 3px; transition: transform 0.3s ease; }
+#theme-toggle::after { content: 'OFF'; color: var(--button-color); font-family: 'Michroma', sans-serif; font-size: 12px; position: absolute; right: 10px; }
+#theme-toggle.on::before { transform: translateX(30px); }
+#theme-toggle.on::after { content: 'ON'; left: 10px; right: auto; }
+#theme-toggle:hover { background: var(--header-bg); }
+@media (max-width: 768px) {
+    .chapter-section { flex-direction: column; margin: 5px auto; padding: 10px; }
+    .chapter-section.affordable-luxury .chapter-image,
+    .chapter-section:nth-child(even) .chapter-image { float: none; margin: 0 auto; max-width: 200px; }
+    .drag-area { flex-direction: column; gap: 10px; }
+    .drop-zone { min-height: 80px; }
+    .chapter-image img { max-width: 200px; max-height: 200px; width: 100%; height: auto; margin: 0; }
+    .chapter-section.price-tiers .chapter-image img { max-width: 500px; max-height: 350px; }
+    .activity-container, .topic-card { width: 95%; margin: 25px auto; padding: 10px 20px; }
+    #theme-toggle { width: 50px; height: 25px; }
+    #theme-toggle::before { width: 20px; height: 20px; }
+    #theme-toggle.on::before { transform: translateX(25px); }
+    #theme-toggle::after, #theme-toggle.on::after { font-size: 10px; }
+}
+.theme-text { color: var(--theme-text-color); word-break: break-word; overflow-wrap: break-word; }
+.theme-font-18 { font-size: 18px; }
+.theme-font-22 { font-size: 22px; }
+
+header h1, header h1 .theme-text { color: #fff !important; }
+
+/* Audio Container Styling */
+.audio-container { position: relative; background: url('https://login.skillizee.io/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat; background-size: contain; border-radius: 16px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25); margin: 1rem auto; width: 90%; max-width: 900px; aspect-ratio: 1920 / 1080; display: flex; flex-direction: column; justify-content: flex-end; padding: 1rem; padding-bottom: 1rem; }
+.audio-container audio { width: 100%; border-radius: 12px; border: 2px solid #2D2B7E; background: #F5F5FF; height: 50px; padding: 4px; box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3); }
+audio::-webkit-media-controls-panel { background-color: #E6E6FA; border-radius: 12px; }
+audio::-webkit-media-controls-play-button, audio::-webkit-media-controls-timeline, audio::-webkit-media-controls-current-time-display, audio::-webkit-media-controls-time-remaining-display, audio::-webkit-media-controls-volume-slider { filter: hue-rotate(240deg) saturate(1.2); }
+
+        html, body, .container, .card, .chapter-section, .iframe-container {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        @media (max-width: 768px) {
+            body { overflow-x: hidden !important; }
+            .chapter-section { flex-direction: column; padding: 5px; }
+            .chapter-text, .chapter-image { width: 100% !important; max-width: 100% !important; }
+            
+            iframe[width="360"], iframe[height="640"], iframe[src*="shorts"], iframe[width="315"], iframe[height="560"] { 
+                aspect-ratio: 9/16 !important; 
+                max-width: 90vw !important; 
+                max-height: 80vh !important; 
+                height: 80vh !important; 
+                width: auto !important;
+                margin: 0 auto !important; 
+                display: block !important; 
+            }
+            img { max-width: 100% !important; }
+        }
+
+</style>
+
+
+
+<p></p>
+
+
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span>
+<div class="knob">&nbsp;</div>
+<span class="icon sun">☀️</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
+
+
+<header>
+<h1><strong><span class="theme-text">Chapter 2: Price Point Strategy - Affordable Luxury</span></strong></h1>
+
+<p><strong><span class="theme-font-18">Discover how Salty makes trendy jewellery accessible to all</span></strong></p>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/3.2.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
+</div>
+
+<div class="topic-card"><strong>Affordable Luxury</strong></div>
+
+<section class="chapter-section affordable-luxury">
+<div class="chapter-image"><img alt="Jewellery Image" src="https://login.skillizee.io/s/articles/68da11874dc2ec032b188d89/images/Salty_Logo_750X750_c28a2b5b-1f67-4ec1-8350-a50b0fbb3d6e_64x64.jpg" style="height: 800px; width: 80px;" /></div>
+
+<div class="chapter-text">
+<h2><strong>Price Point Strategy: Affordable Luxury</strong></h2>
+
+<p><span class="theme-text theme-font-18">Salty Jewellery follows a strategy of affordable luxury, offering trendy and high-quality fashion jewellery at accessible price points that appeal to young consumers. Prices typically range from about ₹400 to ₹2,500, allowing customers to buy stylish, well-crafted pieces without overspending. This balance helps make Salty attractive to students, young professionals, and fashion-conscious buyers who want fashionable jewellery that looks premium but is budget-friendly.</span></p>
+
+<p><span class="theme-text theme-font-18">The brand emphasizes combining style, durability, and quality materials to give customers value for money, promoting the idea that luxury should be inclusive and attainable. Various affordable combos and sets are also available, encouraging customers to experiment with different looks while staying within budget.</span></p>
+</div>
+</section>
+<!-- YouTube Shorts Side-by-Side with Purple-Lavender Glow -->
+
+<div style="max-width: 1100px; margin: 40px auto; padding: 0 20px; width: 90%;">
+<div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+<div style="border-radius: 16px; overflow: hidden; 
+                    box-shadow: 0 0 25px rgba(177, 156, 217, 0.7), 
+                                0 0 50px rgba(139, 92, 246, 0.5),
+                                inset 0 0 20px rgba(177, 156, 217, 0.3);
+                    border: 3px solid #B19CD9; padding: 8px; background: #1C172B;"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="640" src="https://www.youtube.com/embed/pVt1-X5Ere8" style="border-radius: 12px; display: block;" title="Salty Jewellery Short 1" width="360"></iframe></div>
+
+<div style="border-radius: 16px; overflow: hidden; 
+                    box-shadow: 0 0 25px rgba(177, 156, 217, 0.7), 
+                                0 0 50px rgba(139, 92, 246, 0.5),
+                                inset 0 0 20px rgba(177, 156, 217, 0.3);
+                    border: 3px solid #B19CD9; padding: 8px; background: #1C172B;"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="640" src="https://www.youtube.com/embed/OpsiZHKlwd4" style="border-radius: 12px; display: block;" title="Salty Jewellery Short 2" width="360"></iframe></div>
+</div>
+</div>
+
+<div class="topic-card"><strong>Price Tiers and Materials</strong></div>
+
+<section class="chapter-section price-tiers">
+<div class="chapter-image"><img alt="Price Tiers Infographic Light Mode" class="light-image" src="https://login.skillizee.io/s/articles/68da11874dc2ec032b188d89/images/Price tiers map.png" /> <img alt="Price Tiers Infographic Dark Mode" class="dark-image" src="https://login.skillizee.io/s/articles/68d65d1a945b5c3dac770519/images/darkmode_pricetiers.png" /></div>
+</section>
+
+<div class="activity-container">
+<h2><strong>Drag and Drop: Match Jewellery to Price Tiers</strong></h2>
+
+<p><span class="theme-text">Can you guess which jewellery belongs to which price tier? Drag each jewellery description to the correct price tier!</span></p>
+
+<div class="drag-area">
+<div class="drag-items" id="dragItems">
+<div class="drag-item" data-category="Entry-Level" draggable="true"><span class="theme-text theme-font-18">Brass ring with gold-tone plating</span></div>
+
+<div class="drag-item" data-category="Mid-Level" draggable="true"><span class="theme-text theme-font-18">Stainless steel necklace with cubic zirconia</span></div>
+
+<div class="drag-item" data-category="Premium" draggable="true"><span class="theme-text theme-font-18">Statement earrings with 18K gold plating</span></div>
+
+<div class="drag-item" data-category="Entry-Level" draggable="true"><span class="theme-text theme-font-18">Copper alloy studs with enamel coating</span></div>
+
+<div class="drag-item" data-category="Mid-Level" draggable="true"><span class="theme-text theme-font-18">Bracelet with 14K gold plating and anti-tarnish</span></div>
+
+<div class="drag-item" data-category="Premium" draggable="true"><span class="theme-text theme-font-18922">Jewellery set with sterling silver and crystals</span></div>
+</div>
+
+<div class="drop-zones" id="dropZones">
+<div class="drop-zone" data-category="Entry-Level"><span class="theme-text theme-font-22">Entry-Level (₹400&ndash;₹800)</span></div>
+
+<div class="drop-zone" data-category="Mid-Level"><span class="theme-text theme-font-22">Mid-Level (₹800&ndash;₹1,500)</span></div>
+
+<div class="drop-zone" data-category="Premium"><span class="theme-text theme-font-22">Premium (₹1,500&ndash;₹2,500+)</span></div>
+</div>
+</div>
+<button fdprocessedid="3xspn" id="resetActivity">Reset Activity</button></div>
+
+<footer><span class="theme-text theme-font-18">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const dragItems = document.querySelectorAll('.drag-item');
+    const dropZones = document.querySelectorAll('.drop-zone');
+    dragItems.forEach(item => {
+        item.addEventListener('dragstart', e => {
+            e.dataTransfer.setData('text/plain', e.target.dataset.category);
+            e.target.classList.add('dragging');
+        });
+        item.addEventListener('dragend', e => e.target.classList.remove('dragging'));
+    });
+    dropZones.forEach(zone => {
+        zone.addEventListener('dragover', e => e.preventDefault());
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            const category = e.target.closest('.drop-zone').dataset.category;
+            const draggedCategory = e.dataTransfer.getData('text/plain');
+            const targetZone = e.target.closest('.drop-zone');
+            const draggedItem = document.querySelector(`.drag-item[data-category="${draggedCategory}"]:not(.dragging)`);
+            if (category === draggedCategory && draggedItem) {
+                targetZone.appendChild(draggedItem);
+                targetZone.classList.add('correct');
+                setTimeout(() => targetZone.classList.remove('correct'), 1000);
+            } else {
+                targetZone.classList.add('wrong');
+                setTimeout(() => targetZone.classList.remove('wrong'), 500);
+            }
+        });
+    });
+
+    document.getElementById('resetActivity').addEventListener('click', () => {
+        const dragContainer = document.getElementById('dragItems');
+        document.querySelectorAll('.drag-item').forEach(item => dragContainer.appendChild(item));
+        document.querySelectorAll('.drop-zone').forEach(zone => {
+            while (zone.children.length > 1) zone.removeChild(zone.lastChild);
+        });
+    });
+
+    const body = document.body;
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('light');
+        toggleBtn.classList.toggle('on');
+    });
+});
+</script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>
+</body>
+</html>

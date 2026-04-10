@@ -1,0 +1,576 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="universal.css" />
+<style type="text/css">:root {
+  --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+  --body-color: #CCC;
+  --header-bg: #4B3A6F;
+  --header-color: #E0E0E0;
+  --h-color: #B19CD9;
+  --chapter-bg: #2A2244;
+  --text-p-color: #BBB;
+  --topic-bg: #3C2F5F;
+  --timeline-bg: #3C2F5F;
+  --timeline-link-bg: #4B3A6F;
+  --timeline-instruction-bg: #B19CD9;
+  --timeline-instruction-color: #000;
+  --footer-bg: #4B3A6F;
+  --footer-color: #E0E0E0;
+  --popup-bg: #B19CD9;
+  --popup-color: #000;
+  --shimmer-color: rgba(177, 156, 217, 0.2);
+  --sparkle-color-from: #B19CD9;
+  --sparkle-color-to: #8A7DB5;
+  --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+  --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+  --shadow-small: rgba(255,255,255,0.05);
+  --theme-text-color: #ffffff;
+  --color3: #B19CD9CC;
+  --color4: #B19CD999;
+  --color5: #B19CD966;
+  --color6: #B19CD933;
+  --correct-bg: #388E3C;
+  --wrong-bg: #D32F2F;
+  --button-bg: #B19CD9;
+  --button-color: #000;
+  --item-bg: #3C2F5F;
+  --category-bg: #4B3A6F;
+  --category-color: #E0E0E0;
+  --game-container-bg: #2A2244;
+  --game-area-bg: #1C172B;
+  --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+  --popup-shadow: rgba(255, 255, 255, 0.5);
+  --arrow-stroke: #B19CD9;
+}
+
+.light {
+  --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+  --body-color: #333;
+  --header-bg: #7b46ac;
+  --header-color: #fff;
+  --h1-color: #fff;
+  --h-color: #333;
+  --chapter-bg: #fff;
+  --text-p-color: #444;
+  --topic-bg: #D0C3F1;
+  --timeline-bg: #D0C3F1;
+  --timeline-link-bg: #7b46ac;
+  --timeline-instruction-bg: #9846ac;
+  --timeline-instruction-color: #333;
+  --footer-bg: #7b46ac;
+  --footer-color: #333;
+  --popup-bg: #9846ac;
+  --popup-color: #333;
+  --shimmer-color: rgba(123, 70, 172, 0.2);
+  --sparkle-color-from: #9846ac;
+  --sparkle-color-to: #7b46ac;
+  --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+  --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+  --shadow-small: rgba(0,0,0,0.05);
+  --theme-text-color: #333;
+  --color3: #9846acCC;
+  --color4: #9846ac99;
+  --color5: #9846ac66;
+  --color6: #9846ac33;
+  --correct-bg: #4caf50;
+  --wrong-bg: red;
+  --button-bg: #9846ac;
+  --button-color: #333;
+  --item-bg: #D0C3F1;
+  --category-bg: #7b46ac;
+  --category-color: #333;
+  --game-container-bg: #fff;
+  --game-area-bg: #f9f9f9;
+  --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+  --popup-shadow: rgba(0, 0, 0, 0.2);
+  --arrow-stroke: #9846ac;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: var(--body-bg);
+    color: var(--body-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: var(--header-bg);
+    color: var(--header-color);
+    padding: 15px 20px;
+    text-align: center;
+    font-family: 'Michroma', sans-serif;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+    animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+header h1.theme-text {
+    color: white;
+}
+
+h1, h2, h3 {
+    font-family: 'Michroma', sans-serif;
+    color: var(--h-color);
+    position: relative;
+}
+
+h1::after, h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--h-color), transparent);
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; }
+    50% { transform: translateY(-50%) scale(1.2); opacity: 0.7; }
+}
+
+.card {
+    margin: 10px auto;
+    padding: 15px 25px;
+    max-width: 900px;
+    background: var(--chapter-bg) !important;
+    border-radius: 12px;
+    box-shadow: var(--shadow-main), var(--shadow-glow);
+    font-size: 18px;
+    color: var(--text-p-color) !important;
+    width: 90%;
+    background-color: #2A2244;
+}
+
+.card h2 {
+    margin: 0 0 10px;
+    color: var(--h-color) !important;
+}
+
+.card p, .card ul, .card table {
+    line-height: 1.7;
+    margin: 10px 0;
+    color: var(--text-p-color) !important;
+}
+
+.card ul {
+    padding-left: 20px;
+}
+
+.card li {
+    margin-bottom: 10px;
+    color: var(--text-p-color) !important;
+}
+
+.card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.card th, .card td {
+    padding: 8px;
+    border: 1px solid var(--text-p-color);
+    text-align: left;
+    color: var(--text-p-color) !important;
+}
+
+.card th {
+    background-color: var(--timeline-link-bg);
+    color: var(--header-color) !important;
+}
+
+.card img, .card video {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px var(--shadow-small);
+    margin: 10px auto;
+    display: block;
+    object-fit: cover;
+}
+
+.card img:hover, .card video:hover {
+    animation: bounce 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.card .large-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px var(--shadow-small);
+    margin: 10px auto;
+    display: block;
+    object-fit: cover;
+}
+
+.topic-card {
+    margin: 25px auto;
+    padding: 15px 25px;
+    max-width: 900px;
+    background: var(--topic-bg) !important;
+    border-radius: 12px;
+    box-shadow: var(--shadow-main), var(--shadow-glow);
+    font-family: 'Michroma', sans-serif;
+    font-size: 20px;
+    width: 90%;
+    position: relative;
+    color: var(--theme-text-color) !important;
+    text-align: center;
+}
+
+.topic-card::before, .topic-card::after {
+    content: '✨';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: var(--sparkle-color-from);
+    animation: sparkle 1.5s infinite ease-in-out;
+}
+
+.topic-card::before {
+    left: 10px;
+}
+
+.topic-card::after {
+    right: 10px;
+}
+
+.topic-card:hover {
+    background: var(--sparkle-color-from) !important;
+    color: var(--popup-color) !important;
+    transform: scale(1.03);
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--footer-bg);
+    color: var(--footer-color);
+    font-size: 14px;
+    width: 100%;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+    animation: shimmer 3s infinite linear;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 95%;
+        padding: 10px;
+        margin: 5px auto;
+    }
+
+    .card img, .card video, .card .large-image {
+        max-width: 200px;
+        max-height: 200px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        margin: 0 auto;
+    }
+
+    .card table {
+        font-size: 14px;
+    }
+
+    .card th, .card td {
+        padding: 6px;
+    }
+
+    .topic-card {
+        width: 95%;
+        padding: 10px 20px;
+    }
+
+}
+
+.theme-text {
+    color: var(--theme-text-color);
+}
+
+.theme-font-18 {
+    font-size: 18px;
+}
+
+.theme-font-22 {
+    font-size: 22px;
+}
+
+/* Hide dark image by default */
+.dark-image {
+    display: none;
+}
+
+/* If system prefers dark mode */
+@media (prefers-color-scheme: dark) {
+    .light-image {
+        display: none;
+    }
+    .dark-image {
+        display: block;
+    }
+}
+
+/* When user manually enables light theme */
+body.light .light-image {
+    display: block;
+}
+body.light .dark-image {
+    display: none;
+}
+
+/* When user manually enables dark theme (no .light class) */
+body:not(.light) .light-image {
+    display: none;
+}
+body:not(.light) .dark-image {
+    display: block;
+}
+
+/* Force header main title to always stay white */
+header h1,
+header h1 .theme-text {
+    color: #fff !important;
+}
+
+/* Ensure dark theme card colors are enforced */
+body:not(.light) .card {
+    background: #2A2244 !important;
+    color: #BBB !important;
+}
+
+body:not(.light) .card h2 {
+    color: #B19CD9 !important;
+}
+
+body:not(.light) .card p,
+body:not(.light) .card ul,
+body:not(.light) .card li,
+body:not(.light) .card td {
+    color: #BBB !important;
+}
+
+body:not(.light) .card th {
+    background-color: #4B3A6F !important;
+    color: #E0E0E0 !important;
+}
+
+        img {
+            max-width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+    </style>
+</head>
+<body>
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
+<!-- Fullscreen Button -->
+
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
+</div><script>
+const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+if(fullscreenToggleBtnUI) {
+  fullscreenToggleBtnUI.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
+    } else {
+      document.exitFullscreen();
+      fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>';
+    }
+  });
+}
+</script>
+
+<header>
+<h1><strong><span class="theme-text">Chapter 5: SEO &amp; Organic Growth Strategy</span></strong></h1>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/4.5.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
+</div>
+<style type="text/css">.audio-container {
+  position: relative;
+  background: url('https://login.skillizee.io/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+  background-size: contain; /* keeps the GIF's aspect ratio */
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 1920 / 1080; /* maintain original proportion */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Modern styled audio */
+.audio-container audio {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #2D2B7E;
+  background: #F5F5FF;
+  height: 50px;
+  padding: 4px;
+  box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
+}
+
+/* Lavender-toned player controls */
+audio::-webkit-media-controls-panel {
+  background-color: #E6E6FA;
+  border-radius: 12px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-volume-slider {
+  filter: hue-rotate(240deg) saturate(1.2);
+}
+</style>
+<div class="topic-card"><strong>What is SEO?</strong></div>
+
+<div class="card">
+<h2>What is SEO and how does it work?</h2>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="400px" max-width="600px" src="https://www.youtube.com/embed/hGPyVH5gUjI?rel=0" width="100%"></iframe>
+
+<p>This is how a focused SEO strategy can significantly enhance a brand&rsquo;s online visibility and drive substantial organic traffic growth.</p>
+</div>
+
+<div class="topic-card"><strong>SEO Objectives</strong></div>
+
+<div class="card">
+<h2>Main Objective</h2>
+
+<p>&nbsp;</p>
+
+<p><img src="https://login.skillizee.io/s/articles/68dce5d046d17b4795c4c76b/images/SeoObjectivesGif.gif"  /></p>
+
+<h3 data-end="97" data-start="79"><strong data-end="97" data-start="83">The Client</strong></h3>
+
+<p data-end="230" data-start="98">SALTY is a fashion jewelry brand and had a vision to become a go-to destination for both men&rsquo;s jewelry and women jewelry enthusiasts</p>
+
+<hr data-end="235" data-start="232" />
+<h3 data-end="258" data-start="237"><strong data-end="258" data-start="241">The Objective</strong></h3>
+
+<ul>
+	<li data-end="290" data-start="261">Increase in Organic Traffic</li>
+	<li data-end="290" data-start="261">Larger pool of keywords on 1st page</li>
+	<li data-end="290" data-start="261">Increase in organic transactions on the website</li>
+</ul>
+
+<hr data-end="387" data-start="384" />
+<h3 data-end="412" data-start="389"><strong data-end="412" data-start="393">The Competition</strong></h3>
+
+<p data-end="547" data-start="413">The competitors were not only other fashion jewelry brands, but also popular marketplaces like Myntra, Ajio, Nykaa Fashion and Amazon.</p>
+</div>
+
+<div class="topic-card"><strong>SEO Strategy</strong></div>
+
+<div class="card">
+<h2>Strategy Implemented</h2>
+
+<ul>
+	<li><strong>Keyword Optimization:</strong> Focused on targeting a broader range of relevant keywords to improve search visibility.</li>
+	<li><strong>Content Creation:</strong> Developed high-quality, SEO-optimized content to address user intent and attract organic traffic.</li>
+	<li><strong>Technical SEO:</strong> Improved website structure and performance to enhance user experience and search engine crawlability.</li>
+</ul>
+<img alt="SEO Strategy" class="light-image large-image" src="https://login.skillizee.io/s/articles/seo-strategy-light.png" /> <meta charset="utf-8"></div>
+
+<div class="topic-card"><strong>Results Achieved</strong></div>
+
+<div class="card">
+<h2>Results Achieved</h2>
+<img src="https://login.skillizee.io/s//articles/68dce5d046d17b4795c4c76b/images/seo 2 (1).png"  /></div>
+
+<div class="topic-card"><strong>Why SEO Outsourcing Worked</strong></div>
+
+<div class="card">
+<h2>Why SEO outsourcing worked for SALTY</h2>
+
+<ul>
+	<li>Scale their digital visibility without hiring an in-house SEO team</li>
+	<li>Compete effectively with large marketplaces through focused strategy</li>
+	<li>Stay invested in product and brand growth while we handled technical execution</li>
+	<li>Gain access to ongoing SEO support tailored to seasonality, trends, and ecommerce behavior</li>
+</ul>
+<img alt="SEO Outsourcing" class="light-image large-image" src="https://login.skillizee.io/s/articles/seo-outsourcing-light.png" /> <meta charset="utf-8"><img  src="https://login.skillizee.io/s/articles/68dce5d046d17b4795c4c76b/images/image-20251001164652-2.png"  /></div>
+
+<footer><span class="theme-font-18">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggleUI = document.getElementById('theme-toggle');
+  
+  // Load saved theme preference
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    if(themeToggleUI) themeToggleUI.classList.add('on');
+  }
+  
+  // Add click event listener
+  if(themeToggleUI) {
+    themeToggleUI.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      themeToggleUI.classList.toggle('on');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" /><script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<link rel="stylesheet" href="universal.css" />
+<style type="text/css">:root {
+    --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+    --body-color: #CCC;
+    --header-bg: #4B3A6F;
+    --header-color: #E0E0E0;
+    --h-color: #B19CD9;
+    --chapter-bg: #2A2244;
+    --text-p-color: #BBB;
+    --topic-bg: #3C2F5F;
+    --timeline-bg: #3C2F5F;
+    --timeline-link-bg: #4B3A6F;
+    --timeline-instruction-bg: #B19CD9;
+    --timeline-instruction-color: #000;
+    --footer-bg: #4B3A6F;
+    --footer-color: #E0E0E0;
+    --popup-bg: #B19CD9;
+    --popup-color: #000;
+    --shimmer-color: rgba(177, 156, 217, 0.2);
+    --sparkle-color-from: #B19CD9;
+    --sparkle-color-to: #8A7DB5;
+    --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+    --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+    --shadow-small: rgba(255,255,255,0.05);
+    --theme-text-color: #ffffff;
+    --color3: #B19CD9CC;
+    --color4: #B19CD999;
+    --color5: #B19CD966;
+    --color6: #B19CD933;
+    --correct-bg: #388E3C;
+    --wrong-bg: #D32F2F;
+    --button-bg: #B19CD9;
+    --button-color: #000;
+    --item-bg: #3C2F5F;
+    --category-bg: #4B3A6F;
+    --category-color: #E0E0E0;
+    --game-container-bg: #2A2244;
+    --game-area-bg: #1C172B;
+    --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+    --popup-shadow: rgba(255, 255, 255, 0.5);
+    --arrow-stroke: #B19CD9;
+    --score-bg: #4B3A6F;
+    --score-color: #E0E0E0;
+}
+.light {
+    --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+    --body-color: #333;
+    --header-bg: #7b46ac;
+    --header-color: #fff;
+    --h1-color: #fff;
+    --h-color: #333;
+    --chapter-bg: #fff;
+    --text-p-color: #444;
+    --topic-bg: #D0C3F1;
+    --timeline-bg: #D0C3F1;
+    --timeline-link-bg: #7b46ac;
+    --timeline-instruction-bg: #9846ac;
+    --timeline-instruction-color: #333;
+    --footer-bg: #7b46ac;
+    --footer-color: #333;
+    --popup-bg: #9846ac;
+    --popup-color: #333;
+    --shimmer-color: rgba(123, 70, 172, 0.2);
+    --sparkle-color-from: #9846ac;
+    --sparkle-color-to: #7b46ac;
+    --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+    --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+    --shadow-small: rgba(0,0,0,0.05);
+    --theme-text-color: #333;
+    --color3: #9846acCC;
+    --color4: #9846ac99;
+    --color5: #9846ac66;
+    --color6: #9846ac33;
+    --correct-bg: #4caf50;
+    --wrong-bg: red;
+    --button-bg: #9846ac;
+    --button-color: #333;
+    --item-bg: #D0C3F1;
+    --category-bg: #7b46ac;
+    --category-color: #333;
+    --game-container-bg: #fff;
+    --game-area-bg: #f9f9f9;
+    --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    --popup-shadow: rgba(0, 0, 0, 0.2);
+    --arrow-stroke: #9846ac;
+    --score-bg: #7b46ac;
+    --score-color: #333;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0; padding: 0; font-family: Arial, sans-serif;
+    background: var(--body-bg); color: var(--body-color);
+    min-height: 100vh; display: flex; flex-direction: column;
+}
+header { background-color: var(--header-bg); color: var(--header-color); padding: 15px 20px; text-align: center; font-family: 'Michroma', sans-serif; width: 100%; position: relative; overflow: hidden; }
+header::before { content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent); animation: shimmer 3s infinite linear; }
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+header h1.theme-text { color: white; }
+h1, h2, h3 { font-family: 'Michroma', sans-serif; color: var(--h-color); position: relative; }
+h1::after, h2::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 50%; height: 2px; background: linear-gradient(to right, transparent, var(--h-color), transparent); }
+@keyframes sparkle { 0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; } 50% { transform: translateY(-50%) scale(1.2); opacity: 0.7; } }
+.card {
+    margin: 10px auto; padding: 15px 25px; max-width: 900px; background: var(--chapter-bg) !important;
+    border-radius: 12px; box-shadow: var(--shadow-main), var(--shadow-glow); font-size: 18px; color: var(--text-p-color) !important;
+    width: 90%; background-color: #2A2244;
+}
+.card h2 { margin: 0 0 10px; color: var(--h-color) !important; }
+.card p, .card ul, .card table { line-height: 1.7; margin: 10px 0; color: var(--text-p-color) !important; }
+.card ul { padding-left: 20px; }
+.card li { margin-bottom: 10px; color: var(--text-p-color) !important; }
+.card table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+.card th, .card td { padding: 8px; border: 1px solid var(--text-p-color); text-align: left; color: var(--text-p-color) !important; }
+.card th { background-color: var(--timeline-link-bg); color: var(--header-color) !important; }
+.card img, .card video { width: 100%; max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0px 4px 20px var(--shadow-small); margin: 10px auto; display: block; object-fit: contain; }
+  .light-image { display: none !important; }
+  .dark-image { display: block !important; }
+  body.light .light-image { display: block !important; }
+  body.light .dark-image { display: none !important; }
+.card img:hover, .card video:hover { animation: bounce 0.5s ease-in-out; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.card .small-image { width: 300px; height: 300px; margin: 10px 10px 10px 0; float: left; }
+
+/* New flex layout for video + images section */
+
+/* Enhanced Quiz Appearance */
+.activity-container { max-width: 900px; margin: 30px auto; padding: 30px; background: var(--game-container-bg); border-radius: 15px; box-shadow: var(--shadow-main), var(--shadow-glow); text-align: center; width: 90%; position: relative; border: 3px solid var(--timeline-link-bg); }
+.activity-container h2 { font-family: 'Michroma', sans-serif; color: var(--h-color); margin: 0 0 20px; font-size: 26px; padding-bottom: 15px; border-bottom: 2px dashed var(--sparkle-color-from); }
+
+.score-container { display: inline-block; margin: 15px 5px; padding: 12px 25px; background: var(--score-bg); color: var(--score-color); border-radius: 30px; font-family: 'Michroma', sans-serif; font-size: 20px; box-shadow: var(--shadow-main); border: 2px solid var(--sparkle-color-from); font-weight: bold; letter-spacing: 1px; }
+
+.quiz-question { background: var(--item-bg); border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: var(--item-shadow); position: relative; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid var(--shadow-small); }
+.quiz-question.active { transform: translateY(0); opacity: 1; z-index: 2; display: block; animation: slideIn 0.5s ease; }
+.quiz-question.inactive { transform: translateY(-30px); opacity: 0; pointer-events: none; z-index: 1; display: none; }
+@keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.quiz-header { background: var(--shimmer-color); padding: 8px 20px; border-radius: 20px; display: inline-block; margin-bottom: 20px; font-size: 14px; font-weight: bold; color: var(--h-color); text-transform: uppercase; letter-spacing: 2px; border: 1px solid var(--sparkle-color-from); }
+.quiz-title { font-size: 22px; margin-bottom: 25px; line-height: 1.5; font-weight: 600; color: var(--theme-text-color); }
+
+.quiz-options-wrapper { display: flex; flex-direction: column; gap: 15px; }
+.quiz-option { display: flex; align-items: center; padding: 15px 20px; background: var(--chapter-bg); border-radius: 12px; cursor: pointer; text-align: left; font-size: 18px; position: relative; transition: all 0.3s ease; border: 2px solid var(--timeline-bg); color: var(--text-p-color); font-weight: 500; }
+
+.option-icon { width: 32px; height: 32px; border: 2px solid var(--sparkle-color-to); border-radius: 50%; margin-right: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; font-weight: bold; font-size: 16px; color: var(--text-p-color); }
+.quiz-option:hover { transform: translateY(-3px); border-color: var(--sparkle-color-from); box-shadow: 0 5px 15px var(--shimmer-color); }
+.quiz-option:hover .option-icon { background: var(--sparkle-color-from); color: var(--popup-color); border-color: var(--sparkle-color-from); }
+
+.quiz-option.correct { background: var(--correct-bg); color: #fff; border-color: var(--correct-bg); animation: pulse 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+.quiz-option.correct .option-icon { background: #fff; border-color: #fff; color: var(--correct-bg); }
+
+.quiz-option.wrong { animation: shake 0.5s cubic-bezier(0.4, 0, 0.2, 1); background: var(--wrong-bg); color: #fff; border-color: var(--wrong-bg); opacity: 0.9; }
+.quiz-option.wrong .option-icon { background: #fff; border-color: #fff; color: var(--wrong-bg); }
+
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+button#resetActivity { margin: 15px 5px; padding: 14px 30px; background: var(--button-bg); color: var(--button-color); border: 2px solid transparent; border-radius: 30px; cursor: pointer; transition: all 0.3s ease; font-family: 'Michroma', sans-serif; font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+button#resetActivity:hover { background: var(--header-bg); color: var(--header-color); transform: scale(1.05) translateY(-2px); box-shadow: 0 8px 15px var(--shadow-glow); border-color: var(--sparkle-color-from); }
+
+/* Global components previously missing */
+.topic-card { margin: 35px auto 15px auto; padding: 15px 25px; max-width: 900px; background: var(--topic-bg) !important; border-radius: 12px; box-shadow: var(--shadow-main), var(--shadow-glow); font-family: 'Michroma', sans-serif; font-size: 20px; width: 90%; position: relative; color: var(--theme-text-color) !important; text-align: center; }
+.topic-card::before, .topic-card::after { content: '✨'; position: absolute; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--sparkle-color-from); animation: sparkle 1.5s infinite ease-in-out; }
+.topic-card::before { left: 10px; }
+.topic-card::after { right: 10px; }
+.topic-card:hover { background: var(--sparkle-color-from) !important; color: var(--popup-color) !important; transform: scale(1.03); transition: all 0.3s ease; }
+
+footer { text-align: center; padding: 20px; background-color: var(--footer-bg); color: var(--footer-color); font-size: 14px; width: 100%; margin-top: auto; position: relative; overflow: hidden; letter-spacing: 1px; }
+footer::before { content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent); animation: shimmer 3s infinite linear; }
+.popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--popup-bg); color: var(--popup-color); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px var(--shadow-main), 0 0 20px var(--shadow-glow); font-family: 'Michroma', sans-serif; font-size: 28px; text-align: center; z-index: 1000; display: none; animation: popupFade 0.5s cubic-bezier(0.4, 0, 0.2, 1); border: 3px solid var(--header-bg); }
+@keyframes popupFade { 0% { opacity: 0; transform: translate(-50%, -60%) scale(0.8); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+</style>
+</head>
+<body>
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
+<!-- Fullscreen Button -->
+
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
+</div><script>
+const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+if(fullscreenToggleBtnUI) {
+  fullscreenToggleBtnUI.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
+    } else {
+      document.exitFullscreen();
+      fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>';
+    }
+  });
+}
+</script>
+
+<header>
+<h1><strong><span class="theme-text">Chapter 2: Engaging Audiences with Social Media &amp; Ads</span></strong></h1>
+
+<p><strong><span class="theme-font-18">How Salty Builds Brand Awareness and Connects with Customers</span></strong></p>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/4.2.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
+</div>
+
+<div class="topic-card"><strong>Social Media Engagement</strong></div>
+
+<div class="card">
+<h2>Engaging with the Target Audience</h2>
+
+<p>Social media serves as a cornerstone of our brand strategy. Through engaging content and influencer partnerships, we&rsquo;ve amassed a significant following. We prioritize creating content that resonates with our audience, fostering a sense of community and authenticity. Our approach revolves around building relationships rather than merely showcasing products, ensuring sustained customer engagement.</p>
+</div>
+
+<div class="topic-card"><strong>Meta Ads and Google Ads</strong></div>
+
+<div class="card">
+<h2>What are Meta Ads and Google Ads?</h2>
+    <div class="video-wrapper" style="margin: 0 auto 20px auto; width: 100%; max-width: 400px; text-align: center;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="500" referrerpolicy="strict-origin-when-cross-origin" scrolling="no" src="https://www.youtube.com/embed/Mo9nesr9sfw?rel=0" title="Google Ads vs Meta Ads" width="100%"></iframe>
+    </div>
+  
+  <div class="images-wrapper" style="display:flex; flex-direction:row; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:20px;">
+    <img alt="Meta Ads" style="width:100%; max-width:45%; margin: 0; box-shadow: none; border-radius: 12px;" src="https://login.skillizee.io/s/articles/68dce3118b90c0007e510f9c/images/Meta ads.jpg" />
+    <img alt="Google Ads" style="width:100%; max-width:45%; margin: 0; box-shadow: none; border-radius: 12px;" src="https://login.skillizee.io/s/articles/68dce3118b90c0007e510f9c/images/Google ads.jpg" />
+  </div>
+
+  <p>Meta Ads are advertising solutions offered across Meta&rsquo;s platforms like Facebook, Instagram, Messenger, and the Audience Network. They focus heavily on visual, interest-based, and demographic targeting to build brand awareness, engagement, and social proof through image, video, carousel, story, and reel formats.</p>
+  
+  <p>Google Ads is a pay-per-click advertising platform across Google Search, YouTube, Gmail, and Google Display Network. It targets users based on search intent using keywords, allowing ads to appear in search results, videos, display banners, and shopping ads.</p>
+  </div>
+  
+  <div class="topic-card"><strong>Benefits Comparison</strong></div>
+
+<div class="card">
+<h2>Benefits of Meta Ads and Google Ads</h2>
+<img alt="Benefits Comparison Light Theme" class="light-image"  src="https://login.skillizee.io/s/articles/68dce3118b90c0007e510f9c/images/Meta vs google light.png"  /> <img alt="Benefits Comparison Dark Theme" class="dark-image" src="https://login.skillizee.io/s/articles/68dce3118b90c0007e510f9c/images/Meta vs google dark.png"  /></div>
+
+<div class="topic-card"><strong>Salty&rsquo;s Advertising Strategy</strong></div>
+
+<div class="card">
+<h2>Salty&rsquo;s Strategy with Meta and Google Ads</h2>
+
+<p><strong>Meta Ads:</strong></p>
+
+<ul>
+	<li>Salty leverages Meta&rsquo;s strength in building brand awareness and engaging younger demographics via visually appealing ads on Instagram and Facebook.</li>
+	<li>Influencer-generated content is often boosted through Meta campaigns to maximize social proof and audience engagement.</li>
+	<li>Campaigns use detailed audience segmentation (interest, location, behavior) to target their fashion-conscious young consumer base.</li>
+	<li>Live shopping events and story ads deepen engagement and drive impulse purchases.</li>
+</ul>
+
+<p><strong>Google Ads:</strong></p>
+
+<ul>
+	<li>Salty uses Google Ads to capture high-intent audiences actively searching for trendy and affordable jewellery.</li>
+	<li>Search ads, Shopping ads, and YouTube video ads help convert demand into sales with keyword-focused campaigns.</li>
+	<li>Google Ads complement Meta by targeting customers already in the consideration or purchase phase.</li>
+	<li>Data from Google Ads is used to refine targeting and improve ROI with smart bidding strategies.</li>
+</ul>
+</div>
+
+<div class="topic-card"><strong>Quiz Activity</strong></div>
+
+<div class="activity-container">
+<h2>Test Your Knowledge: Tick the Correct Option</h2>
+
+<div class="quiz-questions" id="quiz-questions">&nbsp;</div>
+
+<div class="button-container">
+<div class="score-container">Score: <span id="score">0</span>/4</div>
+<button fdprocessedid="4l114" id="resetActivity">Reset Activity</button></div>
+</div>
+
+<div class="popup" id="resultPopup">&nbsp;</div>
+
+<p>
+<audio id="correctSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Sounds/Correct.mp3">&nbsp;</audio>
+
+<audio id="incorrectSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Sounds/Wrong.mp3">&nbsp;</audio>
+
+<audio id="winSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Sounds/Win.mp3">&nbsp;</audio>
+
+<audio id="confettiSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Confetti%20pop.mp3">&nbsp;</audio>
+</p>
+
+<footer><span class="theme-font-18">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const body = document.body;
+        const toggleBtn = document.getElementById('theme-toggle');
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('light');
+            toggleBtn.classList.toggle('on');
+        });
+
+        const correctSound = document.getElementById('correctSound');
+        const incorrectSound = document.getElementById('incorrectSound');
+        const winSound = document.getElementById('winSound');
+        const confettiSound = document.getElementById('confettiSound');
+
+        const questions = [
+            { text: "What is the primary focus of Salty’s social media strategy?", options: [{text:"Showcasing products only",correct:false},{text:"Building relationships",correct:true},{text:"Direct sales",correct:false},{text:"Offering discounts",correct:false}] },
+            { text: "Which platforms does Meta Ads cover?", options: [{text:"Google Search, YouTube, Gmail",correct:false},{text:"Twitter, LinkedIn, Pinterest",correct:false},{text:"Facebook, Instagram, Messenger, Audience Network",correct:true},{text:"TikTok, Snapchat, Reddit",correct:false}] },
+            { text: "What type of targeting does Google Ads primarily use?", options: [{text:"Demographic and interest-based targeting",correct:false},{text:"Location-based targeting only",correct:false},{text:"Keyword and intent-based targeting",correct:true},{text:"Behavior-based targeting only",correct:false}] },
+            { text: "How does Salty use Meta Ads to engage younger demographics?", options: [{text:"Text-based search ads",correct:false},{text:"Email marketing campaigns",correct:false},{text:"Print media advertisements",correct:false},{text:"Visually appealing ads on Instagram and Facebook",correct:true}] }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answeredQuestions = 0;
+        const maxScore = questions.length;
+        const quizQuestionsContainer = document.getElementById('quiz-questions');
+        const scoreDisplay = document.getElementById('score');
+        const resetButton = document.getElementById('resetActivity');
+        const resultPopup = document.getElementById('resultPopup');
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function triggerConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 999999 };
+
+            function randomInRange(min, max) {
+              return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+              var timeLeft = animationEnd - Date.now();
+
+              if (timeLeft <= 0) {
+                return clearInterval(interval);
+              }
+
+              var particleCount = 50 * (timeLeft / duration);
+              // since particles fall down, start a bit higher than random
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+              confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+            }, 250);
+
+            confettiSound.play().catch(e => console.log('Confetti sound error:', e));
+        }
+
+        function showPopup(message, isSmall = false) {
+            resultPopup.textContent = message;
+            if (isSmall) {
+                resultPopup.style.fontSize = '18px';
+                resultPopup.style.padding = '12px 25px';
+            } else {
+                resultPopup.style.fontSize = '28px';
+                resultPopup.style.padding = '30px';
+            }
+            resultPopup.style.display = 'block';
+            setTimeout(() => { resultPopup.style.display = 'none'; }, 2000);
+        }
+
+        function loadQuestions() {
+            quizQuestionsContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = `quiz-question ${index === currentQuestionIndex ? 'active' : 'inactive'}`;
+                
+                questionDiv.innerHTML = `
+                    <div class="quiz-header">Question ${index + 1} of ${questions.length}</div>
+                    <div class="quiz-title theme-text">${question.text}</div>
+                `;
+                
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'quiz-options-wrapper';
+                
+                const letters = ['A', 'B', 'C', 'D'];
+                
+                shuffleArray(question.options).forEach((option, optIndex) => {
+                    const item = document.createElement('div');
+                    item.className = 'quiz-option';
+                    item.dataset.correct = option.correct;
+                    
+                    item.innerHTML = `<span class="option-icon">${letters[optIndex] || '•'}</span><span class="option-text">${option.text}</span>`;
+                    
+                    item.addEventListener('click', () => {
+                        if (questionDiv.classList.contains('active')) {
+                            questionDiv.querySelectorAll('.quiz-option').forEach(opt => { opt.style.pointerEvents = 'none'; });
+                            answeredQuestions++;
+                            if (option.correct) {
+                                item.classList.add('correct');
+                                item.querySelector('.option-icon').textContent = '✓';
+                                score++;
+                                scoreDisplay.textContent = score;
+                                correctSound.play().catch(e => console.log(e));
+                                triggerConfetti();
+                                
+                                const encouragingMessages = ["Awesome! 🌟", "Spot On! 🔥", "You're a Star! ⭐", "Brilliant! 💫", "Exactly Right! 🎯"];
+                                const randomMessage = encouragingMessages[Math.floor(Math.random() * encouragingMessages.length)];
+                                showPopup(randomMessage, true);
+                            } else {
+                                item.classList.add('wrong');
+                                item.querySelector('.option-icon').textContent = '✕';
+                                incorrectSound.play().catch(e => console.log(e));
+                                
+                                // Highlight the actual correct option to teach the user
+                                questionDiv.querySelectorAll('.quiz-option').forEach(opt => {
+                                    if(opt.dataset.correct === 'true') {
+                                        opt.classList.add('correct');
+                                        opt.querySelector('.option-icon').textContent = '✓';
+                                    }
+                                });
+                            }
+                            
+                            if (answeredQuestions < questions.length) {
+                                setTimeout(() => {
+                                    questionDiv.classList.remove('active');
+                                    // slight delay before showing next
+                                    setTimeout(() => {
+                                        questionDiv.classList.add('inactive');
+                                        currentQuestionIndex++;
+                                        document.querySelectorAll('.quiz-question')[currentQuestionIndex].classList.add('active');
+                                        document.querySelectorAll('.quiz-question')[currentQuestionIndex].classList.remove('inactive');
+                                    }, 400); 
+                                }, 1800); // give time to see correct/wrong state
+                            } else {
+                                setTimeout(() => {
+                                    if (score >= 3) {
+                                        showPopup('Yay! Way to go! 🎉');
+                                        winSound.play().catch(e => console.log(e));
+                                    } else {
+                                        showPopup('No Worries! Try Again 💪');
+                                    }
+                                }, 1500);
+                            }
+                        }
+                    });
+                    optionsContainer.appendChild(item);
+                });
+                questionDiv.appendChild(optionsContainer);
+                quizQuestionsContainer.appendChild(questionDiv);
+            });
+            scoreDisplay.textContent = score;
+        }
+
+        resetButton.addEventListener('click', () => {
+            currentQuestionIndex = 0;
+            score = 0;
+            answeredQuestions = 0;
+            loadQuestions();
+        });
+
+        loadQuestions();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="universal.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style type="text/css">:root {
+            --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+            --body-color: #CCC;
+            --header-bg: #4B3A6F;
+            --header-color: #E0E0E0;
+            --h-color: #B19CD9;
+            --chapter-bg: #2A2244;
+            --text-p-color: #BBB;
+            --topic-bg: #3C2F5F;
+            --footer-bg: #4B3A6F;
+            --footer-color: #E0E0E0;
+            --activity-bg: linear-gradient(135deg, #3C2F5F, #2A2244);
+            --activity-border: #B19CD9;
+            --item-bg: #2A2244;
+            --dropzone-border: #B19CD9;
+            --button-bg: #B19CD9;
+            --button-color: #000;
+            --score-bg: #2A2244;
+            --correct-bg: #388E3C;
+            --wrong-bg: #D32F2F;
+            --popup-bg: #B19CD9;
+            --popup-color: #000;
+            --shimmer-color: rgba(177, 156, 217, 0.2);
+            --sparkle-color-from: #B19CD9;
+            --sparkle-color-to: #8A7DB5;
+            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+            --shadow-small: rgba(255,255,255,0.05);
+            --arrow-stroke: #B19CD9;
+            --theme-text-color: #ffffff;
+            --popup-shadow: rgba(255, 255, 255, 0.5);
+            --progress-completed: #388E3C;
+            --progress-pending: #FF9800;
+            --crisis-red: #D32F2F;
+            --expansion-green: #388E3C;
+        }
+
+        .light {
+            --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+            --body-color: #333;
+            --header-bg: #7b46ac;
+            --header-color: white;
+            --h-color: #9846ac;
+            --chapter-bg: #fff;
+            --text-p-color: #444;
+            --topic-bg: #D0C3F1;
+            --footer-bg: #7b46ac;
+            --footer-color: white;
+            --activity-bg: linear-gradient(135deg, #D0C3F1, #e8e1f7);
+            --activity-border: #9846ac;
+            --item-bg: #fff;
+            --dropzone-border: #7b46ac;
+            --button-bg: linear-gradient(135deg, #7b46ac, #9846ac);
+            --button-color: white;
+            --score-bg: #fff;
+            --correct-bg: #4caf50;
+            --wrong-bg: #d32f2f;
+            --popup-bg: #9846ac;
+            --popup-color: white;
+            --shimmer-color: rgba(123, 70, 172, 0.2);
+            --sparkle-color-from: #9846ac;
+            --sparkle-color-to: #7b46ac;
+            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+            --shadow-small: rgba(0,0,0,0.05);
+            --arrow-stroke: #9846ac;
+            --theme-text-color: #ecf0f1;
+            --popup-shadow: rgba(0, 0, 0, 0.2);
+            --progress-completed: #4caf50;
+            --progress-pending: #ff9800;
+            --crisis-red: #d32f2f;
+            --expansion-green: #4caf50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Michroma', sans-serif;
+            margin: 0 auto;
+            padding: 0 40px 0 0;
+            background: var(--body-bg);
+            color: var(--body-color);
+            font-size: clamp(16px, 1.4vw, 18px);
+            max-width: 1800px;
+            transition: background 0.1s, color 0.1s;
+            position: relative;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .emoji-bg {
+            position: absolute;
+            top: 10%;
+            font-size: clamp(30px, 2.5vw, 44px);
+            opacity: 0.4;
+            color: var(--h-color);
+            pointer-events: none;
+            z-index: -1;
+            animation: float-rotate 5s infinite ease-in-out;
+        }
+
+        .emoji-bg.light {
+            opacity: 0.5;
+            color: var(--h-color);
+        }
+
+        .emoji-bg:nth-child(1) { top: 10%; left: 2%; animation-delay: 0s; }
+        .emoji-bg:nth-child(2) { top: 20%; left: 5%; animation-delay: -1s; }
+        .emoji-bg:nth-child(3) { top: 30%; left: 3%; animation-delay: -2s; }
+        .emoji-bg:nth-child(4) { top: 40%; left: 6%; animation-delay: -3s; }
+        .emoji-bg:nth-child(5) { top: 50%; left: 4%; animation-delay: -4s; }
+        .emoji-bg:nth-child(6) { top: 60%; left: 7%; animation-delay: -5s; }
+        .emoji-bg:nth-child(7) { top: 70%; left: 2%; animation-delay: -6s; }
+        .emoji-bg:nth-child(8) { top: 80%; left: 5%; animation-delay: -7s; }
+        .emoji-bg:nth-child(9) { top: 90%; left: 3%; animation-delay: -8s; }
+        .emoji-bg:nth-child(10) { top: 15%; left: 92%; animation-delay: -9s; }
+        .emoji-bg:nth-child(11) { top: 25%; left: 95%; animation-delay: -10s; }
+        .emoji-bg:nth-child(12) { top: 35%; left: 93%; animation-delay: -11s; }
+        .emoji-bg:nth-child(13) { top: 45%; left: 94%; animation-delay: -12s; }
+        .emoji-bg:nth-child(14) { top: 55%; left: 92%; animation-delay: -13s; }
+        .emoji-bg:nth-child(15) { top: 65%; left: 95%; animation-delay: -14s; }
+        .emoji-bg:nth-child(16) { top: 75%; left: 93%; animation-delay: -15s; }
+        .emoji-bg:nth-child(17) { top: 85%; left: 94%; animation-delay: -16s; }
+        .emoji-bg:nth-child(18) { top: 95%; left: 92%; animation-delay: -17s; }
+        .emoji-bg:nth-child(19) { top: 12%; left: 5%; animation-delay: -18s; }
+        .emoji-bg:nth-child(20) { top: 22%; left: 95%; animation-delay: -19s; }
+
+        @keyframes float-rotate {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(15deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 25%;
+            right: 0;
+            width: 30px;
+            height: 50%;
+            background: transparent;
+            border: 2px solid var(--h-color);
+            border-radius: 5px;
+            box-shadow: -2px 0 5px var(--shadow-small);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+        }
+
+        .progress-bar {
+            width: 8px;
+            height: calc(100% - 60px);
+            background: var(--chapter-bg);
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .progress-fill {
+            width: 100%;
+            background: var(--button-bg);
+            border-radius: 5px;
+            position: absolute;
+            bottom: 0;
+            transition: height 0.2s ease-in-out;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--header-bg), var(--crisis-red));
+            color: var(--header-color);
+            padding: clamp(20px, 2vw, 24px) 0;
+            text-align: center;
+            width: 95%;
+            max-width: 1800px;
+            margin: 0 auto;
+            border-radius: 0;
+            box-shadow: var(--shadow-main);
+        }
+
+        header h2 {
+            margin: 5px 0;
+            font-size: clamp(1.5em, 2.2vw, 3em);
+            color: var(--header-color);
+        }
+
+        .content-section {
+            background: var(--chapter-bg);
+            margin: clamp(20px, 2vw, 24px) auto;
+            padding: clamp(20px, 2vw, 24px);
+            border-radius: 16px;
+            box-shadow: var(--shadow-main);
+            max-width: 1800px;
+            width: 95%;
+            transition: box-shadow 0.1s, transform 0.1s;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .content-section:hover {
+            box-shadow: var(--shadow-glow);
+            transform: scale(1.02);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h3, h4 {
+            font-size: clamp(1.5em, 2.2vw, 2em);
+            color: var(--h-color);
+            margin: 20px 0 10px;
+            display: flex;
+            align-items: center;
+            background: var(--topic-bg);
+            border: 2px solid var(--h-color);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            transition: box-shadow 0.1s, transform 0.1s;
+            justify-content: center;
+        }
+
+        h3:hover, h4:hover {
+            box-shadow: var(--shadow-glow);
+            transform: scale(1.03);
+        }
+
+        p {
+            font-size: clamp(16px, 1.4vw, 20px);
+            color: var(--text-p-color);
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        li {
+            padding: 10px 0;
+            position: relative;
+            transition: transform 0.1s;
+            background: var(--topic-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-small);
+            margin-bottom: 10px;
+        }
+
+        li:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        li::before {
+            content: '🌟';
+            color: var(--h-color);
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .strategy-challenges {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .challenge-card {
+            flex: 1;
+            min-width: 300px;
+            background: var(--item-bg);
+            border: 2px solid var(--dropzone-border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .challenge-card.crisis {
+            border-color: var(--crisis-red);
+        }
+
+        .challenge-card.expansion {
+            border-color: var(--expansion-green);
+        }
+
+        .challenge-card.completed {
+            background: linear-gradient(135deg, var(--correct-bg), #66BB6A);
+            color: white;
+        }
+
+        .challenge-card.pending {
+            background: linear-gradient(135deg, var(--topic-bg), var(--progress-pending));
+        }
+
+        .challenge-card h4 {
+            margin: 0 0 10px;
+            background: none;
+            border: none;
+            color: var(--h-color);
+        }
+
+        .challenge-card.completed h4 {
+            color: white;
+        }
+
+        .challenge-card button {
+            background: var(--button-bg);
+            color: var(--button-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.3s;
+            font-family: 'Michroma', sans-serif;
+        }
+
+        .challenge-card button:hover:not(:disabled) {
+            transform: scale(1.05);
+        }
+
+        .challenge-card.completed button {
+            background: var(--correct-bg);
+            color: white;
+        }
+
+        .challenge-card button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .pathfinder-iframe {
+            width: 100%;
+            height: 700px;
+            border-radius: 8px;
+            border: 2px solid var(--h-color);
+            box-shadow: var(--shadow-small);
+            margin: 20px 0;
+            transition: transform 0.1s;
+        }
+
+        .pathfinder-iframe:hover {
+            transform: scale(1.02);
+        }
+
+        .activity-section {
+            margin: 20px 0;
+        }
+
+        .activity-section button {
+            background: var(--button-bg);
+            color: var(--button-color);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(14px, 1.2vw, 16px);
+            cursor: pointer;
+            margin: 15px 10px;
+            transition: background 0.1s, transform 0.1s;
+            font-family: 'Michroma', sans-serif;
+        }
+
+        .activity-section button:hover {
+            background: var(--sparkle-color-to);
+            transform: scale(1.05);
+        }
+
+        .activity-section .confirmation-message {
+            color: var(--h-color);
+            text-align: center;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            font-size: clamp(16px, 1.4vw, 18px);
+        }
+
+        .activity-section .confirmation-message.show {
+            opacity: 1;
+        }
+
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-color);
+            text-align: center;
+            padding: clamp(15px, 1.5vw, 18px);
+            margin-top: auto;
+            border-radius: 20px 20px 0 0;
+            font-size: clamp(14px, 1.2vw, 18px);
+            box-shadow: 0px -4px 10px var(--shadow-small);
+            width: 95%;
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: clamp(40px, 3vw, 60px);
+            background: var(--button-bg);
+            color: var(--button-color);
+            border: none;
+            border-radius: 50%;
+            width: clamp(40px, 3.5vw, 60px);
+            height: clamp(40px, 3.5vw, 60px);
+            font-size: clamp(20px, 1.8vw, 26px);
+            cursor: pointer;
+            display: none !important;
+            transition: background 0.1s, transform 0.1s;
+            z-index: 1000;
+        }
+
+        #back-to-top:hover {
+            background: var(--sparkle-color-to);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding-right: 0;
+                font-size: clamp(14px, 2.5vw, 16px);
+            }
+
+            .emoji-bg {
+                font-size: clamp(25px, 3vw, 30px);
+            }
+
+            .sidebar {
+                width: 100%;
+                height: 60px;
+                top: auto;
+                bottom: 0;
+                border: none;
+                background: var(--header-bg);
+                border-radius: 0;
+                padding: 5px;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .progress-bar {
+                width: 40%;
+                height: 10px;
+                margin: 0;
+            }
+
+            .progress-fill {
+                width: 0%;
+                height: 100%;
+                bottom: auto;
+                left: 0;
+                transition: width 0.2s ease-in-out;
+            }
+
+            header h2 {
+                font-size: clamp(1.3em, 2.5vw, 1.5em);
+            }
+
+            h3, h4 {
+                font-size: clamp(1.3em, 2.5vw, 1.5em);
+            }
+
+            p, li {
+                font-size: clamp(14px, 2.5vw, 16px);
+            }
+
+            .pathfinder-iframe {
+                width: 100%;
+                height: 500px;
+            }
+
+            .strategy-challenges {
+                flex-direction: column;
+            }
+
+            .activity-section button {
+                margin: 10px auto;
+                display: block !important;
+            }
+
+            #back-to-top {
+                bottom: 80px;
+                right: 20px;
+                width: clamp(35px, 3vw, 40px);
+                height: clamp(35px, 3vw, 40px);
+                font-size: clamp(18px, 2vw, 20px);
+            }
+
+            footer {
+                font-size: clamp(12px, 2vw, 14px);
+            }
+        }
+
+        @media (min-width: 1200px) and (max-width: 1960px) {
+            body {
+                font-size: clamp(18px, 1.3vw, 20px);
+                max-width: 1700px;
+            }
+
+            header {
+                max-width: 1700px;
+            }
+
+            header h2 {
+                font-size: clamp(2em, 2.2vw, 3em);
+            }
+
+            .content-section {
+                max-width: 1700px;
+            }
+
+            h3, h4 {
+                font-size: clamp(1.5em, 2.2vw, 2em);
+            }
+
+            p, li {
+                font-size: clamp(18px, 1.3vw, 20px);
+            }
+
+            .pathfinder-iframe {
+                height: 800px;
+            }
+
+            #back-to-top {
+                width: clamp(50px, 3.5vw, 60px);
+                height: clamp(50px, 3.5vw, 60px);
+                font-size: clamp(22px, 1.8vw, 26px);
+            }
+
+            footer {
+                font-size: clamp(16px, 1.2vw, 18px);
+                max-width: 1700px;
+            }
+        }
+
+        @media (min-width: 1961px) {
+            body {
+                font-size: clamp(20px, 1.2vw, 22px);
+                max-width: 2000px;
+            }
+
+            header {
+                max-width: 2000px;
+            }
+
+            header h2 {
+                font-size: clamp(2.5em, 2.1vw, 3.5em);
+            }
+
+            .content-section {
+                max-width: 2000px;
+            }
+
+            h3, h4 {
+                font-size: clamp(2em, 2.1vw, 2.5em);
+            }
+
+            p, li {
+                font-size: clamp(20px, 1.2vw, 22px);
+            }
+
+            .pathfinder-iframe {
+                height: 900px;
+            }
+
+            .sidebar {
+                width: 40px;
+                right: clamp(10px, 1vw, 20px);
+            }
+
+            .progress-bar {
+                width: 10px;
+            }
+
+            #back-to-top {
+                width: clamp(55px, 3.5vw, 65px);
+                height: clamp(55px, 3.5vw, 65px);
+                font-size: clamp(24px, 1.8vw, 28px);
+                right: clamp(50px, 3vw, 70px);
+            }
+
+            footer {
+                font-size: clamp(18px, 1.2vw, 20px);
+                max-width: 2000px;
+            }
+        }
+</style>
+<style>
+/* Mod5 SVG override */
+#fullscreen-btn svg {
+  width: 32px !important;
+  height: 32px !important;
+}
+@media (max-width: 768px) {
+  #fullscreen-btn svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
+</div>
+
+
+<!-- Background Emojis -->
+<p><span class="emoji-bg">⚠️</span> <span class="emoji-bg">📈</span> <span class="emoji-bg">🌍</span> <span class="emoji-bg">⚠️</span> <span class="emoji-bg">📈</span> <span class="emoji-bg">🌍</span> <span class="emoji-bg">⚠️</span> <span class="emoji-bg">📈</span> <span class="emoji-bg">🌍</span> <span class="emoji-bg">⚠️</span> <span class="emoji-bg">📈</span> <span class="emoji-bg">🌍</span> <span class="emoji-bg">⚠️</span> <span class="emoji-bg">📈</span> <span class="emoji-bg">🌍</span> <span class="emoji-bg">⚠️</span> <span class="emoji-bg">📈</span> <span class="emoji-bg">🌍</span> <span class="emoji-bg">⚠️</span> <span class="emoji-bg">📈</span> <!-- Sidebar with Progress Bar and Theme Toggle --></p>
+
+<div class="sidebar">
+<div class="progress-bar">
+<div class="progress-fill" id="progress-fill" style="height: 0%;">&nbsp;</div>
+</div>
+<button id="theme-toggle">🌙</button></div>
+
+
+<p></p>
+
+<header>
+<h1><strong><span class="theme-text">Crisis Mode and Expansion Challenge</span></strong></h1>
+
+<p><strong><span style="font-size:20px;">Master Business Resilience with Salty</span></strong></p>
+</header>
+<!-- Content Sections -->
+
+<div class="content-section">
+<h3>🎯 Challenge Objective</h3>
+
+<p>Navigate Salty Jewellery through turbulent times and growth opportunities! In this immersive simulation, you&#39;ll face real-world business crises and develop expansion strategies. Learn to pivot during challenges and scale sustainably, ensuring Salty&#39;s affordable luxury brand thrives in India&#39;s dynamic fashion market.</p>
+
+<h3>🛡️ The Strategy Simulator</h3>
+
+<p>Experience interactive scenarios that test your decision-making skills. From supply chain disruptions to market expansion, this tool provides data-driven insights, risk assessments, and strategic recommendations tailored to Salty&#39;s Gen Z-focused business model.</p>
+
+<h3>🔥 Dual Challenges</h3>
+
+<p>Tackle these interconnected challenges to build resilient leadership skills:</p>
+
+<ul>
+	<li><strong>Crisis Mode:</strong> Respond to unexpected disruptions like economic downturns, competitor threats, or supply issues affecting Salty&#39;s operations.</li>
+	<li><strong>Expansion Challenge:</strong> Develop strategies for growth, including new markets, product lines, or partnerships while maintaining brand affordability and quality.</li>
+</ul>
+
+<h3>📋 Steps to Strategic Mastery</h3>
+
+<ul>
+	<li>Enter the Salty Business Challenges simulator embedded below.</li>
+	<li>Begin with <strong>Crisis Mode</strong> to handle immediate threats.</li>
+	<li>Transition to <strong>Expansion Challenge</strong> to plan for growth post-crisis.</li>
+	<li>Make decisions based on provided data, budgets, and market trends.</li>
+	<li>Review outcomes, export strategy reports, and reflect on trade-offs.</li>
+	<li>Take screenshots of your crisis responses and expansion plans.</li>
+	<li>Submit your work and discuss lessons in the forum.</li>
+</ul>
+
+<h3>🏆 Challenge Rewards &amp; Outputs</h3>
+
+<ul>
+	<li><strong>Resilience Badge:</strong> Strategic Leader certification for your portfolio.</li>
+	<li><strong>Exportable Plans:</strong> Crisis response and expansion strategy documents (PDF/PNG).</li>
+	<li><strong>Skill Building:</strong> Crisis management, risk assessment, and scaling strategies for fashion startups.</li>
+</ul>
+
+<h3>💎 Why This Matters for Salty</h3>
+
+<p>In the volatile fashion industry, Salty must balance crisis resilience with ambitious growth. This challenge equips you with tools to protect and expand the brand, ensuring trendy, affordable jewellery reaches more Gen Z customers across India and beyond.</p>
+
+<h3>🌟 Launch Your Strategy Session</h3>
+
+<p>Enter the simulator and guide Salty Jewellery through crisis and expansion!</p>
+
+<div class="strategy-challenges">
+<div class="challenge-card crisis pending" id="challenge1">
+<h4>Crisis Mode</h4>
+
+<p>Handle disruptions &amp; risks</p>
+<button onclick="launchChallenge('crisis')">Start Crisis Response</button></div>
+</div>
+<button aria-label="Toggle fullscreen mode" id="fullscreen-toggle" style="display: none !important;">Enter Fullscreen</button><iframe class="pathfinder-iframe" id="strategy-iframe" onload="console.log('Strategy Simulator loaded successfully');" src="https://salty-sparkle-biz.lovable.app/challenges-expansion" style="display: none !important;" title="Crisis and Expansion Simulator"></iframe>
+
+<div class="activity-section">
+<p><strong>Note: </strong>Complete both challenges in the simulator. Take screenshots of your decisions, outcomes, and strategy reports, then upload below.</p>
+<input accept=".png,.jpg,.pdf" id="strategyUpload" multiple="multiple" type="file" /><button onclick="submitStrategies(event)">Submit Strategies</button>
+
+<div class="confirmation-message" id="confirmationMessage">&nbsp;</div>
+</div>
+</div>
+<!-- Footer -->
+
+<footer>
+<p>Salty Virtual Internship &ndash; Crisis &amp; Expansion Challenge | &copy; 2025 Salty Jewellery</p>
+</footer>
+<!-- Back to Top Button -->
+
+<p><button aria-label="Scroll to top" id="back-to-top" onclick="scrollToTop()">&uarr;</button><script>
+        // Throttle function
+        function throttle(fn, wait) {
+            let lastCall = 0;
+            return function (...args) {
+                const now = new Date().getTime();
+                if (now - lastCall < wait) return;
+                lastCall = now;
+                return fn(...args);
+            };
+        }
+
+        
+
+        // Fullscreen Toggle
+        const fullscreenToggle = document.getElementById("fullscreen-toggle");
+        const iframe = document.getElementById("strategy-iframe");
+        fullscreenToggle.addEventListener("click", () => {
+            if (!document.fullscreenElement) {
+                iframe.requestFullscreen().then(() => {
+                    fullscreenToggle.textContent = 'Exit Fullscreen';
+                }).catch(err => console.error("Error entering fullscreen:", err));
+            } else {
+                document.exitFullscreen().then(() => {
+                    fullscreenToggle.textContent = 'Enter Fullscreen';
+                }).catch(err => console.error("Error exiting fullscreen:", err));
+            }
+        });
+
+        // Challenge Launch Function
+        let currentMode = '';
+        function launchChallenge(mode) {
+            if (mode === 'crisis' && currentMode !== 'expansion') {
+                currentMode = 'crisis';
+                document.getElementById("strategy-iframe").src = "https://salty-sparkle-biz.lovable.app/challenges-expansion?mode=crisis";
+                document.getElementById("strategy-iframe").style.display = "block";
+                document.getElementById("fullscreen-toggle").style.display = "block";
+                document.getElementById("challenge1").classList.remove("pending");
+                document.getElementById("challenge1").classList.add("completed");
+                updateProgress();
+            } else if (mode === 'expansion' && currentMode === 'crisis') {
+                currentMode = 'expansion';
+                document.getElementById("strategy-iframe").src = "https://salty-sparkle-biz.lovable.app/challenges-expansion?mode=expansion";
+                document.getElementById("challenge2").classList.remove("pending");
+                document.getElementById("challenge2").classList.add("completed");
+                document.getElementById("challenge2").querySelector("button").disabled = false;
+                updateProgress();
+            } else {
+                alert(`Please complete ${currentMode === 'expansion' ? 'Crisis Mode' : 'the previous challenge'} first!`);
+            }
+        }
+
+        // Simulate challenge completion
+        window.addEventListener('message', function(event) {
+            if (event.origin !== "https://salty-sparkle-biz.lovable.app") return;
+            if (event.data.type === 'challengeCompleted') {
+                const mode = event.data.mode;
+                const challengeId = mode === 'crisis' ? 'challenge1' : 'challenge2';
+                document.getElementById(challengeId).classList.add("completed");
+                document.getElementById(challengeId).querySelector("button").disabled = true;
+                document.getElementById(challengeId).querySelector("button").textContent = "Completed! 🌟";
+                currentMode = mode;
+                if (mode === 'crisis') {
+                    document.getElementById("challenge2").querySelector("button").disabled = false;
+                }
+                updateProgress();
+            }
+        });
+
+        // Progress Bar Logic
+        let scrollProgress = 0;
+        let activityCompleted = false;
+        const progressFill = document.getElementById("progress-fill");
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            scrollProgress = docHeight > 0 ? (scrollTop / docHeight) * 60 : 0;
+            let totalProgress = scrollProgress;
+            const completedChallenges = document.querySelectorAll('.challenge-card.completed').length;
+            totalProgress += (completedChallenges / 2) * 40;
+            totalProgress = Math.min(100, totalProgress);
+            if (window.innerWidth <= 600) {
+                progressFill.style.width = totalProgress + "%";
+            } else {
+                progressFill.style.height = totalProgress + "%";
+            }
+        }
+
+        const updateScrollProgress = throttle(() => {
+            updateProgress();
+        }, 50);
+
+        window.addEventListener("scroll", () => {
+            requestAnimationFrame(updateScrollProgress);
+        });
+
+        // Back to Top
+        const backToTop = document.getElementById("back-to-top");
+        window.addEventListener("scroll", () => {
+            backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            updateProgress();
+        }
+
+        // Submit Function
+        function submitStrategies(event) {
+            event.preventDefault();
+            const uploadInput = document.getElementById('strategyUpload');
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            if (!uploadInput.files.length) {
+                confirmationMessage.textContent = 'Please upload screenshots of your completed strategies.';
+                confirmationMessage.classList.add('show');
+                setTimeout(() => {
+                    confirmationMessage.classList.remove('show');
+                    confirmationMessage.textContent = '';
+                }, 3000);
+                return;
+            }
+            if (uploadInput.files.length < 2) {
+                confirmationMessage.textContent = 'Please upload at least 2 files (one for each challenge).';
+                confirmationMessage.classList.add('show');
+                setTimeout(() => {
+                    confirmationMessage.classList.remove('show');
+                    confirmationMessage.textContent = '';
+                }, 3000);
+                return;
+            }
+            confirmationMessage.textContent = 'Strategies submitted! Resilience badge unlocked. Salty is ready for any challenge!';
+            confirmationMessage.classList.add('show');
+            activityCompleted = true;
+            updateProgress();
+            uploadInput.value = '';
+            setTimeout(() => {
+                confirmationMessage.classList.remove('show');
+                confirmationMessage.textContent = '';
+            }, 5000);
+        }
+
+        // Initial Progress
+        updateProgress();
+    </script></p>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggleUI = document.getElementById('theme-toggle');
+  
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    if(themeToggleUI) themeToggleUI.classList.add('on');
+  }
+  
+  if(themeToggleUI) {
+    themeToggleUI.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      themeToggleUI.classList.toggle('on');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+  }
+  
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if(fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {});
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        document.exitFullscreen();
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement) {
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

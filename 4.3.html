@@ -1,0 +1,1092 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" /><script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<link rel="stylesheet" href="universal.css" />
+<style type="text/css">:root {
+            --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+            --body-color: #CCC;
+            --header-bg: #4B3A6F;
+            --header-color: #E0E0E0;
+            --h-color: #B19CD9;
+            --chapter-bg: #2A2244;
+            --text-p-color: #BBB;
+            --topic-bg: #3C2F5F;
+            --timeline-bg: #3C2F5F;
+            --timeline-link-bg: #4B3A6F;
+            --timeline-instruction-bg: #B19CD9;
+            --timeline-instruction-color: #000;
+            --footer-bg: #4B3A6F;
+            --footer-color: #E0E0E0;
+            --popup-bg: #B19CD9;
+            --popup-color: #000;
+            --shimmer-color: rgba(177, 156, 217, 0.2);
+            --sparkle-color-from: #B19CD9;
+            --sparkle-color-to: #8A7DB5;
+            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+            --shadow-small: rgba(255,255,255,0.05);
+            --theme-text-color: #ffffff;
+            --color3: #B19CD9CC;
+            --color4: #B19CD999;
+            --color5: #B19CD966;
+            --color6: #B19CD933;
+            --correct-bg: #388E3C;
+            --wrong-bg: #D32F2F;
+            --button-bg: #B19CD9;
+            --button-color: #000;
+            --item-bg: #3C2F5F;
+            --category-bg: #4B3A6F;
+            --category-color: #E0E0E0;
+            --game-container-bg: #2A2244;
+            --game-area-bg: #1C172B;
+            --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+            --popup-shadow: rgba(255, 255, 255, 0.5);
+            --arrow-stroke: #B19CD9;
+            --score-bg: #4B3A6F;
+            --score-color: #E0E0E0;
+            --accent: #7b46ac;
+            --muted: #f3eef9;
+        }
+
+        .light {
+            --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+            --body-color: #333;
+            --header-bg: #7b46ac;
+            --header-color: #fff;
+            --h1-color: #fff;
+            --h-color: #333;
+            --chapter-bg: #fff;
+            --text-p-color: #444;
+            --topic-bg: #D0C3F1;
+            --timeline-bg: #D0C3F1;
+            --timeline-link-bg: #7b46ac;
+            --timeline-instruction-bg: #9846ac;
+            --timeline-instruction-color: #333;
+            --footer-bg: #7b46ac;
+            --footer-color: #333;
+            --popup-bg: #9846ac;
+            --popup-color: #333;
+            --shimmer-color: rgba(123, 70, 172, 0.2);
+            --sparkle-color-from: #9846ac;
+            --sparkle-color-to: #7b46ac;
+            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+            --shadow-small: rgba(0,0,0,0.05);
+            --theme-text-color: #333;
+            --color3: #9846acCC;
+            --color4: #9846ac99;
+            --color5: #9846ac66;
+            --color6: #9846ac33;
+            --correct-bg: #4caf50;
+            --wrong-bg: red;
+            --button-bg: #9846ac;
+            --button-color: #333;
+            --item-bg: #D0C3F1;
+            --category-bg: #7b46ac;
+            --category-color: #333;
+            --game-container-bg: #fff;
+            --game-area-bg: #f9f9f9;
+            --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            --popup-shadow: rgba(0, 0, 0, 0.2);
+            --arrow-stroke: #9846ac;
+            --score-bg: #7b46ac;
+            --score-color: #333;
+            --accent: #7b46ac;
+            --muted: #f3eef9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: var(--body-bg);
+            color: var(--body-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-color);
+            padding: 15px 20px;
+            text-align: center;
+            font-family: 'Michroma', sans-serif;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+            animation: shimmer 3s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        header h1.theme-text {
+            color: white;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--h-color);
+            position: relative;
+        }
+
+        h1::after, h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--h-color), transparent);
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; }
+            50% { transform: translateY(-50%) scale(1.2); opacity: 0.7; }
+        }
+
+        .card {
+            margin: 10px auto;
+            padding: 15px 25px;
+            max-width: 900px;
+            background: var(--chapter-bg) !important;
+            border-radius: 12px;
+            box-shadow: var(--shadow-main), var(--shadow-glow);
+            font-size: 18px;
+            color: var(--text-p-color) !important;
+            width: 90%;
+            background-color: #2A2244;
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+            color: var(--h-color) !important;
+        }
+
+        .card p, .card ul, .card table {
+            line-height: 1.7;
+            margin: 10px 0;
+            color: var(--text-p-color) !important;
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--text-p-color) !important;
+        }
+
+        .card table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        .card th, .card td {
+            padding: 8px;
+            border: 1px solid var(--text-p-color);
+            text-align: left;
+            color: var(--text-p-color) !important;
+        }
+
+        .card th {
+            background-color: var(--timeline-link-bg);
+            color: var(--header-color) !important;
+        }
+
+        .card img, .card video, .card iframe {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 20px var(--shadow-small);
+            margin: 10px auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .card img:hover, .card video:hover, .card iframe:hover {
+            animation: bounce 0.5s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .activity-container {
+            max-width: 900px;
+            margin: 10px auto;
+            padding: 15px 25px;
+            background: var(--game-container-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-main), var(--shadow-glow);
+            text-align: center;
+            width: 90%;
+            position: relative;
+        }
+
+        .activity-container h2 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--h-color);
+            margin: 0 0 10px;
+        }
+
+        .activity-container p {
+            color: var(--text-p-color);
+            margin: 10px 0;
+        }
+
+        .score-container {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 8px 15px;
+            background: var(--score-bg);
+            color: var(--score-color);
+            border-radius: 8px;
+            font-family: 'Michroma', sans-serif;
+            font-size: 16px;
+            box-shadow: var(--shadow-main);
+            border: 1px solid var(--sparkle-color-from);
+        }
+
+        #puzzle-area {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px auto;
+            width: max-content;
+        }
+
+        .row-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .cell {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--color6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--game-area-bg);
+        }
+
+        .cell input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+            color: var(--theme-text-color);
+            text-align: center;
+            font-size: 18px;
+            text-transform: uppercase;
+            outline: none;
+        }
+
+        .cell.correct {
+            background: var(--correct-bg);
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .cell.wrong {
+            background: var(--wrong-bg);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .clue {
+            margin: 6px 0;
+            text-align: left;
+            color: var(--text-p-color);
+            font-size: 14px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .clue:hover {
+            background: var(--item-bg);
+        }
+
+        .clue.selected {
+            background: var(--category-bg);
+            color: var(--category-color);
+        }
+
+        .clue strong {
+            color: var(--h-color);
+            width: 38px;
+            display: inline-block;
+        }
+
+        button {
+            margin: 8px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Michroma', sans-serif;
+            background: var(--button-bg);
+            color: var(--button-color);
+            transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        button#checkBtn {
+            background: var(--correct-bg);
+            color: #fff;
+        }
+
+        button#revealHintsBtn {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        button#resetActivity {
+            background: #e67e22;
+            color: #fff;
+        }
+
+        button:hover {
+            background: var(--header-bg);
+            transform: scale(1.05);
+        }
+
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--theme-text-color);
+            font-family: 'Michroma', sans-serif;
+        }
+
+        #resultPopup {
+            display: none;
+            background: var(--popup-bg);
+            color: var(--popup-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 300px;
+            box-shadow: var(--shadow-main), var(--shadow-glow);
+            font-family: 'Michroma', sans-serif;
+            font-size: 18px;
+            animation: popupFade 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @keyframes popupFade {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .topic-card {
+            margin: 25px auto;
+            padding: 15px 25px;
+            max-width: 900px;
+            background: var(--topic-bg) !important;
+            border-radius: 12px;
+            box-shadow: var(--shadow-main), var(--shadow-glow);
+            font-family: 'Michroma', sans-serif;
+            font-size: 20px;
+            width: 90%;
+            position: relative;
+            color: var(--theme-text-color) !important;
+            text-align: center;
+        }
+
+        .topic-card::before, .topic-card::after {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: var(--sparkle-color-from);
+            animation: sparkle 1.5s infinite ease-in-out;
+        }
+
+        .topic-card::before {
+            left: 10px;
+        }
+
+        .topic-card::after {
+            right: 10px;
+        }
+
+        .topic-card:hover {
+            background: var(--sparkle-color-from) !important;
+            color: var(--popup-color) !important;
+            transform: scale(1.03);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--footer-bg);
+            color: var(--footer-color);
+            font-size: 14px;
+            width: 100%;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+            animation: shimmer 3s infinite linear;
+        }
+
+@media (max-width: 900px) {
+            .grid {
+                flex-direction: column;
+            }
+            .puzzle {
+                width: 100%;
+            }
+            .clues {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 95%;
+                padding: 10px;
+                margin: 5px auto;
+            }
+
+            .card img, .card video, .card iframe {
+                max-width: 200px;
+                max-height: 200px;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1 / 1;
+                margin: 0 auto;
+            }
+
+            .card table {
+                font-size: 14px;
+            }
+
+            .card th, .card td {
+                padding: 6px;
+            }
+
+            .topic-card {
+                width: 95%;
+                padding: 10px 20px;
+            }
+
+            .score-container {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+
+            #resultPopup {
+                font-size: 16px;
+                padding: 10px;
+                width: 80%;
+            }
+
+.cell {
+                width: 25px;
+                height: 25px;
+                font-size: 14px;
+            }
+
+            .cell input {
+                font-size: 14px;
+            }
+
+}
+
+        .theme-text {
+            color: var(--theme-text-color);
+        }
+
+        .theme-font-18 {
+            font-size: 18px;
+        }
+
+        .theme-font-22 {
+            font-size: 22px;
+        }
+
+        .dark-image {
+            display: none;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .light-image {
+                display: none;
+            }
+            .dark-image {
+                display: block;
+            }
+        }
+
+        body.light .light-image {
+            display: block;
+        }
+        body.light .dark-image {
+            display: none;
+        }
+
+        body:not(.light) .light-image {
+            display: none;
+        }
+        body:not(.light) .dark-image {
+            display: block;
+        }
+
+        header h1,
+        header h1 .theme-text {
+            color: #fff !important;
+        }
+
+        body:not(.light) .card {
+            background: #2A2244 !important;
+            color: #BBB !important;
+        }
+
+        body:not(.light) .card h2 {
+            color: #B19CD9 !important;
+        }
+
+        body:not(.light) .card p,
+        body:not(.light) .card ul,
+        body:not(.light) .card li,
+        body:not(.light) .card td {
+            color: #BBB !important;
+        }
+
+        body:not(.light) .card th {
+            background-color: #4B3A6F !important;
+            color: #E0E0E0 !important;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .yt-placeholder, .ig-reel-placeholder {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: var(--item-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-p-color);
+            margin: 10px auto;
+            max-width: 350px;
+        }
+
+        .yt-placeholder.light, .ig-reel-placeholder.light {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        img {
+            max-width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+    </style>
+</head>
+<body>
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
+<!-- Fullscreen Button -->
+
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
+</div><script>
+const fullscreenToggleBtnUI = document.getElementById("fullscreen-btn");
+if(fullscreenToggleBtnUI) {
+  fullscreenToggleBtnUI.addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      if(document.exitFullscreen) document.exitFullscreen();
+    }
+  });
+
+  document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement) {
+      fullscreenToggleBtnUI.innerHTML = "<svg viewBox=\"0 0 24 24\"><path d=\"M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z\"/></svg>";
+      fullscreenToggleBtnUI.classList.remove("fullscreen-active");
+    } else {
+      fullscreenToggleBtnUI.innerHTML = "<svg viewBox=\"0 0 24 24\"><path d=\"M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z\"/></svg>";
+      fullscreenToggleBtnUI.classList.add("fullscreen-active");
+    }
+  });
+}
+</script>
+
+<header>
+<h1><strong><span class="theme-text">Chapter 3: Demographic, Community, and Connections</span></strong></h1>
+
+<p><strong><span class="theme-font-18">How Salty Targets and Engages Its Youthful Audience</span></strong></p>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/4.3.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
+</div>
+<style type="text/css">.audio-container {
+  position: relative;
+  background: url('https://login.skillizee.io/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+  background-size: contain; /* keeps the GIF's aspect ratio */
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 1920 / 1080; /* maintain original proportion */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Modern styled audio */
+.audio-container audio {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #2D2B7E;
+  background: #F5F5FF;
+  height: 50px;
+  padding: 4px;
+  box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
+}
+
+/* Lavender-toned player controls */
+audio::-webkit-media-controls-panel {
+  background-color: #E6E6FA;
+  border-radius: 12px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-volume-slider {
+  filter: hue-rotate(240deg) saturate(1.2);
+}
+</style>
+<div class="topic-card"><strong>Target Demographic</strong></div>
+
+<div class="card">
+<h2>Insight into Salty&#39;s Target Demographic</h2>
+
+<p>Our target demographic primarily comprises individuals aged 18 to 35, with a focus on tier 2 and tier 3 cities. We&#39;ve observed significant traction from both men and women, reflecting the inclusivity of our offerings. We&#39;ve garnered a diverse customer base spanning various regions and demographics by offering a blend of affordability and on-trend designs. We have good demand from the North East. We get orders from Jammu and Kashmir as well as from Western India, and that&#39;s because we get good responses from the blend of price points and designs we offer.</p>
+
+<p>Salty Jewellery sells across India with strong presence in:</p>
+
+<ul>
+	<li><strong data-end="78" data-start="63">North India</strong>: Especially Delhi (HQ) and Jammu &amp; Kashmir</li>
+	<li><strong data-end="140" data-start="126">West India</strong>: Maharashtra and Gujarat</li>
+	<li><strong data-end="197" data-start="170">South &amp; Northeast India</strong>: Rapidly growing order volumes</li>
+	<li><strong data-end="259" data-start="233">Tier 2 &amp; Tier 3 Cities</strong>: Major focus to reach Gen Z beyond metros</li>
+</ul>
+<img src="https://login.skillizee.io/s/articles/68dcec2946d17b4795c4c937/images/Whole India Image.png"  /></div>
+
+<div class="topic-card"><strong>Building a Youth-Oriented Community</strong></div>
+
+<div class="card">
+<h2>Building a Youth-Oriented Community</h2>
+
+<h2><img src="https://login.skillizee.io/s/articles/68dcec2946d17b4795c4c937/images/Youth oriented community 1.png"  /></h2>
+
+<p><strong>Access and Inclusion:</strong> Salty positions itself as a brand for the young and style-conscious, making fashion jewellery affordable and trendy for both women and men across India.</p>
+
+<p><strong>Community Engagement:</strong> Regular product drops, interactive social media content, and participative campaigns invite young consumers to be part of Salty&#39;s style revolution, fostering a sense of belonging and shared fashion identity.</p>
+
+<p><strong>Empowerment:</strong> By supporting authentic influencer voices, user stories, and feedback-driven design, Salty empowers its community to express individuality and co-create trends.</p>
+</div>
+
+<div class="topic-card"><strong>Collaboration with Creators</strong></div>
+
+<div class="card">
+<h2>Collaboration with Creators</h2>
+
+<p><strong>Diverse Collaboration Programs:</strong> Salty actively invites partnerships in gifting, discount codes, affiliate marketing, content co-creation, campaign participation, and more&mdash;enabling influencers and creators to collaborate based on their strengths.</p>
+
+<p><strong>Amplifying Reach:</strong> Influencers and micro-creators help Salty connect with niche communities and youth audiences, driving word-of-mouth and social buzz for new collections.</p>
+
+<p><strong>Content Creation:</strong> Creators work with Salty on styling videos, product reviews, social challenges, and campaign shoots, helping build a dynamic and visually compelling brand identity.</p>
+
+<p><strong>Brand Campaigns &amp; Events:</strong> Salty occasionally partners for limited-edition launches, events, or pop-ups that create additional buzz and exclusivity, further powering digital marketing impact.</p>
+
+<p><img src="https://login.skillizee.io/s/articles/68dcec2946d17b4795c4c937/images/Salty content creators 3.png"  /></p>
+</div>
+
+<div class="topic-card"><strong>Key Elements of Salty&#39;s Influencer and Meta Connection</strong></div>
+
+<div class="card">
+<h2>Key Elements of Salty&#39;s Influencer and Meta Connection</h2>
+
+<p><strong>Selecting Relevant Influencers:</strong> Collaborate with fashion, beauty, and lifestyle influencers whose followers align with Salty&#39;s ideal customers. Micro-influencers (10K-50K followers) are often targeted for higher engagement and niche audience reach.</p>
+
+<p><strong>Content Creation:</strong> Influencers create styling guides, tutorials, and authentic posts wearing Salty jewellery, showcasing versatility and quality.</p>
+
+<p><br />
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="yt-placeholder" frameborder="0" src="https://www.youtube.com/embed/moAsmQ4VrgI?rel=0"></iframe></p>
+
+<p><strong>Utilizing Meta Ads and Analytics:</strong> Salty uses Meta Business Suite to run targeted Facebook and Instagram ads, retargeting website visitors and optimizing ad creatives based on data insights. Influencer-generated content is repurposed for paid campaigns to amplify reach.</p>
+
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="yt-placeholder" frameborder="0" src="https://www.youtube.com/embed/cdaQFCRyjmQ?rel=0"></iframe></p>
+
+<p><strong>Community Building and Social Proof:</strong> Salty encourages followers to share user-generated content wearing Salty jewellery, creating a loyal community and authentic social proof that drives trust and conversions.<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="yt-placeholder" frameborder="0" scrolling="no" src="https://www.youtube.com/embed/k26XnL2oeoE?rel=0"></iframe></p>
+
+<p>This approach positions Salty as a vibrant, youthful community where creators and customers collaborate to shape fashion, fostering long-lasting loyalty and engagement with the brand.</p>
+</div>
+
+<div class="topic-card"><strong>Marketing Crossword Activity</strong></div>
+
+<div class="activity-container">
+<h2>💎 Jewellery Marketing Crossword 💎</h2>
+
+<p class="theme-text">Fill in the crossword with the correct marketing terms! Click a clue to select it, then type in the corresponding row. Use &quot;Reveal Hints&quot; to reveal two letters for the selected clue (after three uses, the full answer is revealed and marked wrong).</p>
+
+<div id="puzzle-area">&nbsp;</div>
+
+<div class="button-container"><button fdprocessedid="fgmxx" id="checkBtn">Check Answers</button><button fdprocessedid="qdrvk" id="revealHintsBtn">Reveal Hints</button><button fdprocessedid="iex62" id="resetActivity">Reset</button>
+
+<div class="score-container">Score: <span id="score">0</span>/10</div>
+</div>
+
+<h3>Clues</h3>
+
+<div id="clueList">&nbsp;</div>
+
+<div id="status">&nbsp;</div>
+
+<div id="resultPopup">&nbsp;</div>
+</div>
+
+<p>
+<audio id="correctSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Sounds/Correct.mp3">&nbsp;</audio>
+
+<audio id="incorrectSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Sounds/Wrong.mp3">&nbsp;</audio>
+
+<audio id="winSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Sounds/Win.mp3">&nbsp;</audio>
+
+<audio id="confettiSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Confetti%20pop.mp3">&nbsp;</audio>
+</p>
+
+<footer><span class="theme-font-18">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const toggleBtn = document.getElementById('theme-toggle');
+            toggleBtn.addEventListener('click', () => {
+                body.classList.toggle('light');
+                toggleBtn.classList.toggle('on');
+            });
+
+            const correctSound = document.getElementById('correctSound');
+            const incorrectSound = document.getElementById('incorrectSound');
+            const winSound = document.getElementById('winSound');
+            const confettiSound = document.getElementById('confettiSound');
+            const popup = document.getElementById('resultPopup');
+            const statusEl = document.getElementById('status');
+            const scoreEl = document.getElementById('score');
+
+            const WORDS = [
+                {id: 1, word: 'AFFORDABLE', hint: 'Salty jewellery is stylish yet budget-friendly.'},
+                {id: 2, word: 'TRENDY', hint: 'Always in fashion, youthful and modern.'},
+                {id: 3, word: 'INFLUENCER', hint: 'Person who promotes Salty products on social media.'},
+                {id: 4, word: 'COMMUNITY', hint: 'Salty builds this among youth through shared fashion identity.'},
+                {id: 5, word: 'ENGAGEMENT', hint: 'Likes, comments, and shares reflect this.'},
+                {id: 6, word: 'LOYALTY', hint: 'Repeat customers show brand ______.',},
+                {id: 7, word: 'EARRINGS', hint: 'One of the most popular jewellery categories.'},
+                {id: 8, word: 'RINGS', hint: 'A jewellery piece worn on fingers.'},
+                {id: 9, word: 'META', hint: 'Platform used by Salty for ads (Facebook + Instagram).'},
+                {id: 10, word: 'REELS', hint: 'Short Instagram videos used to showcase jewellery.'}
+            ];
+
+            let score = 0;
+            const maxScore = WORDS.length;
+            const puzzleArea = document.getElementById('puzzle-area');
+            const clueList = document.getElementById('clueList');
+            let selectedClue = null;
+            const hintCounts = {};
+
+            function buildPuzzle() {
+                puzzleArea.innerHTML = '';
+                clueList.innerHTML = '';
+                WORDS.forEach((item, index) => {
+                    const rowWrap = document.createElement('div');
+                    rowWrap.classList.add('row-wrap');
+                    const row = document.createElement('div');
+                    row.classList.add('row');
+                    row.dataset.answer = item.word;
+                    row.dataset.id = index + 1;
+
+                    for (let i = 0; i < item.word.length; i++) {
+                        const cell = document.createElement('div');
+                        cell.classList.add('cell');
+                        const input = document.createElement('input');
+                        input.maxLength = 1;
+                        input.autocomplete = 'off';
+                        input.dataset.pos = i;
+                        input.addEventListener('input', (e) => {
+                            e.target.value = e.target.value.toUpperCase().replace(/[^A-Z]/g, '');
+                            if (e.target.value && e.target.parentElement.nextElementSibling) {
+                                const next = e.target.parentElement.nextElementSibling.querySelector('input');
+                                if (next) next.focus();
+                            }
+                        });
+                        input.addEventListener('keydown', (e) => {
+                            if (e.key === 'Backspace' && !e.target.value) {
+                                const prev = e.target.parentElement.previousElementSibling;
+                                if (prev) prev.querySelector('input').focus();
+                            }
+                            if (e.key === 'ArrowLeft') {
+                                const prev = e.target.parentElement.previousElementSibling;
+                                if (prev) prev.querySelector('input').focus();
+                            }
+                            if (e.key === 'ArrowRight') {
+                                const next = e.target.parentElement.nextElementSibling;
+                                if (next) next.querySelector('input').focus();
+                            }
+                            if (e.key === 'Enter') {
+                                checkAnswers();
+                            }
+                        });
+                        cell.appendChild(input);
+                        row.appendChild(cell);
+                    }
+                    rowWrap.appendChild(row);
+                    puzzleArea.appendChild(rowWrap);
+
+                    const clueDiv = document.createElement('div');
+                    clueDiv.classList.add('clue');
+                    clueDiv.dataset.id = index + 1;
+                    clueDiv.innerHTML = `<strong>${index + 1}.</strong> ${item.hint}`;
+                    clueDiv.addEventListener('click', () => {
+                        document.querySelectorAll('.clue').forEach(c => c.classList.remove('selected'));
+                        clueDiv.classList.add('selected');
+                        selectedClue = index + 1;
+                        const row = document.querySelector(`.row[data-id="${selectedClue}"]`);
+                        if (row) row.querySelector('input').focus();
+                    });
+                    clueList.appendChild(clueDiv);
+                });
+            }
+
+            function checkAnswers() {
+                score = 0;
+                document.querySelectorAll('.row').forEach(row => {
+                    if (row.classList.contains('revealed')) return;
+                    const inputs = row.querySelectorAll('input');
+                    let attempt = '';
+                    inputs.forEach(input => attempt += (input.value || '').toUpperCase());
+                    const answer = row.dataset.answer;
+
+                    if (attempt === answer) {
+                        score++;
+                        row.querySelectorAll('.cell').forEach(c => {
+                            c.classList.add('correct');
+                            c.classList.remove('wrong');
+                        });
+                        correctSound.play().catch(error => console.log('Error playing correct sound:', error));
+                    } else {
+                        row.querySelectorAll('.cell').forEach(c => {
+                            if (c.querySelector('input').value) {
+                                c.classList.add('wrong');
+                                c.classList.remove('correct');
+                            }
+                        });
+                        incorrectSound.play().catch(error => console.log('Error playing incorrect sound:', error));
+                    }
+                });
+                scoreEl.textContent = score;
+                statusEl.textContent = `You got ${score}/${maxScore} correct!`;
+                if (score === maxScore) {
+                    popup.textContent = "🎉 Congratulations! You solved the crossword!";
+                    popup.style.display = "block";
+                    winSound.play().catch(error => console.log('Error playing win sound:', error));
+                    triggerConfetti();
+                    confettiSound.play().catch(error => console.log('Error playing confetti sound:', error));
+                    setTimeout(() => popup.style.display = "none", 4000);
+                } else if (score > 0) {
+                    popup.textContent = "Great effort! Keep going!";
+                    popup.style.display = "block";
+                    setTimeout(() => popup.style.display = "none", 3000);
+                } else {
+                    popup.textContent = "No Worries, You can always learn";
+                    popup.style.display = "block";
+                    setTimeout(() => popup.style.display = "none", 3000);
+                }
+            }
+
+            function revealHints() {
+                if (!selectedClue) {
+                    popup.textContent = "Please select a clue first!";
+                    popup.style.display = "block";
+                    setTimeout(() => popup.style.display = "none", 2000);
+                    return;
+                }
+
+                const row = document.querySelector(`.row[data-id="${selectedClue}"]`);
+                if (!row || row.classList.contains('revealed') || row.classList.contains('correct')) {
+                    popup.textContent = "Select a clue that hasn't been fully revealed or solved!";
+                    popup.style.display = "block";
+                    setTimeout(() => popup.style.display = "none", 2000);
+                    return;
+                }
+
+                const answer = row.dataset.answer;
+                const inputs = row.querySelectorAll('input');
+                const clueId = selectedClue;
+
+                if (!hintCounts[clueId]) {
+                    hintCounts[clueId] = { count: 0, revealedIndices: [] };
+                }
+
+                const hintData = hintCounts[clueId];
+                hintData.count++;
+
+                if (hintData.count < 3) {
+                    let available = [];
+                    for (let i = 0; i < answer.length; i++) {
+                        if (!hintData.revealedIndices.includes(i) && !inputs[i].value) {
+                            available.push(i);
+                        }
+                    }
+                    if (available.length === 0) {
+                        popup.textContent = "No more letters to reveal for this clue!";
+                        popup.style.display = "block";
+                        setTimeout(() => popup.style.display = "none", 2000);
+                        hintData.count--; // Don't count this attempt
+                        return;
+                    }
+                    let revealCount = 0;
+                    while (revealCount < 2 && available.length > 0) {
+                        const rnd = Math.floor(Math.random() * available.length);
+                        const index = available[rnd];
+                        inputs[index].value = answer[index];
+                        inputs[index].parentElement.classList.add('correct');
+                        hintData.revealedIndices.push(index);
+                        available.splice(rnd, 1);
+                        revealCount++;
+                    }
+                    popup.textContent = `Revealed ${revealCount} letter${revealCount > 1 ? 's' : ''} for clue ${clueId}!`;
+                    popup.style.display = "block";
+                    setTimeout(() => popup.style.display = "none", 2000);
+                } else {
+                    inputs.forEach((input, i) => {
+                        input.value = answer[i];
+                        input.parentElement.classList.add('wrong');
+                        input.parentElement.classList.remove('correct');
+                    });
+                    row.classList.add('revealed');
+                    popup.textContent = `Clue ${clueId} fully revealed and marked as wrong!`;
+                    popup.style.display = "block";
+                    incorrectSound.play().catch(error => console.log('Error playing incorrect sound:', error));
+                    setTimeout(() => popup.style.display = "none", 2000);
+                }
+            }
+
+            function resetPuzzle() {
+                document.querySelectorAll('.row').forEach(row => {
+                    row.querySelectorAll('input').forEach(input => input.value = '');
+                    row.querySelectorAll('.cell').forEach(c => c.classList.remove('correct', 'wrong'));
+                    row.classList.remove('revealed', 'correct');
+                });
+                document.querySelectorAll('.clue').forEach(c => c.classList.remove('selected'));
+                selectedClue = null;
+                Object.keys(hintCounts).forEach(key => delete hintCounts[key]);
+                score = 0;
+                scoreEl.textContent = score;
+                statusEl.textContent = '';
+            }
+
+            function triggerConfetti() {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#FFD700', '#C0C0C0']
+                });
+            }
+
+            document.getElementById('checkBtn').addEventListener('click', checkAnswers);
+            document.getElementById('revealHintsBtn').addEventListener('click', revealHints);
+            document.getElementById('resetActivity').addEventListener('click', resetPuzzle);
+
+            buildPuzzle();
+        });
+    </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggleUI = document.getElementById("theme-toggle");
+
+  if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light");
+    if(themeToggleUI) themeToggleUI.classList.add("on");
+  }
+
+  if(themeToggleUI) {
+    themeToggleUI.addEventListener("click", () => {
+      setTimeout(() => {
+        localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
+      }, 50);
+    });
+  }
+});
+</script>
+</body>
+</html>

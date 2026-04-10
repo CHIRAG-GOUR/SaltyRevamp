@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+    <link rel="stylesheet" href="universal.css" />
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" /><script src="https://cdn.tailwindcss.com"></script><script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'salty-purple': '#B19CD9',
+                        'salty-dark': '#4B3A6F',
+                        'salty-light': '#D0C3F1',
+                    }
+                }
+            }
+        }
+    </script>
+<style type="text/css">:root {
+            --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+            --body-color: #CCC;
+            --header-bg: #4B3A6F;
+            --header-color: #E0E0E0;
+            --h-color: #B19CD9;
+            --chapter-bg: #2A2244;
+            --text-p-color: #BBB;
+            --topic-bg: #3C2F5F;
+            --game-container-bg: #2A2244;
+            --game-area-bg: #1C172B;
+            --item-bg: #3C2F5F;
+            --category-bg: #4B3A6F;
+            --category-color: #E0E0E0;
+            --results-bg: #1C172B;
+            --footer-bg: #4B3A6F;
+            --footer-color: #E0E0E0;
+            --correct-bg: #388E3C;
+            --wrong-bg: #D32F2F;
+            --popup-bg: #B19CD9;
+            --popup-color: #000;
+            --shimmer-color: rgba(177, 156, 217, 0.2);
+            --sparkle-color-from: #B19CD9;
+            --sparkle-color-to: #8A7DB5;
+            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+            --shadow-small: rgba(255,255,255,0.05);
+            --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+            --arrow-stroke: #B19CD9;
+            --theme-text-color: #ffffff;
+            --timeline-bg: #3C2F5F;
+            --timeline-color: #E0E0E0;
+            --button-bg: #B19CD9;
+            --button-color: #000;
+            --popup-shadow: rgba(255, 255, 255, 0.5);
+        }
+        .light {
+            --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+            --body-color: #333;
+            --header-bg: #7b46ac;
+            --header-color: #fff;
+            --h1-color: #fff;
+            --h-color: #333;
+            --chapter-bg: #fff;
+            --text-p-color: #444;
+            --topic-bg: #D0C3F1;
+            --game-container-bg: #fff;
+            --game-area-bg: #f9f9f9;
+            --item-bg: #D0C3F1;
+            --category-bg: #7b46ac;
+            --category-color: #333;
+            --results-bg: #f9f9f9;
+            --footer-bg: #7b46ac;
+            --footer-color: #333;
+            --correct-bg: #4caf50;
+            --wrong-bg: red;
+            --popup-bg: #9846ac;
+            --popup-color: #333;
+            --shimmer-color: rgba(123, 70, 172, 0.2);
+            --sparkle-color-from: #9846ac;
+            --sparkle-color-to: #7b46ac;
+            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+            --shadow-small: rgba(0,0,0,0.05);
+            --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            --arrow-stroke: #9846ac;
+            --theme-text-color: #333;
+            --timeline-bg: #D0C3F1;
+            --timeline-color: #444;
+            --button-bg: #9846ac;
+            --button-color: #333;
+            --popup-shadow: rgba(0, 0, 0, 0.2);
+        }
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif; background: var(--body-bg); color: var(--body-color); min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        header { background-color: var(--header-bg); color: var(--header-color); padding: 10px 20px; text-align: center; font-family: 'Michroma', sans-serif; width: 100%; position: relative; overflow: hidden; }
+        header::before { content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent); animation: shimmer 3s infinite linear; }
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        h1, h2 { font-family: 'Michroma', sans-serif; color: var(--h-color); position: relative; }
+        h1::after, h2::after:not(:first-child) { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 50%; height: 2px; background: linear-gradient(to right, transparent, var(--h-color), transparent); }
+        @keyframes sparkle { 0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; } 50% { transform: translateY(-50%) scale(1.2); opacity: 0.7; } }
+        .chapter-section { display: flex; align-items: stretch; justify-content: space-between; margin: 5px auto; padding: 5px; max-width: 1100px; background: var(--chapter-bg); border-radius: 12px; box-shadow: var(--shadow-main), var(--shadow-glow); gap: 0; width: 90%; overflow: hidden; flex-direction: row; }
+        .chapter-section:nth-child(even) { flex-direction: row; }
+        .chapter-section.mission-vision-values { justify-content: center; max-width: 1200px; padding: 20px; }
+        .chapter-text { flex: 1; padding: 5px; margin: 0; }
+        .chapter-text h2 { margin: 0 0 5px; }
+        .chapter-text p { line-height: 1.7; font-size: 18px; color: var(--text-p-color); margin: 5px 0; }
+        .chapter-image { flex: 1; display: flex; align-items: stretch; justify-content: center; margin: 0; padding: 10px; }
+        .chapter-image video, .chapter-image iframe { width: 100%; height: 100%; border-radius: 12px; box-shadow: 0px 4px 20px var(--shadow-small); object-fit: contain; }
+        .chapter-image img { width: 100%; height: auto; max-width: 350px; max-height: 350px; aspect-ratio: 1 / 1; border-radius: 12px; box-shadow: 0px 4px 20px var(--shadow-small); object-fit: contain; margin-top: 50px; display: block; box-sizing: border-box; }
+        .chapter-image img:hover { animation: bounce 0.5s ease-in-out; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .topic-card { margin: 25px auto; padding: 10px 20px; max-width: 800px; background: var(--topic-bg); border-radius: 12px; box-shadow: var(--shadow-main), var(--shadow-glow); text-align: center; transition: opacity 0.5s ease, transform 0.5s ease; font-family: 'Michroma', sans-serif; font-size: 20px; cursor: pointer; width: 90%; position: relative; color: var(--theme-text-color); display: flex; align-items: center; justify-content: center; }
+        .topic-card::before, .topic-card::after { content: '✨'; position: absolute; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--sparkle-color-from); animation: sparkle 1.5s infinite ease-in-out; }
+        .topic-card::before { left: 10px; } .topic-card::after { right: 10px; }
+        .topic-card:hover { animation: flash 0.8s linear; background: var(--sparkle-color-from); color: var(--popup-color); transform: scale(1.03); }
+        @keyframes flash { 0% { background-color: var(--topic-bg); } 50% { background-color: var(--header-bg); color: var(--header-color); } 100% { background-color: var(--sparkle-color-from); } }
+        #theme-toggle { position: fixed; top: 10px; right: 10px; width: 60px; height: 30px; background: var(--button-bg); border-radius: 15px; cursor: pointer; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 5px; transition: background 0.3s ease; }
+        #theme-toggle::before { content: ''; width: 24px; height: 24px; background: var(--button-color); border-radius: 50%; position: absolute; left: 3px; transition: transform 0.3s ease; }
+        #theme-toggle::after { content: 'OFF'; color: var(--button-color); font-family: 'Michroma', sans-serif; font-size: 12px; position: absolute; right: 10px; }
+        #theme-toggle.on::before { transform: translateX(30px); }
+        #theme-toggle.on::after { content: 'ON'; left: 10px; right: auto; }
+        #theme-toggle:hover { background: var(--header-bg); }
+        .differentiator-item { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+        .differentiator-item .image-container { flex: 0 0 auto; position: relative; width: 200px; height: 200px; }
+        .differentiator-item .image-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; box-shadow: 0px 4px 10px var(--shadow-small); }
+        .differentiator-item .text-container { flex: 1; display: flex; align-items: center; }
+        .differentiator-item .dash { margin-right: 5px; }
+        .video-player { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; }
+        .video-player iframe { width: 800px; height: 600px; border-radius: 12px; box-shadow: 0px 4px 20px var(--shadow-small); }
+        .chapter-section.channels .video-player iframe { width: 360px; height: 500px; }
+        @media (max-width: 768px) {
+            .chapter-section { flex-direction: column; margin: 5px auto; padding: 5px; }
+            .chapter-image video, .chapter-image iframe { width: 95%; height: auto; aspect-ratio: 9 / 16; }
+            .video-player iframe { width: 95%; height: auto; aspect-ratio: 1 / 1; }
+            .chapter-section.channels .video-player iframe { width: 90%; height: auto; aspect-ratio: 9 / 16; }
+            .chapter-image img { max-width: 200px; max-height: 200px; width: 100%; height: 100%; aspect-ratio: 1 / 1; margin: 0; }
+            .differentiator-item { flex-direction: column; align-items: flex-start; }
+            .differentiator-item .image-container { width: 100%; max-width: 200px; height: auto; margin-bottom: 10px; }
+        }
+        
+        .theme-font-18 { font-size: 18px; }
+        .theme-font-22 { font-size: 22px; }
+        
+        header h1, header h1 .theme-text { color: #fff !important; }
+        .center-image { display: flex; justify-content: center; align-items: center; }
+        .center-image img { max-width: 600px; max-height: 600px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0px 4px 20px var(--shadow-small); }
+        .audio-container {
+            position: relative; background: url('https://login.skillizee.io/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+            background-size: contain; border-radius: 16px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+            margin: 1rem auto; width: 90%; max-width: 900px; aspect-ratio: 1920 / 1080;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 1rem; padding-bottom: 1rem;
+        }
+        .audio-container audio { width: 100%; border-radius: 12px; border: 2px solid #2D2B7E; background: #F5F5FF; height: 50px; padding: 4px; box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3); }
+        audio::-webkit-media-controls-panel { background-color: #E6E6FA; border-radius: 12px; }
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-timeline,
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display,
+        audio::-webkit-media-controls-volume-slider { filter: hue-rotate(240deg) saturate(1.2); }
+
+        html, body, .container, .card, .chapter-section, .iframe-container {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        @media (max-width: 768px) {
+            body { overflow-x: hidden !important; }
+            .chapter-section { flex-direction: column; padding: 5px; }
+            .chapter-text, .chapter-image { width: 100% !important; max-width: 100% !important; }
+            
+            iframe[width="360"], iframe[height="640"], iframe[src*="shorts"], iframe[width="315"], iframe[height="560"] { 
+                aspect-ratio: 9/16 !important; 
+                max-width: 90vw !important; 
+                max-height: 80vh !important; 
+                height: 80vh !important; 
+                width: auto !important;
+                margin: 0 auto !important; 
+                display: block !important; 
+            }
+            img { max-width: 100% !important; }
+        }
+
+</style>
+
+
+
+<p></p>
+
+
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span>
+<div class="knob">&nbsp;</div>
+<span class="icon sun">☀️</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
+
+
+<header>
+<h1><span style="font-size:36px;"><span style="color:#ffffff;"><strong><span class="theme-text">Chapter 4: What Makes Salty Stand Out?</span></strong></span></span></h1>
+
+<p><strong><span class="theme-font-18">Explore Salty&rsquo;s unique identity in fashion and lifestyle</span></strong></p>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/3.4.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
+</div>
+
+<div class="topic-card"><strong>The Learning Curve Podcast</strong></div>
+
+<section class="chapter-section podcast">
+<div class="chapter-image">
+<div class="video-player"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="600" scrolling="no" src="https://www.youtube.com/embed/CD_56WsRKkE?rel=0&amp;showinfo=0&amp;start=1168&amp;end=1308" width="800"></iframe></div>
+</div>
+</section>
+
+<div class="topic-card"><strong>Why Salty Stands Out</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><span style="font-size:36px;"><strong>Key Differentiators</strong></span></h2>
+
+<div class="differentiator-item">
+<div class="text-container"><span class="theme-text theme-font-18"><span class="dash">-</span> <strong>Trend Relevance:</strong> Unlike most jewellery brands, Rapidly introducing new designs to keep up with fast-changing fashion trends, allowing customers to access the latest trends almost in real time. This approach lets them keep pace with fast-changing youth preferences in fashion.</span></div>
+
+<div class="image-container"><img alt="Trend Relevance Light Mode" class="light-image" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/BB-COMBO-5_3.jpg" /></div>
+</div>
+
+<div class="differentiator-item">
+<div class="text-container"><span class="theme-text theme-font-18"><span class="dash">-</span> <strong>Diverse, Inclusive Range:</strong> Their product lines cover earrings, necklaces, rings, bracelets, and curated jewellery sets. Salty appeals to a wide demographic (ages 18&ndash;35, men and women) and has strong demand in tier 2 and 3 cities, as well as niche regions like the North East and Western India.</span></div>
+
+<div class="image-container"><img alt="Diverse Range Light Mode" class="light-image" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/Jewellery_20Gift_20Box.jpg" /></div>
+</div>
+
+<div class="differentiator-item">
+<div class="text-container"><span class="theme-text theme-font-18"><span class="dash">-</span> <strong>Storytelling Through Collections:</strong> Salty creates themed launches with engaging brand stories, often inspired by global trends, youth culture, and community feedback. Their strategy goes beyond selling products&mdash;they build emotional connection and foster belonging.</span></div>
+
+<div class="image-container"><img alt="Storytelling" class="light-image" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/Branding 2.png" /></div>
+</div>
+
+<div class="differentiator-item">
+<div class="text-container"><span class="theme-text theme-font-18"><span class="dash">-</span> <strong>Material Quality and Durability:</strong> Salty uses brass, copper alloy, and stainless steel with advanced plating for longevity and skin-friendliness, setting it apart from many lower-end alternatives. <strong>Brass, Copper Alloy, Stainless Steel.</strong></span></div>
+
+<div class="image-container"><img alt="Material" class="light-image" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/materials.png" /></div>
+</div>
+
+<div class="differentiator-item">
+<div class="text-container"><span class="theme-text theme-font-18"><span class="dash">-</span> <strong>Agile Business Model:</strong> Their lean inventory approach and rapid design-to-shelf cycle allows quick adaptation to fashion changes and reduces waste.</span></div>
+
+<div class="image-container"><img alt="Agile" class="light-image" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/Agile methodology approach for effective project management outline diagram.jpg" /></div>
+</div>
+
+<div class="differentiator-item">
+<div class="text-container"><span class="theme-text theme-font-18"><span class="dash">-</span> <strong>Quality &amp; Price:</strong> A focus on high-quality materials at pocket-friendly prices.</span></div>
+
+<div class="image-container"><img alt="Price" class="light-image" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/price and quality 2.png" /> <img alt="Price Dark" class="dark-image" src="https://login.skillizee.io/s/articles/691d9b2c5c544a1793afeac6/images/price and quality 2.1.png" /></div>
+</div>
+
+<div class="differentiator-item">
+<div class="text-container"><span class="theme-text theme-font-18"><span class="dash">-</span> <strong>Niche:</strong> Affordable, stylish, trend-based, storytelling jewellery</span></div>
+
+<div class="image-container"><img alt="Niche Light" class="light-image" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/Branding 3.png" /></div>
+</div>
+</div>
+</section>
+
+<div class="topic-card"><strong>Key Features</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><span style="font-size:36px;"><strong>Key Features</strong></span></h2>
+
+<p><span class="theme-text theme-font-18"><strong>Affordability:</strong> By blending accessible pricing with style, Salty enables customers in various regions to upgrade their look without overspending.</span></p>
+
+<p><span class="theme-text theme-font-18"><strong>Style &amp; Trendiness:</strong> The collections mirror international and K-style aesthetics, appealing to fashion-forward youth who follow social media trends.</span></p>
+
+<p><span class="theme-text theme-font-18"><strong>Storytelling:</strong> Marketing campaigns emphasize narratives and community building (e.g., influencer collaborations, themed product bundles).</span></p>
+</div>
+
+<div class="chapter-image"><img alt="Salty Style Light" class="light-image" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/Yellow Key Illustration, Key Icon, Key Icon Art, Key PNG Transparent Image and Clipart for Free Download (1).jpg" /></div>
+</section>
+
+<div class="topic-card"><strong>Comparison with Other Brands</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><span style="font-size:28px;"><strong>Compared with Other Brands &ndash; What Makes Customers Choose Salty?</strong></span></h2>
+
+<div class="center-image"><img alt="Brand Comparison Light" class="light-image" src="https://login.skillizee.io/s/articles/691d9b2c5c544a1793afeac6/images/3.4 Salty.png" /></div>
+</div>
+</section>
+
+<div class="topic-card"><strong>Brand Positioning</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><span style="font-size:28px;"><strong>Brand Positioning - How it Guides the Decisions and Connects with Customers</strong></span></h2>
+
+<div class="center-image"><img alt="Brand Positioning Light" class="light-image" src="https://login.skillizee.io/s/articles/68e3a3f4f5305c51ac3352cf/images/Salty's brand positioning lights 4.png" /> <img alt="Brand Positioning Dark" class="dark-image" src="https://login.skillizee.io/s/articles/691d9b2c5c544a1793afeac6/images/Salty 3.4 brand positioning.png" style="width: 100%;" /></div>
+</div>
+</section>
+<!-- BEAUTIFULLY REDESIGNED SECTION -->
+
+<div class="topic-card"><strong><span style="font-size:28px;">First Choice for Fashion Jewelry</span></strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2 style="font-size:36px; text-align:center; margin-bottom:30px;"><strong>How SALTY Has Become the First Choice for Fashion Jewelry</strong></h2>
+
+<div style="display:grid; gap:25px; margin-top:40px;">
+<div style="background:var(--chapter-bg); padding:25px; border-radius:16px; box-shadow: var(--shadow-glow);">
+<h3 style="font-size:28px; margin-top:0; color:#B19CD9;"><strong>A Splash of Trendy Designs for Every Occasion</strong></h3>
+
+<p>Salty&rsquo;s meteoric rise in the fashion world can be attributed to its captivating designs. Whether you&rsquo;re looking for the perfect pair of statement earrings to turn heads or an elegant necklace to enhance your evening ensemble, Salty has you covered.</p>
+
+<p>They understand that fashion knows no bounds and have curated a diverse range of designs suitable for any occasion. This commitment to diversity ensures that both mens jewellery and women jewelry lovers will find the perfect piece.</p>
+
+<p class="theme-text theme-font-18" style="line-height:1.8; margin:15px 0 0;"><img alt="Salty Banner" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/image-20251002134358-2.png" style="border-radius:16px; box-shadow: var(--shadow-main); width:100%; max-width:800px;" /></p>
+</div>
+
+<div style="background:var(--chapter-bg); padding:25px; border-radius:16px; box-shadow: var(--shadow-glow);">
+<h3 style="font-size:28px; margin-top:0; color:#B19CD9;"><strong>The Freshness Quotient</strong></h3>
+
+<p class="theme-text theme-font-18" style="line-height:1.8; margin:15px 0 0;">One of Salty&rsquo;s standout features is its dedication to staying ahead of the fashion curve. They don&rsquo;t just follow trends; they set them. Salty introduces new designs weekly, including mens jewellery and women jewelry, ensuring that their customers always have something exciting to anticipate. This relentless pursuit of innovation and style keeps fashion enthusiasts coming back for more.</p>
+
+<p class="theme-text theme-font-18" style="line-height:1.8; margin:15px 0 0;"><img alt="Quality &amp; Affordability" src="https://login.skillizee.io/s/articles/691d9b2c5c544a1793afeac6/images/Freshness quotient.png" style="border-radius:14px; box-shadow: var(--shadow-main); width:100%; max-width:800px; margin-top:15px;" /></p>
+</div>
+
+<div style="background:var(--chapter-bg); padding:25px; border-radius:16px; box-shadow: var(--shadow-glow);">
+<h3 style="font-size:28px; margin-top:0; color:#B19CD9;"><strong>Where Quality Meets Affordability</strong></h3>
+
+<p>What truly sets Salty apart from the competition is its unwavering focus on quality. All of their products are crafted from high-quality materials that won&rsquo;t tarnish easily. The best part? Salty delivers these high-quality accessories at very pocket-friendly prices.</p>
+
+<p>In a world where fashion often comes at a hefty price, Salty makes looking good affordable when it comes to mens jewellery and women jewelry. They firmly believe that being fashionable shouldn&rsquo;t mean burning a hole in your pocket.<br />
+<img alt="Quality &amp; Affordability" src="https://login.skillizee.io/s/articles/691d9b2c5c544a1793afeac6/images/Quality &amp; Affordability.png" style="border-radius:14px; box-shadow: var(--shadow-main); width:100%; max-width:800px; margin-top:15px;" /></p>
+</div>
+
+<div style="background:var(--chapter-bg); padding:25px; border-radius:16px; box-shadow: var(--shadow-glow);">
+<h3 style="font-size:28px; margin-top:0; color:#B19CD9;"><strong>Backed by the Government of India</strong></h3>
+
+<p class="theme-text theme-font-18" style="line-height:1.8; margin:15px 0 0;">Salty&rsquo;s journey to becoming the preferred choice for budget-conscious fashion enthusiasts has received a significant boost through its association with the Startup India Seed Fund Program. This esteemed program provided Salty with substantial funding of 5 million, a testament to their dedication to revolutionizing the accessibility of fashion accessories. This endorsement from the government reflects the brand&rsquo;s commitment to quality and reliability.<br />
+<img alt="Quality &amp; Affordability" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/qf4wd9kg7.png" style="border-radius:14px; box-shadow: var(--shadow-main); width:100%; max-width:800px; margin-top:15px;" /></p>
+</div>
+
+<div style="background:var(--chapter-bg); padding:25px; border-radius:16px; box-shadow: var(--shadow-glow);">
+<h3 style="font-size:28px; margin-top:0; color:#B19CD9;"><strong>Customer-Centric Approach</strong></h3>
+
+<p class="theme-text theme-font-18" style="line-height:1.8; margin:15px 0 0;">At Salty, customer satisfaction is paramount. They offer a hassle-free return and exchange policy within 7 days of purchase, ensuring that every customer can shop with confidence. Their fast shipping ensures that you receive your order promptly, so you can elevate your style without delay.</p>
+</div>
+
+<div style="background: linear-gradient(135deg, #B19CD9, #7B46AC); padding:30px; border-radius:16px; text-align:center; color:#000; box-shadow: var(--shadow-glow);">
+<h3 style="font-size:30px; margin-top:0; color:#000;"><strong>Join the Salty Revolution</strong></h3>
+
+<p class="theme-font-22" style="margin:20px 0; line-height:1.8; color:#000;">In a short span, SALTY has become India&rsquo;s fastest-growing jewellery brand when it comes to men&rsquo;s jewellery and women&rsquo;s jewelry. Their commitment to excellence has won the hearts of fashion enthusiasts across the nation. Their exquisite collection caters to both men and women, offering something for everyone, from timeless classics to contemporary showstoppers.</p>
+</div>
+</div>
+</div>
+</section>
+
+<div class="topic-card"><strong>Customer Relationship</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><span style="font-size:36px;"><strong>Customer Relationship</strong></span></h2>
+
+<p><span class="theme-text theme-font-18">Salty prioritizes customer satisfaction with hassle-free returns, responsive support (via WhatsApp/email), and fast delivery, including same-day shipping in select cities.</span></p>
+
+<p><span class="theme-text theme-font-18">Building trust and transparency, Salty uses verified images, clear refund policies, and prompt service to ensure loyalty and repeat business.</span></p>
+</div>
+
+<div class="chapter-image"><img alt="Salty Customer Light" class="light-image" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/customer relationship.jpg" /></div>
+</section>
+
+<div class="topic-card"><strong>Customer Segment</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><span style="font-size:28px;"><strong>Customer Segment</strong></span></h2>
+
+<div style="display:flex; align-items:center; justify-content:center; min-height:420px; padding:20px 0;">
+<p style="text-align:center; margin:0; max-width:520px; line-height:1.8;"><span class="theme-text theme-font-18">1. Cities who seek trendy, affordable, and high-quality accessories.<br />
+<br />
+2. Most traction among fashion-forward women and the youth demographic.<br />
+<br />
+3. National appeal with emphasis on inclusivity. </span></p>
+</div>
+</div>
+
+<div class="chapter-image"><img alt="Segment Light" class="light-image" src="https://login.skillizee.io/s/articles/68da5690d54b1c098130f9d5/images/Customer segment 4.png" /> <img alt="Intro to Customer Segmentation &amp; RFM Analysis" src="https://www.dannidanliu.com/content/images/2024/07/Blog-83--Customer-Segmentation-1.jpg" /></div>
+</section>
+
+<div class="topic-card"><strong>Channels</strong></div>
+
+<section class="chapter-section channels">
+<div class="chapter-text">
+<h2><span style="font-size:36px;"><strong>Channels</strong></span></h2>
+
+<div style="display:flex; align-items:center; justify-content:center; min-height:420px; padding:20px 0;">
+<p style="text-align:center; margin:0; max-width:520px; line-height:1.8;"><span class="theme-text theme-font-18">The official website (salty.co.in) is the main channel, offering a seamless e-commerce experience, verified products, and robust customer support.<br />
+<br />
+Social media platforms like Instagram, WhatsApp, and influencer collaborations serve as major communication, marketing, and sales channels.</span></p>
+</div>
+</div>
+
+<div class="chapter-image">
+<div class="video-player"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" scrolling="no" src="https://www.youtube.com/embed/DLfSH9I7-us?rel=0"></iframe></div>
+</div>
+</section>
+<!-- ORIGINAL FOOTER RESTORED -->
+
+<footer style="background:var(--footer-bg); color:var(--footer-color); width:100%; text-align:center; padding:20px; margin-top:40px;"><span style="color:#ffffff;"><span class="theme-font-18">&copy; 2025 Salty Jewellery | Designed for Learning</span></span></footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
+            const toggleBtn = document.getElementById('theme-toggle');
+            toggleBtn.addEventListener('click', () => {
+                body.classList.toggle('light');
+                toggleBtn.classList.toggle('on');
+            });
+        });
+    </script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>
+</body>
+</html>

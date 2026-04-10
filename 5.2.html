@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<div>
+<div>
+<div>
+
+</div>
+</div>
+</div>
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="universal.css" />
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<style type="text/css">:root {
+    --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+    --body-color: #CCC;
+    --header-bg: #4B3A6F;
+    --header-color: #E0E0E0;
+    --h-color: #B19CD9;
+    --chapter-bg: #2A2244;
+    --text-p-color: #BBB;
+    --topic-bg: #3C2F5F;
+    --footer-bg: #4B3A6F;
+    --footer-color: #E0E0E0;
+    --popup-bg: #B19CD9;
+    --popup-color: #000;
+    --shimmer-color: rgba(177, 156, 217, 0.2);
+    --sparkle-color-from: #B19CD9;
+    --sparkle-color-to: #8A7DB5;
+    --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+    --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+    --shadow-small: rgba(255,255,255,0.05);
+    --theme-text-color: #ffffff;
+    --correct-bg: #388E3C;
+    --wrong-bg: #D32F2F;
+    --button-bg: #B19CD9;
+    --button-color: #000;
+    --item-bg: #3C2F5F;
+    --category-bg: #4B3A6F;
+    --category-color: #E0E0E0;
+    --game-container-bg: #2A2244;
+    --game-area-bg: #1C172B;
+    --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+    --popup-shadow: rgba(255, 255, 255, 0.5);
+    --score-bg: #4B3A6F;
+    --score-color: #E0E0E0;
+    --accent: #7b46ac;
+    --muted: #f3eef9;
+    --dartboard-outer: #000000;
+    --dartboard-white: #ffffff;
+    --dartboard-inner-black: #000000;
+    --dartboard-green: #228B22;
+    --dartboard-red: #FF0000;
+    --dartboard-gold: #FFD700;
+    --dart-color: #ff4500;
+    --color3: #B19CD9CC;
+    --color4: #B19CD999;
+    --color5: #B19CD966;
+    --color6: #B19CD933;
+}
+.light {
+    --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+    --body-color: #333;
+    --header-bg: #7b46ac;
+    --header-color: #fff;
+    --h-color: #333;
+    --chapter-bg: #fff;
+    --text-p-color: #444;
+    --topic-bg: #D0C3F1;
+    --footer-bg: #7b46ac;
+    --footer-color: #333;
+    --popup-bg: #9846ac;
+    --popup-color: #333;
+    --shimmer-color: rgba(123, 70, 172, 0.2);
+    --sparkle-color-from: #9846ac;
+    --sparkle-color-to: #7b46ac;
+    --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+    --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+    --shadow-small: rgba(0,0,0,0.05);
+    --theme-text-color: #333;
+    --color3: #9846acCC;
+    --color4: #9846ac99;
+    --color5: #9846ac66;
+    --color6: #9846ac33;
+    --correct-bg: #4caf50;
+    --wrong-bg: red;
+    --button-bg: #9846ac;
+    --button-color: #333;
+    --item-bg: #D0C3F1;
+    --category-bg: #7b46ac;
+    --category-color: #333;
+    --game-container-bg: #fff;
+    --game-area-bg: #f9f9f9;
+    --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    --popup-shadow: rgba(0, 0, 0, 0.2);
+    --score-bg: #7b46ac;
+    --score-color: #333;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0; padding: 0; font-family: Arial, sans-serif;
+    background: var(--body-bg); color: var(--body-color);
+    min-height: 100vh; display: flex; flex-direction: column;
+}
+header {
+    background-color: var(--header-bg); color: var(--header-color);
+    padding: 15px 20px; text-align: center; font-family: 'Michroma', sans-serif;
+    position: relative; overflow: hidden;
+}
+header::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 100%;
+    background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+    animation: shimmer 3s infinite linear;
+}
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+header h1.theme-text { color: white; }
+h1, h2, h3 { font-family: 'Michroma', sans-serif; color: var(--h-color); position: relative; }
+h1::after, h2::after {
+    content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
+    width: 50%; height: 2px; background: linear-gradient(to right, transparent, var(--h-color), transparent);
+}
+.card {
+    margin: 10px auto; padding: 15px 25px; max-width: 900px; background: var(--chapter-bg) !important;
+    border-radius: 12px; box-shadow: var(--shadow-main), var(--shadow-glow);
+    font-size: 18px; color: var(--text-p-color) !important; width: 90%;
+}
+.card h2 { margin: 0 0 10px; color: var(--h-color) !important; }
+.card p, .card ul, .card ol, .card table { line-height: 1.7; margin: 10px 0; color: var(--text-p-color) !important; }
+.card ul, .card ol { padding-left: 30px; }
+.card li { margin-bottom: 10px; }
+.card img { width: 100%; max-width: 700px; height: 600px; border-radius: 12px; box-shadow: 0px 4px 20px var(--shadow-small);
+    margin: 10px auto; display: block !important; object-fit: cover; }
+.card img:hover { animation: bounce 0.5s ease-in-out; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.topic-card {
+    margin: 25px auto; padding: 15px 25px; max-width: 900px; background: var(--topic-bg) !important;
+    border-radius: 12px; box-shadow: var(--shadow-main), var(--shadow-glow);
+    font-family: 'Michroma', sans-serif; font-size: 20px; width: 90%; text-align: center;
+    position: relative; color: var(--theme-text-color) !important;
+}
+.topic-card::before, .topic-card::after {
+    content: '✨'; position: absolute; top: 50%; transform: translateY(-50%);
+    font-size: 16px; color: var(--sparkle-color-from); animation: sparkle 1.5s infinite ease-in-out;
+}
+.topic-card::before { left: 10px; } .topic-card::after { right: 10px; }
+@keyframes sparkle { 0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; } 50% { transform: translateY(-50%) scale(1.2); opacity: 0.7; } }
+.topic-card:hover { background: var(--sparkle-color-from) !important; color: var(--popup-color) !important; transform: scale(1.03); }
+/* Audio Container */
+.audio-container {
+    position: relative; background: url('/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+    background-size: contain; border-radius: 16px; box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+    margin: 1rem auto; width: 90%; max-width: 900px; aspect-ratio: 1920 / 1080;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 1rem;
+}
+.audio-container audio {
+    width: 100%; border-radius: 12px; border: 2px solid #2D2B7E; background: #F5F5FF;
+    height: 50px; padding: 4px; box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
+}
+audio::-webkit-media-controls-panel { background-color: #E6E6FA; border-radius: 12px; }
+/* Theme Toggle */
+/* Theme-aware images */
+.theme-image { display: block !important; }
+body.light .theme-image-dark { display: none !important; }
+body.light .theme-image-light { display: block !important; }
+body:not(.light) .theme-image-light { display: none !important; }
+body:not(.light) .theme-image-dark { display: block !important; }
+/* YouTube Shorts - Purple Lavender Glow */
+iframe {
+    border-radius: 16px;
+    box-shadow: 0 0 20px var(--h-color), 0 0 40px rgba(177, 156, 217, 0.5);
+    border: 3px solid var(--sparkle-color-from);
+    width: 100%;
+    max-width: 400px;
+    height: 700px;
+    margin: 20px auto;
+    display: block !important;
+}
+@media (max-width: 768px) {
+    iframe { height: 600px; max-width: 100%; }
+}
+/* DART GAME — EXACTLY AS ORIGINAL (NO CHANGES) */
+.activity-container { max-width: 900px; margin: 10px auto; padding: 15px 25px;
+    background: var(--game-container-bg); border-radius: 12px; box-shadow: var(--shadow-main), var(--shadow-glow);
+    text-align: center; width: 90%; position: relative; }
+.score-container { display: inline-block; margin: 10px 5px; padding: 8px 15px;
+    background: var(--score-bg); color: var(--score-color); border-radius: 8px;
+    font-family: 'Michroma', sans-serif; font-size: 16px; box-shadow: var(--shadow-main);
+    border: 1px solid var(--sparkle-color-from); }
+.dart-game { display: flex; flex-direction: column; align-items: center; gap: 20px;
+    margin: 20px auto; max-width: 800px; }
+.question-text { font-family: 'Michroma', sans-serif; font-size: 18px;
+    color: var(--theme-text-color); margin-bottom: 10px; text-align: center; }
+.dartboard { width: 350px; height: 350px; position: relative; border: 5px solid var(--dartboard-outer);
+    border-radius: 50%; box-shadow: var(--shadow-main), inset 0 0 50px rgba(255, 215, 0, 0.5);
+    background: var(--dartboard-white); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.layer { position: absolute; border-radius: 50%; box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); }
+.layer-outer-black { width: 100%; height: 100%; background: var(--dartboard-outer); }
+.layer-white { width: 80%; height: 80%; background: var(--dartboard-white); }
+.layer-inner-black { width: 60%; height: 60%; background: var(--dartboard-inner-black); }
+.layer-green { width: 40%; height: 40%; background: var(--dartboard-green); }
+.layer-red { width: 20%; height: 20%; background: var(--dartboard-red); }
+.bullseye { width: 10%; height: 10%; background: var(--dartboard-gold); border-radius: 50%; }
+.dart-options { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+.dart-option { background: var(--game-area-bg); padding: 10px 20px; border-radius: 8px;
+    border: 1px solid var(--color6); cursor: pointer; color: var(--theme-text-color);
+    font-size: 14px; transition: transform 0.2s ease-in-out; }
+.dart-option:hover { transform: scale(1.03); background: var(--item-bg); }
+.dart-option.correct { background: var(--correct-bg); animation: pulse 0.5s ease-in-out; }
+.dart-option.wrong { background: var(--wrong-bg); animation: shake 0.5s ease-in-out; }
+.dart-animation { position: absolute; width: 20px; height: 40px; background: var(--dart-color);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); pointer-events: none;
+    display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px;
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out; }
+.points-display { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 24px; font-weight: bold; color: var(--theme-text-color); z-index: 10;
+    animation: showPoints 0.5s ease-in-out; }
+@keyframes showPoints { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); } 100% { opacity: 0; } }
+button { margin: 8px; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer;
+    font-weight: bold; font-family: 'Michroma', sans-serif; background: var(--button-bg);
+    color: var(--button-color); transition: background 0.3s, transform 0.2s; }
+button#nextQuestion { background: var(--correct-bg); color: #fff; }
+button:hover { background: var(--header-bg); transform: scale(1.05); }
+#resultPopup { display: none !important; background: var(--popup-bg); color: var(--popup-color);
+    padding: 15px; border-radius: 8px; margin: 20px auto; max-width: 300px;
+    box-shadow: var(--shadow-main), var(--shadow-glow); font-family: 'Michroma', sans-serif;
+    font-size: 18px; animation: popupFade 0.5s; }
+.button-container { display: flex; justify-content: center; align-items: center; gap: 10px; }
+footer { text-align: center; padding: 15px; background-color: var(--footer-bg);
+    color: var(--footer-color); font-size: 14px; margin-top: auto; position: relative; overflow: hidden; }
+footer::before { content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 100%;
+    background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+    animation: shimmer 3s infinite linear; }
+</style>
+<style>
+/* Mod5 SVG override */
+#fullscreen-btn svg {
+  width: 32px !important;
+  height: 32px !important;
+}
+@media (max-width: 768px) {
+  #fullscreen-btn svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
+</div>
+
+
+
+
+
+<p></p>
+
+<header>
+<h1><span style="color:#ffffff;"><strong><span class="theme-text">Chapter 2: Funding, Expansion &amp; Technology Investments</span></strong></span></h1>
+
+<p><strong><span class="theme-font-18">Fueling Salty&rsquo;s Growth</span></strong></p>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/5.2.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
+</div>
+
+<div class="topic-card"><strong>Seed Funding Success</strong></div>
+
+<div class="card">
+<h2>Seed Funding Success</h2>
+
+<p>After bootstrapping profitably for the initial year, Salty raised Rs 5.4 crore in a Seed round in January 2024, led by All in Capital and Anicut Capital, with participation from Suashish Diamonds, JK Group, and other angel investors. This funding, a transformative milestone, supports team expansion, product diversification, and technological advancements.</p>
+<img alt="Seed Funding Success" class="theme-image theme-image-dark" src="https://login.skillizee.io/s/articles/68de26c232f07b5344a2a67a/images/seed fudning dark.png" /> <img alt="Seed Funding Success" class="theme-image theme-image-light" src="https://login.skillizee.io/s/articles/68de26c232f07b5344a2a67a/images/seed funding light.png" /></div>
+
+<div class="topic-card"><strong>Impact of Funding</strong></div>
+
+<div class="card">
+<h2>Impact of Funding</h2>
+
+<p><img alt="Impact of Funding" src="https://login.skillizee.io/s/articles/691d7cd7d32b57731763e25c/images/Impact of funding 4.png" style="width: 1024px; height: 1024px;" /></p>
+
+<ul>
+	<li><strong>Team Expansion:</strong> Recruiting for critical roles in design, marketing, operations, and technology to enhance innovation and scaling.</li>
+	<li><strong>Product Portfolio Growth:</strong> Expanding from 1,000 to over 3,000 SKUs to cater to a wider market with frequent new launches.</li>
+	<li><strong>Technological Investments:</strong> Launching a dedicated mobile app to improve customer experience and foster loyalty.</li>
+	<li>&nbsp;</li>
+	<li><strong>Marketing &amp; Market Expansion:</strong> Increased budgets for digital marketing, influencer partnerships, and quick commerce to boost visibility and customer acquisition in tier 2 and tier 3 cities.</li>
+	<li><strong>Operational Scaling:</strong> Strengthening supply chain, inventory control, and backend infrastructure to support a Rs 40 crore ARR in 2024.</li>
+</ul>
+</div>
+
+<div class="topic-card"><strong>Technology Investments for Growth</strong></div>
+
+<div class="card">
+<h2>Technology Investments for Growth</h2>
+
+<p>An imitation jewellery brand can invest in technology for growth through several strategic channels:</p>
+
+<ol>
+	<li><strong>E-commerce Platform:</strong> Develop a user-friendly, mobile-optimized website or app to reach a wider audience and provide a seamless shopping experience with easy navigation, personalized recommendations, and secure payment gateways.</li>
+	<li><strong>Inventory and Supply Chain Management:</strong> Use automated inventory tracking, demand forecasting, and supplier management software to optimize stock levels, reduce dead stock, and speed up turnaround time.</li>
+	<li><strong>Digital Marketing and SEO:</strong> Invest in SEO tools and digital marketing technologies to increase online visibility, attract organic traffic, and compete with larger marketplaces.</li>
+	<li><strong>Data Analytics and Customer Insights:</strong> Leverage customer data platforms and analytics to understand buying patterns, customer preferences, and market trends for targeted product launches and promotions.</li>
+	<li><strong>Social Media and Influencer Marketing Tools:</strong> Utilize platforms that help identify and manage influencer collaborations, monitor social media engagement, and run targeted ad campaigns.</li>
+	<li><strong>Quality Control and Testing Technologies:</strong> Implement technologies for material testing and quality assurance to maintain product standards and build customer trust.</li>
+	<li><strong>Augmented Reality (AR) and Virtual Try-Ons:</strong> Integrate AR tools that allow customers to virtually try on jewellery, enhancing online shopping confidence.</li>
+	<li><strong>Customer Relationship Management (CRM) Systems:</strong> Automate customer interactions from inquiries to post-sale support for better service and retention.</li>
+</ol>
+
+<p>By focusing on these technology investments, an imitation jewellery brand can boost operational efficiency, build a stronger digital presence, deliver better customer experiences, and scale sustainably in a competitive market.</p>
+
+<h3 style="text-align:center; margin:30px 0 15px 0; color:#B19CD9;">Brand Positioning &ndash; Long Video</h3>
+
+<div style="text-align:center; margin:20px 0;"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" scrolling="no" src="https://www.youtube.com/embed/C3Y6_-JGKuQ?rel=0" title="Salty Brand Positioning"></iframe></div>
+
+<h3 style="text-align:center; margin:30px 0 15px 0; color:#B19CD9;">Importance of Digital Marketing for Jewelry Sellers</h3>
+
+<div style="text-align:center; margin:20px 0;"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" scrolling="no" src="https://www.youtube.com/embed/sOhHPIn87dc?rel=0" title="Digital Marketing for Jewelry"></iframe></div>
+
+<h3 style="text-align:center; margin:30px 0 15px 0; color:#B19CD9;">How to Start an Online Jewellery Brand</h3>
+
+<div style="text-align:center; margin:20px 0;"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" scrolling="no" src="https://www.youtube.com/embed/3u9fUNn3Ur4?rel=0" title="Starting Jewellery Brand"></iframe></div>
+</div>
+
+<div class="topic-card"><strong>Sales and Market Momentum</strong></div>
+
+<div class="card">
+<h2>Sales and Market Momentum</h2>
+<img src="https://login.skillizee.io/s/articles/691d7cd7d32b57731763e25c/images/Sales and market momentum 1.png" /></div>
+
+<div class="topic-card"><strong>Funding Knowledge Dart Game</strong></div>
+
+<div class="activity-container">
+<h2>Salty&rsquo;s Funding Knowledge Dart Game</h2>
+
+<p class="theme-text">Select a dart with the correct answer to the question above the dartboard. You get 1 chance per question. Aim for 300 points to pass! or RESET</p>
+
+<div class="dart-game" id="dartGame">
+<div class="question-text" id="questionText">&nbsp;</div>
+
+<div class="dartboard" id="dartboard">
+<div class="layer layer-outer-black">&nbsp;</div>
+
+<div class="layer layer-white">&nbsp;</div>
+
+<div class="layer layer-inner-black">&nbsp;</div>
+
+<div class="layer layer-green">&nbsp;</div>
+
+<div class="layer layer-red">&nbsp;</div>
+
+<div class="bullseye">&nbsp;</div>
+
+<div class="points-display" id="pointsDisplay">&nbsp;</div>
+</div>
+
+<div class="dart-options" id="dartOptions">&nbsp;</div>
+</div>
+
+<div class="button-container"><button id="nextQuestion" style="display: none !important;">Next Question</button><button fdprocessedid="8ofqwm" id="resetActivity">Reset</button>
+
+<div class="score-container">Points: <span id="score">0</span></div>
+</div>
+
+<div id="status">&nbsp;</div>
+
+<div id="resultPopup">&nbsp;</div>
+</div>
+
+<p>
+<audio id="correctSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Confetti%20pop.mp3">&nbsp;</audio>
+
+<audio id="incorrectSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Sounds/Wrong.mp3">&nbsp;</audio>
+
+<audio id="winSound" src="https://chirag-gour.github.io/Audio_SkilliZee/Sounds/Win.mp3">&nbsp;</audio>
+</p>
+
+<footer><span class="theme-font-18">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    
+
+    // Dart Game - 100% original code preserved
+    const correctSound = document.getElementById('correctSound');
+    const incorrectSound = document.getElementById('incorrectSound');
+    const winSound = document.getElementById('winSound');
+    const popup = document.getElementById('resultPopup');
+    const statusEl = document.getElementById('status');
+    const scoreEl = document.getElementById('score');
+    const questionText = document.getElementById('questionText');
+    const dartOptions = document.getElementById('dartOptions');
+    const pointsDisplay = document.getElementById('pointsDisplay');
+    const nextQuestionBtn = document.getElementById('nextQuestion');
+
+    const QUESTIONS = [
+        { question: "How much funding did Salty raise in its Seed round?", options: ["Rs 5.4 crore", "Rs 10 crore", "Rs 2 crore"], correct: "Rs 5.4 crore" },
+        { question: "What is Salty’s target ARR for 2024?", options: ["Rs 20 crore", "Rs 40 crore", "Rs 60 crore"], correct: "Rs 40 crore" },
+        { question: "How many orders has Salty fulfilled since 2022?", options: ["50,000", "100,000", "200,000"], correct: "100,000" },
+        { question: "What is one use of the seed funding?", options: ["Opening physical stores", "Launching a mobile app", "Reducing product range"], correct: "Launching a mobile app" },
+        { question: "Who led Salty’s Seed funding round?", options: ["Suashish Diamonds", "All in Capital and Anicut Capital", "JK Group"], correct: "All in Capital and Anicut Capital" }
+    ];
+
+    let points = 0, currentQuestionIndex = 0, attemptsLeft = 2, answeredQuestions = [];
+
+    function shuffle(array) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } return array; }
+    function triggerConfetti() { confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#FFD700', '#C0C0C0'] }); }
+
+    function buildDartGame() {
+        dartOptions.innerHTML = ''; pointsDisplay.textContent = ''; pointsDisplay.style.display = 'none';
+        attemptsLeft = 2; nextQuestionBtn.style.display = 'none';
+        const currentQuestion = QUESTIONS[currentQuestionIndex];
+        questionText.textContent = currentQuestion.question;
+        const shuffledOptions = shuffle([...currentQuestion.options]);
+        shuffledOptions.forEach(option => {
+            const dartOption = document.createElement('div');
+            dartOption.classList.add('dart-option');
+            dartOption.textContent = option;
+            dartOption.addEventListener('click', () => throwDart(dartOption, option));
+            dartOptions.appendChild(dartOption);
+        });
+        statusEl.textContent = `Attempts left: ${attemptsLeft} | Points: ${points}`;
+    }
+
+    function throwDart(dartOption, selectedAnswer) {
+        if (dartOption.classList.contains('correct') || dartOption.classList.contains('wrong') || attemptsLeft === 0) return;
+        const dart = document.createElement('div'); dart.classList.add('dart-animation');
+        dart.textContent = selectedAnswer;
+        dart.style.left = `${dartOption.offsetLeft + dartOption.offsetWidth / 2 - 10}px`;
+        dart.style.top = `${dartOption.offsetTop - 40}px`;
+        document.getElementById('dartGame').appendChild(dart);
+
+        const currentQuestion = QUESTIONS[currentQuestionIndex];
+        const isCorrect = selectedAnswer === currentQuestion.correct;
+        dartOption.classList.add(isCorrect ? 'correct' : 'wrong');
+        let earnedPoints = 0;
+        if (isCorrect) {
+            earnedPoints = attemptsLeft === 2 ? 100 : 50;
+            points += earnedPoints; correctSound.play().catch(() => {});
+            popup.textContent = `Great shot! +${earnedPoints} points!`; popup.style.display = "block";
+            setTimeout(() => popup.style.display = "none", 2000);
+            triggerConfetti();
+        } else {
+            attemptsLeft--; incorrectSound.play().catch(() => {});
+            popup.textContent = `Missed! ${attemptsLeft} attempt(s) left!`; popup.style.display = "block";
+            setTimeout(() => popup.style.display = "none", 2000);
+        }
+        pointsDisplay.textContent = `${earnedPoints} points!`; pointsDisplay.style.display = 'block';
+        dartOptions.querySelectorAll('.dart-option').forEach(opt => opt.style.pointerEvents = 'none');
+        setTimeout(() => dart.remove(), 800);
+        scoreEl.textContent = points; statusEl.textContent = `Attempts left: ${attemptsLeft} | Points: ${points}`;
+        if (attemptsLeft === 0 || isCorrect) {
+            answeredQuestions.push(currentQuestionIndex);
+            nextQuestionBtn.style.display = 'inline-block';
+        }
+        if (points >= 300 && answeredQuestions.length === QUESTIONS.length) {
+            popup.textContent = "Congratulations! You passed with " + points + " points!";
+            popup.style.display = "block"; winSound.play().catch(() => {}); triggerConfetti();
+            setTimeout(() => popup.style.display = "none", 4000);
+        }
+    }
+
+    function nextQuestion() {
+        if (answeredQuestions.length >= QUESTIONS.length) return;
+        do { currentQuestionIndex = (currentQuestionIndex + 1) % QUESTIONS.length; }
+        while (answeredQuestions.includes(currentQuestionIndex));
+        buildDartGame();
+    }
+
+    function resetGame() {
+        points = 0; currentQuestionIndex = 0; attemptsLeft = 2; answeredQuestions = [];
+        scoreEl.textContent = points; statusEl.textContent = ''; buildDartGame();
+    }
+
+    document.getElementById('nextQuestion').addEventListener('click', nextQuestion);
+    document.getElementById('resetActivity').addEventListener('click', resetGame);
+    buildDartGame();
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggleUI = document.getElementById('theme-toggle');
+  
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    if(themeToggleUI) themeToggleUI.classList.add('on');
+  }
+  
+  if(themeToggleUI) {
+    themeToggleUI.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      themeToggleUI.classList.toggle('on');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+  }
+  
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if(fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {});
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        document.exitFullscreen();
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement) {
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

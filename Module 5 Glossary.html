@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="universal.css" />
+
+<style type="text/css">:root {
+            --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+            --body-color: #CCC;
+            --header-bg: #4B3A6F;
+            --header-color: #E0E0E0;
+            --h-color: #B19CD9;
+            --chapter-bg: #2A2244;
+            --text-p-color: #BBB;
+            --topic-bg: #3C2F5F;
+            --game-container-bg: #2A2244;
+            --game-area-bg: #1C172B;
+            --item-bg: #3C2F5F;
+            --category-bg: #4B3A6F;
+            --category-color: #E0E0E0;
+            --results-bg: #1C172B;
+            --footer-bg: #4B3A6F;
+            --footer-color: #E0E0E0;
+            --correct-bg: #388E3C;
+            --wrong-bg: #D32F2F;
+            --popup-bg: #B19CD9;
+            --popup-color: #000;
+            --shimmer-color: rgba(177, 156, 217, 0.2);
+            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+            --shadow-small: rgba(255,255,255,0.05);
+            --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+            --arrow-stroke: #B19CD9;
+            --theme-text-color: #ffffff;
+            --timeline-bg: #3C2F5F;
+            --timeline-color: #E0E0E0;
+            --button-bg: #B19CD9;
+            --button-color: #000;
+            --popup-shadow: rgba(255, 255, 255, 0.5);
+        }
+
+        .light {
+            --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+            --body-color: #333;
+            --header-bg: #7b46ac;
+            --header-color: #333;
+            --h-color: #333;
+            --chapter-bg: #fff;
+            --text-p-color: #444;
+            --topic-bg: #D0C3F1;
+            --game-container-bg: #fff;
+            --game-area-bg: #f9f9f9;
+            --item-bg: #D0C3F1;
+            --category-bg: #7b46ac;
+            --category-color: white;
+            --results-bg: #f9f9f9;
+            --footer-bg: #7b46ac;
+            --footer-color: white;
+            --correct-bg: #4caf50;
+            --wrong-bg: red;
+            --popup-bg: #9846ac;
+            --popup-color: white;
+            --shimmer-color: rgba(123, 70, 172, 0.2);
+            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+            --shadow-small: rgba(0,0,0,0.05);
+            --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            --arrow-stroke: #9846ac;
+            --theme-text-color: #333;
+            --timeline-bg: #D0C3F1;
+            --timeline-color: #444;
+            --button-bg: #9846ac;
+            --button-color: white;
+            --popup-shadow: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Michroma', sans-serif;
+            background: var(--body-bg);
+            color: var(--body-color);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-color);
+            padding: 10px;
+            text-align: center;
+            font-family: 'Michroma', sans-serif;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+            animation: shimmer 3s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        h1, h2, h3 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--h-color);
+            position: relative;
+        }
+
+        h1::after, h2::after, h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--h-color), transparent);
+        }
+
+        .section-bg {
+            background: var(--chapter-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-main), var(--shadow-glow);
+            padding: 20px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1100px;
+            text-align: center;
+        }
+
+        .jewel-bounce {
+            animation: jewelBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes jewelBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .premium-badge {
+            background: var(--button-bg);
+            color: var(--button-color);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .table-container {
+            background: var(--game-container-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-main);
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--category-bg);
+        }
+
+        th {
+            background: var(--category-bg);
+            color: var(--category-color);
+            font-size: 18px;
+        }
+
+        td {
+            background: var(--item-bg);
+            color: var(--theme-text-color);
+            font-size: 16px;
+        }
+
+        td span.video-link {
+            color: var(--button-bg);
+            cursor: pointer;
+        }
+
+        td span.video-link:hover {
+            color: var(--header-bg);
+        }
+
+        .video-player {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .video-player iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-main);
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        
+
+        @media (max-width: 768px) {
+            .video-player iframe {
+                height: 300px;
+            }
+            .section-bg {
+                padding: 10px;
+            }
+            .logo-container img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        .theme-text {
+            color: var(--theme-text-color);
+        }
+
+        .theme-font-18 {
+            font-size: 18px;
+        }
+</style>
+<style>
+/* Mod5 SVG override */
+#fullscreen-btn svg {
+  width: 32px !important;
+  height: 32px !important;
+}
+@media (max-width: 768px) {
+  #fullscreen-btn svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
+</div>
+
+
+
+
+
+<p></p>
+
+<header>
+<h1><strong><span class="theme-text">💎 SALTY JEWELLERY EXPERIENCE: Glossary</span></strong></h1>
+
+<p><span class="theme-font-18">Skillizee X Salty Virtual Internship &ndash; Module 5 Key Terms and Concepts</span></p>
+</header>
+
+<main>
+<div class="logo-container jewel-bounce"><img alt="Salty Logo" src="https://login.skillizee.io/s/articles/68e0f0618c80e9370492f7e4/images/Salty circle logo.png" /></div>
+
+<section class="section-bg">
+<h2>About This Glossary</h2>
+
+<p class="text-sm md:text-base" style="color: var(--text-p-color); margin-top: 1rem;">This glossary provides definitions and explanations of key terms related to the Salty Jewellery Experience, helping you understand the core concepts covered in Module 5 of the Skillizee X Salty Virtual Internship.</p>
+
+<h2>Module 5: Glossary</h2>
+
+<div class="video-player" id="videoPlayer"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/JHHPrIDMOPk?rel=0&amp;showinfo=0"></iframe></div>
+
+<div class="table-container">
+<table>
+	<thead>
+		<tr>
+			<th>Word/Phrase</th>
+			<th>Meaning (Simplified)</th>
+			<th>Videos</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Expansion</strong></td>
+			<td>Growing into new areas, markets, or product categories.</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><strong>Accessories</strong></td>
+			<td>Fashion add-ons like jewellery, bags, belts, hats, and eyewear that complete an outfit.</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><strong>Accessibility</strong></td>
+			<td>Easy for people to buy, not too expensive, and widely available.</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><strong>Personalized Outreach</strong></td>
+			<td>Special messages or offers made for each customer.</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><strong>Lifestyle Brand</strong></td>
+			<td>A brand that becomes part of customers&rsquo; everyday fashion and lifestyle.</td>
+			<td><span class="video-link" onclick="playVideo('kB0g8Gg-sXA')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Bootstrapping</strong></td>
+			<td>Starting a company with your own money instead of outside funding.</td>
+			<td><span class="video-link" onclick="playVideo('s0egne2YBWg')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Valuation</strong></td>
+			<td>The financial worth of a company in the market.</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><strong>Net Revenue</strong></td>
+			<td>Total money earned by the brand after cutting discounts and returns.</td>
+			<td><span class="video-link" onclick="playVideo('kHKtykzhz90', 37, 72)">Watch Video (0:37-1:12)</span></td>
+		</tr>
+		<tr>
+			<td><strong>Sustainable Growth</strong></td>
+			<td>Growth that continues steadily over time without big losses.</td>
+			<td><span class="video-link" onclick="playVideo('B3TwWr8Yl08')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Investors</strong></td>
+			<td>People or groups who give money to a company expecting returns later.</td>
+			<td><span class="video-link" onclick="playVideo('eRrqfi0fY0o', 13, 23)">Watch Video (0:13-0:23)</span></td>
+		</tr>
+		<tr>
+			<td><strong>Angel Investors</strong></td>
+			<td>Wealthy individuals who invest in startups early.</td>
+			<td><span class="video-link" onclick="playVideo('F3hesCpt_Ng')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Startup India Seed Fund</strong></td>
+			<td>A government program in India that supports young startups with money.</td>
+			<td><span class="video-link" onclick="playVideo('NQcKEdhqQmM')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Milestone</strong></td>
+			<td>A big goal or achievement reached along the way.</td>
+			<td><span class="video-link" onclick="playVideo('5uGcfXmGDB0')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Revenue Run Rate (ARR)</strong></td>
+			<td>Forecast of annual earnings based on current monthly or quarterly revenue.</td>
+			<td><span class="video-link" onclick="playVideo('maFZ3kxmuPg')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>SKU (Stock Keeping Unit)</strong></td>
+			<td>A unique code or number for each product design to track inventory.</td>
+			<td><span class="video-link" onclick="playVideo('-tFaUwAavG0')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Supply Chain</strong></td>
+			<td>The system of making, storing, and delivering products to customers.</td>
+			<td><span class="video-link" onclick="playVideo('k1FYft3cfok')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Inventory</strong></td>
+			<td>The stock of products kept ready for sale.</td>
+			<td><span class="video-link" onclick="playVideo('trreap294A0', 0, 54)">Watch Video (0:00-0:54)</span></td>
+		</tr>
+		<tr>
+			<td><strong>Scaling</strong></td>
+			<td>Growing a business bigger and faster.</td>
+			<td><span class="video-link" onclick="playVideo('fWUdMPnvGHE', 13, 35)">Watch Video (0:13-0:35)</span></td>
+		</tr>
+		<tr>
+			<td><strong>Capital</strong></td>
+			<td>Money used for investment in business.</td>
+			<td><span class="video-link" onclick="playVideo('1vx7sgMLgEU')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Competitive Positioning</strong></td>
+			<td>How a company presents itself in comparison to rivals.</td>
+			<td><span class="video-link" onclick="playVideo('CsjxKhLRHOA')">Watch Video</span></td>
+		</tr>
+		<tr>
+			<td><strong>Market Share</strong></td>
+			<td>The percentage of total industry sales a brand owns.</td>
+			<td><span class="video-link" onclick="playVideo('a6d5nGc3RMo', 0, 52)">Watch Video (0:00-0:52)</span></td>
+		</tr>
+		<tr>
+			<td><strong>Global Market</strong></td>
+			<td>The industry and customers outside India, all over the world.</td>
+			<td><span class="video-link" onclick="playVideo('e6hqkKPvjtk', 0, 27)">Watch Video (0:00-0:27)</span></td>
+		</tr>
+		<tr>
+			<td><strong>Transformative</strong></td>
+			<td>Something that brings big, positive change.</td>
+			<td><span class="video-link" onclick="playVideo('mt3ad9z89gU')">Watch Video</span></td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</section>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+
+            window.playVideo = function(videoId, startTime = 0, endTime = null) {
+                const player = document.querySelector('#videoPlayer iframe');
+                let src = `https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&start=${startTime}`;
+                if (endTime) {
+                    src += `&end=${endTime}`;
+                }
+                player.src = src;
+                document.getElementById('videoPlayer').scrollIntoView({ behavior: 'smooth' });
+                return false;
+            };
+        });
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggleUI = document.getElementById('theme-toggle');
+  
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    if(themeToggleUI) themeToggleUI.classList.add('on');
+  }
+  
+  if(themeToggleUI) {
+    themeToggleUI.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      themeToggleUI.classList.toggle('on');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+  }
+  
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if(fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {});
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        document.exitFullscreen();
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement) {
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

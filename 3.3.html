@@ -1,0 +1,861 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+    <link rel="stylesheet" href="universal.css" />
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+<style type="text/css">:root {
+            --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+            --body-color: #CCC;
+            --header-bg: #4B3A6F;
+            --header-color: #E0E0E0;
+            --h-color: #B19CD9;
+            --chapter-bg: #2A2244;
+            --text-p-color: #BBB;
+            --topic-bg: #3C2F5F;
+            --timeline-bg: #3C2F5F;
+            --timeline-link-bg: #4B3A6F;
+            --timeline-instruction-bg: #B19CD9;
+            --timeline-instruction-color: #000;
+            --footer-bg: #4B3A6F;
+            --footer-color: #E0E0E0;
+            --popup-bg: #B19CD9;
+            --popup-color: #000;
+            --shimmer-color: rgba(177, 156, 217, 0.2);
+            --sparkle-color-from: #B19CD9;
+            --sparkle-color-to: #8A7DB5;
+            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+            --shadow-small: rgba(255,255,255,0.05);
+            --theme-text-color: #ffffff;
+            --color3: #B19CD9CC;
+            --color4: #B19CD999;
+            --color5: #B19CD966;
+            --color6: #B19CD933;
+        }
+
+        .light {
+            --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+            --body-color: #333;
+            --header-bg: #7b46ac;
+            --header-color: #fff;
+            --h-color: #9846ac;
+            --chapter-bg: #fff;
+            --text-p-color: #444;
+            --topic-bg: #D0C3F1;
+            --timeline-bg: #D0C3F1;
+            --timeline-link-bg: #7b46ac;
+            --timeline-instruction-bg: #9846ac;
+            --timeline-instruction-color: #fff;
+            --footer-bg: #7b46ac;
+            --footer-color: #fff;
+            --popup-bg: #9846ac;
+            --popup-color: #fff;
+            --shimmer-color: rgba(123, 70, 172, 0.2);
+            --sparkle-color-from: #9846ac;
+            --sparkle-color-to: #7b46ac;
+            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+            --shadow-small: rgba(0,0,0,0.05);
+            --theme-text-color: #000000;
+            --color3: #9846acCC;
+            --color4: #9846ac99;
+            --color5: #9846ac66;
+            --color6: #9846ac33;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: var(--body-bg);
+            color: var(--body-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-color);
+            padding: 10px 20px;
+            text-align: center;
+            font-family: 'Michroma', sans-serif;
+            width: 100%;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        header:hover {
+            transform: scale(1.01);
+            background-color: var(--popup-bg);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--h-color);
+        }
+
+        .chapter-section {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            margin: 10px auto;
+            padding: 10px;
+            max-width: 1100px;
+            background: var(--chapter-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-main);
+            width: 90%;
+            gap: 10px;
+        }
+
+        .chapter-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .chapter-text {
+            flex: 1;
+            padding: 10px;
+            align-self: stretch;
+            text-align: center;
+        }
+
+        .chapter-text h2 {
+            margin-bottom: 5px;
+        }
+
+        .chapter-text p {
+            line-height: 1.7;
+            font-size: 18px;
+            color: var(--text-p-color);
+        }
+
+        .chapter-text ul {
+            line-height: 1.7;
+            font-size: 18px;
+            color: var(--text-p-color);
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .chapter-text li {
+            margin-bottom: 10px;
+        }
+
+        .chapter-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            max-width: none;
+            height: 100%;
+            overflow: hidden;
+            align-self: stretch;
+        }
+
+        .chapter-image img {
+            width: 100%;
+            height: 80%;
+            max-width: 600px;
+            max-height: 400px;
+            aspect-ratio: 4/5;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow-small);
+            transition: transform 0.4s ease;
+            margin: 10px auto;
+            cursor: pointer;
+        }
+
+        .chapter-image img:hover {
+            transform: scale(1.03);
+        }
+
+        .large-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .large-image img {
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+            max-height: 600px;
+            aspect-ratio: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow-small);
+            margin: 10px auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .topic-card {
+            margin: 25px auto;
+            padding: 10px;
+            max-width: 800px;
+            background: var(--topic-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-main);
+            text-align: center;
+            transition: 0.3s ease;
+            font-family: 'Michroma', sans-serif;
+            font-size: 20px;
+            cursor: pointer;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--theme-text-color);
+        }
+
+        .topic-card:hover {
+            animation: flash 0.8s linear;
+            background: var(--sparkle-color-from);
+            color: var(--popup-color);
+            transform: scale(1.03);
+        }
+
+        @keyframes flash {
+            0% { background-color: var(--topic-bg); }
+            50% { background-color: var(--header-bg); color: var(--header-color); }
+            100% { background-color: var(--sparkle-color-from); }
+        }
+
+        .timeline-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 5px auto;
+            padding: 5px;
+            background: var(--timeline-bg);
+            border-radius: 12px;
+            max-width: 800px;
+            width: 90%;
+            flex-wrap: wrap;
+        }
+
+        .timeline-nav a {
+            padding: 10px 20px;
+            background: var(--timeline-link-bg);
+            color: var(--theme-text-color);
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Michroma', sans-serif;
+            transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+        }
+
+        .timeline-nav a:hover, .timeline-nav a.active {
+            background: var(--popup-bg);
+            transform: scale(1.05);
+        }
+
+        .timeline-instruction {
+            margin: 5px auto;
+            padding: 5px;
+            max-width: 800px;
+            background-color: var(--timeline-instruction-bg);
+            color: var(--theme-text-color);
+            text-align: center;
+            font-family: 'Michroma', sans-serif;
+            border-radius: 8px;
+            width: 90%;
+        }
+
+        .year-section {
+            margin: 5px auto;
+            padding: 5px;
+            max-width: 1100px;
+            background: var(--chapter-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-main);
+            display: flex;
+            align-items: center;
+            gap: 0;
+            animation: fadeIn 0.5s ease-in-out;
+            width: 90%;
+        }
+
+        .year-image {
+            flex: 1;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .year-image img {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            max-height: 300px;
+            aspect-ratio: auto;
+            border-radius: 8px;
+            box-shadow: 0px 4px 20px var(--shadow-small);
+            margin: 5px auto;
+            display: block;
+            object-fit: contain;
+            box-sizing: border-box;
+        }
+
+        
+
+        
+
+        body.light 
+
+        
+
+        
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .timeline__event {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+            background: var(--chapter-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-main);
+        }
+
+        .timeline__event__icon {
+            width: 40px;
+            height: 40px;
+            background: var(--popup-bg);
+            border-radius: 50%;
+        }
+
+        .timeline__event__date {
+            width: 80px;
+            text-align: center;
+            color: var(--theme-text-color);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .timeline__event__content {
+            flex: 1;
+        }
+
+        .timeline__event__title {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--theme-text-color);
+        }
+
+        .timeline__event__description {
+            color: var(--theme-text-color);
+            font-size: 16px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--footer-bg);
+            color: var(--theme-text-color);
+            font-size: 18px;
+            width: 100%;
+            margin-top: auto;
+            transition: transform 0.3s ease;
+        }
+
+        footer:hover {
+            transform: scale(1.01);
+        }
+
+        #theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: 30px;
+            background: var(--popup-bg);
+            border-radius: 15px;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5px;
+            transition: background 0.3s ease;
+        }
+
+        #theme-toggle::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: var(--popup-color);
+            border-radius: 50%;
+            position: absolute;
+            left: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        #theme-toggle::after {
+            content: 'OFF';
+            color: var(--popup-color);
+            font-family: 'Michroma', sans-serif;
+            font-size: 12px;
+            position: absolute;
+            right: 10px;
+        }
+
+        #theme-toggle.on::before {
+            transform: translateX(30px);
+        }
+
+        #theme-toggle.on::after {
+            content: 'ON';
+            left: 10px;
+            right: auto;
+        }
+
+        #theme-toggle:hover {
+            background: var(--header-bg);
+        }
+
+        @media (max-width: 786px) {
+            .chapter-section {
+                flex-direction: column;
+                padding: 5px;
+                margin: 10px auto;
+            }
+            .chapter-text, .chapter-image {
+                flex: none;
+                width: 100%;
+                padding: 5px;
+            }
+            .chapter-image {
+                max-width: 100%;
+                height: auto;
+                overflow: hidden;
+            }
+            .chapter-image img {
+                max-width: 300px;
+                max-height: 80%;
+                width: 100%;
+                aspect-ratio: 1/1;
+                margin: 10px auto;
+            }
+            .chapter-image img:hover {
+                transform: scale(1.03);
+            }
+            .large-image img {
+                max-width: 100%;
+                max-height: 400px;
+                width: 100%;
+                height: auto;
+                margin: 10px auto;
+            }
+            .topic-card {
+                width: 95%;
+                margin: 5px auto;
+                padding: 15px;
+            }
+            .year-section {
+                flex-direction: column;
+                margin: 5px auto;
+                padding: 5px;
+            }
+            .year-image img {
+                max-width: 200px;
+                max-height: 200px;
+                width: 100%;
+                height: auto;
+                aspect-ratio: auto;
+                margin: 5px auto;
+            }
+            .timeline-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin: 5px auto;
+                padding: 5px;
+            }
+            .timeline-nav a {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            #theme-toggle {
+                width: 50px;
+                height: 25px;
+            }
+            #theme-toggle::before {
+                width: 20px;
+                height: 20px;
+            }
+            #theme-toggle.on::before {
+                transform: translateX(25px);
+            }
+            #theme-toggle::after, #theme-toggle.on::after {
+                font-size: 10px;
+            }
+        }
+
+        
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        html, body, .container, .card, .chapter-section, .iframe-container {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        @media (max-width: 768px) {
+            body { overflow-x: hidden !important; }
+            .chapter-section { flex-direction: column; padding: 5px; }
+            .chapter-text, .chapter-image { width: 100% !important; max-width: 100% !important; }
+            
+            iframe[width="360"], iframe[height="640"], iframe[src*="shorts"], iframe[width="315"], iframe[height="560"] { 
+                aspect-ratio: 9/16 !important; 
+                max-width: 90vw !important; 
+                max-height: 80vh !important; 
+                height: 80vh !important; 
+                width: auto !important;
+                margin: 0 auto !important; 
+                display: block !important; 
+            }
+            img { max-width: 100% !important; }
+        }
+
+</style>
+
+
+
+<p></p>
+
+
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span>
+<div class="knob">&nbsp;</div>
+<span class="icon sun">☀️</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
+
+
+<header>
+<h1><strong><span class="theme-text">Chapter 3: Business &amp; Operations</span></strong></h1>
+
+<p><strong><span class="theme-text" style="font-size: 20px;">Scaling Salty Jewellery through Diverse Channels and Fast Delivery</span></strong></p>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/3.3.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
+</div>
+<style type="text/css">.audio-container {
+  position: relative;
+  background: url('https://login.skillizee.io/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+  background-size: contain; /* keeps the GIF's aspect ratio */
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 1920 / 1080; /* maintain original proportion */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Modern styled audio */
+.audio-container audio {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #2D2B7E;
+  background: #F5F5FF;
+  height: 50px;
+  padding: 4px;
+  box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
+}
+
+/* Lavender-toned player controls */
+audio::-webkit-media-controls-panel {
+  background-color: #E6E6FA;
+  border-radius: 12px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-volume-slider {
+  filter: hue-rotate(240deg) saturate(1.2);
+}
+</style>
+<div class="topic-card"><strong>Diverse Sales Channels (Digital &amp; Offline)</strong></div>
+
+<div class="timeline-instruction">Click on the following sections to explore Salty&#39;s Sales Channels</div>
+
+<nav class="timeline-nav"><a class="active" data-section="Online Store" href="#">Online Store</a> <a data-section="E-commerce Platforms" href="#">E-commerce Platforms</a> <a data-section="Social Media Storefronts" href="#">Social Media Storefronts</a> <a data-section="Pop-up Shops and Limited Events" href="#">Pop-up Shops and Limited Events</a></nav>
+
+<div id="timeline-container">
+<section class="year-section">
+<div class="year-image"><img alt="Online Store Infographic Light Mode" class="light-image" src="https://login.skillizee.io/s/articles/68df5d4e23c121547e57bba3/images/online store 1.png" /> <img alt="Online Store Infographic Dark Mode" class="dark-image" src="https://login.skillizee.io/s/articles/68d65d1a945b5c3dac770519/images/online store 2.png" /></div>
+
+<div class="chapter-text">
+<h2><strong>Online Store</strong></h2>
+
+<p><span class="theme-text" style="font-size: 18px;">Salty&rsquo;s official website (salty.co.in) is the primary sales channel where customers can explore the entire product range, access exclusive collections, and benefit from seamless ordering and return policies. The website offers detailed product information, styling tips, and frequent new launches, encouraging repeat visits and purchases.</span></p>
+</div>
+</section>
+</div>
+
+<div class="topic-card"><strong>Quick Commerce &amp; Delivery Excellence</strong></div>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>How Quick Commerce Changed Salty&rsquo;s Same-Day Delivery?</strong></h2>
+
+<div class="large-image"><img alt="Quick Commerce Infographic Light Mode" class="light-image" src="https://login.skillizee.io/s/articles/68dfa118ead95d79b77a11d1/images/Quick commerce dark 3.png" />
+<p>&nbsp;</p>
+<img alt="Quick Commerce Infographic Dark Mode" class="dark-image" src="https://login.skillizee.io/s/articles/68d65d1a945b5c3dac770519/images/Quick commerce light 3.png" /></div>
+</div>
+</section>
+
+<section class="chapter-section">
+<div class="chapter-text">
+<h2><strong>How do we put our product on quick commerce like Zepto, Instamart, or Blinkit?</strong></h2>
+
+<div class="timeline">
+<p>&nbsp;</p>
+
+<div class="timeline__event animated fadeInUp delay-3s timeline__event--type1">
+<div class="timeline__event__icon">&nbsp;</div>
+
+<div class="timeline__event__date"><span class="theme-text" style="font-size: 20px;"><strong>Step 1</strong></span></div>
+
+<div class="timeline__event__content">
+<div class="timeline__event__title"><span class="theme-text" style="font-size: 20px;"><strong>Select and Validate Your Product Category</strong></span></div>
+
+<div class="timeline__event__description">
+<p><span class="theme-text">Confirm that your products fit the quick commerce demand, typically fast-moving, essential, or trending items like fashion accessories or jewellery.</span></p>
+</div>
+</div>
+</div>
+
+<div class="timeline__event animated fadeInUp delay-2s timeline__event--type2">
+<div class="timeline__event__icon">&nbsp;</div>
+
+<div class="timeline__event__date"><span class="theme-text" style="font-size: 20px;"><strong>Step 2</strong></span></div>
+
+<div class="timeline__event__content">
+<div class="timeline__event__title"><span class="theme-text" style="font-size: 20px;"><strong>Register as a Seller on the Platform</strong></span></div>
+
+<div class="timeline__event__description">
+<p><span class="theme-text">Visit the quick commerce platform&rsquo;s seller registration portal and fill out the necessary forms with business and product details.</span></p>
+</div>
+</div>
+</div>
+
+<div class="timeline__event animated fadeInUp delay-1s timeline__event--type3">
+<div class="timeline__event__icon">&nbsp;</div>
+
+<div class="timeline__event__date"><span class="theme-text" style="font-size: 20px;"><strong>Step 3</strong></span></div>
+
+<div class="timeline__event__content">
+<div class="timeline__event__title"><span class="theme-text" style="font-size: 20px;"><strong>Submit Required Documents</strong></span></div>
+
+<div class="timeline__event__description">
+<p><span class="theme-text">Upload essential documents such as business license, GST registration, identity proofs, bank details, and any brand or trademark certifications as required.</span></p>
+</div>
+</div>
+</div>
+
+<div class="timeline__event animated fadeInUp timeline__event--type1">
+<div class="timeline__event__icon">&nbsp;</div>
+
+<div class="timeline__event__date"><span class="theme-text" style="font-size: 20px;"><strong>Step 4</strong></span></div>
+
+<div class="timeline__event__content">
+<div class="timeline__event__title"><span class="theme-text" style="font-size: 20px;"><strong>Undergo the Verification Process</strong></span></div>
+
+<div class="timeline__event__description">
+<p><span class="theme-text">The platform will review your submitted documents and verify the credibility and compliance of your business.</span></p>
+</div>
+</div>
+</div>
+
+<div class="timeline__event animated fadeInUp delay-3s timeline__event--type2">
+<div class="timeline__event__icon">&nbsp;</div>
+
+<div class="timeline__event__date"><span class="theme-text" style="font-size: 20px;"><strong>Step 5</strong></span></div>
+
+<div class="timeline__event__content">
+<div class="timeline__event__title"><span class="theme-text" style="font-size: 20px;"><strong>Integrate Product Inventory</strong></span></div>
+
+<div class="timeline__event__description">
+<p><span class="theme-text">Provide your inventory data, product catalog, pricing, and images according to the platform&rsquo;s specifications. Some platforms may require you to sync inventory via APIs or upload spreadsheets.</span></p>
+</div>
+</div>
+</div>
+
+<div class="timeline__event animated fadeInUp delay-2s timeline__event--type3">
+<div class="timeline__event__icon">&nbsp;</div>
+
+<div class="timeline__event__date"><span class="theme-text" style="font-size: 20px;"><strong>Step 6</strong></span></div>
+
+<div class="timeline__event__content">
+<div class="timeline__event__title"><span class="theme-text" style="font-size: 20px;"><strong>Supply Inventory to Dark Stores or Fulfillment Centers</strong></span></div>
+
+<div class="timeline__event__description">
+<p><span class="theme-text">Deliver stock to logistics-enabled dark stores/warehouses strategically located to ensure quick order processing and last-mile delivery.</span></p>
+</div>
+</div>
+</div>
+
+<div class="timeline__event animated fadeInUp delay-1s timeline__event--type1">
+<div class="timeline__event__icon">&nbsp;</div>
+
+<div class="timeline__event__date"><span class="theme-text" style="font-size: 20px;"><strong>Step 7</strong></span></div>
+
+<div class="timeline__event__content">
+<div class="timeline__event__title"><span class="theme-text" style="font-size: 20px;"><strong>List and Optimize Product Display</strong></span></div>
+
+<div class="timeline__event__description">
+<p><span class="theme-text">Work with the platform to list your products effectively with optimized titles, descriptions, and images to improve visibility and conversion.</span></p>
+</div>
+</div>
+</div>
+
+<div class="timeline__event animated fadeInUp timeline__event--type2">
+<div class="timeline__event__icon">&nbsp;</div>
+
+<div class="timeline__event__date"><span class="theme-text" style="font-size: 20px;"><strong>Step 8</strong></span></div>
+
+<div class="timeline__event__content">
+<div class="timeline__event__title"><span class="theme-text" style="font-size: 20px;"><strong>Launch and Manage Orders</strong></span></div>
+
+<div class="timeline__event__description">
+<p><span class="theme-text">Once live, monitor orders through the platform dashboard, ensuring timely fulfillment, packaging, and dispatch for ultra-fast delivery.</span></p>
+</div>
+</div>
+</div>
+
+<div class="timeline__event animated fadeInUp timeline__event--type3">
+<div class="timeline__event__icon">&nbsp;</div>
+
+<div class="timeline__event__date"><span class="theme-text" style="font-size: 20px;"><strong>Step 9</strong></span></div>
+
+<div class="timeline__event__content">
+<div class="timeline__event__title"><span class="theme-text" style="font-size: 20px;"><strong>Maintain Inventory and Performance Metrics</strong></span></div>
+
+<div class="timeline__event__description">
+<p><span class="theme-text">Keep inventory updated and maintain high ratings by ensuring quality, fast shipping, and good customer service.</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer><span class="theme-text" style="font-size: 18px;">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme Toggle
+            const body = document.body;
+            const toggleBtn = document.getElementById('theme-toggle');
+            toggleBtn.addEventListener('click', () => {
+                body.classList.toggle('light');
+                toggleBtn.classList.toggle('on');
+            });
+
+            // Timeline Navigation
+            const timelineNav = document.querySelector('.timeline-nav');
+            const timelineContainer = document.getElementById('timeline-container');
+
+            const timelineData = {
+                "Online Store": {
+                    imageLight: "https://login.skillizee.io/s/articles/68df5d4e23c121547e57bba3/images/online store 1.png",
+                    imageDark: "https://login.skillizee.io/s/articles/68d65d1a945b5c3dac770519/images/online store 2.png",
+                    alt: "Online Store Infographic",
+                    content: `
+                        <h2><strong>Online Store</strong></h2>
+                        <p><span class="theme-text" style="font-size: 18px;">Salty’s official website (salty.co.in) is the primary sales channel where customers can explore the entire product range, access exclusive collections, and benefit from seamless ordering and return policies. The website offers detailed product information, styling tips, and frequent new launches, encouraging repeat visits and purchases.</span></p>
+                    `
+                },
+                "E-commerce Platforms": {
+                    imageLight: "https://login.skillizee.io/s/articles/68df5d4e23c121547e57bba3/images/salty e commerce.png",
+                    imageDark: "https://login.skillizee.io/s/articles/68df5d4e23c121547e57bba3/images/salty e commerce.png",
+                    alt: "E-commerce Platforms Infographic",
+                    content: `
+                        <h2><strong>E-commerce Platforms</strong></h2>
+                        <p><span class="theme-text" style="font-size: 18px;">Besides its own website, Salty products are available on popular Indian e-commerce marketplaces (Amazon, Flipkart & Myntra) and fashion platforms, expanding reach to customers who prefer shopping on large multi-brand sites. These platforms help drive discovery among new customers and tap into wider distribution across tier 2 and 3 cities.</span></p>
+                    `
+                },
+                "Social Media Storefronts": {
+                    imageLight: "https://login.skillizee.io/s/articles/68d65d1a945b5c3dac770519/images/salty social media.png",
+                    imageDark: "https://login.skillizee.io/s/articles/68d65d1a945b5c3dac770519/images/salty social media.png",
+                    alt: "Social Media Storefronts Infographic",
+                    content: `
+                        <h2><strong>Social Media Storefronts</strong></h2>
+                        <p><span class="theme-text" style="font-size: 18px;">Salty actively leverages Instagram and Facebook shops to create integrated shopping experiences within social feeds, allowing users to explore and buy featured products directly from social media posts or stories. Social commerce helps the brand connect with youth audiences through influencer marketing and user-generated content.</span></p>
+                    `
+                },
+                "Pop-up Shops and Limited Events": {
+                    imageLight: "https://login.skillizee.io/s/articles/68df5d4e23c121547e57bba3/images/image-20251003125946-1.png",
+                    imageDark: "https://login.skillizee.io/s/articles/68df5d4e23c121547e57bba3/images/image-20251003125946-1.png",
+                    alt: "Pop-up Shops and Limited Events Infographic",
+                    content: `
+                        <h2><strong>Pop-up Shops and Limited Events</strong></h2>
+                        <p><span class="theme-text" style="font-size: 18px;">To complement the digital presence, Salty organizes pop-up shops in key metro cities and fashion events to create tangible brand experiences, enable direct customer engagement, and boost offline sales. These events often coincide with festive seasons or collection launches, helping build brand buzz and community.</span></p>
+                    `
+                }
+            };
+
+            timelineNav.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const section = e.target.dataset.section;
+                    timelineContainer.innerHTML = '';
+                    const yearSection = document.createElement('section');
+                    yearSection.className = 'year-section';
+                    yearSection.innerHTML = `
+                        <div class="year-image">
+                            <img alt="${timelineData[section].alt} Light Mode" class="light-image" src="${timelineData[section].imageLight}">
+                            <img alt="${timelineData[section].alt} Dark Mode" class="dark-image" src="${timelineData[section].imageDark}">
+                        </div>
+                        <div class="chapter-text">${timelineData[section].content}</div>
+                    `;
+                    timelineContainer.appendChild(yearSection);
+                    timelineNav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    e.target.classList.add('active');
+                }
+            });
+
+            timelineNav.querySelector('[data-section="Online Store"]').click();
+        });
+    </script>
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>
+</body>
+</html>

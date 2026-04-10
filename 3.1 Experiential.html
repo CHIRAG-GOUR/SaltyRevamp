@@ -1,0 +1,911 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+    <link rel="stylesheet" href="universal.css" />
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" /><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style type="text/css">:root {
+            --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+            --body-color: #CCC;
+            --header-bg: #4B3A6F;
+            --header-color: #E0E0E0;
+            --h-color: #B19CD9;
+            --chapter-bg: #2A2244;
+            --text-p-color: #BBB;
+            --topic-bg: #3C2F5F;
+            --footer-bg: #4B3A6F;
+            --footer-color: #E0E0E0;
+            --activity-bg: linear-gradient(135deg, #3C2F5F, #2A2244);
+            --activity-border: #B19CD9;
+            --item-bg: #2A2244;
+            --dropzone-border: #B19CD9;
+            --button-bg: #B19CD9;
+            --button-color: #000;
+            --score-bg: #2A2244;
+            --correct-bg: #388E3C;
+            --wrong-bg: #D32F2F;
+            --popup-bg: #B19CD9;
+            --popup-color: #000;
+            --shimmer-color: rgba(177, 156, 217, 0.2);
+            --sparkle-color-from: #B19CD9;
+            --sparkle-color-to: #8A7DB5;
+            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+            --shadow-small: rgba(255,255,255,0.05);
+            --arrow-stroke: #B19CD9;
+            --theme-text-color: #ffffff;
+            --popup-shadow: rgba(255, 255, 255, 0.5);
+            --progress-completed: #388E3C;
+            --progress-pending: #FF9800;
+        }
+
+        .light {
+            --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+            --body-color: #333;
+            --header-bg: #7b46ac;
+            --header-color: white;
+            --h-color: #9846ac;
+            --chapter-bg: #fff;
+            --text-p-color: #444;
+            --topic-bg: #D0C3F1;
+            --footer-bg: #7b46ac;
+            --footer-color: white;
+            --activity-bg: linear-gradient(135deg, #D0C3F1, #e8e1f7);
+            --activity-border: #9846ac;
+            --item-bg: #fff;
+            --dropzone-border: #7b46ac;
+            --button-bg: linear-gradient(135deg, #7b46ac, #9846ac);
+            --button-color: white;
+            --score-bg: #fff;
+            --correct-bg: #4caf50;
+            --wrong-bg: #d32f2f;
+            --popup-bg: #9846ac;
+            --popup-color: white;
+            --shimmer-color: rgba(123, 70, 172, 0.2);
+            --sparkle-color-from: #9846ac;
+            --sparkle-color-to: #7b46ac;
+            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+            --shadow-small: rgba(0,0,0,0.05);
+            --arrow-stroke: #9846ac;
+            --theme-text-color: #ecf0f1;
+            --popup-shadow: rgba(0, 0, 0, 0.2);
+            --progress-completed: #4caf50;
+            --progress-pending: #ff9800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Michroma', sans-serif;
+            margin: 0 auto;
+            padding: 0 40px 0 0;
+            background: var(--body-bg);
+            color: var(--body-color);
+            font-size: clamp(16px, 1.4%, 18px);
+            max-width: 1800px;
+            transition: background 0.1s, color 0.1s;
+            position: relative;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .emoji-bg {
+            position: absolute;
+            top: 10%;
+            font-size: clamp(30px, 2.5%, 44px);
+            opacity: 0.4;
+            color: var(--h-color);
+            pointer-events: none;
+            z-index: -1;
+            animation: float-rotate 5s infinite ease-in-out;
+        }
+
+        .emoji-bg.light {
+            opacity: 0.5;
+            color: var(--h-color);
+        }
+
+        .emoji-bg:nth-child(1) { top: 10%; left: 2%; animation-delay: 0s; }
+        .emoji-bg:nth-child(2) { top: 20%; left: 5%; animation-delay: -1s; }
+        .emoji-bg:nth-child(3) { top: 30%; left: 3%; animation-delay: -2s; }
+        .emoji-bg:nth-child(4) { top: 40%; left: 6%; animation-delay: -3s; }
+        .emoji-bg:nth-child(5) { top: 50%; left: 4%; animation-delay: -4s; }
+        .emoji-bg:nth-child(6) { top: 60%; left: 7%; animation-delay: -5s; }
+        .emoji-bg:nth-child(7) { top: 70%; left: 2%; animation-delay: -6s; }
+        .emoji-bg:nth-child(8) { top: 80%; left: 5%; animation-delay: -7s; }
+        .emoji-bg:nth-child(9) { top: 90%; left: 3%; animation-delay: -8s; }
+        .emoji-bg:nth-child(10) { top: 15%; left: 92%; animation-delay: -9s; }
+        .emoji-bg:nth-child(11) { top: 25%; left: 95%; animation-delay: -10s; }
+        .emoji-bg:nth-child(12) { top: 35%; left: 93%; animation-delay: -11s; }
+        .emoji-bg:nth-child(13) { top: 45%; left: 94%; animation-delay: -12s; }
+        .emoji-bg:nth-child(14) { top: 55%; left: 92%; animation-delay: -13s; }
+        .emoji-bg:nth-child(15) { top: 65%; left: 95%; animation-delay: -14s; }
+        .emoji-bg:nth-child(16) { top: 75%; left: 93%; animation-delay: -15s; }
+        .emoji-bg:nth-child(17) { top: 85%; left: 94%; animation-delay: -16s; }
+        .emoji-bg:nth-child(18) { top: 95%; left: 92%; animation-delay: -17s; }
+        .emoji-bg:nth-child(19) { top: 12%; left: 5%; animation-delay: -18s; }
+        .emoji-bg:nth-child(20) { top: 22%; left: 95%; animation-delay: -19s; }
+
+        @keyframes float-rotate {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(15deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 25%;
+            right: 0;
+            width: 30px;
+            height: 50%;
+            background: transparent;
+            border: 2px solid var(--h-color);
+            border-radius: 5px;
+            box-shadow: -2px 0 5px var(--shadow-small);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+        }
+        .progress-bar {
+            width: 8px;
+            height: calc(100% - 60px);
+            background: var(--chapter-bg);
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .progress-fill {
+            width: 100%;
+            background: var(--button-bg);
+            border-radius: 5px;
+            position: absolute;
+            bottom: 0;
+            transition: height 0.2s ease-in-out;
+        }
+
+        #theme-toggle {
+            background: var(--button-bg);
+            color: var(--button-color);
+            border: none;
+            border-radius: 15px;
+            padding: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: clamp(14px, 1.1%, 16px);
+            width: clamp(24px, 2%, 28px);
+            height: clamp(24px, 2%, 28px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.1s, color 0.1s;
+        }
+
+        #theme-toggle:hover {
+            background: var(--sparkle-color-to);
+        }
+
+        header {
+            background: var(--header-bg);
+            color: var(--header-color);
+            padding: clamp(20px, 2%, 24px) 0;
+            text-align: center;
+            width: 95%;
+            max-width: 1800px;
+            margin: 0 auto;
+            border-radius: 0;
+            box-shadow: var(--shadow-main);
+        }
+
+        header h2 {
+            margin: 5px 0;
+            font-size: clamp(1.5em, 2.2%, 3em);
+            color: var(--header-color);
+        }
+
+        .content-section {
+            background: var(--chapter-bg);
+            margin: clamp(20px, 2%, 24px) auto;
+            padding: clamp(20px, 2%, 24px);
+            border-radius: 16px;
+            box-shadow: var(--shadow-main);
+            max-width: 1800px;
+            width: 95%;
+            transition: box-shadow 0.1s, transform 0.1s;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .content-section:hover {
+            box-shadow: var(--shadow-glow);
+            transform: scale(1.02);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h3, h4 {
+            font-size: clamp(1.5em, 2.2%, 2em);
+            color: var(--h-color);
+            margin: 20px 0 10px;
+            display: flex;
+            align-items: center;
+            background: var(--topic-bg);
+            border: 2px solid var(--h-color);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            transition: box-shadow 0.1s, transform 0.1s;
+            justify-content: center;
+        }
+
+        h3:hover, h4:hover {
+            box-shadow: var(--shadow-glow);
+            transform: scale(1.03);
+        }
+
+        p {
+            font-size: clamp(16px, 1.4%, 20px);
+            color: var(--text-p-color);
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        li {
+            padding: 10px 0;
+            position: relative;
+            transition: transform 0.1s;
+            background: var(--topic-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-small);
+            margin-bottom: 10px;
+        }
+
+        li:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        li::before {
+            content: '✨';
+            color: var(--h-color);
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .progress-levels {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            gap: 20px;
+        }
+
+        .level-card {
+            flex: 1;
+            background: var(--item-bg);
+            border: 2px solid var(--dropzone-border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .level-card.completed {
+            border-color: var(--correct-bg);
+            background: var(--correct-bg);
+            color: white;
+        }
+
+        .level-card.pending {
+            border-color: var(--progress-pending);
+            background: linear-gradient(135deg, var(--topic-bg), var(--progress-pending));
+        }
+
+        .level-card h4 {
+            margin: 0 0 10px;
+            background: none;
+            border: none;
+            color: var(--h-color);
+        }
+
+        .level-card.completed h4 {
+            color: white;
+        }
+
+        .level-card button {
+            background: var(--button-bg);
+            color: var(--button-color);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.3s;
+            font-family: 'Michroma', sans-serif;
+        }
+
+        .level-card button:hover {
+            transform: scale(1.05);
+        }
+
+        .level-card.completed button {
+            background: var(--correct-bg);
+            color: white;
+        }
+
+        .pathfinder-iframe {
+            width: 100%;
+            height: 600px;
+            border-radius: 8px;
+            border: 2px solid var(--h-color);
+            box-shadow: var(--shadow-small);
+            margin: 20px 0;
+            transition: transform 0.1s;
+        }
+
+        .pathfinder-iframe:hover {
+            transform: scale(1.02);
+        }
+
+        .activity-section {
+            margin: 20px 0;
+        }
+
+        .activity-section button {
+            background: var(--button-bg);
+            color: var(--button-color);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(14px, 1.2%, 16px);
+            cursor: pointer;
+            margin: 15px 10px;
+            transition: background 0.1s, transform 0.1s;
+            font-family: 'Michroma', sans-serif;
+        }
+
+        .activity-section button:hover {
+            background: var(--sparkle-color-to);
+            transform: scale(1.05);
+        }
+
+        .activity-section .confirmation-message {
+            color: var(--h-color);
+            text-align: center;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            font-size: clamp(16px, 1.4%, 18px);
+        }
+
+        .activity-section .confirmation-message.show {
+            opacity: 1;
+        }
+
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-color);
+            text-align: center;
+            padding: clamp(15px, 1.5%, 18px);
+            margin-top: auto;
+            border-radius: 20px 20px 0 0;
+            font-size: clamp(14px, 1.2%, 18px);
+            box-shadow: 0px -4px 10px var(--shadow-small);
+            width: 95%;
+            max-width: 1800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: clamp(40px, 3%, 60px);
+            background: var(--button-bg);
+            color: var(--button-color);
+            border: none;
+            border-radius: 50%;
+            width: clamp(40px, 3.5%, 60px);
+            height: clamp(40px, 3.5%, 60px);
+            font-size: clamp(20px, 1.8%, 26px);
+            cursor: pointer;
+            display: none;
+            transition: background 0.1s, transform 0.1s;
+            z-index: 1000;
+        }
+
+        #back-to-top:hover {
+            background: var(--sparkle-color-to);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding-right: 0;
+                font-size: clamp(14px, 2.5%, 16px);
+            }
+
+            .emoji-bg {
+                font-size: clamp(25px, 3%, 30px);
+            }
+
+            .sidebar {
+                width: 100%;
+                height: 60px;
+                top: auto;
+                bottom: 0;
+                border: none;
+                background: var(--header-bg);
+                border-radius: 0;
+                padding: 5px;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .progress-bar {
+                width: 40%;
+                height: 10px;
+                margin: 0;
+            }
+
+            .progress-fill {
+                width: 0%;
+                height: 100%;
+                bottom: auto;
+                left: 0;
+                transition: width 0.2s ease-in-out;
+            }
+
+            #theme-toggle {
+                margin-top: 0;
+                width: clamp(20px, 2.5%, 24px);
+                height: clamp(20px, 2.5%, 24px);
+                font-size: clamp(12px, 2%, 14px);
+            }
+
+            header h2 {
+                font-size: clamp(1.3em, 2.5%, 1.5em);
+            }
+
+            h3, h4 {
+                font-size: clamp(1.3em, 2.5%, 1.5em);
+            }
+
+            p, li {
+                font-size: clamp(14px, 2.5%, 16px);
+            }
+
+            .pathfinder-iframe {
+                width: 100%;
+                height: 500px;
+            }
+
+            .progress-levels {
+                flex-direction: column;
+            }
+
+            .activity-section button {
+                margin: 10px auto;
+                display: block;
+            }
+
+            #back-to-top {
+                bottom: 80px;
+                right: 20px;
+                width: clamp(35px, 3%, 40px);
+                height: clamp(35px, 3%, 40px);
+                font-size: clamp(18px, 2%, 20px);
+            }
+
+            footer {
+                font-size: clamp(12px, 2%, 14px);
+            }
+        }
+
+        @media (min-width: 1200px) and (max-width: 1960px) {
+            body {
+                font-size: clamp(18px, 1.3%, 20px);
+                max-width: 1700px;
+            }
+
+            header {
+                max-width: 1700px;
+            }
+
+            header h2 {
+                font-size: clamp(2em, 2.2%, 3em);
+            }
+
+            .content-section {
+                max-width: 1700px;
+            }
+
+            h3, h4 {
+                font-size: clamp(1.5em, 2.2%, 2em);
+            }
+
+            p, li {
+                font-size: clamp(18px, 1.3%, 20px);
+            }
+
+            .pathfinder-iframe {
+                height: 700px;
+            }
+
+            #theme-toggle {
+                font-size: clamp(16px, 1.1%, 18px);
+                width: clamp(26px, 2%, 30px);
+                height: clamp(26px, 2%, 30px);
+            }
+
+            #back-to-top {
+                width: clamp(50px, 3.5%, 60px);
+                height: clamp(50px, 3.5%, 60px);
+                font-size: clamp(22px, 1.8%, 26px);
+            }
+
+            footer {
+                font-size: clamp(16px, 1.2%, 18px);
+                max-width: 1700px;
+            }
+        }
+
+        @media (min-width: 1961px) {
+            body {
+                font-size: clamp(20px, 1.2%, 22px);
+                max-width: 2000px;
+            }
+
+            header {
+                max-width: 2000px;
+            }
+
+            header h2 {
+                font-size: clamp(2.5em, 2.1%, 3.5em);
+            }
+
+            .content-section {
+                max-width: 2000px;
+            }
+
+            h3, h4 {
+                font-size: clamp(2em, 2.1%, 2.5em);
+            }
+
+            p, li {
+                font-size: clamp(20px, 1.2%, 22px);
+            }
+
+            .pathfinder-iframe {
+                height: 800px;
+            }
+
+            #theme-toggle {
+                font-size: clamp(18px, 1.1%, 20px);
+                width: clamp(28px, 2%, 32px);
+                height: clamp(28px, 2%, 32px);
+            }
+
+            .sidebar {
+                width: 40px;
+                right: clamp(10px, 1%, 20px);
+            }
+
+            .progress-bar {
+                width: 10px;
+            }
+
+            #back-to-top {
+                width: clamp(55px, 3.5%, 65px);
+                height: clamp(55px, 3.5%, 65px);
+                font-size: clamp(24px, 1.8%, 28px);
+                right: clamp(50px, 3%, 70px);
+            }
+
+            footer {
+                font-size: clamp(18px, 1.2%, 20px);
+                max-width: 2000px;
+            }
+        }
+
+        html, body, .container, .card, .chapter-section, .iframe-container {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        @media (max-width: 768px) {
+            body { overflow-x: hidden !important; }
+            .chapter-section { flex-direction: column; padding: 5px; }
+            .chapter-text, .chapter-image { width: 100% !important; max-width: 100% !important; }
+            
+            iframe[width="360"], iframe[height="640"], iframe[src*="shorts"], iframe[width="315"], iframe[height="560"] { 
+                aspect-ratio: 9/16 !important; 
+                max-width: 90vw !important; 
+                max-height: 80vh !important; 
+                height: 80vh !important; 
+                width: auto !important;
+                margin: 0 auto !important; 
+                display: block !important; 
+            }
+            img { max-width: 100% !important; }
+        }
+
+</style>
+<!-- Background Emojis -->
+<p><span class="emoji-bg">📊</span> <span class="emoji-bg">💼</span> <span class="emoji-bg">🎯</span> <span class="emoji-bg">📊</span> <span class="emoji-bg">💼</span> <span class="emoji-bg">🎯</span> <span class="emoji-bg">📊</span> <span class="emoji-bg">💼</span> <span class="emoji-bg">🎯</span> <span class="emoji-bg">📊</span> <span class="emoji-bg">💼</span> <span class="emoji-bg">🎯</span> <span class="emoji-bg">📊</span> <span class="emoji-bg">💼</span> <span class="emoji-bg">🎯</span> <span class="emoji-bg">📊</span> <span class="emoji-bg">💼</span> <span class="emoji-bg">🎯</span> <span class="emoji-bg">📊</span> <span class="emoji-bg">💼</span> <!-- Sidebar with Progress Bar and Theme Toggle --></p>
+
+<div class="sidebar">
+<div class="progress-bar">
+<div class="progress-fill" id="progress-fill" style="height: 0%;">&nbsp;</div>
+</div>
+<button id="theme-toggle">🌙</button></div>
+
+
+<p></p>
+
+
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span>
+<div class="knob">&nbsp;</div>
+<span class="icon sun">☀️</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
+
+
+<header>
+<h1><strong><span class="theme-text">Business Canvas Quest</span></strong></h1>
+
+<p><strong><span style="font-size:20px;">Learn Business Model Canvas with Salty</span></strong></p>
+</header>
+<!-- Content Sections -->
+
+<div class="content-section">
+<h3>🎯 Quest Objective</h3>
+
+<p>Embark on an interactive journey to master the Business Model Canvas (BMC) framework! In this quest, you&#39;ll first learn the fundamentals through an engaging tutorial, then apply your knowledge to analyze Salty Jewellery&#39;s real-world business model. Complete both levels to unlock your Business Canvas certificate and gain strategic insights for trendy fashion startups.</p>
+
+<h3>📚 The Quest Structure</h3>
+
+<p>The Business Canvas Quest consists of two progressive levels designed to build your skills step-by-step:</p>
+
+<ul>
+	<li><strong>Level 1: BMC Tutorial</strong> - Discover the 9 building blocks of the BMC with interactive explanations, examples, and quick quizzes.</li>
+	<li><strong>Level 2: Salty&#39;s BMC</strong> - Apply the framework to Salty Jewellery&#39;s operations, filling in the canvas with real business data and reflecting on strategic decisions.</li>
+</ul>
+
+<h3>🚀 Steps to Conquer the Quest</h3>
+
+<ul>
+	<li>Start with <strong>Level 1</strong> to build foundational knowledge.</li>
+	<li>Progress to <strong>Level 2</strong> once comfortable with the basics.</li>
+	<li>Interact with the embedded tool, complete all sections, and save your progress.</li>
+	<li>Take screenshots or export your completed canvases as evidence of completion.</li>
+	<li>Reflect on key learnings in the discussion forum for peer insights.</li>
+</ul>
+
+<h3>🏆 Quest Rewards &amp; Outputs</h3>
+
+<ul>
+	<li><strong>Certificate:</strong> Digital badge for completing both levels.</li>
+	<li><strong>Portfolio Piece:</strong> Exportable BMC canvases (PDF/PNG) for your resume.</li>
+	<li><strong>Skill Building:</strong> Master BMC for business planning, suitable for Salty&#39;s internship applications.</li>
+</ul>
+
+<h3>💎 Why This Quest Matters for Salty</h3>
+
+<p>Understanding the BMC empowers you to think like a founder! Salty Jewellery uses this framework to strategize affordable luxury accessories for Gen Z. By completing this quest, you&#39;ll gain tools to innovate in the competitive fashion industry.</p>
+
+<h3>🌟 Start Your Quest</h3>
+
+<p>Launch the interactive BMC tool below and complete both levels in sequence. Track your progress with the level cards!</p>
+
+<div class="progress-levels">
+<div class="level-card pending" id="level1">
+<h4>Level 1: BMC Tutorial</h4>
+
+<p>Learn the 9 blocks of BMC</p>
+<button onclick="launchLevel(1)">Launch Tutorial</button></div>
+</div>
+<button aria-label="Toggle fullscreen mode" id="fullscreen-toggle" style="display:none;">Enter Fullscreen</button><iframe class="pathfinder-iframe" id="bmc-iframe" onload="console.log('BMC Tool loaded successfully');" src="https://salty-sparkle-biz.lovable.app/bmc-levels" style="display:none;" title="Business Model Canvas Quest"></iframe>
+
+<div class="activity-section">
+<p><strong>Note: </strong>Complete both levels in the tool above. Take screenshots of your completed canvases and upload below for verification.</p>
+<!-- Footer --><!-- Back to Top Button -->
+
+<p><button aria-label="Scroll to top" id="back-to-top" onclick="scrollToTop()">&uarr;</button><script>
+        // Throttle function
+        function throttle(fn, wait) {
+            let lastCall = 0;
+            return function (...args) {
+                const now = new Date().getTime();
+                if (now - lastCall < wait) return;
+                lastCall = now;
+                return fn(...args);
+            };
+        }
+
+        // Theme Toggle
+        const themeToggle = document.getElementById("theme-toggle");
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("light");
+            // Toggle all relevant classes
+            document.querySelector(".sidebar").classList.toggle("light");
+            document.querySelector(".progress-bar").classList.toggle("light");
+            document.querySelector("header").classList.toggle("light");
+            document.querySelectorAll(".content-section").forEach(section => section.classList.toggle("light"));
+            document.querySelectorAll("h3, h4").forEach(heading => heading.classList.toggle("light"));
+            document.querySelectorAll(".emoji-bg").forEach(emoji => emoji.classList.toggle("light"));
+            document.querySelector("footer").classList.toggle("light");
+            document.querySelector("#back-to-top").classList.toggle("light");
+            document.querySelectorAll(".progress-fill").forEach(fill => fill.classList.toggle("light"));
+            document.querySelectorAll("li").forEach(item => item.classList.toggle("light"));
+            document.querySelectorAll(".pathfinder-iframe").forEach(iframe => iframe.classList.toggle("light"));
+            themeToggle.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
+        });
+
+        // Fullscreen Toggle
+        const fullscreenToggle = document.getElementById("fullscreen-toggle");
+        const iframe = document.getElementById("bmc-iframe");
+        fullscreenToggle.addEventListener("click", () => {
+            if (!document.fullscreenElement) {
+                iframe.requestFullscreen().then(() => {
+                    fullscreenToggle.textContent = 'Exit Fullscreen';
+                }).catch(err => console.error("Error entering fullscreen:", err));
+            } else {
+                document.exitFullscreen().then(() => {
+                    fullscreenToggle.textContent = 'Enter Fullscreen';
+                }).catch(err => console.error("Error exiting fullscreen:", err));
+            }
+        });
+
+        // Level Launch Function
+        let currentLevel = 0;
+        function launchLevel(level) {
+            if (level === 1 && currentLevel < 1) {
+                currentLevel = 1;
+                document.getElementById("bmc-iframe").src = "https://salty-sparkle-biz.lovable.app/bmc-levels?level=1";
+                document.getElementById("bmc-iframe").style.display = "block";
+                document.getElementById("fullscreen-toggle").style.display = "block";
+                document.getElementById("level1").classList.remove("pending");
+                document.getElementById("level1").classList.add("completed");
+                updateProgress();
+            } else if (level === 2 && currentLevel >= 1) {
+                currentLevel = 2;
+                document.getElementById("bmc-iframe").src = "https://salty-sparkle-biz.lovable.app/bmc-levels?level=2";
+                document.getElementById("level2").classList.remove("pending");
+                document.getElementById("level2").classList.add("completed");
+                updateProgress();
+            } else if (level === 2 && currentLevel < 1) {
+                alert("Please complete Level 1 first!");
+            }
+        }
+
+        // Simulate level completion (in real app, use postMessage or similar)
+        window.addEventListener('message', function(event) {
+            if (event.origin !== "https://salty-sparkle-biz.lovable.app") return;
+            if (event.data.type === 'levelCompleted') {
+                if (event.data.level === 1) {
+                    document.getElementById("level1").classList.add("completed");
+                    currentLevel = 1;
+                } else if (event.data.level === 2) {
+                    document.getElementById("level2").classList.add("completed");
+                    currentLevel = 2;
+                }
+                document.getElementById("level" + event.data.level).querySelector("button").disabled = true;
+                document.getElementById("level" + event.data.level).querySelector("button").textContent = "Completed! ✨";
+                updateProgress();
+            }
+        });
+
+        // Progress Bar Logic
+        let scrollProgress = 0;
+        let activityCompleted = false;
+        const progressFill = document.getElementById("progress-fill");
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            scrollProgress = docHeight > 0 ? (scrollTop / docHeight) * 70 : 0;
+            let totalProgress = scrollProgress;
+            const completedLevels = document.querySelectorAll('.level-card.completed').length;
+            totalProgress += (completedLevels / 2) * 30;
+            totalProgress = Math.min(100, totalProgress);
+            if (window.innerWidth <= 600) {
+                progressFill.style.width = totalProgress + "%";
+            } else {
+                progressFill.style.height = totalProgress + "%";
+            }
+        }
+
+        const updateScrollProgress = throttle(() => {
+            updateProgress();
+        }, 50);
+
+        window.addEventListener("scroll", () => {
+            requestAnimationFrame(updateScrollProgress);
+        });
+
+        // Back to Top
+        const backToTop = document.getElementById("back-to-top");
+        window.addEventListener("scroll", () => {
+            backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            updateProgress();
+        }
+
+        // Submit Function
+        function submitQuest(event) {
+            event.preventDefault();
+            const uploadInput = document.getElementById('bmcUpload');
+            const confirmationMessage = document.getElementById('confirmationMessage');
+            if (!uploadInput.files.length) {
+                confirmationMessage.textContent = 'Please upload screenshots of both completed levels.';
+                confirmationMessage.classList.add('show');
+                setTimeout(() => {
+                    confirmationMessage.classList.remove('show');
+                    confirmationMessage.textContent = '';
+                }, 3000);
+                return;
+            }
+            if (uploadInput.files.length < 2) {
+                confirmationMessage.textContent = 'Please upload at least 2 files (one for each level).';
+                confirmationMessage.classList.add('show');
+                setTimeout(() => {
+                    confirmationMessage.classList.remove('show');
+                    confirmationMessage.textContent = '';
+                }, 3000);
+                return;
+            }
+            confirmationMessage.textContent = 'Quest completed! Certificate unlocked. Check your email.';
+            confirmationMessage.classList.add('show');
+            activityCompleted = true;
+            updateProgress();
+            uploadInput.value = '';
+            setTimeout(() => {
+                confirmationMessage.classList.remove('show');
+                confirmationMessage.textContent = '';
+            }, 5000);
+        }
+
+        // Initial Progress
+        updateProgress();
+    </script></p>
+</div>
+</div>
+
+
+<script>
+  // Global Top Controls Script (Theme & Fullscreen)
+  const themeToggleUI = document.getElementById('theme-toggle');
+  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
+  if(themeToggleUI) {
+      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
+  }
+  if(fullscreenToggleBtnUI) {
+      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
+  }
+</script>
+</body>
+</html>

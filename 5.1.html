@@ -1,0 +1,951 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="universal.css" />
+
+<style type="text/css">:root {
+            --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+            --body-color: #CCC;
+            --header-bg: #4B3A6F;
+            --header-color: #E0E0E0;
+            --h-color: #B19CD9;
+            --chapter-bg: #2A2244;
+            --text-p-color: #BBB;
+            --topic-bg: #3C2F5F;
+            --footer-bg: #4B3A6F;
+            --footer-color: #E0E0E0;
+            --popup-bg: #B19CD9;
+            --popup-color: #000;
+            --shimmer-color: rgba(177, 156, 217, 0.2);
+            --sparkle-color-from: #B19CD9;
+            --sparkle-color-to: #8A7DB5;
+            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+            --shadow-small: rgba(255,255,255,0.05);
+            --theme-text-color: #ffffff;
+            --color3: #B19CD9CC;
+            --color4: #B19CD999;
+            --color5: #B19CD966;
+            --color6: #B19CD933;
+            --correct-bg: #388E3C;
+            --wrong-bg: #D32F2F;
+            --button-bg: #B19CD9;
+            --button-color: #000;
+            --item-bg: #3C2F5F;
+            --category-bg: #4B3A6F;
+            --category-color: #E0E0E0;
+            --game-container-bg: #2A2244;
+            --game-area-bg: #1C172B;
+            --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+            --popup-shadow: rgba(255, 255, 255, 0.5);
+            --score-bg: #4B3A6F;
+            --score-color: #E0E0E0;
+            --accent: #7b46ac;
+            --muted: #f3eef9;
+        }
+
+        .light {
+            --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+            --body-color: #333;
+            --header-bg: #7b46ac;
+            --header-color: #fff;
+            --h1-color: #fff;
+            --h-color: #333;
+            --chapter-bg: #fff;
+            --text-p-color: #444;
+            --topic-bg: #D0C3F1;
+            --footer-bg: #7b46ac;
+            --footer-color: #333;
+            --popup-bg: #9846ac;
+            --popup-color: #333;
+            --shimmer-color: rgba(123, 70, 172, 0.2);
+            --sparkle-color-from: #9846ac;
+            --sparkle-color-to: #7b46ac;
+            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+            --shadow-small: rgba(0,0,0,0.05);
+            --theme-text-color: #333;
+            --color3: #9846acCC;
+            --color4: #9846ac99;
+            --color5: #9846ac66;
+            --color6: #9846ac33;
+            --correct-bg: #4caf50;
+            --wrong-bg: red;
+            --button-bg: #9846ac;
+            --button-color: #333;
+            --item-bg: #D0C3F1;
+            --category-bg: #7b46ac;
+            --category-color: #333;
+            --game-container-bg: #fff;
+            --game-area-bg: #f9f9f9;
+            --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            --popup-shadow: rgba(0, 0, 0, 0.2);
+            --score-bg: #7b46ac;
+            --score-color: #333;
+            --accent: #7b46ac;
+            --muted: #f3eef9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: var(--body-bg);
+            color: var(--body-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-color);
+            padding: 15px 20px;
+            text-align: center;
+            font-family: 'Michroma', sans-serif;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+            animation: shimmer 3s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        header h1.theme-text {
+            color: white;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--h-color);
+            position: relative;
+        }
+
+        h1::after, h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--h-color), transparent);
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; }
+            50% { transform: translateY(-50%) scale(1.2); opacity: 0.7; }
+        }
+
+        .card {
+            margin: 10px auto;
+            padding: 15px 25px;
+            max-width: 900px;
+            background: var(--chapter-bg) !important;
+            border-radius: 12px;
+            box-shadow: var(--shadow-main), var(--shadow-glow);
+            font-size: 18px;
+            color: var(--text-p-color) !important;
+            width: 90%;
+            background-color: #2A2244;
+        }
+
+        .card h2 {
+            margin: 0 0 10px;
+            color: var(--h-color) !important;
+        }
+
+        .card p, .card ul, .card table {
+            line-height: 1.7;
+            margin: 10px 0;
+            color: var(--text-p-color) !important;
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+            color: var(--text-p-color) !important;
+        }
+
+        .card img {
+            width: 100%;
+            max-width: 700px;
+            height: 500px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 20px var(--shadow-small);
+            margin: 10px auto;
+            display: block !important;
+            object-fit: cover;
+        }
+
+        .card img:hover {
+            animation: bounce 0.5s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .activity-container {
+            max-width: 900px;
+            margin: 10px auto;
+            padding: 15px 25px;
+            background: var(--game-container-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-main), var(--shadow-glow);
+            text-align: center;
+            width: 90%;
+            position: relative;
+        }
+
+        .activity-container h2 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--h-color);
+            margin: 0 0 10px;
+        }
+
+        .activity-container p {
+            color: var(--text-p-color);
+            margin: 10px 0;
+        }
+
+        .score-container {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 8px 15px;
+            background: var(--score-bg);
+            color: var(--score-color);
+            border-radius: 8px;
+            font-family: 'Michroma', sans-serif;
+            font-size: 16px;
+            box-shadow: var(--shadow-main);
+            border: 1px solid var(--sparkle-color-from);
+        }
+
+        .match-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .match-item {
+            background: var(--game-area-bg);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            border: 1px solid var(--color6);
+            cursor: pointer;
+            color: var(--theme-text-color);
+            font-size: 14px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .match-item:hover {
+            transform: scale(1.03);
+            background: var(--item-bg);
+        }
+
+        .match-item.selected {
+            background: var(--category-bg);
+            color: var(--category-color);
+            border-color: var(--accent);
+        }
+
+        .match-item.correct {
+            background: var(--correct-bg);
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .match-item.wrong {
+            background: var(--wrong-bg);
+            animation: shake 0.5s ease-in-out;
+        }
+
+        button {
+            margin: 8px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Michroma', sans-serif;
+            background: var(--button-bg);
+            color: var(--button-color);
+            transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        button#checkBtn {
+            background: var(--correct-bg);
+            color: #fff;
+        }
+
+        button#resetActivity {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        button:hover {
+            background: var(--header-bg);
+            transform: scale(1.05);
+        }
+
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--theme-text-color);
+            font-family: 'Michroma', sans-serif;
+        }
+
+        #resultPopup {
+            display: none !important;
+            background: var(--popup-bg);
+            color: var(--popup-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 300px;
+            box-shadow: var(--shadow-main), var(--shadow-glow);
+            font-family: 'Michroma', sans-serif;
+            font-size: 18px;
+            animation: popupFade 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @keyframes popupFade {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .topic-card {
+            margin: 25px auto;
+            padding: 15px 25px;
+            max-width: 900px;
+            background: var(--topic-bg) !important;
+            border-radius: 12px;
+            box-shadow: var(--shadow-main), var(--shadow-glow);
+            font-family: 'Michroma', sans-serif;
+            font-size: 20px;
+            width: 90%;
+            position: relative;
+            color: var(--theme-text-color) !important;
+            text-align: center;
+        }
+
+        .topic-card::before, .topic-card::after {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: var(--sparkle-color-from);
+            animation: sparkle 1.5s infinite ease-in-out;
+        }
+
+        .topic-card::before {
+            left: 10px;
+        }
+
+        .topic-card::after {
+            right: 10px;
+        }
+
+        .topic-card:hover {
+            background: var(--sparkle-color-from) !important;
+            color: var(--popup-color) !important;
+            transform: scale(1.03);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--footer-bg);
+            color: var(--footer-color);
+            font-size: 14px;
+            width: 100%;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+            animation: shimmer 3s infinite linear;
+        }
+
+        
+
+        @media (max-width: 900px) {
+            .match-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .column {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 95%;
+                padding: 10px;
+                margin: 5px auto;
+            }
+
+            .card img {
+                max-width: 200px;
+                max-height: 200px;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1 / 1;
+                margin: 0 auto;
+            }
+
+            .topic-card {
+                width: 95%;
+                padding: 10px 20px;
+            }
+
+            .score-container {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+
+            #resultPopup {
+                font-size: 16px;
+                padding: 10px;
+                width: 80%;
+            }
+
+            .match-item {
+                font-size: 12px;
+                padding: 8px;
+            }
+        }
+
+        .theme-text {
+            color: var(--theme-text-color);
+        }
+
+        .theme-font-18 {
+            font-size: 18px;
+        }
+
+        .dark-image {
+            display: none !important;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .light-image {
+                display: none !important;
+            }
+            .dark-image {
+                display: block !important;
+            }
+        }
+
+        body.light .light-image {
+            display: block !important;
+        }
+        body.light .dark-image {
+            display: none !important;
+        }
+
+        body:not(.light) .light-image {
+            display: none !important;
+        }
+        body:not(.light) .dark-image {
+            display: block !important;
+        }
+
+        header h1,
+        header h1 .theme-text {
+            color: #fff !important;
+        }
+
+        body:not(.light) .card {
+            background: #2A2244 !important;
+            color: #BBB !important;
+        }
+
+        body:not(.light) .card h2 {
+            color: #B19CD9 !important;
+        }
+
+        body:not(.light) .card p,
+        body:not(.light) .card ul,
+        body:not(.light) .card li {
+            color: #BBB !important;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+</style>
+<style>
+/* Mod5 SVG override */
+#fullscreen-btn svg {
+  width: 32px !important;
+  height: 32px !important;
+}
+@media (max-width: 768px) {
+  #fullscreen-btn svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="top-controls">
+<div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
+</div>
+
+
+
+</p>
+
+<header>
+<h1><strong><span class="theme-text">Chapter 1: Future Growth and Expansion</span></strong></h1>
+
+<p><strong><span class="theme-font-18">Salty&rsquo;s Vision for the Future</span></strong></p>
+</header>
+
+<div class="audio-container">
+<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/5.1.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
+</div>
+<style type="text/css">.audio-container {
+  position: relative;
+  background: url('/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+  background-size: contain; /* keeps the GIF's aspect ratio */
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 1920 / 1080; /* maintain original proportion */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Modern styled audio */
+.audio-container audio {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #2D2B7E;
+  background: #F5F5FF;
+  height: 50px;
+  padding: 4px;
+  box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
+}
+
+/* Lavender-toned player controls */
+audio::-webkit-media-controls-panel {
+  background-color: #E6E6FA;
+  border-radius: 12px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-volume-slider {
+  filter: hue-rotate(240deg) saturate(1.2);
+}
+</style>
+<div class="topic-card"><strong>Expansion into New Categories</strong></div>
+
+<div class="card">
+<h2>Expansion into New Categories</h2>
+
+<p>We envision Salty evolving into a comprehensive accessories brand, expanding beyond jewellery to categories such as eyewear, belts, bags, and hats. Our focus remains on delivering innovative, trend-forward offerings while maintaining accessibility and inclusivity.</p>
+<img alt="Accessories Expansion Light Theme" class="light-image" src="https://login.skillizee.io/s/articles/68dd12a18551473efb961b9e/images/Salty expansion men.png" /> <img alt="Accessories Expansion Dark Theme" class="dark-image" src="https://login.skillizee.io/articles/68dd12a18551473efb961b9e/images/salty alpha.png" style="height: 441px; width: 1000px;" /></div>
+
+<div class="topic-card"><strong>Investment in Talent and Technology</strong></div>
+
+<div class="card">
+<h2>Investment in Talent and Technology</h2>
+
+<p>To support growth, Salty intends to invest in recruiting for critical roles across design, marketing, operations, and technology teams to build capacity and accelerate innovation. The company is launching a dedicated mobile app to enhance the customer experience, enable faster shopping, and strengthen community engagement through personalized outreach and promotions.<br />
+<img src="https://login.skillizee.io/s/articles/68dd12a18551473efb961b9e/images/5.1 - Investment in Talent and Technology.png" /></p>
+</div>
+
+<div class="topic-card"><strong>Commitment to Innovation and Partnerships</strong></div>
+
+<div class="card">
+<h2>Commitment to Innovation and Partnerships</h2>
+
+<p>The brand is focused on relentless innovation and customer satisfaction while exploring new collaborations and partnerships to fuel growth and market reach. While specific timelines are under consideration, our commitment to delivering trend-forward offerings remains unwavering.</p>
+
+<p><img src="https://login.skillizee.io/s/articles/68dd12a18551473efb961b9e/images/Innovation and partnership - Salty.png" style="width: 600px; height: 400px;" /></p>
+
+<div>&nbsp;</div>
+
+<div class="topic-card"><strong>Vision as a Lifestyle Brand</strong></div>
+
+<div class="card">
+<h2>Vision as a Lifestyle Brand</h2>
+
+<p>Overall, Salty is rapidly growing from a niche D2C fashion jewellery startup to a broader lifestyle accessory player targeting India&rsquo;s youth and emerging as a key competitor in the affordable fashion accessories market.</p>
+</div>
+
+<div class="topic-card"><strong>Expansion Goals Matching Activity</strong></div>
+
+<div class="activity-container">
+<h2>Salty&rsquo;s Expansion Goals Match</h2>
+
+<p class="theme-text">Match Salty&rsquo;s expansion goals with their descriptions by clicking one item from each column. Click &quot;Check Answers&quot; to validate your matches or &quot;Reset&quot; to start over.</p>
+
+<div class="match-container" id="matchArea">&nbsp;</div>
+
+<div class="button-container"><button fdprocessedid="rxnlvc" id="checkBtn">Check Answers</button><button fdprocessedid="yiht1p" id="resetActivity">Reset</button>
+
+<div class="score-container">Score: <span id="score">0</span>/5</div>
+</div>
+
+<div id="status">&nbsp;</div>
+
+<div id="resultPopup">&nbsp;</div>
+<canvas id="confetti"></canvas></div>
+
+<p>
+<audio id="correctSound" src="https://cdn.pixabay.com/audio/2022/03/10/audio_5d4f0e7c76.mp3">&nbsp;</audio>
+
+<audio id="incorrectSound" src="https://cdn.pixabay.com/audio/2022/03/10/audio_8f5a431f6e.mp3">&nbsp;</audio>
+
+<audio id="winSound" src="https://cdn.pixabay.com/audio/2022/03/10/audio_3e4f1b8d2a.mp3">&nbsp;</audio>
+</p>
+
+<footer><span class="theme-font-18">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+
+            const correctSound = document.getElementById('correctSound');
+            const incorrectSound = document.getElementById('incorrectSound');
+            const winSound = document.getElementById('winSound');
+            const popup = document.getElementById('resultPopup');
+            const statusEl = document.getElementById('status');
+            const scoreEl = document.getElementById('score');
+            const matchArea = document.getElementById('matchArea');
+
+            const MATCH_PAIRS = [
+                {
+                    goal: 'New Categories',
+                    description: 'Expanding into eyewear, belts, bags, and hats.',
+                    id: 1
+                },
+                {
+                    goal: 'Mobile App',
+                    description: 'Launching a dedicated app for better shopping and engagement.',
+                    id: 2
+                },
+                {
+                    goal: 'Recruitment',
+                    description: 'Hiring for design, marketing, operations, and tech roles.',
+                    id: 3
+                },
+                {
+                    goal: 'Collaborations',
+                    description: 'Exploring new partnerships to fuel growth and reach.',
+                    id: 4
+                },
+                {
+                    goal: 'Lifestyle Brand',
+                    description: 'Growing into a key player in affordable accessories.',
+                    id: 5
+                }
+            ];
+
+            let score = 0;
+            const maxScore = MATCH_PAIRS.length;
+            let selectedGoal = null;
+            let selectedDescription = null;
+            let matchedPairs = [];
+
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function buildMatchGame() {
+                matchArea.innerHTML = '';
+                matchedPairs = [];
+                const shuffledGoals = shuffle([...MATCH_PAIRS]);
+                const shuffledDescriptions = shuffle([...MATCH_PAIRS]);
+
+                const goalColumn = document.createElement('div');
+                goalColumn.classList.add('column');
+                const descriptionColumn = document.createElement('div');
+                descriptionColumn.classList.add('column');
+
+                shuffledGoals.forEach(item => {
+                    const goalItem = document.createElement('div');
+                    goalItem.classList.add('match-item');
+                    goalItem.dataset.id = item.id;
+                    goalItem.dataset.type = 'goal';
+                    goalItem.textContent = item.goal;
+                    goalItem.addEventListener('click', () => selectItem(goalItem, 'goal'));
+                    goalColumn.appendChild(goalItem);
+                });
+
+                shuffledDescriptions.forEach(item => {
+                    const descItem = document.createElement('div');
+                    descItem.classList.add('match-item');
+                    descItem.dataset.id = item.id;
+                    descItem.dataset.type = 'description';
+                    descItem.textContent = item.description;
+                    descItem.addEventListener('click', () => selectItem(descItem, 'description'));
+                    descriptionColumn.appendChild(descItem);
+                });
+
+                matchArea.appendChild(goalColumn);
+                matchArea.appendChild(descriptionColumn);
+            }
+
+            function selectItem(item, type) {
+                document.querySelectorAll('.match-item').forEach(i => i.classList.remove('selected'));
+                item.classList.add('selected');
+                if (type === 'goal') {
+                    selectedGoal = item;
+                    if (selectedDescription && selectedDescription.dataset.id === selectedGoal.dataset.id) {
+                        checkMatch();
+                    }
+                } else {
+                    selectedDescription = item;
+                    if (selectedGoal && selectedGoal.dataset.id === selectedDescription.dataset.id) {
+                        checkMatch();
+                    }
+                }
+            }
+
+            function checkMatch() {
+                if (selectedGoal && selectedDescription && selectedGoal.dataset.id === selectedDescription.dataset.id) {
+                    selectedGoal.classList.add('correct');
+                    selectedDescription.classList.add('correct');
+                    selectedGoal.classList.remove('selected');
+                    selectedDescription.classList.remove('selected');
+                    selectedGoal.style.pointerEvents = 'none';
+                    selectedDescription.style.pointerEvents = 'none';
+                    matchedPairs.push(selectedGoal.dataset.id);
+                    score++;
+                    scoreEl.textContent = score;
+                    correctSound.play().catch(error => console.log('Error playing correct sound:', error));
+                    selectedGoal = null;
+                    selectedDescription = null;
+                    if (score === maxScore) {
+                        popup.textContent = "🎉 Congratulations! You matched all pairs!";
+                        popup.style.display = "block";
+                        winSound.play().catch(error => console.log('Error playing win sound:', error));
+                        startConfetti();
+                        setTimeout(() => popup.style.display = "none", 4000);
+                    } else {
+                        popup.textContent = "Great job! Keep matching!";
+                        popup.style.display = "block";
+                        setTimeout(() => popup.style.display = "none", 2000);
+                    }
+                } else if (selectedGoal && selectedDescription) {
+                    selectedGoal.classList.add('wrong');
+                    selectedDescription.classList.add('wrong');
+                    incorrectSound.play().catch(error => console.log('Error playing incorrect sound:', error));
+                    setTimeout(() => {
+                        selectedGoal.classList.remove('wrong', 'selected');
+                        selectedDescription.classList.remove('wrong', 'selected');
+                        selectedGoal = null;
+                        selectedDescription = null;
+                    }, 500);
+                    popup.textContent = "Try again!";
+                    popup.style.display = "block";
+                    setTimeout(() => popup.style.display = "none", 2000);
+                }
+            }
+
+            function checkAnswers() {
+                if (!selectedGoal || !selectedDescription) {
+                    popup.textContent = "Select one goal and one description to match!";
+                    popup.style.display = "block";
+                    setTimeout(() => popup.style.display = "none", 2000);
+                    return;
+                }
+                checkMatch();
+                statusEl.textContent = `You have ${score}/${maxScore} correct matches!`;
+            }
+
+            function resetGame() {
+                score = 0;
+                scoreEl.textContent = score;
+                statusEl.textContent = '';
+                selectedGoal = null;
+                selectedDescription = null;
+                matchedPairs = [];
+                buildMatchGame();
+            }
+
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            function randomColor() {
+                const colors = ['#ff0', '#f00', '#0f0', '#00f', '#ff69b4'];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            function createParticles() {
+                particles = [];
+                for (let i = 0; i < 150; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height - canvas.height,
+                        w: 8,
+                        h: 12,
+                        color: randomColor(),
+                        speed: Math.random() * 3 + 2,
+                    });
+                }
+            }
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(p.x, p.y, p.w, p.h);
+                    p.y += p.speed;
+                    if (p.y > canvas.height) p.y = -10;
+                });
+            }
+
+            function startConfetti() {
+                createParticles();
+                const interval = setInterval(drawParticles, 30);
+                setTimeout(() => {
+                    clearInterval(interval);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }, 4000);
+            }
+
+            document.getElementById('checkBtn').addEventListener('click', checkAnswers);
+            document.getElementById('resetActivity').addEventListener('click', resetGame);
+
+            buildMatchGame();
+        });
+    </script></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggleUI = document.getElementById('theme-toggle');
+  
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    if(themeToggleUI) themeToggleUI.classList.add('on');
+  }
+  
+  if(themeToggleUI) {
+    themeToggleUI.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      themeToggleUI.classList.toggle('on');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+  }
+  
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if(fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {});
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        document.exitFullscreen();
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement) {
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>
