@@ -1,0 +1,986 @@
+<div>
+<div>
+<div>
+<div>
+<div>
+<div><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" /><script src="https://cdn.tailwindcss.com"></script><script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'salty-purple': '#B19CD9',
+                        'salty-dark': '#4B3A6F',
+                        'salty-light': '#D0C3F1',
+                    }
+                }
+            }
+        }
+    </script>
+<link rel="stylesheet" href="universal.css" />
+<style type="text/css">:root {
+            --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+            --body-color: #CCC;
+            --header-bg: #4B3A6F;
+            --header-color: #E0E0E0;
+            --h-color: #B19CD9;
+            --chapter-bg: #2A2244;
+            --text-p-color: #BBB;
+            --topic-bg: #3C2F5F;
+            --game-container-bg: #2A2244;
+            --game-area-bg: #1C172B;
+            --item-bg: #3C2F5F;
+            --category-bg: #4B3A6F;
+            --category-color: #E0E0E0;
+            --results-bg: #1C172B;
+            --footer-bg: #4B3A6F;
+            --footer-color: #E0E0E0;
+            --correct-bg: #388E3C;
+            --wrong-bg: #D32F2F;
+            --popup-bg: #B19CD9;
+            --popup-color: #000;
+            --shimmer-color: rgba(177, 156, 217, 0.2);
+            --sparkle-color-from: #B19CD9;
+            --sparkle-color-to: #8A7DB5;
+            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
+            --shadow-small: rgba(255,255,255,0.05);
+            --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+            --arrow-stroke: #B19CD9;
+            --theme-text-color: #ffffff;
+            --timeline-bg: #3C2F5F;
+            --timeline-color: #E0E0E0;
+            --button-bg: #B19CD9;
+            --button-color: #000;
+            --popup-shadow: rgba(255, 255, 255, 0.5);
+        }
+        .light {
+            --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
+            --body-color: #333;
+            --header-bg: #7b46ac;
+            --header-color: white;
+            --h-color: #333;
+            --chapter-bg: #fff;
+            --text-p-color: #444;
+            --topic-bg: #D0C3F1;
+            --game-container-bg: #fff;
+            --game-area-bg: #f9f9f9;
+            --item-bg: #D0C3F1;
+            --category-bg: #7b46ac;
+            --category-color: white;
+            --results-bg: #f9f9f9;
+            --footer-bg: #7b46ac;
+            --footer-color: white;
+            --correct-bg: #4caf50;
+            --wrong-bg: red;
+            --popup-bg: #9846ac;
+            --popup-color: white;
+            --shimmer-color: rgba(123, 70, 172, 0.2);
+            --sparkle-color-from: #9846ac;
+            --sparkle-color-to: #7b46ac;
+            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
+            --shadow-small: rgba(0,0,0,0.05);
+            --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            --arrow-stroke: #9846ac;
+            --theme-text-color: #333;
+            --timeline-bg: #D0C3F1;
+            --timeline-color: #444;
+            --button-bg: #9846ac;
+            --button-color: white;
+            --popup-shadow: rgba(0, 0, 0, 0.2);
+        }
+        body {
+            font-family: 'Michroma', sans-serif;
+            line-height: 1.6;
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: var(--body-bg);
+            color: var(--body-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .main-content {
+            opacity: 0;
+            visibility: hidden;
+            animation: fadeIn 0.8s 6.5s forwards;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; visibility: hidden; }
+            100% { opacity: 1; visibility: visible; }
+        }
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-color);
+            padding: 1.5rem;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+            animation: shimmer 3s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        h1, h2, h3 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--h-color);
+            position: relative;
+        }
+        h1::after, h2::after, h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--h-color), transparent);
+        }
+        .section-bg {
+            background: var(--chapter-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-main), var(--shadow-glow);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .jewel-bounce {
+            animation: jewelBounce 2s ease-in-out infinite;
+        }
+        @keyframes jewelBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .premium-badge {
+            background: var(--button-bg);
+            color: var(--button-color);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        li {
+            background: var(--item-bg);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: var(--item-shadow);
+            position: relative;
+            transition: transform 0.2s;
+        }
+        li::before {
+            content: "";
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            background-image: url('/s/articles/68d23d77a7630123724ed226/images/silver-symbol-gold-frame.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            vertical-align: middle;
+        }
+        li:hover {
+            transform: translateY(-3px);
+        }
+        .nav-guide {
+            background: var(--game-container-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-main);
+            margin-top: 20px;
+            text-align: center;
+        }
+        .nav-guide button {
+            background-color: var(--button-bg);
+            color: var(--button-color);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+        .nav-guide button:hover {
+            background-color: var(--header-bg);
+        }
+        .activity-section {
+            background: var(--game-container-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-main);
+            margin-top: 30px;
+        }
+        .activity-section h2 {
+            color: var(--h-color);
+            text-align: center;
+        }
+        .activity-section textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid var(--arrow-stroke);
+            border-radius: 5px;
+            font-size: 1em;
+            margin-top: 10px;
+            resize: vertical;
+            background: var(--item-bg);
+            color: var(--theme-text-color);
+        }
+        .activity-section button {
+            background-color: var(--button-bg);
+            color: var(--button-color);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            display: block;
+            margin: 15px auto;
+            transition: background-color 0.3s;
+        }
+        .activity-section button:hover {
+            background-color: var(--header-bg);
+        }
+        .activity-section p {
+            font-style: italic;
+            color: var(--text-p-color);
+            text-align: center;
+        }
+        .progress-tracker {
+            background: var(--topic-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1em;
+            color: var(--timeline-color);
+        }
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--salty-dark);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            margin: 20px 0;
+            width: 50%;
+        }
+        .timeline-item.left {
+            left: 0;
+        }
+        .timeline-item.right {
+            left: 50%;
+        }
+        .timeline-content {
+            background: var(--topic-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-main);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .timeline-content:hover {
+            transform: scale(1.02);
+            background-color: var(--sparkle-color-from);
+        }
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+        }
+        .timeline-item.left .timeline-content::before {
+            right: -20px;
+            border-left-color: var(--topic-bg);
+        }
+        .timeline-item.right .timeline-content::before {
+            left: -20px;
+            border-right-color: var(--topic-bg);
+        }
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--button-bg);
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+        }
+        .timeline-item.left .timeline-dot {
+            right: -10px;
+        }
+        .timeline-item.right .timeline-dot {
+            left: -10px;
+        }
+        .quiz-container {
+            background: var(--game-container-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-main);
+            margin-top: 30px;
+        }
+        .quiz-option {
+            background: var(--item-bg);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .quiz-option:hover {
+            background-color: var(--category-bg);
+        }
+        .quiz-option.correct {
+            background-color: var(--correct-bg);
+            color: #FFFFFF;
+        }
+        .quiz-option.incorrect {
+            background-color: var(--wrong-bg);
+            color: #FFFFFF;
+        }
+        /* Theme toggle CSS removed inline */
+
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-color);
+            text-align: center;
+            padding: 1rem;
+            width: 100%;
+        }
+        @media (max-width: 640px) {
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                margin-bottom: 40px;
+            }
+            .timeline-content::before {
+                left: -20px !important;
+                border-right-color: var(--topic-bg) !important;
+                border-left-color: transparent !important;
+            }
+            .timeline-dot {
+                left: 10px !important;
+                right: auto !important;
+            }
+            #theme-toggle {
+                width: 50px;
+                height: 25px;
+            }
+            #theme-toggle::before {
+                width: 20px;
+                height: 20px;
+            }
+            #theme-toggle.on::before {
+                transform: translateX(25px);
+            }
+            #theme-toggle::after, #theme-toggle.on::after {
+                font-size: 10px;
+            }
+        }
+        .theme-text {
+            color: var(--theme-text-color);
+        }
+        .theme-font-18 {
+            font-size: 18px;
+        }
+        html, body, div {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+        .animation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            animation: fadeOut 0.8s 6s forwards;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; pointer-events: none; }
+        }
+        .circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--salty-dark);
+        }
+        .circle div {
+            position: absolute;
+            top: calc((50% - 10px));
+            left: calc((50% - 10px));
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        .circle div:nth-child(1) { background: var(--salty-light); animation: anim_01 1.5s forwards; }
+        .circle div:nth-child(2) { background: var(--sparkle-color-from); animation: move_01 1.5s 1.5s; }
+        .circle div:nth-child(3) { background: var(--sparkle-color-to); animation: move_02 1.5s 1.5s; }
+        .circle div:nth-child(4) { background: var(--popup-bg); animation: move_03 1.5s 1.5s; }
+        .circle div:nth-child(5) { background: var(--h-color); animation: move_04 1.5s 1.5s; }
+        @keyframes anim_01 {
+            0% { transform: scale(0); }
+            20% { transform: scale(3); }
+            50% { transform: scale(1); }
+            90% { transform: scale(5); }
+            100% { transform: scale(0); }
+        }
+        @keyframes move_01 {
+            0% { transform: translate(0) scale(0); }
+            20% { transform: translate(-100px, -100px) scale(1); }
+            40% { transform: translate(-100px, 100px) scale(1); }
+            60% { transform: translate(100px, 100px) scale(1); }
+            80% { transform: translate(100px, -100px) scale(1); }
+            100% { transform: translate(0) scale(1); }
+        }
+        @keyframes move_02 {
+            0% { transform: translate(0) scale(0); }
+            20% { transform: translate(-100px, 100px) scale(1); }
+            40% { transform: translate(100px, 100px) scale(1); }
+            60% { transform: translate(100px, -100px) scale(1); }
+            80% { transform: translate(-100px, -100px) scale(1); }
+            100% { transform: translate(0) scale(1); }
+        }
+        @keyframes move_03 {
+            0% { transform: translate(0px) scale(0); }
+            20% { transform: translate(100px, 100px) scale(1); }
+            40% { transform: translate(100px, -100px) scale(1); }
+            60% { transform: translate(-100px, -100px) scale(1); }
+            80% { transform: translate(-100px, 100px) scale(1); }
+            100% { transform: translate(0) scale(1); }
+        }
+        @keyframes move_04 {
+            0% { transform: translate(0px) scale(0); }
+            20% { transform: translate(100px, -100px) scale(1); }
+            40% { transform: translate(-100px, -100px) scale(1); }
+            60% { transform: translate(-100px, 100px) scale(1); }
+            80% { transform: translate(100px, 100px) scale(1); }
+            100% { transform: translate(0) scale(1); }
+        }
+        .big {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        .big div {
+            position: absolute;
+            top: calc((50% - 1500px));
+            left: calc((50% - 1500px));
+            width: 3000px;
+            height: 3000px;
+            border-radius: 50%;
+            transform: scale(0);
+        }
+        .big div:nth-child(1) { background: var(--salty-light); animation: big 0.4s 3s forwards; }
+        .big div:nth-child(2) { background: var(--sparkle-color-from); animation: big 0.4s 3.4s forwards; }
+        .big div:nth-child(3) { background: var(--sparkle-color-to); animation: big 0.4s 3.8s forwards; }
+        .big div:nth-child(4) { background: var(--popup-bg); animation: big 0.4s 4.2s forwards; }
+        .big div:nth-child(5) { background: var(--h-color); animation: big 0.4s 4.6s forwards; }
+        @keyframes big {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        .tri {
+            position: absolute;
+            bottom: -300vw;
+            left: -100vw;
+            width: 0;
+            height: 0;
+            border-left: 150vw solid rgba(255, 0, 0, 0);
+            border-right: 150vw solid rgba(255, 0, 0, 0);
+            border-bottom: 300vw solid var(--popup-bg);
+            animation: tri 0.5s 4s linear forwards;
+        }
+        @keyframes tri {
+            100% { transform: translateY(-300vw); }
+        }
+        .squ {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        .squ div {
+            position: absolute;
+            top: calc((50% - 50px));
+            left: calc((50% - 50px));
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            transform: scale(0);
+        }
+        .squ div:nth-child(1) { background: var(--salty-dark); animation: squ 0.5s 4.5s cubic-bezier(0, 0.73, 0.54, 2.4) forwards; }
+        .squ div:nth-child(2) { background: var(--sparkle-color-from); animation: moveSqu_01 0.6s 5s forwards; }
+        .squ div:nth-child(3) { background: var(--sparkle-color-to); animation: moveSqu_02 0.6s 5s forwards; }
+        .squ div:nth-child(4) { background: var(--h-color); animation: moveSqu_03 0.6s 5s forwards; }
+        @keyframes squ {
+            0% { transform: translateY(100px) scale(0); }
+            20% { transform: translateY(100px) scale(1); }
+            99% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(0) scale(0); }
+        }
+        @keyframes moveSqu_01 {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-300px); border-radius: 0; }
+        }
+        @keyframes moveSqu_02 {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(0px); border-radius: 0; }
+        }
+        @keyframes moveSqu_03 {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(300px); border-radius: 0; }
+        }
+        .start {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        .start div {
+            position: absolute;
+            top: calc((50% - 50px));
+            left: calc((50% - 50px));
+            width: 100px;
+            height: 100px;
+            font-size: 70px;
+            line-height: 100px;
+            text-align: center;
+            color: var(--theme-text-color);
+            background: var(--salty-light);
+            border-radius: 0;
+            opacity: 0;
+            animation: end 0.8s 5.7s forwards;
+        }
+        .start div:nth-child(1) { background: var(--salty-light); transform: translateX(-400px); }
+        .start div:nth-child(2) { background: var(--sparkle-color-from); transform: translateX(-200px); }
+        .start div:nth-child(3) { background: transparent; transform: translateX(0px); }
+        .start div:nth-child(4) { background: var(--popup-bg); transform: translateX(200px); }
+        .start div:nth-child(5) { background: var(--h-color); transform: translateX(400px); }
+        @keyframes end {
+            100% { opacity: 1; }
+        }
+</style>
+<style>
+/* Mod5 SVG override */
+#fullscreen-btn svg {
+  width: 32px !important;
+  height: 32px !important;
+}
+@media (max-width: 768px) {
+  #fullscreen-btn svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+}
+</style>
+</head>
+<body>
+    <div class="top-controls" style="position: absolute; z-index: 100;">
+        <div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
+        <button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
+    </div>
+    
+<div class="animation-overlay">
+<div class="circle">
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+</div>
+
+<div class="big">
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+</div>
+
+<div class="tri">&nbsp;</div>
+
+<div class="squ">
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;</div>
+</div>
+
+<div class="start">
+<div>S</div>
+
+<div>A</div>
+
+<div>L</div>
+
+<div>T</div>
+
+<div>Y</div>
+</div>
+</div>
+
+<div class="main-content">
+<p><button id="theme-toggle"></button></p>
+
+<header>
+<div class="container mx-auto px-4">
+<div class="flex items-center justify-between">
+<div>
+<h1 class="text-3xl md:text-4xl font-bold theme-text">💎 <span style="font-size:28px;">SALTY JEWELLERY INTERNSHIP</span></h1>
+
+<p class="mt-2 text-lg md:text-xl theme-font-18">Skillizee X Salty Virtual Internship &ndash; Crafting Fashion That Defines You</p>
+</div>
+<span class="premium-badge">Internship</span></div>
+</div>
+</header>
+
+<main class="flex-grow container mx-auto px-4 py-8">
+<div class="mx-4 p-6 text-center jewel-bounce"><img alt="Salty Logo" class="max-w-full mx-auto" src="/articles/68d23d77a7630123724ed226/images/salty logo frame.png" style="max-width: 600px; width: 851px; height: 315px;" /></div>
+
+<div style="position: relative; overflow: hidden; aspect-ratio: 1920/1080"><iframe allow="encrypted-media; fullscreen; microphone;" allowfullscreen="" loading="lazy" src="https://share.synthesia.io/embeds/videos/cc64ad12-1e99-476f-a2ec-95f3ad524915" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0; overflow:hidden;" title="Synthesia video player - Overview - Salty 2"></iframe></div>
+
+<div style="margin-top: 1rem;">&nbsp;</div>
+
+<section class="section-bg rounded-lg p-6 mb-8 shadow-lg">
+<h2 class="text-2xl md:text-3xl font-semibold flex items-center">Welcome to the Internship</h2>
+
+<div style="margin-top: 1rem;">&nbsp;</div>
+
+<p class="text-sm md:text-base" style="color: var(--text-p-color);">Welcome, aspiring fashion innovators! Join the Skillizee X Salty Virtual Internship to dive into the world of Salty Jewellery, India&rsquo;s trendsetting D2C brand redefining style with bold, affordable, and high-quality accessories.</p>
+
+<p data-end="739" data-start="574"><strong data-end="607" data-start="574">Real-world project experience</strong>: Interns work on tasks that mirror real operations, marketing, creative, or strategy roles.</p>
+</section>
+
+<section class="section-bg rounded-lg p-6 mb-8 shadow-lg">
+<h2 class="text-2xl md:text-3xl font-semibold flex items-center">What You Will Learn</h2>
+
+<div style="margin-top: 1rem;">&nbsp;</div>
+
+<p class="text-sm md:text-base" style="color: var(--text-p-color);">Explore the art of building a modern jewellery brand with hands-on insights:</p>
+
+<ul>
+	<li>Brand Story: Discover how Salty evolved from an idea to a fashion-forward brand.</li>
+	<li>Mission and Vision: Learn how Salty&rsquo;s core values shape its identity and connect with customers.</li>
+	<li>Product Innovation: Understand the creation of trendy accessories like necklaces, earrings, and bag charms.</li>
+	<li>Marketing Strategies: Master social media, SEO, and influencer strategies to engage Gen Z audiences.</li>
+	<li>Business Operations: Gain insights into pricing, supply chain, and the Business Model Canvas.</li>
+	<li>Hands-On Experience: Create branding, marketing, and strategic materials to reflect Salty&rsquo;s vision.</li>
+</ul>
+</section>
+
+<section class="section-bg rounded-lg p-6 mb-8 shadow-lg">
+<h2 class="text-2xl md:text-3xl font-semibold flex items-center">Quizzes, Assignments and Projects</h2>
+
+<p class="text-sm md:text-base" style="color: var(--text-p-color);">As you progress, demonstrate your mastery to gain certificate these are required to be completed:</p>
+
+<ul>
+	<li>Quizzes: Achieve a passing grade of 75% to unlock the next module.</li>
+	<li>Assignments: Earn a passing grade of 60% to showcase your creativity.</li>
+	<li>Capstone Project: Complete the final capstone project and apply all learned concepts.</li>
+</ul>
+</section>
+
+<section class="section-bg rounded-lg p-6 mb-8 shadow-lg">
+<h2 class="text-2xl md:text-3xl font-semibold flex items-center">Internship Timeline: A 360-Degree Experience</h2>
+
+<p class="text-sm md:text-base" style="color: var(--text-p-color);">This internship provides a comprehensive exploration of Salty Jewellery&#39;s brand journey. Below is the timeline of modules and activities:</p>
+
+<div class="timeline">
+<div class="timeline-item left">
+<div class="timeline-dot">&nbsp;</div>
+
+<div class="timeline-content">
+<h3 style="text-align: center;"><span style="font-size:26px;">Module 1: Overview of Jewellery Design</span></h3>
+
+<p><span style="font-size:20px;">1.1 &ndash; The Story of Salty: From Idea to Reality<br />
+1.2 &ndash; Mission, Vision, and Core Values<br />
+Activities: Q&amp;A: Ask the Founder, Quiz Module 1</span></p>
+</div>
+</div>
+
+<div class="timeline-item right">
+<div class="timeline-dot">&nbsp;</div>
+
+<div class="timeline-content">
+<h3 style="text-align: center;"><span style="font-size:26px;">Module 2: Salty - Products, Materials &amp; Innovation</span></h3>
+
+<p><span style="font-size:20px;">2.1 &ndash; Salty&rsquo;s Product World: Categories &amp; Accessories<br />
+2.2 &ndash; Creativity in Action: From Trends to Design<br />
+2.3 &ndash; Materials, Quality &amp; Anti-Tarnish Technology<br />
+Activities: Q&amp;A: Ask the Founder, Quiz Module 2, Experiential Learning: Production Cost Calculator</span></p>
+</div>
+</div>
+
+<div class="timeline-item left">
+<div class="timeline-dot">&nbsp;</div>
+
+<div class="timeline-content">
+<h3 style="text-align: center;"><span style="font-size:26px;">Module 3: Affordable Luxury, Sales Channels, </span><span style="font-size:20px;">BMC</span></h3>
+
+<p><span style="font-size:20px;">3.1 &ndash; The Business Model Canvas: Key Activities<br />
+3.2 &ndash; Price Point Strategy: Affordable Luxury<br />
+3.3 &ndash; Business &amp; Operations<br />
+3.4 &ndash; What Makes Salty Stand Out?<br />
+Activities: Q&amp;A: Ask the Founder, Quiz Module 3, Experiential Learning: BMC Learning - Salty Empire</span></p>
+</div>
+</div>
+
+<div class="timeline-item right">
+<div class="timeline-dot">&nbsp;</div>
+
+<div class="timeline-content">
+<h3 style="text-align: center;"><span style="font-size:26px;">Module 4: Marketing, Branding &amp; Community</span></h3>
+
+<p><span style="font-size:20px;">4.1 &ndash; Social Media &amp; Influencers<br />
+4.2 &ndash; Engaging Audiences with Social Media &amp; Ads<br />
+4.3 &ndash; SEO &amp; Organic Growth Strategy<br />
+4.4 &ndash; Demographic, Community, and Connections<br />
+4.5 &ndash; Brand Identity &amp; Customer Experience<br />
+Activities: Q&amp;A: Ask the Founder, Quiz Module 4, Experiential Learning: Meta Ads Tutorial</span></p>
+</div>
+</div>
+
+<div class="timeline-item left">
+<div class="timeline-dot">&nbsp;</div>
+
+<div class="timeline-content">
+<h3 style="text-align: center;"><span style="font-size:26px;">Module 5: Future Vision &amp; Funding</span></h3>
+
+<p><span style="font-size:20px;">5.1 &ndash; Future Growth and Expansion<br />
+5.2 &ndash; Funding, Expansion and Investment Technologies<br />
+Activities: Q&amp;A: Ask the Founder, Quiz Module 5, Experiential Learning: Challenge &amp; Expansion</span></p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section-bg rounded-lg p-6 mb-8 shadow-lg">
+<h2 class="text-2xl md:text-3xl font-semibold flex items-center">Interactive Activities and Quizzes</h2>
+
+<div class="activity-section">
+<h2>Sample Quiz: Test Your Knowledge</h2>
+
+<div class="quiz-container">
+<div class="mb-4">
+<p class="font-semibold">What is Salty Jewellery&#39;s primary focus?</p>
+
+<div class="quiz-option" onclick="checkAnswer(this, true)">Trendy, Affordable Accessories</div>
+
+<div class="quiz-option" onclick="checkAnswer(this, false)">Luxury High-End Jewellery</div>
+
+<div class="quiz-option" onclick="checkAnswer(this, false)">Traditional Handcrafted Artefacts</div>
+</div>
+
+<p class="text-center" id="quizFeedback">&nbsp;</p>
+</div>
+</div>
+
+<div class="activity-section">
+<h2 class="text-2xl md:text-3xl font-semibold text-center mb-6" style="color: var(--h-color);">Interactive Activity: Brand Reflection</h2>
+
+<p class="text-center mb-6" style="color: var(--text-p-color);">Reflect on Salty&rsquo;s brand strategy and share your thoughts below:</p>
+<input class="w-full px-4 py-3 mb-4 border border-var(--arrow-stroke) rounded-lg 
+                bg-var(--item-bg) text-var(--theme-text-color) focus:outline-none focus:ring-2 focus:ring-#B19CD9" id="nameInput" placeholder="Your Full Name *" type="text" /> <input class="w-full px-4 py-3 mb-4 border border-var(--arrow-stroke) rounded-lg 
+                bg-var(--item-bg) text-var(--theme-text-color) focus:outline-none focus:ring-2 focus:ring-#B19CD9" id="emailInput" placeholder="Your Email ID *" type="email" /><textarea class="w-full px-4 py-3 border border-var(--arrow-stroke) rounded-lg 
+                   bg-var(--item-bg) text-var(--theme-text-color) resize-vertical focus:outline-none focus:ring-2 focus:ring-#B19CD9" id="reflectionInput" placeholder="How would you enhance Salty’s social media strategy to engage Gen Z audiences? *" rows="6"></textarea><button class="mt-5 px-8 py-3 bg-var(--button-bg) text-var(--button-color) font-bold rounded-lg 
+                 hover:bg-#8A7DB5 transition shadow-lg" onclick="submitReflection()">Submit Reflection</button>
+
+<p class="mt-4 text-center font-bold min-h-8" id="reflectionFeedback">&nbsp;</p>
+</div>
+</section>
+</main>
+
+<footer>
+<p>&copy; 2025 Salty Jewellery | Designed for Learning</p>
+</footer>
+</div>
+<script>
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light');
+            themeToggle.classList.toggle('on');
+        });
+
+        function navigateTo(action) {
+            if (action === 'next') {
+                alert('Navigating to the next section...');
+            } else if (action === 'menu') {
+                alert('Opening course menu...');
+            }
+        }
+
+        function checkAnswer大陸(element, isCorrect) {
+            const feedback = document.getElementById('quizFeedback');
+            if (isCorrect) {
+                element.classList.add('correct');
+                feedback.textContent = 'Correct! Salty Jewellery focuses on trendy, affordable accessories.';
+                feedback.style.color = '#4caf50';
+            } else {
+                element.classList.add('incorrect');
+                feedback.textContent = 'Incorrect. Try again!';
+                feedback.style.color = '#D32F2F';
+                setTimeout(() => {
+                    element.classList.remove('incorrect');
+                    feedback.textContent = '';
+                }, 1000);
+            }
+        }
+
+        // ========== REFLECTION SUBMISSION TO GOOGLE SHEETS ==========
+// ←←← REPLACE YOUR OLD submitReflection() WITH THIS ONE ←←←
+async function submitReflection() {
+  const name     = document.getElementById('nameInput')?.value.trim()  || "Anonymous";
+  const email    = document.getElementById('emailInput')?.value.trim() || "No email";
+  const response = document.getElementById('reflectionInput').value.trim();
+  const feedback = document.getElementById('reflectionFeedback');
+
+  if (!name || !email || !response) {
+    feedback.textContent = "Please fill all fields";
+    feedback.style.color = "var(--wrong-bg)";
+    return;
+  }
+
+  feedback.textContent = "Submitting…";
+  feedback.style.color = "#B19CD9";
+
+  // ←←← YOUR DEPLOYED WEB APP URL ←←←
+  const webAppUrl = "https://script.google.com/a/macros/skillizee.io/s/AKfycbwQH_OLBVdXeKh-PqAVKHeL24Oe6UmlgO2WslgJA4r7p0z73TK31lUbEFFzpfz6P2Yq4Q/exec";
+
+  const payload = JSON.stringify({ name, email, response });
+
+  try {
+    const res = await fetch(webAppUrl, {
+      method: "POST",
+      mode: "no-cors",                     // ← important (prevents CORS error in browser)
+      redirect: "follow",
+      body: payload,
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"   // ← this is the magic line
+      }
+    });
+
+    // With mode: no-cors we cannot read the response, but the data IS sent successfully
+    feedback.textContent = "Thank you! Submitted successfully.";
+    feedback.style.color = "var(--correct-bg)";
+
+    // Clear form
+    document.getElementById('nameInput').value = "";
+    document.getElementById('emailInput').value = "";
+    document.getElementById('reflectionInput').value = "";
+
+  } catch (err) {
+    feedback.textContent = "Submitted! (network blocked response, but data was sent)";
+    feedback.style.color = "var(--correct-bg)";
+  }
+
+  setTimeout(() => feedback.textContent = "", 6000);
+}
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.body.style.overflow = 'auto';
+    }, 6500);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggleUI = document.getElementById('theme-toggle');
+  
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    if(themeToggleUI) themeToggleUI.classList.add('on');
+  }
+  
+  if(themeToggleUI) {
+    themeToggleUI.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      themeToggleUI.classList.toggle('on');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+  }
+  
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if(fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {});
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        document.exitFullscreen();
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement) {
+        fullscreenBtn.classList.add('fullscreen-active');
+        fullscreenBtn.title = "Exit Fullscreen";
+      } else {
+        fullscreenBtn.classList.remove('fullscreen-active');
+        fullscreenBtn.title = "Enter Fullscreen";
+      }
+    });
+  }
+});
+</script>
