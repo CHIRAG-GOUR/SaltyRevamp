@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
-<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="universal.css" />
-<style type="text/css">:root {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="universal.css" />
+    <style type="text/css">
+        :root {
             --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
             --body-color: #CCC;
             --header-bg: #4B3A6F;
@@ -26,9 +28,9 @@
             --shimmer-color: rgba(177, 156, 217, 0.2);
             --sparkle-color-from: #B19CD9;
             --sparkle-color-to: #8A7DB5;
-            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-main: 0px 4px 15px rgba(255, 255, 255, 0.1);
             --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
-            --shadow-small: rgba(255,255,255,0.05);
+            --shadow-small: rgba(255, 255, 255, 0.05);
             --theme-text-color: #ffffff;
             --color3: #B19CD9CC;
             --color4: #B19CD999;
@@ -43,7 +45,7 @@
             --category-color: #E0E0E0;
             --game-container-bg: #2A2244;
             --game-area-bg: #1C172B;
-            --item-shadow: 0px 2px 5px rgba(255,255,255,0.1);
+            --item-shadow: 0px 2px 5px rgba(255, 255, 255, 0.1);
             --popup-shadow: rgba(255, 255, 255, 0.5);
             --arrow-stroke: #B19CD9;
         }
@@ -69,9 +71,9 @@
             --shimmer-color: rgba(123, 70, 172, 0.2);
             --sparkle-color-from: #9846ac;
             --sparkle-color-to: #7b46ac;
-            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-main: 0px 4px 15px rgba(0, 0, 0, 0.1);
             --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
-            --shadow-small: rgba(0,0,0,0.05);
+            --shadow-small: rgba(0, 0, 0, 0.05);
             --theme-text-color: #333;
             --color3: #9846acCC;
             --color4: #9846ac99;
@@ -86,7 +88,7 @@
             --category-color: #333;
             --game-container-bg: #fff;
             --game-area-bg: #f9f9f9;
-            --item-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+            --item-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
             --popup-shadow: rgba(0, 0, 0, 0.2);
             --arrow-stroke: #9846ac;
         }
@@ -129,21 +131,29 @@
         }
 
         @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
         }
 
         header h1.theme-text {
             color: white;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-family: 'Michroma', sans-serif;
             color: var(--h-color);
             position: relative;
         }
 
-        h1::after, h2::after {
+        h1::after,
+        h2::after {
             content: '';
             position: absolute;
             bottom: -5px;
@@ -155,8 +165,17 @@
         }
 
         @keyframes sparkle {
-            0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; }
-            50% { transform: translateY(-50%) scale(1.2); opacity: 0.7; }
+
+            0%,
+            100% {
+                transform: translateY(-50%) scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(-50%) scale(1.2);
+                opacity: 0.7;
+            }
         }
 
         .card {
@@ -177,7 +196,9 @@
             color: var(--h-color) !important;
         }
 
-        .card p, .card ul, .card table {
+        .card p,
+        .card ul,
+        .card table {
             line-height: 1.7;
             margin: 10px 0;
             color: var(--text-p-color) !important;
@@ -198,7 +219,8 @@
             margin: 10px 0;
         }
 
-        .card th, .card td {
+        .card th,
+        .card td {
             padding: 8px;
             border: 1px solid var(--text-p-color);
             text-align: left;
@@ -210,7 +232,8 @@
             color: var(--header-color) !important;
         }
 
-        .card img, .card video {
+        .card img,
+        .card video {
             width: 100%;
             max-width: 700px;
             height: 700px;
@@ -232,13 +255,22 @@
             display: block;
         }
 
-        .card img:hover, .card video:hover, .card iframe:hover {
+        .card img:hover,
+        .card video:hover,
+        .card iframe:hover {
             animation: bounce 0.5s ease-in-out;
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .card .large-image {
@@ -267,7 +299,8 @@
             text-align: center;
         }
 
-        .topic-card::before, .topic-card::after {
+        .topic-card::before,
+        .topic-card::after {
             content: '?';
             position: absolute;
             top: 50%;
@@ -314,14 +347,16 @@
             animation: shimmer 3s infinite linear;
         }
 
-@media (max-width: 768px) {
+        @media (max-width: 768px) {
             .card {
                 width: 95%;
                 padding: 10px;
                 margin: 5px auto;
             }
 
-            .card img, .card video, .card .large-image {
+            .card img,
+            .card video,
+            .card .large-image {
                 max-width: 200px;
                 max-height: 200px;
                 width: 100%;
@@ -344,7 +379,8 @@
                 font-size: 14px;
             }
 
-            .card th, .card td {
+            .card th,
+            .card td {
                 padding: 6px;
             }
 
@@ -353,7 +389,7 @@
                 padding: 10px 20px;
             }
 
-}
+        }
 
         .theme-text {
             color: var(--theme-text-color);
@@ -377,6 +413,7 @@
             .light-image {
                 display: none;
             }
+
             .dark-image {
                 display: block;
             }
@@ -386,6 +423,7 @@
         body.light .light-image {
             display: block;
         }
+
         body.light .dark-image {
             display: none;
         }
@@ -394,6 +432,7 @@
         body:not(.light) .light-image {
             display: none;
         }
+
         body:not(.light) .dark-image {
             display: block;
         }
@@ -433,182 +472,197 @@
         }
     </style>
 </head>
+
 <body>
-<div class="top-controls">
-<div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
-<!-- Fullscreen Button -->
+    <div class="top-controls">
+        <div id="theme-toggle"><span class="icon moon">🌙</span>
+            <div class="knob">&nbsp;</div><span class="icon sun">☀️</span>
+        </div>
+        <!-- Fullscreen Button -->
 
-<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
-</div><script>
-const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
-if(fullscreenToggleBtnUI) {
-  fullscreenToggleBtnUI.addEventListener('click', () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-      fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
-    } else {
-      document.exitFullscreen();
-      fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>';
-    }
-  });
-}
-</script>
-
-<header>
-<h1><strong><span class="theme-text">Chapter 4: Brand Identity &amp; Customer Experience</span></strong></h1>
-
-<p><strong><span class="theme-font-18">Salty: Where Buying Meets &quot;Experience&quot;</span></strong></p>
-</header>
-
-<div class="audio-container">
-<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/4.4.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
-</div>
-<style type="text/css">.audio-container {
-  position: relative;
-  background: url('https://login.skillizee.io/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
-  background-size: contain; /* keeps the GIF's aspect ratio */
-  border-radius: 16px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-  margin: 1rem auto;
-  width: 90%;
-  max-width: 900px;
-  aspect-ratio: 1920 / 1080; /* maintain original proportion */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 1rem;
-  padding-bottom: 1rem;
-}
-
-/* Modern styled audio */
-.audio-container audio {
-  width: 100%;
-  border-radius: 12px;
-  border: 2px solid #2D2B7E;
-  background: #F5F5FF;
-  height: 50px;
-  padding: 4px;
-  box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
-}
-
-/* Lavender-toned player controls */
-audio::-webkit-media-controls-panel {
-  background-color: #E6E6FA;
-  border-radius: 12px;
-}
-
-audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-timeline,
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display,
-audio::-webkit-media-controls-volume-slider {
-  filter: hue-rotate(240deg) saturate(1.2);
-}
-</style>
-<div class="topic-card"><strong>Packaging and Unboxing</strong></div>
-
-<div class="card">
-<h2>Packaging and Unboxing as an &ldquo;Experience&rdquo;</h2>
-
-<p><strong>Stylish, Branded Packaging:</strong> Every Salty piece comes in chic, custom-branded boxes or micro-fiber pouches, making each order feel like an exclusive gift. Packaging is designed to reflect youthful, trendy aesthetics and protect the jewellery inside.</p>
-
-<p><strong>Unboxing Delight:</strong> The thoughtful packaging, often with care instructions or thank-you notes, turns the unboxing into a share-worthy moment that customers frequently feature on social media, boosting organic visibility and reinforcing the brand&rsquo;s premium yet approachable vibe.</p>
-<img alt="Salty Packaging Light Theme" class="light-image large-image" src="https://login.skillizee.io/s/articles/68df9bdef1761607d901c947/images/demographic target light.png" /><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="yt-placeholder" frameborder="0" scrolling="no" src="https://www.youtube.com/embed/ABVwFUR0hV8?rel=0"></iframe><img alt="Salty Packaging Dark Theme" class="dark-image large-image" src="https://login.skillizee.io/s/articles/68df9bdef1761607d901c947/images/demographic target dark.png" /></div>
-
-<div class="topic-card"><strong>Buyer Journey</strong></div>
-
-<div class="card">
-<h2>Buyer Journey: Discovery &rarr; Purchase &rarr; Sharing Online</h2>
-
-<p><img src="https://login.skillizee.io/s/articles/68dd072355f4dc5c22d1bf69/images/Discovery purchase sharing gemini 3.png"  /></p>
-
-<ul>
-	<li><strong>Discovery:</strong> Customers discover Salty mainly through engaging social media content, regular product drops, influencer partnerships, and search-friendly, visually appealing online campaigns.</li>
-	<li><strong>Purchase:</strong> The buying process on salty.co.in is designed to be simple and secure, with detailed product info, multiple payment options (including COD), and a hassle-free 7-day return/exchange policy for peace of mind.</li>
-	<li><strong>Sharing Online:</strong> After purchase, many customers share their Salty unboxing experiences, styling photos, or reviews on Instagram and other platforms using branded hashtags. Salty encourages this by resharing user content, further growing its community and reinforcing the &ldquo;Salty experience&rdquo; across digital touchpoints.</li>
-</ul>
-
-<div class="topic-card"><strong>Customer Engagement</strong></div>
-
-<div class="card">
-<h2>Driving Loyalty and Advocacy</h2>
-
-<p>Salty&rsquo;s focus on experience&mdash;before, during, and after purchase&mdash;transforms ordinary shopping into an engaging lifestyle event, driving both loyalty and brand advocacy among young, social-first customers.<br />
-<img src="https://login.skillizee.io/s/articles/68dd072355f4dc5c22d1bf69/images/Driving loyalty 1.png"  /></p>
-</div>
-
-<footer><span class="theme-font-18">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const themeToggleUI = document.getElementById('theme-toggle');
-  
-  // Load saved theme preference
-  if (localStorage.getItem('theme') === 'light') {
-    document.body.classList.add('light');
-    if(themeToggleUI) themeToggleUI.classList.add('on');
-  }
-  
-  // Add click event listener
-  if(themeToggleUI) {
-    themeToggleUI.addEventListener('click', () => {
-      document.body.classList.toggle('light');
-      themeToggleUI.classList.toggle('on');
-      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
-    });
-  }
-});
-</script>
-
-
-
-
-<script>
-  // Foolproof Theme & Fullscreen Logic
-  document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const fullscreenBtn = document.getElementById('fullscreen-btn');
-    const body = document.body;
-
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      body.classList.add('light');
-      if (themeToggle) themeToggle.classList.add('on');
-    }
-
-    if (themeToggle) {
-      themeToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        body.classList.toggle('light');
-        this.classList.toggle('on');
-        localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
-      });
-    }
-
-    if (fullscreenBtn) {
-      fullscreenBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen().catch(err => console.error("Fullscreen error:", err));
-        } else {
-          document.exitFullscreen();
+        <button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24">
+                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path>
+            </svg></button>
+    </div>
+    <script>
+        const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
+        if (fullscreenToggleBtnUI) {
+            fullscreenToggleBtnUI.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                    fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
+                } else {
+                    document.exitFullscreen();
+                    fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>';
+                }
+            });
         }
-      });
-      document.addEventListener('fullscreenchange', function() {
-        if (document.fullscreenElement) {
-          fullscreenBtn.classList.add('active');
-          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
-        } else {
-          fullscreenBtn.classList.remove('active');
-          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>';
+    </script>
+
+    <header>
+        <h1><strong><span class="theme-text">Chapter 4: Brand Identity &amp; Customer Experience</span></strong></h1>
+
+        <p><strong><span class="theme-font-18">Salty: Where Buying Meets &quot;Experience&quot;</span></strong></p>
+    </header>
+
+    <div class="audio-container">
+        <audio controls="" controlslist="nodownload" oncontextmenu="return false;">
+            <source src="https://chirag-gour.github.io/Audio_SkilliZee/4.4.mp3" type="audio/mp3" /> Your browser does
+            not support the audio element.
+        </audio>
+    </div>
+    <style type="text/css">
+        .audio-container {
+            position: relative;
+            background: url('https://login.skillizee.io/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+            background-size: contain;
+            /* keeps the GIF's aspect ratio */
+            border-radius: 16px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+            margin: 1rem auto;
+            width: 90%;
+            max-width: 900px;
+            aspect-ratio: 1920 / 1080;
+            /* maintain original proportion */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1rem;
+            padding-bottom: 1rem;
         }
-      });
-    }
-  });
-</script>
+
+        /* Modern styled audio */
+        .audio-container audio {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid #2D2B7E;
+            background: #F5F5FF;
+            height: 50px;
+            padding: 4px;
+            box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
+        }
+
+        /* Lavender-toned player controls */
+        audio::-webkit-media-controls-panel {
+            background-color: #E6E6FA;
+            border-radius: 12px;
+        }
+
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-timeline,
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display,
+        audio::-webkit-media-controls-volume-slider {
+            filter: hue-rotate(240deg) saturate(1.2);
+        }
+    </style>
+    <div class="topic-card"><strong>Packaging and Unboxing</strong></div>
+
+    <div class="card">
+        <h2>Packaging and Unboxing as an &ldquo;Experience&rdquo;</h2>
+
+        <p><strong>Stylish, Branded Packaging:</strong> Every Salty piece comes in chic, custom-branded boxes or
+            micro-fiber pouches, making each order feel like an exclusive gift. Packaging is designed to reflect
+            youthful, trendy aesthetics and protect the jewellery inside.</p>
+
+        <p><strong>Unboxing Delight:</strong> The thoughtful packaging, often with care instructions or thank-you notes,
+            turns the unboxing into a share-worthy moment that customers frequently feature on social media, boosting
+            organic visibility and reinforcing the brand&rsquo;s premium yet approachable vibe.</p>
+        <img alt="Salty Packaging Light Theme" class="light-image large-image"
+            src="https://login.skillizee.io/s/articles/68df9bdef1761607d901c947/images/demographic target light.png" /><iframe
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen="" class="yt-placeholder" frameborder="0" scrolling="no"
+            src="https://www.youtube.com/embed/ABVwFUR0hV8?rel=0"></iframe><img alt="Salty Packaging Dark Theme"
+            class="dark-image large-image"
+            src="https://login.skillizee.io/s/articles/68df9bdef1761607d901c947/images/demographic target dark.png" />
+    </div>
+
+    <div class="topic-card"><strong>Buyer Journey</strong></div>
+
+    <div class="card">
+        <h2>Buyer Journey: Discovery &rarr; Purchase &rarr; Sharing Online</h2>
+
+        <p><img
+                src="https://login.skillizee.io/s/articles/68dd072355f4dc5c22d1bf69/images/Discovery purchase sharing gemini 3.png" />
+        </p>
+
+        <ul>
+            <li><strong>Discovery:</strong> Customers discover Salty mainly through engaging social media content,
+                regular product drops, influencer partnerships, and search-friendly, visually appealing online
+                campaigns.</li>
+            <li><strong>Purchase:</strong> The buying process on salty.co.in is designed to be simple and secure, with
+                detailed product info, multiple payment options (including COD), and a hassle-free 7-day return/exchange
+                policy for peace of mind.</li>
+            <li><strong>Sharing Online:</strong> After purchase, many customers share their Salty unboxing experiences,
+                styling photos, or reviews on Instagram and other platforms using branded hashtags. Salty encourages
+                this by resharing user content, further growing its community and reinforcing the &ldquo;Salty
+                experience&rdquo; across digital touchpoints.</li>
+        </ul>
+
+        <div class="topic-card"><strong>Customer Engagement</strong></div>
+
+        <div class="card">
+            <h2>Driving Loyalty and Advocacy</h2>
+
+            <p>Salty&rsquo;s focus on experience&mdash;before, during, and after purchase&mdash;transforms ordinary
+                shopping into an engaging lifestyle event, driving both loyalty and brand advocacy among young,
+                social-first customers.<br />
+                <img
+                    src="https://login.skillizee.io/s/articles/68dd072355f4dc5c22d1bf69/images/Driving loyalty 1.png" />
+            </p>
+        </div>
+
+        <footer><span class="theme-font-18">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
+    </div>
+
+    
+
+
+
+
+    <script>
+        // Foolproof Theme & Fullscreen Logic
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeToggle = document.getElementById('theme-toggle');
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            const body = document.body;
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                body.classList.add('light');
+                if (themeToggle) themeToggle.classList.add('on');
+            }
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    body.classList.toggle('light');
+                    this.classList.toggle('on');
+                    localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen().catch(err => console.error("Fullscreen error:", err));
+                    } else {
+                        document.exitFullscreen();
+                    }
+                });
+                document.addEventListener('fullscreenchange', function () {
+                    if (document.fullscreenElement) {
+                        fullscreenBtn.classList.add('active');
+                        fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
+                    } else {
+                        fullscreenBtn.classList.remove('active');
+                        fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
+
 </html>
-
-
-

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -418,20 +418,7 @@ body:not(.light) .card th {
 <!-- Fullscreen Button -->
 
 <button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
-</div><script>
-const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
-if(fullscreenToggleBtnUI) {
-  fullscreenToggleBtnUI.addEventListener('click', () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-      fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
-    } else {
-      document.exitFullscreen();
-      fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>';
-    }
-  });
-}
-</script>
+</div>
 
 <header>
 <h1><strong><span class="theme-text">Chapter 5: SEO &amp; Organic Growth Strategy</span></strong></h1>
@@ -552,26 +539,7 @@ audio::-webkit-media-controls-volume-slider {
 
 <footer><span class="theme-font-18">&copy; 2025 Salty Jewellery | Designed for Learning</span></footer>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const themeToggleUI = document.getElementById('theme-toggle');
-  
-  // Load saved theme preference
-  if (localStorage.getItem('theme') === 'light') {
-    document.body.classList.add('light');
-    if(themeToggleUI) themeToggleUI.classList.add('on');
-  }
-  
-  // Add click event listener
-  if(themeToggleUI) {
-    themeToggleUI.addEventListener('click', () => {
-      document.body.classList.toggle('light');
-      themeToggleUI.classList.toggle('on');
-      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
-    });
-  }
-});
-</script>
+
 
 
 
