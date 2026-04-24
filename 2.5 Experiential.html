@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
-<link rel="stylesheet" href="universal.css" />
-<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" /><script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<style type="text/css">:root {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="universal.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style type="text/css">
+        :root {
             --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
             --body-color: #CCC;
             --header-bg: #4B3A6F;
@@ -30,9 +34,9 @@
             --shimmer-color: rgba(177, 156, 217, 0.2);
             --sparkle-color-from: #B19CD9;
             --sparkle-color-to: #8A7DB5;
-            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
+            --shadow-main: 0px 4px 15px rgba(255, 255, 255, 0.1);
             --shadow-glow: 0px 0px 10px rgba(177, 156, 217, 0.3);
-            --shadow-small: rgba(255,255,255,0.05);
+            --shadow-small: rgba(255, 255, 255, 0.05);
             --arrow-stroke: #B19CD9;
             --theme-text-color: #ffffff;
             --popup-shadow: rgba(255, 255, 255, 0.5);
@@ -63,9 +67,9 @@
             --shimmer-color: rgba(123, 70, 172, 0.2);
             --sparkle-color-from: #9846ac;
             --sparkle-color-to: #7b46ac;
-            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
+            --shadow-main: 0px 4px 15px rgba(0, 0, 0, 0.1);
             --shadow-glow: 0px 0px 10px rgba(152, 70, 172, 0.3);
-            --shadow-small: rgba(0,0,0,0.05);
+            --shadow-small: rgba(0, 0, 0, 0.05);
             --arrow-stroke: #9846ac;
             --theme-text-color: #ecf0f1;
             --popup-shadow: rgba(0, 0, 0, 0.2);
@@ -110,31 +114,138 @@
             color: var(--h-color);
         }
 
-        .emoji-bg:nth-child(1) { top: 10%; left: 2%; animation-delay: 0s; }
-        .emoji-bg:nth-child(2) { top: 20%; left: 5%; animation-delay: -1s; }
-        .emoji-bg:nth-child(3) { top: 30%; left: 3%; animation-delay: -2s; }
-        .emoji-bg:nth-child(4) { top: 40%; left: 6%; animation-delay: -3s; }
-        .emoji-bg:nth-child(5) { top: 50%; left: 4%; animation-delay: -4s; }
-        .emoji-bg:nth-child(6) { top: 60%; left: 7%; animation-delay: -5s; }
-        .emoji-bg:nth-child(7) { top: 70%; left: 2%; animation-delay: -6s; }
-        .emoji-bg:nth-child(8) { top: 80%; left: 5%; animation-delay: -7s; }
-        .emoji-bg:nth-child(9) { top: 90%; left: 3%; animation-delay: -8s; }
-        .emoji-bg:nth-child(10) { top: 15%; left: 92%; animation-delay: -9s; }
-        .emoji-bg:nth-child(11) { top: 25%; left: 95%; animation-delay: -10s; }
-        .emoji-bg:nth-child(12) { top: 35%; left: 93%; animation-delay: -11s; }
-        .emoji-bg:nth-child(13) { top: 45%; left: 94%; animation-delay: -12s; }
-        .emoji-bg:nth-child(14) { top: 55%; left: 92%; animation-delay: -13s; }
-        .emoji-bg:nth-child(15) { top: 65%; left: 95%; animation-delay: -14s; }
-        .emoji-bg:nth-child(16) { top: 75%; left: 93%; animation-delay: -15s; }
-        .emoji-bg:nth-child(17) { top: 85%; left: 94%; animation-delay: -16s; }
-        .emoji-bg:nth-child(18) { top: 95%; left: 92%; animation-delay: -17s; }
-        .emoji-bg:nth-child(19) { top: 12%; left: 5%; animation-delay: -18s; }
-        .emoji-bg:nth-child(20) { top: 22%; left: 95%; animation-delay: -19s; }
+        .emoji-bg:nth-child(1) {
+            top: 10%;
+            left: 2%;
+            animation-delay: 0s;
+        }
+
+        .emoji-bg:nth-child(2) {
+            top: 20%;
+            left: 5%;
+            animation-delay: -1s;
+        }
+
+        .emoji-bg:nth-child(3) {
+            top: 30%;
+            left: 3%;
+            animation-delay: -2s;
+        }
+
+        .emoji-bg:nth-child(4) {
+            top: 40%;
+            left: 6%;
+            animation-delay: -3s;
+        }
+
+        .emoji-bg:nth-child(5) {
+            top: 50%;
+            left: 4%;
+            animation-delay: -4s;
+        }
+
+        .emoji-bg:nth-child(6) {
+            top: 60%;
+            left: 7%;
+            animation-delay: -5s;
+        }
+
+        .emoji-bg:nth-child(7) {
+            top: 70%;
+            left: 2%;
+            animation-delay: -6s;
+        }
+
+        .emoji-bg:nth-child(8) {
+            top: 80%;
+            left: 5%;
+            animation-delay: -7s;
+        }
+
+        .emoji-bg:nth-child(9) {
+            top: 90%;
+            left: 3%;
+            animation-delay: -8s;
+        }
+
+        .emoji-bg:nth-child(10) {
+            top: 15%;
+            left: 92%;
+            animation-delay: -9s;
+        }
+
+        .emoji-bg:nth-child(11) {
+            top: 25%;
+            left: 95%;
+            animation-delay: -10s;
+        }
+
+        .emoji-bg:nth-child(12) {
+            top: 35%;
+            left: 93%;
+            animation-delay: -11s;
+        }
+
+        .emoji-bg:nth-child(13) {
+            top: 45%;
+            left: 94%;
+            animation-delay: -12s;
+        }
+
+        .emoji-bg:nth-child(14) {
+            top: 55%;
+            left: 92%;
+            animation-delay: -13s;
+        }
+
+        .emoji-bg:nth-child(15) {
+            top: 65%;
+            left: 95%;
+            animation-delay: -14s;
+        }
+
+        .emoji-bg:nth-child(16) {
+            top: 75%;
+            left: 93%;
+            animation-delay: -15s;
+        }
+
+        .emoji-bg:nth-child(17) {
+            top: 85%;
+            left: 94%;
+            animation-delay: -16s;
+        }
+
+        .emoji-bg:nth-child(18) {
+            top: 95%;
+            left: 92%;
+            animation-delay: -17s;
+        }
+
+        .emoji-bg:nth-child(19) {
+            top: 12%;
+            left: 5%;
+            animation-delay: -18s;
+        }
+
+        .emoji-bg:nth-child(20) {
+            top: 22%;
+            left: 95%;
+            animation-delay: -19s;
+        }
 
         @keyframes float-rotate {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(15deg); }
-            100% { transform: translateY(0) rotate(0deg); }
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(15deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
         }
 
         .sidebar {
@@ -187,19 +298,19 @@
             pointer-events: none !important;
         }
 
-        .top-controls > * {
+        .top-controls>* {
             pointer-events: auto !important;
         }
 
         #fullscreen-btn {
-            background: rgba(0,0,0,0.3) !important;
+            background: rgba(0, 0, 0, 0.3) !important;
             border-radius: 50% !important;
             width: 34px !important;
             height: 34px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            border: 1px solid rgba(255,255,255,0.2) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
             cursor: pointer !important;
             padding: 0 !important;
             transition: all 0.3s ease;
@@ -224,7 +335,7 @@
             justify-content: space-between !important;
             padding: 0 8px !important;
             box-sizing: border-box !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.35), inset 0 1px 3px rgba(255,255,255,0.2) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), inset 0 1px 3px rgba(255, 255, 255, 0.2) !important;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -233,14 +344,14 @@
 
         #theme-toggle:hover {
             transform: scale(1.08);
-            box-shadow: 0 8px 20px rgba(177,156,217,0.5);
+            box-shadow: 0 8px 20px rgba(177, 156, 217, 0.5);
         }
 
         #theme-toggle .icon {
             font-size: 20px !important;
             transition: all 0.45s ease;
             color: white !important;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 2;
             display: inline-block !important;
@@ -254,7 +365,7 @@
             position: absolute !important;
             left: 4px !important;
             transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
 
@@ -262,10 +373,21 @@
             left: 34px !important;
         }
 
-        #theme-toggle .moon { opacity: 1 !important; }
-        #theme-toggle .sun  { opacity: 0 !important; }
-        #theme-toggle.active .moon { opacity: 0 !important; }
-        #theme-toggle.active .sun { opacity: 1 !important; }
+        #theme-toggle .moon {
+            opacity: 1 !important;
+        }
+
+        #theme-toggle .sun {
+            opacity: 0 !important;
+        }
+
+        #theme-toggle.active .moon {
+            opacity: 0 !important;
+        }
+
+        #theme-toggle.active .sun {
+            opacity: 1 !important;
+        }
 
         header {
             background: var(--header-bg);
@@ -305,11 +427,19 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        h3, h4 {
+        h3,
+        h4 {
             font-size: clamp(1.5em, 2.2vw, 2em);
             color: var(--h-color);
             margin: 20px 0 10px;
@@ -324,7 +454,8 @@
             justify-content: center;
         }
 
-        h3:hover, h4:hover {
+        h3:hover,
+        h4:hover {
             box-shadow: var(--shadow-glow);
             transform: scale(1.03);
         }
@@ -501,11 +632,13 @@
                 font-size: clamp(1.3em, 2.5vw, 1.5em);
             }
 
-            h3, h4 {
+            h3,
+            h4 {
                 font-size: clamp(1.3em, 2.5vw, 1.5em);
             }
 
-            p, li {
+            p,
+            li {
                 font-size: clamp(14px, 2.5vw, 16px);
             }
 
@@ -549,11 +682,13 @@
                 max-width: 1700px;
             }
 
-            h3, h4 {
+            h3,
+            h4 {
                 font-size: clamp(1.5em, 2.2vw, 2em);
             }
 
-            p, li {
+            p,
+            li {
                 font-size: clamp(18px, 1.3vw, 20px);
             }
 
@@ -594,11 +729,13 @@
                 max-width: 2000px;
             }
 
-            h3, h4 {
+            h3,
+            h4 {
                 font-size: clamp(2em, 2.1vw, 2.5em);
             }
 
-            p, li {
+            p,
+            li {
                 font-size: clamp(20px, 1.2vw, 22px);
             }
 
@@ -630,223 +767,250 @@
                 max-width: 2000px;
             }
         }
-</style>
+    </style>
 </head>
+
 <body>
-<div class="top-controls">
+    <div class="top-controls">
 <button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
 <div id="theme-toggle"><span class="icon moon">🌙</span>
-<div class="knob"></div>
-<span class="icon sun">☀️</span></div>
-</div>
+<div class="knob">&nbsp;</div>
+<span class="icon sun">☀️</span></div></div>
 
-<!-- Background Emojis -->
-<p><span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span></p>
+    <!-- Background Emojis -->
+    <p><span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span
+            class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span
+            class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span
+            class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span
+            class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span
+            class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span
+            class="emoji-bg">✨</span> <span class="emoji-bg">💎</span></p>
 
-<header>
-<h1><strong><span class="theme-text">Experiential Activity: Product Cost Calculator</span></strong></h1>
+    <header>
+        <h1><strong><span class="theme-text">Experiential Activity: Product Cost Calculator</span></strong></h1>
 
-<p><strong><span style="font-size:20px;">Knowing your Jewelry&#39;s production cost.</span></strong></p>
-</header>
-<!-- Content Sections -->
+        <p><strong><span style="font-size:20px;">Knowing your Jewelry&#39;s production cost.</span></strong></p>
+    </header>
+    <!-- Content Sections -->
 
-<div class="content-section">
-<h3>Objective</h3>
+    <div class="content-section">
+        <h3>Objective</h3>
 
-<p>Calculate the startup costs for launching a trendy fashion jewellery business, such as Salty&#39;s affordable and stylish accessories, targeting Gen Z urban consumers in India.</p>
+        <p>Calculate the startup costs for launching a trendy fashion jewellery business, such as Salty&#39;s affordable
+            and stylish accessories, targeting Gen Z urban consumers in India.</p>
 
-<h3>Tool</h3>
+        <h3>Tool</h3>
 
-<p><strong>Below you can find the Product Cost Calculator (browser-based, export Excel file or screenshot).</strong></p>
+        <p><strong>Below you can find the Product Cost Calculator (browser-based, export Excel file or
+                screenshot).</strong></p>
 
-<h3>Description</h3>
+        <h3>Description</h3>
 
-<p><strong>Interns will use the Product Cost Calculator to input relevant startup cost values (e.g., production, marketing, distribution, and operational costs) for a trendy product like Salty&rsquo;s fashion jewellery. This activity simulates real-world financial planning for a startup, helping interns understand cost structures and budgeting for a fashion business targeting Gen Z urban consumers (aged 18-35, fashion-forward, affordability-focused).</strong></p>
+        <p><strong>Interns will use the Product Cost Calculator to input relevant startup cost values (e.g., production,
+                marketing, distribution, and operational costs) for a trendy product like Salty&rsquo;s fashion
+                jewellery. This activity simulates real-world financial planning for a startup, helping interns
+                understand cost structures and budgeting for a fashion business targeting Gen Z urban consumers (aged
+                18-35, fashion-forward, affordability-focused).</strong></p>
 
-<h3>Steps to Complete Assignment</h3>
+        <h3>Steps to Complete Assignment</h3>
 
-<ul>
-	<li>Access the Product Cost Calculator tool embedded below.</li>
-	<li>Input estimated startup costs, including:
-	<ul>
-		<li>Production costs (e.g., materials for jewellery, manufacturing).</li>
-		<li>Marketing costs (e.g., social media campaigns, influencer partnerships).</li>
-		<li>Distribution costs (e.g., logistics, shipping).</li>
-		<li>Operational costs (e.g., office space, utilities).</li>
-	</ul>
-	</li>
-	<li>Review the calculated summary provided by the tool.</li>
-	<li>Export the summary as a Word file or take a screenshot (PNG/JPG).</li>
-	<li>Upload the Word file or screenshot below.</li>
-	<li>Share your reflection in discussion boards for peer feedback.</li>
-</ul>
+        <ul>
+            <li>Access the Product Cost Calculator tool embedded below.</li>
+            <li>Input estimated startup costs, including:
+                <ul>
+                    <li>Production costs (e.g., materials for jewellery, manufacturing).</li>
+                    <li>Marketing costs (e.g., social media campaigns, influencer partnerships).</li>
+                    <li>Distribution costs (e.g., logistics, shipping).</li>
+                    <li>Operational costs (e.g., office space, utilities).</li>
+                </ul>
+            </li>
+            <li>Review the calculated summary provided by the tool.</li>
+            <li>Export the summary as a Word file or take a screenshot (PNG/JPG).</li>
+            <li>Upload the Word file or screenshot below.</li>
+            <li>Share your reflection in discussion boards for peer feedback.</li>
+        </ul>
 
-<h3>Outputs</h3>
+        <h3>Outputs</h3>
 
-<ul>
-	<li><strong>Downloadable</strong>: Export the Excel file or PNG/JPG screenshot of the startup cost summary.</li>
-	<li><strong>Sharable</strong>: Input the Excel or screenshots below by <strong>Choosing File</strong>.</li>
-	<li><strong>Experiential Value</strong>: Simulates financial planning for a startup, teaching budgeting, cost estimation, and resource allocation skills.</li>
-</ul>
+        <ul>
+            <li><strong>Downloadable</strong>: Export the Excel file or PNG/JPG screenshot of the startup cost summary.
+            </li>
+            <li><strong>Sharable</strong>: Input the Excel or screenshots below by <strong>Choosing File</strong>.</li>
+            <li><strong>Experiential Value</strong>: Simulates financial planning for a startup, teaching budgeting,
+                cost estimation, and resource allocation skills.</li>
+        </ul>
 
-<h3>Why It Fits</h3>
+        <h3>Why It Fits</h3>
 
-<p>Ignite Cost Advisor&rsquo;s user-friendly interface allows interns to input cost data and generate detailed startup cost summaries, aligning with Salty&rsquo;s mission to launch trendy, affordable fashion jewellery.</p>
+        <p>Ignite Cost Advisor&rsquo;s user-friendly interface allows interns to input cost data and generate detailed
+            startup cost summaries, aligning with Salty&rsquo;s mission to launch trendy, affordable fashion jewellery.
+        </p>
 
-<h3>Experiential Activity - Calculate Startup Costs Below</h3>
+        <h3>Experiential Activity - Calculate Startup Costs Below</h3>
 
-<p>Use the embedded Ignite Cost Advisor below to calculate startup costs for Salty&rsquo;s fashion jewellery.</p>
-<button aria-label="Toggle fullscreen mode" id="fullscreen-toggle">Enter Fullscreen</button><iframe class="pathfinder-iframe" onload="console.log('Ignite Cost Advisor iframe loaded successfully');" src="https://launchpad-planner.lovable.app/product-calculator" title="Ignite Cost Advisor"></iframe>
+        <p>Use the embedded Ignite Cost Advisor below to calculate startup costs for Salty&rsquo;s fashion jewellery.
+        </p>
+        <button aria-label="Toggle fullscreen mode" id="fullscreen-toggle">Enter Fullscreen</button><iframe
+            class="pathfinder-iframe" onload="console.log('Ignite Cost Advisor iframe loaded successfully');"
+            src="https://launchpad-planner.lovable.app/product-calculator" title="Ignite Cost Advisor"></iframe>
 
-<p><strong>Note: Export the startup cost summary as a Excel file or take a screenshot (PNG/JPG) using device tools. Upload the file or screenshot below.</strong></p>
-</div>
-<!-- Footer -->
+        <p><strong>Note: Export the startup cost summary as a Excel file or take a screenshot (PNG/JPG) using device
+                tools. Upload the file or screenshot below.</strong></p>
+    </div>
+    <!-- Footer -->
 
-<footer>
-<p>Salty Virtual Internship &ndash; Trendy Fashion Jewellery</p>
-</footer>
-<!-- Back to Top Button -->
+    <footer>
+        <p>Salty Virtual Internship &ndash; Trendy Fashion Jewellery</p>
+    </footer>
+    <!-- Back to Top Button -->
 
-<p><button aria-label="Scroll to top" id="back-to-top" onclick="scrollToTop()">&uarr;</button><script>
-        // Throttle function to limit scroll event frequency
-        function throttle(fn, wait) {
-            let lastCall = 0;
-            return function (...args) {
-                const now = new Date().getTime();
-                if (now - lastCall < wait) return;
-                lastCall = now;
-                return fn(...args);
-            };
-        }
+    <p><button aria-label="Scroll to top" id="back-to-top" onclick="scrollToTop()">&uarr;</button>
+        <script>
+            // Throttle function to limit scroll event frequency
+            function throttle(fn, wait) {
+                let lastCall = 0;
+                return function (...args) {
+                    const now = new Date().getTime();
+                    if (now - lastCall < wait) return;
+                    lastCall = now;
+                    return fn(...args);
+                };
+            }
 
-        // Theme Toggle
-        const themeToggle = document.getElementById("theme-toggle");
-        themeToggle.addEventListener("click", () => {
-            document.body.classList.toggle("light-theme");
-            document.body.classList.toggle("light");
-            const isLight = document.body.classList.contains("light");
-            themeToggle.classList.toggle("active", isLight);
-            
-            document.querySelectorAll("header").forEach(h => h.classList.toggle("light"));
-            document.querySelectorAll(".content-section").forEach(section => section.classList.toggle("light"));
-            document.querySelectorAll("h3").forEach(heading => heading.classList.toggle("light"));
-            document.querySelectorAll("h4").forEach(heading => heading.classList.toggle("light"));
-            document.querySelectorAll(".emoji-bg").forEach(emoji => emoji.classList.toggle("light"));
-            document.querySelectorAll("footer").forEach(f => f.classList.toggle("light"));
-            document.querySelectorAll("#back-to-top").forEach(b => b.classList.toggle("light"));
-            document.querySelectorAll(".progress-fill").forEach(fill => fill.classList.toggle("light"));
-            document.querySelectorAll("li").forEach(item => item.classList.toggle("light"));
-            document.querySelectorAll(".pathfinder-iframe").forEach(iframe => iframe.classList.toggle("light"));
-            document.querySelectorAll(".activity-section input").forEach(input => input.classList.toggle("light"));
-            document.querySelectorAll(".activity-section button").forEach(button => button.classList.toggle("light"));
-            document.querySelectorAll(".confirmation-message").forEach(message => message.classList.toggle("light"));
-        });
 
-        // Fullscreen Global Button
-        const fullscreenBtn = document.getElementById('fullscreen-btn');
-        if (fullscreenBtn) {
-            fullscreenBtn.addEventListener('click', () => {
+            // Fullscreen Activity Toggle
+            const fullscreenToggle = document.getElementById("fullscreen-toggle");
+            const iframe = document.querySelector(".pathfinder-iframe");
+            fullscreenToggle.addEventListener("click", () => {
                 if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen().catch(err => {
-                        console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                    iframe.requestFullscreen().then(() => {
+                        fullscreenToggle.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
+                    }).catch(err => {
+                        console.error("Error entering fullscreen:", err);
                     });
                 } else {
-                    document.exitFullscreen();
+                    document.exitFullscreen().then(() => {
+                        fullscreenToggle.innerHTML = '<i class="fas fa-expand"></i> Enter Fullscreen';
+                    }).catch(err => {
+                        console.error("Error exiting fullscreen:", err);
+                    });
                 }
             });
-        }
 
-        // Fullscreen Activity Toggle
-        const fullscreenToggle = document.getElementById("fullscreen-toggle");
-        const iframe = document.querySelector(".pathfinder-iframe");
-        fullscreenToggle.addEventListener("click", () => {
-            if (!document.fullscreenElement) {
-                iframe.requestFullscreen().then(() => {
-                    fullscreenToggle.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
-                }).catch(err => {
-                    console.error("Error entering fullscreen:", err);
-                });
-            } else {
-                document.exitFullscreen().then(() => {
+            document.addEventListener("fullscreenchange", () => {
+                if (!document.fullscreenElement) {
                     fullscreenToggle.innerHTML = '<i class="fas fa-expand"></i> Enter Fullscreen';
-                }).catch(err => {
-                    console.error("Error exiting fullscreen:", err);
-                });
+                } else {
+                    fullscreenToggle.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
+                }
+            });
+
+            // Progress Bar Logic
+            let scrollProgress = 0;
+            let activityCompleted = false;
+            const progressFill = document.getElementById("progress-fill");
+            function updateProgress() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                scrollProgress = docHeight > 0 ? (scrollTop / docHeight) * 85 : 0;
+                let totalProgress = scrollProgress;
+                if (activityCompleted) {
+                    totalProgress = Math.max(totalProgress, 85) + 15;
+                }
+                totalProgress = Math.min(100, totalProgress);
+                if (window.innerWidth <= 600) {
+                    progressFill.style.width = totalProgress + "%";
+                } else {
+                    progressFill.style.height = totalProgress + "%";
+                }
             }
-        });
 
-        document.addEventListener("fullscreenchange", () => {
-            if (!document.fullscreenElement) {
-                fullscreenToggle.innerHTML = '<i class="fas fa-expand"></i> Enter Fullscreen';
-            } else {
-                fullscreenToggle.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
+            // Scroll-based Progress
+            const updateScrollProgress = throttle(() => {
+                updateProgress();
+            }, 50);
+
+            window.addEventListener("scroll", () => {
+                requestAnimationFrame(updateScrollProgress);
+            });
+
+            // Back to Top Button
+            const backToTop = document.getElementById("back-to-top");
+            window.addEventListener("scroll", () => {
+                backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+            });
+
+            function scrollToTop() {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                updateProgress();
             }
-        });
 
-        // Progress Bar Logic
-        let scrollProgress = 0;
-        let activityCompleted = false;
-        const progressFill = document.getElementById("progress-fill");
-        function updateProgress() {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            scrollProgress = docHeight > 0 ? (scrollTop / docHeight) * 85 : 0;
-            let totalProgress = scrollProgress;
-            if (activityCompleted) {
-                totalProgress = Math.max(totalProgress, 85) + 15;
-            }
-            totalProgress = Math.min(100, totalProgress);
-            if (window.innerWidth <= 600) {
-                progressFill.style.width = totalProgress + "%";
-            } else {
-                progressFill.style.height = totalProgress + "%";
-            }
-        }
-
-        // Scroll-based Progress
-        const updateScrollProgress = throttle(() => {
-            updateProgress();
-        }, 50);
-
-        window.addEventListener("scroll", () => {
-            requestAnimationFrame(updateScrollProgress);
-        });
-
-        // Back to Top Button
-        const backToTop = document.getElementById("back-to-top");
-        window.addEventListener("scroll", () => {
-            backToTop.style.display = window.scrollY > 300 ? "block" : "none";
-        });
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            updateProgress();
-        }
-
-        // Submit Cost Summary Activity
-        function submitCostSummary(event) {
-            event.preventDefault();
-            const costSummaryInput = document.getElementById('costSummaryInput');
-            const confirmationMessage = document.getElementById('confirmationMessage');
-            if (!costSummaryInput.files.length) {
-                confirmationMessage.textContent = 'Please select a file to upload.';
+            // Submit Cost Summary Activity
+            function submitCostSummary(event) {
+                event.preventDefault();
+                const costSummaryInput = document.getElementById('costSummaryInput');
+                const confirmationMessage = document.getElementById('confirmationMessage');
+                if (!costSummaryInput.files.length) {
+                    confirmationMessage.textContent = 'Please select a file to upload.';
+                    confirmationMessage.classList.add('show');
+                    setTimeout(() => {
+                        confirmationMessage.classList.remove('show');
+                        confirmationMessage.textContent = '';
+                    }, 3000);
+                    return;
+                }
+                confirmationMessage.textContent = 'File uploaded successfully!';
                 confirmationMessage.classList.add('show');
+                costSummaryInput.value = '';
+                activityCompleted = true;
+                updateProgress();
                 setTimeout(() => {
                     confirmationMessage.classList.remove('show');
                     confirmationMessage.textContent = '';
                 }, 3000);
-                return;
             }
-            confirmationMessage.textContent = 'File uploaded successfully!';
-            confirmationMessage.classList.add('show');
-            costSummaryInput.value = '';
-            activityCompleted = true;
-            updateProgress();
-            setTimeout(() => {
-                confirmationMessage.classList.remove('show');
-                confirmationMessage.textContent = '';
-            }, 3000);
+        </script>
+    </p>
+
+
+<script>
+  // Standardized Theme & Fullscreen Logic
+  (function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light');
+      if (themeToggle) themeToggle.classList.add('on');
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        themeToggle.classList.toggle('on');
+        localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      });
+    }
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => console.error(err));
+        } else {
+          document.exitFullscreen();
         }
-    </script></p>
+      });
+      document.addEventListener('fullscreenchange', () => {
+        if (document.fullscreenElement) {
+          fullscreenBtn.classList.add('active');
+          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
+        } else {
+          fullscreenBtn.classList.remove('active');
+          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>';
+        }
+      });
+    }
+  })();
+</script>
 </body>
+
 </html>
+
+

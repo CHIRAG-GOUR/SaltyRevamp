@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -280,7 +280,7 @@ if(fullscreenToggleBtnUI) {
 </script>
 
 <header>
-<h1><strong><span class="theme-text">💎 SALTY JEWELLERY EXPERIENCE: Glossary</span></strong></h1>
+<h1><strong><span class="theme-text">?? SALTY JEWELLERY EXPERIENCE: Glossary</span></strong></h1>
 
 <p><span class="theme-font-18">Skillizee X Salty Virtual Internship &ndash; Module 4 Key Terms and Concepts</span></p>
 </header>
@@ -485,11 +485,7 @@ if(fullscreenToggleBtnUI) {
 <script>
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
-            const toggleBtn = document.getElementById('theme-toggle');
-            toggleBtn.addEventListener('click', () => {
-                body.classList.toggle('light');
-                toggleBtn.classList.toggle('on');
-            });
+            
 
             window.playVideo = function(videoId, startTime = 0, endTime = null) {
                 const player = document.querySelector('#videoPlayer iframe');
@@ -523,5 +519,46 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
+
+<script>
+  // Standardized Theme & Fullscreen Logic
+  (function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light');
+      if (themeToggle) themeToggle.classList.add('on');
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        themeToggle.classList.toggle('on');
+        localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      });
+    }
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => console.error(err));
+        } else {
+          document.exitFullscreen();
+        }
+      });
+      document.addEventListener('fullscreenchange', () => {
+        if (document.fullscreenElement) {
+          fullscreenBtn.classList.add('active');
+          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
+        } else {
+          fullscreenBtn.classList.remove('active');
+          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>';
+        }
+      });
+    }
+  })();
+</script>
 </body>
 </html>
+
+
+

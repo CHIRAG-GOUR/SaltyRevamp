@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -143,10 +143,10 @@
 </head>
 <body>
 <div class="top-controls">
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
 <div id="theme-toggle"><span class="icon moon">🌙</span>
 <div class="knob">&nbsp;</div>
-<span class="icon sun">☀️</span></div>
-<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
+<span class="icon sun">☀️</span></div></div>
 
 
 <header>
@@ -229,80 +229,9 @@
 </div>
 </section>
 </div>
-<!-- ========================================== --><!-- SIMULATION 2: THE FOUNDER'S PITCH          --><!-- ========================================== -->
 
-<div class="sim-container">
-<div class="sim-header">
-<h2>The Founder&#39;s Pitch: Capital Allocation</h2>
-
-<p>You just raised ₹5,000,000 from All in Capital. Move the sliders to invest your budget. Can you match Salty&#39;s digital-first business model to unlock viral growth?</p>
-</div>
-
-<div class="sim-budget-display" id="simBudgetLeft">Remaining Budget: ₹5,000,000</div>
-
-<div class="sim-grid"><!-- Input Sliders -->
-<div class="sim-controls">
-<div class="sim-slider-group"><label><span>Social Media &amp; Influencers</span> <span id="valInf">₹0</span></label> <input id="slideInf" max="3000000" min="0" step="100000" type="range" value="0" /></div>
-
-<div class="sim-slider-group"><label><span>Quick Commerce (Zepto/Blinkit)</span> <span id="valQc">₹0</span></label> <input id="slideQc" max="3000000" min="0" step="100000" type="range" value="0" /></div>
-
-<div class="sim-slider-group"><label><span>Inventory &amp; Product Design</span> <span id="valInv">₹0</span></label> <input id="slideInv" max="3000000" min="0" step="100000" type="range" value="0" /></div>
-
-<div class="sim-slider-group"><label><span>Offline Physical Stores</span> <span id="valOff">₹0</span></label> <input id="slideOff" max="3000000" min="0" step="100000" type="range" value="0" /></div>
-</div>
-<!-- Dashboard Metrics -->
-
-<div class="sim-dashboard">
-<h3 style="margin: 0; color: var(--popup-color); font-family: 'Michroma', sans-serif; text-align: center;"><span style="color:#ffffff;">Live Projections</span></h3>
-
-<div class="sim-metric">
-<div class="sim-metric-label"><span style="color:#ffffff;">Gen Z Brand Reach <span id="pctReach">0%</span></span></div>
-
-<div class="sim-bar-bg">
-<div class="sim-bar-fill" id="barReach">&nbsp;</div>
-</div>
-</div>
-
-<div class="sim-metric">
-<div class="sim-metric-label"><span style="color:#ffffff;">Customer Satisfaction (Speed &amp; Quality) <span id="pctSat">0%</span></span></div>
-
-<div class="sim-bar-bg">
-<div class="sim-bar-fill" id="barSat">&nbsp;</div>
-</div>
-</div>
-
-<div class="sim-metric">
-<div class="sim-metric-label"><span style="color:#ffffff;">Profit Margin <span id="pctProf">50%</span></span></div>
-
-<div class="sim-bar-bg">
-<div class="sim-bar-fill" id="barProf" style="width: 50%;">&nbsp;</div>
-</div>
-</div>
-<button class="sim-pitch-btn" id="btnPitch">Pitch to Investors</button></div>
-</div>
-
-<div class="sim-result" id="simResultBox">&nbsp;</div>
-</div>
 <script>
-    const fullscreenBtn = document.getElementById("fullscreenBtn");
-    fullscreenBtn.addEventListener("click", () => {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
-            fullscreenBtn.innerText = "⤢ Exit";
-        } else {
-            document.exitFullscreen();
-            fullscreenBtn.innerText = "⛶ Fullscreen";
-        }
-    });
-
     document.addEventListener('DOMContentLoaded', () => {
-        const body = document.body;
-        const toggleBtn = document.getElementById('theme-toggle');
-        toggleBtn.addEventListener('click', () => {
-            body.classList.toggle('light');
-            toggleBtn.classList.toggle('on');
-        });
-
         // 1. Business Model Canvas Timeline
         const timelineNav = document.querySelector('.timeline-nav:not(.funding-nav)');
         const timelineContainer = document.getElementById('timeline-container');
@@ -369,119 +298,49 @@
         });
         fundingNav.querySelector('[data-section="All in Capital"]').click();
 
-        // 3. Simulation - Capital Allocation
-        const totalBudget = 5000000;
-        const slideInf = document.getElementById('slideInf');
-        const slideQc = document.getElementById('slideQc');
-        const slideInv = document.getElementById('slideInv');
-        const slideOff = document.getElementById('slideOff');
-        const sliders = [slideInf, slideQc, slideInv, slideOff];
 
-        const valInf = document.getElementById('valInf');
-        const valQc = document.getElementById('valQc');
-        const valInv = document.getElementById('valInv');
-        const valOff = document.getElementById('valOff');
-        const simBudgetLeft = document.getElementById('simBudgetLeft');
-        const btnPitch = document.getElementById('btnPitch');
-        const simResultBox = document.getElementById('simResultBox');
-
-        const barReach = document.getElementById('barReach');
-        const barSat = document.getElementById('barSat');
-        const barProf = document.getElementById('barProf');
-        const pctReach = document.getElementById('pctReach');
-        const pctSat = document.getElementById('pctSat');
-        const pctProf = document.getElementById('pctProf');
-
-        const formatCurrency = (num) => '₹' + num.toLocaleString('en-IN');
-
-        function updateSimulation() {
-            let inf = parseInt(slideInf.value);
-            let qc = parseInt(slideQc.value);
-            let inv = parseInt(slideInv.value);
-            let off = parseInt(slideOff.value);
-
-            let allocated = inf + qc + inv + off;
-            let remaining = totalBudget - allocated;
-
-            valInf.innerText = formatCurrency(inf);
-            valQc.innerText = formatCurrency(qc);
-            valInv.innerText = formatCurrency(inv);
-            valOff.innerText = formatCurrency(off);
-
-            if (remaining < 0) {
-                simBudgetLeft.innerText = "OVER BUDGET: " + formatCurrency(remaining);
-                simBudgetLeft.classList.add('over-budget');
-                btnPitch.disabled = true;
-            } else {
-                simBudgetLeft.innerText = "Remaining Budget: " + formatCurrency(remaining);
-                simBudgetLeft.classList.remove('over-budget');
-                btnPitch.disabled = false;
-            }
-
-            let reach = Math.min(100, (inf/3000000*60) + (qc/3000000*20) + (off/3000000*20));
-            let sat = Math.min(100, (qc/3000000*50) + (inv/3000000*40) + (off/3000000*10));
-            let prof = 50 - (off/3000000*30) - (inf/3000000*10) + (inv/3000000*20) + (qc/3000000*5);
-            prof = Math.max(0, Math.min(100, prof));
-
-            barReach.style.width = reach.toFixed(1) + '%';
-            barSat.style.width = sat.toFixed(1) + '%';
-            barProf.style.width = prof.toFixed(1) + '%';
-            
-            pctReach.innerText = Math.round(reach) + '%';
-            pctSat.innerText = Math.round(sat) + '%';
-            pctProf.innerText = Math.round(prof) + '%';
-
-            barProf.style.background = prof < 30 ? '#ff4d4d' : 'linear-gradient(90deg, #9846ac, #d0c3f1)';
-            barReach.style.background = reach < 30 ? '#ff4d4d' : 'linear-gradient(90deg, #9846ac, #d0c3f1)';
-        }
-
-        function evaluatePitch() {
-            let inf = parseInt(slideInf.value);
-            let qc = parseInt(slideQc.value);
-            let inv = parseInt(slideInv.value);
-            let off = parseInt(slideOff.value);
-            let allocated = inf + qc + inv + off;
-
-            simResultBox.style.display = "block";
-            simResultBox.className = "sim-result";
-
-            if (allocated < 4000000) {
-                simResultBox.innerHTML = "❌ <strong>Too Conservative!</strong> You tied up too much cash. Investors want you to aggressively scale the brand. Try spending closer to your ₹5,000,000 limit.";
-                simResultBox.classList.add("error");
-            } else if (off > 1500000) {
-                simResultBox.innerHTML = "❌ <strong>The Brick & Mortar Trap.</strong> You spent too much on physical offline stores. This drained your margins and limited your national reach. Salty is a digital-first brand!";
-                simResultBox.classList.add("error");
-            } else if (inf < 1000000) {
-                simResultBox.innerHTML = "❌ <strong>Nobody knows you!</strong> By ignoring Social Media & Influencers, you failed to gain traction with Gen Z and Millennials.";
-                simResultBox.classList.add("error");
-            } else if (qc < 1000000) {
-                simResultBox.innerHTML = "❌ <strong>Slow Delivery.</strong> In today's market, youth want fast fashion. You underfunded Quick Commerce, resulting in poor satisfaction.";
-                simResultBox.classList.add("error");
-            } else if (inv < 1000000) {
-                simResultBox.innerHTML = "❌ <strong>Supply Chain Nightmare.</strong> You scaled marketing but ignored inventory! Products are out of stock and quality is dropping.";
-                simResultBox.classList.add("error");
-            } else {
-                simResultBox.innerHTML = "🎉 <strong>Viral Success!</strong> You perfectly replicated Salty's business model! By balancing strong influencer marketing, quick-commerce delivery, and solid inventory (while avoiding massive offline costs), you've dominated the market!";
-                simResultBox.classList.add("success");
-            }
-        }
-
-        sliders.forEach(slider => slider.addEventListener('input', updateSimulation));
-        btnPitch.addEventListener('click', evaluatePitch);
     });
 </script>
 
+
+
 <script>
-  // Global Top Controls Script (Theme & Fullscreen)
-  const themeToggleUI = document.getElementById('theme-toggle');
-  const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
-  if (localStorage.getItem('theme') === 'light') { document.body.classList.add('light'); if(themeToggleUI) themeToggleUI.classList.add('on'); }
-  if(themeToggleUI) {
-      themeToggleUI.addEventListener('click', () => { document.body.classList.toggle('light'); themeToggleUI.classList.toggle('on'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); });
-  }
-  if(fullscreenToggleBtnUI) {
-      fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
-  }
+  // Standardized Theme & Fullscreen Logic
+  (function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light');
+      if (themeToggle) themeToggle.classList.add('on');
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        themeToggle.classList.toggle('on');
+        localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      });
+    }
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => console.error(err));
+        } else {
+          document.exitFullscreen();
+        }
+      });
+      document.addEventListener('fullscreenchange', () => {
+        if (document.fullscreenElement) {
+          fullscreenBtn.classList.add('active');
+          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
+        } else {
+          fullscreenBtn.classList.remove('active');
+          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>';
+        }
+      });
+    }
+  })();
 </script>
 </body>
 </html>
+
+

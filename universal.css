@@ -1,27 +1,24 @@
 :root {
-      --salty-purple: #B19CD9;
-      --salty-dark: #4B3A6F;
-      --salty-light: #D0C3F1;
-      --body-bg: linear-gradient(135deg, #4B3A6F, #2A2244);
-      --body-color: #ffffff;
+      --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
+      --body-color: #CCC;
       --header-bg: #4B3A6F;
-      --header-color: #ffffff;
+      --header-color: #E0E0E0;
       --h-color: #B19CD9;
       --chapter-bg: #2A2244;
-      --text-p-color: #ffffff;
+      --text-p-color: #BBB;
       --topic-bg: #3C2F5F;
       --game-container-bg: #2A2244;
-      --game-area-bg: #2A2244;
+      --game-area-bg: #1C172B;
       --item-bg: #3C2F5F;
       --category-bg: #4B3A6F;
-      --category-color: #ffffff;
-      --results-bg: #2A2244;
+      --category-color: #E0E0E0;
+      --results-bg: #1C172B;
       --footer-bg: #4B3A6F;
-      --footer-color: #ffffff;
+      --footer-color: #E0E0E0;
       --correct-bg: #388E3C;
       --wrong-bg: #D32F2F;
       --popup-bg: #B19CD9;
-      --popup-color: #ffffff;
+      --popup-color: #000;
       --shimmer-color: rgba(177, 156, 217, 0.2);
       --sparkle-color-from: #B19CD9;
       --sparkle-color-to: #8A7DB5;
@@ -32,10 +29,16 @@
       --arrow-stroke: #B19CD9;
       --theme-text-color: #ffffff;
       --timeline-bg: #3C2F5F;
-      --timeline-color: #ffffff;
+      --timeline-color: #E0E0E0;
       --button-bg: #B19CD9;
-      --button-color: #ffffff;
+      --button-color: #000;
       --popup-shadow: rgba(255, 255, 255, 0.5);
+      --activity-bg: linear-gradient(135deg, #3C2F5F, #2A2244);
+      --activity-border: #B19CD9;
+      --item-bg: #2A2244;
+      --dropzone-border: #B19CD9;
+      --score-bg: #2A2244;
+      --score-color: #E0E0E0;
     }
 
     .light {

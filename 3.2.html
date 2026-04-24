@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -113,7 +113,7 @@ h1::after, h2::after { content: ''; position: absolute; bottom: -5px; left: 50%;
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 body:not(.light) .chapter-section.price-tiers .chapter-image img { border: 2px solid var(--theme-text-color); box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.2), 0px 0px 15px rgba(255, 255, 255, 0.4); }
 .topic-card { margin: 25px auto; padding: 10px 20px; max-width: 800px; background: var(--topic-bg); border-radius: 12px; box-shadow: var(--shadow-main), var(--shadow-glow); text-align: center; transition: opacity 0.5s ease, transform 0.5s ease; font-family: 'Michroma', sans-serif; font-size: 20px; cursor: pointer; width: 90%; position: relative; color: var(--theme-text-color); }
-.topic-card::before, .topic-card::after { content: '✨'; position: absolute; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--sparkle-color-from); animation: sparkle 1.5s infinite ease-in-out; }
+.topic-card::before, .topic-card::after { content: '?'; position: absolute; top: 50%; transform: translateY(-50%); font-size: 16px; color: var(--sparkle-color-from); animation: sparkle 1.5s infinite ease-in-out; }
 .topic-card::before { left: 10px; }
 .topic-card::after { right: 10px; }
 .topic-card:hover { animation: flash 0.8s linear; background: var(--sparkle-color-from); color: var(--popup-color); transform: scale(1.03); }
@@ -194,10 +194,10 @@ audio::-webkit-media-controls-play-button, audio::-webkit-media-controls-timelin
 
 
 <div class="top-controls">
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
 <div id="theme-toggle"><span class="icon moon">🌙</span>
 <div class="knob">&nbsp;</div>
-<span class="icon sun">☀️</span></div>
-<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
+<span class="icon sun">☀️</span></div></div>
 
 
 <header>
@@ -218,7 +218,7 @@ audio::-webkit-media-controls-play-button, audio::-webkit-media-controls-timelin
 <div class="chapter-text">
 <h2><strong>Price Point Strategy: Affordable Luxury</strong></h2>
 
-<p><span class="theme-text theme-font-18">Salty Jewellery follows a strategy of affordable luxury, offering trendy and high-quality fashion jewellery at accessible price points that appeal to young consumers. Prices typically range from about ₹400 to ₹2,500, allowing customers to buy stylish, well-crafted pieces without overspending. This balance helps make Salty attractive to students, young professionals, and fashion-conscious buyers who want fashionable jewellery that looks premium but is budget-friendly.</span></p>
+<p><span class="theme-text theme-font-18">Salty Jewellery follows a strategy of affordable luxury, offering trendy and high-quality fashion jewellery at accessible price points that appeal to young consumers. Prices typically range from about ?400 to ?2,500, allowing customers to buy stylish, well-crafted pieces without overspending. This balance helps make Salty attractive to students, young professionals, and fashion-conscious buyers who want fashionable jewellery that looks premium but is budget-friendly.</span></p>
 
 <p><span class="theme-text theme-font-18">The brand emphasizes combining style, durability, and quality materials to give customers value for money, promoting the idea that luxury should be inclusive and attainable. Various affordable combos and sets are also available, encouraging customers to experiment with different looks while staying within budget.</span></p>
 </div>
@@ -268,11 +268,11 @@ audio::-webkit-media-controls-play-button, audio::-webkit-media-controls-timelin
 </div>
 
 <div class="drop-zones" id="dropZones">
-<div class="drop-zone" data-category="Entry-Level"><span class="theme-text theme-font-22">Entry-Level (₹400&ndash;₹800)</span></div>
+<div class="drop-zone" data-category="Entry-Level"><span class="theme-text theme-font-22">Entry-Level (?400&ndash;?800)</span></div>
 
-<div class="drop-zone" data-category="Mid-Level"><span class="theme-text theme-font-22">Mid-Level (₹800&ndash;₹1,500)</span></div>
+<div class="drop-zone" data-category="Mid-Level"><span class="theme-text theme-font-22">Mid-Level (?800&ndash;?1,500)</span></div>
 
-<div class="drop-zone" data-category="Premium"><span class="theme-text theme-font-22">Premium (₹1,500&ndash;₹2,500+)</span></div>
+<div class="drop-zone" data-category="Premium"><span class="theme-text theme-font-22">Premium (?1,500&ndash;?2,500+)</span></div>
 </div>
 </div>
 <button fdprocessedid="3xspn" id="resetActivity">Reset Activity</button></div>
@@ -317,11 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const body = document.body;
-    const toggleBtn = document.getElementById('theme-toggle');
-    toggleBtn.addEventListener('click', () => {
-        body.classList.toggle('light');
-        toggleBtn.classList.toggle('on');
-    });
+    
 });
 </script>
 
@@ -337,5 +333,46 @@ document.addEventListener('DOMContentLoaded', () => {
       fullscreenToggleBtnUI.addEventListener('click', () => { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>'; } else { document.exitFullscreen(); fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>'; } });
   }
 </script>
+
+
+<script>
+  // Standardized Theme & Fullscreen Logic
+  (function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light');
+      if (themeToggle) themeToggle.classList.add('on');
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        themeToggle.classList.toggle('on');
+        localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      });
+    }
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => console.error(err));
+        } else {
+          document.exitFullscreen();
+        }
+      });
+      document.addEventListener('fullscreenchange', () => {
+        if (document.fullscreenElement) {
+          fullscreenBtn.classList.add('active');
+          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
+        } else {
+          fullscreenBtn.classList.remove('active');
+          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>';
+        }
+      });
+    }
+  })();
+</script>
 </body>
 </html>
+
+
+

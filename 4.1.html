@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -326,7 +326,7 @@
             text-align: center;
         }
         .topic-card::before, .topic-card::after {
-            content: '✨';
+            content: '?';
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -430,93 +430,10 @@
 </head>
 <body>
 <div class="top-controls">
-<div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
-<!-- Fullscreen Button -->
-
 <button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
-</div><script>
-const fullscreenToggleBtnUI = document.getElementById('fullscreen-btn');
-if(fullscreenToggleBtnUI) {
-  fullscreenToggleBtnUI.addEventListener('click', () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-      fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
-    } else {
-      document.exitFullscreen();
-      fullscreenToggleBtnUI.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>';
-    }
-  });
-}
-</script>
-
-<header>
-<h1><strong><span class="theme-text">Chapter 1: Social Media &amp; Influencers</span></strong></h1>
-
-<p><strong><span class="theme-font-18">Collaboration-Driven Digital Marketing at Salty</span></strong></p>
-</header>
-
-<div class="audio-container">
-<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/4.1.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
-</div>
-<style type="text/css">.audio-container {
-  position: relative;
-  background: url('https://login.skillizee.io/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
-  background-size: contain; /* keeps the GIF's aspect ratio */
-  border-radius: 16px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-  margin: 1rem auto;
-  width: 90%;
-  max-width: 900px;
-  aspect-ratio: 1920 / 1080; /* maintain original proportion */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 1rem;
-  padding-bottom: 1rem;
-}
-
-/* Modern styled audio */
-.audio-container audio {
-  width: 100%;
-  border-radius: 12px;
-  border: 2px solid #2D2B7E;
-  background: #F5F5FF;
-  height: 50px;
-  padding: 4px;
-  box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
-}
-
-/* Lavender-toned player controls */
-audio::-webkit-media-controls-panel {
-  background-color: #E6E6FA;
-  border-radius: 12px;
-}
-
-audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-timeline,
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display,
-audio::-webkit-media-controls-volume-slider {
-  filter: hue-rotate(240deg) saturate(1.2);
-}
-</style>
-<div class="topic-card"><strong>Social Media Strategy</strong></div>
-
-<div class="card">
-<h2>Social Media as Foundation</h2>
-<img alt="Digital Marketing Light Theme" class="light-image large-image" src="https://login.skillizee.io/s/articles/68dcdde3a1a889670a788f62/images/Digital Marketing Light.png" /> <img alt="Digital Marketing Dark Theme" class="dark-image large-image" src="https://login.skillizee.io/s/articles/68dcdde3a1a889670a788f62/images/Digital Marketing Dark.png" /></div>
-
-<div class="topic-card"><strong>Personalized &amp; Themed Collections</strong></div>
-
-<div class="card shorts-card">
-<h2>Naming Collections &amp; Creating Themes</h2>
-
-<div class="content-row">
-<div class="text-content">
-<p>Personalized &amp; Themed Collections: Salty often names collections to reflect emotion, personality, or moments, like &ldquo;<strong>Round Memories Necklace</strong>,&rdquo; &ldquo;<strong>Forever Us Pendant</strong>,&rdquo; &ldquo;<strong>Cursive Heart Charm</strong>,&rdquo; or &ldquo;<strong>11:11 Necklace</strong>.&rdquo; Each collection or product name is chosen to evoke a particular feeling or to help customers project their own narrative onto the piece. Bespoke and personalised items play into storytelling by allowing buyers to have names or initials engraved, making each piece part of a personal or gifting story.</p>
-</div>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Zuct2WEzQ9g?rel=0"></iframe></div>
-</div>
+<div id="theme-toggle"><span class="icon moon">🌙</span>
+<div class="knob">&nbsp;</div>
+<span class="icon sun">☀️</span></div></div>
 
 <div class="topic-card"><strong>Festive &amp; Theme-Based Drops</strong></div>
 
@@ -584,5 +501,46 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
+
+<script>
+  // Standardized Theme & Fullscreen Logic
+  (function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light');
+      if (themeToggle) themeToggle.classList.add('on');
+    }
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        themeToggle.classList.toggle('on');
+        localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      });
+    }
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => console.error(err));
+        } else {
+          document.exitFullscreen();
+        }
+      });
+      document.addEventListener('fullscreenchange', () => {
+        if (document.fullscreenElement) {
+          fullscreenBtn.classList.add('active');
+          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
+        } else {
+          fullscreenBtn.classList.remove('active');
+          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>';
+        }
+      });
+    }
+  })();
+</script>
 </body>
 </html>
+
+
+
