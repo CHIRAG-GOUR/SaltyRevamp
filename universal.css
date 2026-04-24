@@ -1074,10 +1074,10 @@ footer::before {
 
 .theme-text{color:var(--theme-text-color);}
 .theme-font-18{font-size:18px;}
-.light-image{display:none;}
-.dark-image{display:block;}
-body.light .light-image{display:block;}
-body.light .dark-image{display:none;}
+.light-image{display:none !important;}
+.dark-image{display:block !important;}
+body.light .light-image{display:block !important;}
+body.light .dark-image{display:none !important;}
 
 /* Structural Elements from Glossary */
 .section-bg {

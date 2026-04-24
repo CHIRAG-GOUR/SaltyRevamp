@@ -651,7 +651,8 @@
         <iframe
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen="" frameborder="0" scrolling="no" src="https://www.youtube.com/embed/w7lAGlDTBBo?rel=0"
-            style="width: 100%; height: 100%; border-radius: 16px;" title="Salty – Brand Overview"></iframe></div>
+            style="width: 100%; height: 100%; border-radius: 16px;" title="Salty – Brand Overview"></iframe>
+    </div>
 
     <div class="timeline-instruction">Click on the following sections to explore Salty&#39;s Business Model Canvas</div>
 
@@ -696,7 +697,7 @@
                     <img alt="Major Investors Light Mode" class="light-image"
                         src="https://login.skillizee.io/s/articles/68df5d4e23c121547e57bba3/images/Major investors and partners light.png" />
                     <img alt="Major Investors Dark Mode" class="dark-image"
-                        src="Major investors and partners Dark.png" />
+                        src="https://login.skillizee.io/s/articles/69eb1cac3febbac1568ecae2/images/Major investors and partners Dark.png" />
                 </div>
             </div>
         </div>
@@ -822,50 +823,50 @@
 
 
 
-    
-<script>
-  // Foolproof Theme & Fullscreen Logic
-  document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const fullscreenBtn = document.getElementById('fullscreen-btn');
-    const body = document.body;
 
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      body.classList.add('light');
-      if (themeToggle) themeToggle.classList.add('on');
-    }
+    <script>
+        // Foolproof Theme & Fullscreen Logic
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeToggle = document.getElementById('theme-toggle');
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            const body = document.body;
 
-    if (themeToggle) {
-      themeToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        body.classList.toggle('light');
-        this.classList.toggle('on');
-        localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
-      });
-    }
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                body.classList.add('light');
+                if (themeToggle) themeToggle.classList.add('on');
+            }
 
-    if (fullscreenBtn) {
-      fullscreenBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen().catch(err => console.error("Fullscreen error:", err));
-        } else {
-          document.exitFullscreen();
-        }
-      });
-      document.addEventListener('fullscreenchange', function() {
-        if (document.fullscreenElement) {
-          fullscreenBtn.classList.add('active');
-          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
-        } else {
-          fullscreenBtn.classList.remove('active');
-          fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>';
-        }
-      });
-    }
-  });
-</script>
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    body.classList.toggle('light');
+                    this.classList.toggle('on');
+                    localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen().catch(err => console.error("Fullscreen error:", err));
+                    } else {
+                        document.exitFullscreen();
+                    }
+                });
+                document.addEventListener('fullscreenchange', function () {
+                    if (document.fullscreenElement) {
+                        fullscreenBtn.classList.add('active');
+                        fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
+                    } else {
+                        fullscreenBtn.classList.remove('active');
+                        fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path></svg>';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
