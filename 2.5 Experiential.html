@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,12 +79,12 @@
 
         body {
             font-family: 'Michroma', sans-serif;
-            margin: 0 auto;
-            padding: 0 40px 0 0;
+            margin: 0;
+            padding: 0;
             background: var(--body-bg);
             color: var(--body-color);
             font-size: clamp(16px, 1.4vw, 18px);
-            max-width: 1800px;
+            width: 100%;
             transition: background 0.1s, color 0.1s;
             position: relative;
             overflow-x: hidden;
@@ -171,26 +171,101 @@
             transition: height 0.2s ease-in-out;
         }
 
+
+
+        .top-controls {
+            position: fixed !important;
+            top: 15px !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 0 25px !important;
+            z-index: 1000 !important;
+            pointer-events: none !important;
+        }
+
+        .top-controls > * {
+            pointer-events: auto !important;
+        }
+
+        #fullscreen-btn {
+            background: rgba(0,0,0,0.3) !important;
+            border-radius: 50% !important;
+            width: 34px !important;
+            height: 34px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            cursor: pointer !important;
+            padding: 0 !important;
+            transition: all 0.3s ease;
+        }
+
+        #fullscreen-btn svg {
+            width: 20px !important;
+            height: 20px !important;
+            fill: white !important;
+        }
+
+        /* Theme Toggle Styles */
         #theme-toggle {
-            background: var(--button-bg);
-            color: var(--button-color);
-            border: none;
-            border-radius: 15px;
-            padding: 5px;
-            margin-top: 10px;
+            width: 64px !important;
+            height: 34px !important;
+            background: linear-gradient(135deg, var(--button-bg), #8a5bb5) !important;
+            border-radius: 34px !important;
             cursor: pointer;
-            font-size: clamp(14px, 1.1vw, 16px);
-            width: clamp(24px, 2vw, 28px);
-            height: clamp(24px, 2vw, 28px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.1s, color 0.1s;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 0 8px !important;
+            box-sizing: border-box !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.35), inset 0 1px 3px rgba(255,255,255,0.2) !important;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
         }
 
         #theme-toggle:hover {
-            background: var(--sparkle-color-to);
+            transform: scale(1.08);
+            box-shadow: 0 8px 20px rgba(177,156,217,0.5);
         }
+
+        #theme-toggle .icon {
+            font-size: 20px !important;
+            transition: all 0.45s ease;
+            color: white !important;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 2;
+            display: inline-block !important;
+        }
+
+        #theme-toggle .knob {
+            width: 26px !important;
+            height: 26px !important;
+            background: white !important;
+            border-radius: 50% !important;
+            position: absolute !important;
+            left: 4px !important;
+            transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        #theme-toggle.active .knob {
+            left: 34px !important;
+        }
+
+        #theme-toggle .moon { opacity: 1 !important; }
+        #theme-toggle .sun  { opacity: 0 !important; }
+        #theme-toggle.active .moon { opacity: 0 !important; }
+        #theme-toggle.active .sun { opacity: 1 !important; }
 
         header {
             background: var(--header-bg);
@@ -420,12 +495,7 @@
                 transition: width 0.2s ease-in-out;
             }
 
-            #theme-toggle {
-                margin-top: 0;
-                width: clamp(20px, 2.5vw, 24px);
-                height: clamp(20px, 2.5vw, 24px);
-                font-size: clamp(12px, 2vw, 14px);
-            }
+
 
             header h2 {
                 font-size: clamp(1.3em, 2.5vw, 1.5em);
@@ -492,11 +562,7 @@
                 height: 600px;
             }
 
-            #theme-toggle {
-                font-size: clamp(16px, 1.1vw, 18px);
-                width: clamp(26px, 2vw, 30px);
-                height: clamp(26px, 2vw, 30px);
-            }
+
 
             #back-to-top {
                 width: clamp(50px, 3.5vw, 60px);
@@ -541,11 +607,7 @@
                 height: 600px;
             }
 
-            #theme-toggle {
-                font-size: clamp(18px, 1.1vw, 20px);
-                width: clamp(28px, 2vw, 32px);
-                height: clamp(28px, 2vw, 32px);
-            }
+
 
             .sidebar {
                 width: 40px;
@@ -569,14 +631,17 @@
             }
         }
 </style>
+</head>
+<body>
+<div class="top-controls">
+<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
+<div id="theme-toggle"><span class="icon moon">🌙</span>
+<div class="knob"></div>
+<span class="icon sun">☀️</span></div>
+</div>
+
 <!-- Background Emojis -->
 <p><span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span> <span class="emoji-bg">📿</span> <span class="emoji-bg">✨</span> <span class="emoji-bg">💎</span></p>
-
-<div class="top-controls">
-<div id="theme-toggle"><span class="icon moon">&#127769;</span>
-<div class="knob">&nbsp;</div>
-<span class="icon sun">&#9728;&#65039;</span></div>
-<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button></div>
 
 <header>
 <h1><strong><span class="theme-text">Experiential Activity: Product Cost Calculator</span></strong></h1>
