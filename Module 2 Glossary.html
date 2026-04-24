@@ -298,36 +298,8 @@
             };
         });
 </script>
-<script>
-  // Global Top Controls Script (Theme & Fullscreen)
-  const themeToggleUI = document.getElementById('theme-toggle');
-  
-  if (localStorage.getItem('theme') === 'light') {
-    document.body.classList.add('light');
-    if(themeToggleUI) themeToggleUI.classList.add('on');
-  }
-  
-  if(themeToggleUI) {
-    themeToggleUI.addEventListener('click', () => {
-      document.body.classList.toggle('light');
-      themeToggleUI.classList.toggle('on');
-      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
-    });
-  }
-  
-  
-        fullscreenBtn.classList.add('fullscreen-active');
-        fullscreenBtn.title = "Exit Fullscreen";
-      } else {
-        document.exitFullscreen();
-        fullscreenBtn.classList.remove('fullscreen-active');
-        fullscreenBtn.title = "Enter Fullscreen";
-      }
-    });
 
-    
-  }
-</script>
+
 
 
 <script>
