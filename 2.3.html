@@ -760,31 +760,39 @@ audio::-webkit-media-controls-volume-slider {
 
 
 
+
 <script>
-  // Standardized Theme & Fullscreen Logic
-  (function() {
+  // Foolproof Theme & Fullscreen Logic
+  document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('theme-toggle');
     const fullscreenBtn = document.getElementById('fullscreen-btn');
-    if (localStorage.getItem('theme') === 'light') {
-      document.body.classList.add('light');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      body.classList.add('light');
       if (themeToggle) themeToggle.classList.add('on');
     }
+
     if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('light');
-        themeToggle.classList.toggle('on');
-        localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      themeToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        body.classList.toggle('light');
+        this.classList.toggle('on');
+        localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
       });
     }
+
     if (fullscreenBtn) {
-      fullscreenBtn.addEventListener('click', () => {
+      fullscreenBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen().catch(err => console.error(err));
+          document.documentElement.requestFullscreen().catch(err => console.error("Fullscreen error:", err));
         } else {
           document.exitFullscreen();
         }
       });
-      document.addEventListener('fullscreenchange', () => {
+      document.addEventListener('fullscreenchange', function() {
         if (document.fullscreenElement) {
           fullscreenBtn.classList.add('active');
           fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
@@ -794,7 +802,7 @@ audio::-webkit-media-controls-volume-slider {
         }
       });
     }
-  })();
+  });
 </script>
 </body>
 </html>

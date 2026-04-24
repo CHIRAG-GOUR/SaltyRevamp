@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
     <link rel="stylesheet" href="universal.css" />
-<link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
-<style type="text/css">:root {
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" />
+    <style type="text/css">
+        :root {
             --body-bg: linear-gradient(135deg, #3C2F5F, #000000);
             --body-color: #CCC;
             --header-bg: #4B3A6F;
@@ -17,10 +19,11 @@
             --topic-bg: #3C2F5F;
             --popup-bg: #B19CD9;
             --popup-color: #000;
-            --shadow-main: 0px 4px 15px rgba(255,255,255,0.1);
-            --shadow-small: rgba(255,255,255,0.05);
+            --shadow-main: 0px 4px 15px rgba(255, 255, 255, 0.1);
+            --shadow-small: rgba(255, 255, 255, 0.05);
             --theme-text-color: #ffffff;
         }
+
         .light {
             --body-bg: linear-gradient(135deg, #D0C3F1, #FFFFFF);
             --body-color: #333;
@@ -32,304 +35,826 @@
             --topic-bg: #D0C3F1;
             --popup-bg: #9846ac;
             --popup-color: white;
-            --shadow-main: 0px 4px 15px rgba(0,0,0,0.1);
-            --shadow-small: rgba(0,0,0,0.05);
+            --shadow-main: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-small: rgba(0, 0, 0, 0.05);
             --theme-text-color: #ecf0f1;
         }
-        body {margin:0;padding:0;font-family:Arial,sans-serif;background:var(--body-bg);color:var(--body-color);min-height:100vh;display:flex;flex-direction:column;align-items:center; overflow-x: hidden;}
-        header {background-color:var(--header-bg);color:var(--header-color);padding:10px 20px;text-align:center;font-family:'Michroma',sans-serif;width:100%;transition:transform .3s ease,background-color .3s ease;}
-        header:hover {transform:scale(1.01);background-color:var(--popup-bg);}
-        h1,h2 {font-family:'Michroma',sans-serif;color:var(--h-color);}
-        
-        .chapter-section {display:flex;align-items:stretch;justify-content:space-between;margin:10px auto;padding:10px;max-width:1100px;background:var(--chapter-bg);border-radius:12px;box-shadow:var(--shadow-main);width:90%;gap:10px;}
-        .chapter-section:nth-child(even){flex-direction:row;}
-        .chapter-text {flex:1;padding:10px;align-self:stretch;}
-        .chapter-text h2{margin-bottom:5px;}
-        .chapter-text p,.chapter-text ul{line-height:1.7;font-size:18px;color:var(--text-p-color);}
-        .chapter-text ul{margin:10px 0;padding-left:20px;}
-        .chapter-text li{margin-bottom:10px;}
-        .chapter-image {flex:1;display:flex;justify-content:center;align-items:center;padding:5px;height:100%;overflow:hidden;align-self:stretch;}
-        .chapter-image img{width:100%;height:auto;max-width:800px;max-height:800px;border-radius:12px;box-shadow:0 4px 20px var(--shadow-small);transition:transform .4s ease;margin:10px auto;cursor:pointer;object-fit:contain;}
-        .chapter-image img:hover{transform:scale(1.03);}
-        
-        .topic-card {margin:25px auto;padding:10px;max-width:800px;background:var(--topic-bg);border-radius:12px;box-shadow:var(--shadow-main);text-align:center;transition:.3s ease;font-family:'Michroma',sans-serif;font-size:20px;cursor:pointer;width:90%;display:flex;align-items:center;justify-content:center;}
-        .topic-card:hover{animation:flash .8s linear;background:var(--popup-bg);color:var(--popup-color);transform:scale(1.03);}
-        @keyframes flash{0%{background-color:var(--topic-bg)}50%{background-color:var(--header-bg);color:var(--header-color)}100%{background-color:var(--popup-bg)}}
-        
-        .timeline-nav {display:flex;justify-content:center;gap:10px;margin:5px auto;padding:5px;background:var(--topic-bg);border-radius:12px;max-width:800px;width:90%;flex-wrap:wrap;}
-        .timeline-nav a {padding:10px 20px;background:var(--header-bg);color:var(--header-color);border-radius:8px;text-decoration:none;font-family:'Michroma',sans-serif;transition:transform .3s ease-in-out,background .3s ease-in-out;}
-        .timeline-nav a:hover,.timeline-nav a.active{background:var(--popup-bg);transform:scale(1.05);}
-        .timeline-instruction {margin:5px auto;padding:5px;max-width:800px;background-color:var(--popup-bg);color:var(--popup-color);text-align:center;font-family:'Michroma',sans-serif;border-radius:8px;width:90%;}
-        
-        .year-section {margin:5px auto;padding:5px;max-width:1100px;background:var(--chapter-bg);border-radius:12px;box-shadow:var(--shadow-main);display:flex;align-items:center;animation:fadeIn .5s ease-in-out;width:90%;}
-        .year-image {flex:1;display:flex;align-items:center;justify-content:center;padding:10px;}
-        .year-image img {width:100%;height:auto;max-width:500px;max-height:350px;border-radius:8px;box-shadow:0px 4px 20px var(--shadow-small);object-fit:contain;}
-        
-        #theme-toggle {position:fixed;top:10px;right:10px;width:60px;height:30px;background:var(--popup-bg);border-radius:15px;cursor:pointer;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 5px;transition:background .3s ease;}
-        #theme-toggle::before{content:'';width:24px;height:24px;background:var(--popup-color);border-radius:50%;position:absolute;left:3px;transition:transform .3s ease;}
-        #theme-toggle::after{content:'OFF';color:var(--popup-color);font-family:'Michroma',sans-serif;font-size:12px;position:absolute;right:10px;}
-        #theme-toggle.on::before{transform:translateX(30px);}
-        #theme-toggle.on::after{content:'ON';left:10px;right:auto;}
-        #theme-toggle:hover{background:var(--header-bg);}
-        
-        
-        
-        
-        body.light 
-        
-        
-        
-        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-        
-        .audio-container{position:relative;background:url('https://login.skillizee.io/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;background-size:contain;border-radius:16px;box-shadow:0 6px 14px rgba(0,0,0,0.25);margin:1rem auto;width:90%;max-width:900px;aspect-ratio:1920/1080;display:flex;flex-direction:column;justify-content:flex-end;padding:1rem;padding-bottom:1rem;}
-        .audio-container audio{width:100%;border-radius:12px;border:2px solid #2D2B7E;background:#F5F5FF;height:50px;padding:4px;box-shadow:0 3px 10px rgba(45,43,126,0.3);}
 
-        /* SIMULATION CSS */
-        .sim-container { max-width: 1100px; width: 90%; margin: 40px auto; padding: 30px; background: var(--chapter-bg); border-radius: 16px; box-shadow: var(--shadow-main); font-family: Arial, sans-serif; color: var(--text-p-color); transition: background 0.3s ease; box-sizing: border-box; }
-        .sim-header { text-align: center; margin-bottom: 20px; }
-        .sim-header h2 { font-family: 'Michroma', sans-serif; color: var(--h-color); margin-bottom: 10px; }
-        .sim-budget-display { font-size: 24px; font-weight: bold; text-align: center; padding: 15px; background: var(--topic-bg); border-radius: 12px; margin-bottom: 25px; color: #fff); transition: all 0.3s ease; }
-        .sim-budget-display.over-budget { background: #ff4d4d; color: white; animation: shake 0.5s ease-in-out; }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 75% { transform: translateX(-5px); } }
-        .sim-grid { display: flex; gap: 30px; flex-wrap: wrap; }
-        .sim-controls { flex: 1; min-width: 250px; display: flex; flex-direction: column; gap: 15px; }
-        .sim-slider-group { background: rgba(0,0,0,0.05); padding: 15px; border-radius: 8px; }
-        body:not(.light) .sim-slider-group { background: rgba(255,255,255,0.05); }
-        .sim-slider-group label { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px; }
-        .sim-slider-group input[type="range"] { width: 100%; cursor: pointer; accent-color: var(--popup-bg); }
-        .sim-dashboard { flex: 1; min-width: 250px; background: var(--topic-bg); padding: 20px; border-radius: 12px; display: flex; flex-direction: column; gap: 20px; }
-        .sim-metric { width: 100%; }
-        .sim-metric-label { display: flex; justify-content: space-between; font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--popup-color); }
-        .sim-bar-bg { width: 100%; height: 12px; background: rgba(0,0,0,0.2); border-radius: 6px; overflow: hidden; }
-        body:not(.light) .sim-bar-bg { background: rgba(255,255,255,0.2); }
-        .sim-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #9846ac, #d0c3f1); border-radius: 6px; transition: width 0.4s ease-out, background 0.4s; }
-        .sim-pitch-btn { width: 100%; padding: 15px; font-size: 18px; font-family: 'Michroma', sans-serif; background: var(--header-bg); color: var(--header-color); border: none; border-radius: 12px; margin-top: 20px; cursor: pointer; transition: transform 0.3s, background 0.3s; }
-        .sim-pitch-btn:hover:not(:disabled) { transform: scale(1.02); background: var(--popup-bg); }
-        .sim-pitch-btn:disabled { background: #555; cursor: not-allowed; opacity: 0.5; }
-        .sim-result { display: none; margin-top: 20px; padding: 20px; border-radius: 12px; text-align: center; font-size: 18px; font-weight: bold; line-height: 1.5; }
-        .sim-result.success { background: #d4edda; color: #155724; border: 2px solid #c3e6cb; }
-        .sim-result.error { background: #f8d7da; color: #721c24; border: 2px solid #f5c6cb; }
-
-        @media (max-width:768px){
-            .chapter-section{flex-direction:column;}
-            .chapter-image img{max-width:300px;max-height:300px;width:100%;object-fit:contain;}
-            .year-image img{max-width:300px;max-height:300px;width:100%;object-fit:contain;}
-            .year-section {flex-direction:column;}
-            .sim-grid { flex-direction: column; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: var(--body-bg);
+            color: var(--body-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
         }
 
-        html, body, .container, .card, .chapter-section, .iframe-container {
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-color);
+            padding: 10px 20px;
+            text-align: center;
+            font-family: 'Michroma', sans-serif;
+            width: 100%;
+            transition: transform .3s ease, background-color .3s ease;
+        }
+
+        header:hover {
+            transform: scale(1.01);
+            background-color: var(--popup-bg);
+        }
+
+        h1,
+        h2 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--h-color);
+        }
+
+        .chapter-section {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            margin: 10px auto;
+            padding: 10px;
+            max-width: 1100px;
+            background: var(--chapter-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-main);
+            width: 90%;
+            gap: 10px;
+        }
+
+        .chapter-section:nth-child(even) {
+            flex-direction: row;
+        }
+
+        .chapter-text {
+            flex: 1;
+            padding: 10px;
+            align-self: stretch;
+        }
+
+        .chapter-text h2 {
+            margin-bottom: 5px;
+        }
+
+        .chapter-text p,
+        .chapter-text ul {
+            line-height: 1.7;
+            font-size: 18px;
+            color: var(--text-p-color);
+        }
+
+        .chapter-text ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .chapter-text li {
+            margin-bottom: 10px;
+        }
+
+        .chapter-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            height: 100%;
+            overflow: hidden;
+            align-self: stretch;
+        }
+
+        .chapter-image img {
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+            max-height: 800px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px var(--shadow-small);
+            transition: transform .4s ease;
+            margin: 10px auto;
+            cursor: pointer;
+            object-fit: contain;
+        }
+
+        .chapter-image img:hover {
+            transform: scale(1.03);
+        }
+
+        .topic-card {
+            margin: 25px auto;
+            padding: 10px;
+            max-width: 800px;
+            background: var(--topic-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-main);
+            text-align: center;
+            transition: .3s ease;
+            font-family: 'Michroma', sans-serif;
+            font-size: 20px;
+            cursor: pointer;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .topic-card:hover {
+            animation: flash .8s linear;
+            background: var(--popup-bg);
+            color: var(--popup-color);
+            transform: scale(1.03);
+        }
+
+        @keyframes flash {
+            0% {
+                background-color: var(--topic-bg)
+            }
+
+            50% {
+                background-color: var(--header-bg);
+                color: var(--header-color)
+            }
+
+            100% {
+                background-color: var(--popup-bg)
+            }
+        }
+
+        .timeline-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 5px auto;
+            padding: 5px;
+            background: var(--topic-bg);
+            border-radius: 12px;
+            max-width: 800px;
+            width: 90%;
+            flex-wrap: wrap;
+        }
+
+        .timeline-nav a {
+            padding: 10px 20px;
+            background: var(--header-bg);
+            color: var(--header-color);
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Michroma', sans-serif;
+            transition: transform .3s ease-in-out, background .3s ease-in-out;
+        }
+
+        .timeline-nav a:hover,
+        .timeline-nav a.active {
+            background: var(--popup-bg);
+            transform: scale(1.05);
+        }
+
+        .timeline-instruction {
+            margin: 5px auto;
+            padding: 5px;
+            max-width: 800px;
+            background-color: var(--popup-bg);
+            color: var(--popup-color);
+            text-align: center;
+            font-family: 'Michroma', sans-serif;
+            border-radius: 8px;
+            width: 90%;
+        }
+
+        .year-section {
+            margin: 5px auto;
+            padding: 5px;
+            max-width: 1100px;
+            background: var(--chapter-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow-main);
+            display: flex;
+            align-items: center;
+            animation: fadeIn .5s ease-in-out;
+            width: 90%;
+        }
+
+        .year-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .year-image img {
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            max-height: 350px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 20px var(--shadow-small);
+            object-fit: contain;
+        }
+
+        #theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: 30px;
+            background: var(--popup-bg);
+            border-radius: 15px;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5px;
+            transition: background .3s ease;
+        }
+
+        #theme-toggle::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: var(--popup-color);
+            border-radius: 50%;
+            position: absolute;
+            left: 3px;
+            transition: transform .3s ease;
+        }
+
+        #theme-toggle::after {
+            content: 'OFF';
+            color: var(--popup-color);
+            font-family: 'Michroma', sans-serif;
+            font-size: 12px;
+            position: absolute;
+            right: 10px;
+        }
+
+        #theme-toggle.on::before {
+            transform: translateX(30px);
+        }
+
+        #theme-toggle.on::after {
+            content: 'ON';
+            left: 10px;
+            right: auto;
+        }
+
+        #theme-toggle:hover {
+            background: var(--header-bg);
+        }
+
+
+
+
+        body.light @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .audio-container {
+            position: relative;
+            background: url('https://login.skillizee.io/s/articles/68e0ede8b7d93e436d22b4bd/images/audiochap.gif') center center no-repeat;
+            background-size: contain;
+            border-radius: 16px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+            margin: 1rem auto;
+            width: 90%;
+            max-width: 900px;
+            aspect-ratio: 1920/1080;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .audio-container audio {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid #2D2B7E;
+            background: #F5F5FF;
+            height: 50px;
+            padding: 4px;
+            box-shadow: 0 3px 10px rgba(45, 43, 126, 0.3);
+        }
+
+        /* SIMULATION CSS */
+        .sim-container {
+            max-width: 1100px;
+            width: 90%;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--chapter-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-main);
+            font-family: Arial, sans-serif;
+            color: var(--text-p-color);
+            transition: background 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .sim-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sim-header h2 {
+            font-family: 'Michroma', sans-serif;
+            color: var(--h-color);
+            margin-bottom: 10px;
+        }
+
+        .sim-budget-display {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+            background: var(--topic-bg);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            color: #fff);
+            transition: all 0.3s ease;
+        }
+
+        .sim-budget-display.over-budget {
+            background: #ff4d4d;
+            color: white;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+        }
+
+        .sim-grid {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .sim-controls {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sim-slider-group {
+            background: rgba(0, 0, 0, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        body:not(.light) .sim-slider-group {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sim-slider-group label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .sim-slider-group input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+            accent-color: var(--popup-bg);
+        }
+
+        .sim-dashboard {
+            flex: 1;
+            min-width: 250px;
+            background: var(--topic-bg);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sim-metric {
+            width: 100%;
+        }
+
+        .sim-metric-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--popup-color);
+        }
+
+        .sim-bar-bg {
+            width: 100%;
+            height: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        body:not(.light) .sim-bar-bg {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .sim-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #9846ac, #d0c3f1);
+            border-radius: 6px;
+            transition: width 0.4s ease-out, background 0.4s;
+        }
+
+        .sim-pitch-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-family: 'Michroma', sans-serif;
+            background: var(--header-bg);
+            color: var(--header-color);
+            border: none;
+            border-radius: 12px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .sim-pitch-btn:hover:not(:disabled) {
+            transform: scale(1.02);
+            background: var(--popup-bg);
+        }
+
+        .sim-pitch-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .sim-result {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .sim-result.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .sim-result.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        @media (max-width:768px) {
+            .chapter-section {
+                flex-direction: column;
+            }
+
+            .chapter-image img {
+                max-width: 300px;
+                max-height: 300px;
+                width: 100%;
+                object-fit: contain;
+            }
+
+            .year-image img {
+                max-width: 300px;
+                max-height: 300px;
+                width: 100%;
+                object-fit: contain;
+            }
+
+            .year-section {
+                flex-direction: column;
+            }
+
+            .sim-grid {
+                flex-direction: column;
+            }
+        }
+
+        html,
+        body,
+        .container,
+        .card,
+        .chapter-section,
+        .iframe-container {
             max-width: 100% !important;
             box-sizing: border-box !important;
         }
+
         @media (max-width: 768px) {
-            body { overflow-x: hidden !important; }
-            .chapter-section { flex-direction: column; padding: 5px; }
-            .chapter-text, .chapter-image { width: 100% !important; max-width: 100% !important; }
-            
-            iframe[width="360"], iframe[height="640"], iframe[src*="shorts"], iframe[width="315"], iframe[height="560"] { 
-                aspect-ratio: 9/16 !important; 
-                max-width: 90vw !important; 
-                max-height: 80vh !important; 
-                height: 80vh !important; 
-                width: auto !important;
-                margin: 0 auto !important; 
-                display: block !important; 
+            body {
+                overflow-x: hidden !important;
             }
-            img { max-width: 100% !important; }
+
+            .chapter-section {
+                flex-direction: column;
+                padding: 5px;
+            }
+
+            .chapter-text,
+            .chapter-image {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            iframe[width="360"],
+            iframe[height="640"],
+            iframe[src*="shorts"],
+            iframe[width="315"],
+            iframe[height="560"] {
+                aspect-ratio: 9/16 !important;
+                max-width: 90vw !important;
+                max-height: 80vh !important;
+                height: 80vh !important;
+                width: auto !important;
+                margin: 0 auto !important;
+                display: block !important;
+            }
+
+            img {
+                max-width: 100% !important;
+            }
         }
-
-</style>
+    </style>
 </head>
+
 <body>
-<div class="top-controls">
-<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
-<div id="theme-toggle"><span class="icon moon">🌙</span>
-<div class="knob">&nbsp;</div>
-<span class="icon sun">☀️</span></div></div>
+    <div class="top-controls">
+        <button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24">
+                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path>
+            </svg></button>
+        <div id="theme-toggle"><span class="icon moon">🌙</span>
+            <div class="knob">&nbsp;</div>
+            <span class="icon sun">☀️</span>
+        </div>
+    </div>
 
 
-<header>
-<h1><strong><span class="theme-text">Chapter 1: The Business Model Canvas: Key Activities</span></strong></h1>
+    <header>
+        <h1><strong><span class="theme-text">Chapter 1: The Business Model Canvas: Key Activities</span></strong></h1>
 
-<p><strong><span style="font-size:20px;">Explore the strategic framework of Salty&rsquo;s business operations</span></strong></p>
-</header>
+        <p><strong><span style="font-size:20px;">Explore the strategic framework of Salty&rsquo;s business
+                    operations</span></strong></p>
+    </header>
 
-<div class="audio-container">
-<audio controls="" controlslist="nodownload" oncontextmenu="return false;"><source src="https://chirag-gour.github.io/Audio_SkilliZee/3.1.mp3" type="audio/mp3" /> Your browser does not support the audio element.</audio>
-</div>
-<!-- YouTube Video Embedded Here -->
+    <div class="audio-container">
+        <audio controls="" controlslist="nodownload" oncontextmenu="return false;">
+            <source src="https://chirag-gour.github.io/Audio_SkilliZee/3.1.mp3" type="audio/mp3" /> Your browser does
+            not support the audio element.
+        </audio>
+    </div>
+    <!-- YouTube Video Embedded Here -->
 
-<div style="margin: 2rem auto; max-width: 1100px; width: 90%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.3);"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" scrolling="no" src="https://www.youtube.com/embed/w7lAGlDTBBo?rel=0" style="width: 100%; height: 100%; border-radius: 16px;" title="Salty – Brand Overview"></iframe></div>
+    <div
+        style="margin: 2rem auto; max-width: 1100px; width: 90%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.3);">
+        <iframe
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen="" frameborder="0" scrolling="no" src="https://www.youtube.com/embed/w7lAGlDTBBo?rel=0"
+            style="width: 100%; height: 100%; border-radius: 16px;" title="Salty – Brand Overview"></iframe></div>
 
-<div class="timeline-instruction">Click on the following sections to explore Salty&#39;s Business Model Canvas</div>
+    <div class="timeline-instruction">Click on the following sections to explore Salty&#39;s Business Model Canvas</div>
 
-<nav class="timeline-nav"><a class="active" data-section="Channels" href="#">Channels</a> <a data-section="Key Partners" href="#">Key Partners</a> <a data-section="Key Activities" href="#">Key Activities</a> <a data-section="Key Resources" href="#">Key Resources</a> <a data-section="Value Propositions" href="#">Value Propositions</a> <a data-section="Customer Relationships" href="#">Customer Relationships</a> <a data-section="Customer Segments" href="#">Customer Segments</a> <a data-section="Cost Structure" href="#">Cost Structure</a> <a data-section="Revenue Streams" href="#">Revenue Streams</a></nav>
+    <nav class="timeline-nav"><a class="active" data-section="Channels" href="#">Channels</a> <a
+            data-section="Key Partners" href="#">Key Partners</a> <a data-section="Key Activities" href="#">Key
+            Activities</a> <a data-section="Key Resources" href="#">Key Resources</a> <a
+            data-section="Value Propositions" href="#">Value Propositions</a> <a data-section="Customer Relationships"
+            href="#">Customer Relationships</a> <a data-section="Customer Segments" href="#">Customer Segments</a> <a
+            data-section="Cost Structure" href="#">Cost Structure</a> <a data-section="Revenue Streams" href="#">Revenue
+            Streams</a></nav>
 
-<div id="timeline-container">
-<section class="year-section">
-<div class="year-image"><img alt="Channels Infographic" src="https://login.skillizee.io/s/articles/69cdf6ec21e5376ef284b1dd/images/Salty channels new.png" /></div>
+    <div id="timeline-container">
+        <section class="year-section">
+            <div class="year-image"><img alt="Channels Infographic"
+                    src="https://login.skillizee.io/s/articles/69cdf6ec21e5376ef284b1dd/images/Salty channels new.png" />
+            </div>
 
-<div class="chapter-text">
-<h2><strong>Channels</strong></h2>
+            <div class="chapter-text">
+                <h2><strong>Channels</strong></h2>
 
-<p>Salty utilizes multiple channels to reach its customers effectively.</p>
+                <p>Salty utilizes multiple channels to reach its customers effectively.</p>
 
-<ul>
-	<li>Official e-commerce website (salty.co.in)</li>
-	<li>E-commerce marketplaces</li>
-	<li>Social media storefronts (Instagram, Facebook)</li>
-	<li>Quick commerce platforms for rapid delivery</li>
-	<li>Pop-up shops and offline limited events</li>
-</ul>
-</div>
-</section>
-</div>
+                <ul>
+                    <li>Official e-commerce website (salty.co.in)</li>
+                    <li>E-commerce marketplaces</li>
+                    <li>Social media storefronts (Instagram, Facebook)</li>
+                    <li>Quick commerce platforms for rapid delivery</li>
+                    <li>Pop-up shops and offline limited events</li>
+                </ul>
+            </div>
+        </section>
+    </div>
 
-<div class="topic-card"><strong>Major Investors and Partners</strong></div>
+    <div class="topic-card"><strong>Major Investors and Partners</strong></div>
 
-<section class="chapter-section">
-<div class="chapter-text">
-<h2><strong>Major Investors and Partners</strong></h2>
+    <section class="chapter-section">
+        <div class="chapter-text">
+            <h2><strong>Major Investors and Partners</strong></h2>
 
-<div class="chapter-image"><img alt="Major Investors" src="https://login.skillizee.io/s/articles/68df5d4e23c121547e57bba3/images/Major investors and partners light.png" /></div>
-</div>
-</section>
+            <div class="large-image-container">
+                <div class="large-image">
+                    <img alt="Major Investors Light Mode" class="light-image"
+                        src="https://login.skillizee.io/s/articles/68df5d4e23c121547e57bba3/images/Major investors and partners light.png" />
+                    <img alt="Major Investors Dark Mode" class="dark-image"
+                        src="Major investors and partners Dark.png" />
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="chapter-section">
-<div class="chapter-image" style="width: 100% !important; padding: 0 !important; margin: 0 auto; box-sizing: border-box;">
-<img style="width: 100% !important; max-width: 100% !important; height: auto; display: block; box-sizing: border-box; object-fit: contain;" src="https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/image-20250926150335-2.png" />
-</div>
-</section>
+    <section class="chapter-section">
+        <div class="chapter-image"
+            style="width: 100% !important; padding: 0 !important; margin: 0 auto; box-sizing: border-box;">
+            <img style="width: 100% !important; max-width: 100% !important; height: auto; display: block; box-sizing: border-box; object-fit: contain;"
+                src="https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/image-20250926150335-2.png" />
+        </div>
+    </section>
 
-<section class="chapter-section">
-<div class="chapter-image" style="width: 100% !important; padding: 0 !important; margin: 0 auto; box-sizing: border-box;">
-<img alt="New Image" style="width: 100% !important; max-width: 100% !important; height: auto; display: block; box-sizing: border-box; object-fit: contain;" src="https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/Alumni sonal.jpg" />
-</div>
-</section>
+    <section class="chapter-section">
+        <div class="chapter-image"
+            style="width: 100% !important; padding: 0 !important; margin: 0 auto; box-sizing: border-box;">
+            <img alt="New Image"
+                style="width: 100% !important; max-width: 100% !important; height: auto; display: block; box-sizing: border-box; object-fit: contain;"
+                src="https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/Alumni sonal.jpg" />
+        </div>
+    </section>
 
-<div class="timeline-instruction">Click on the following investors to explore Salty&#39;s Funding Partners</div>
+    <div class="timeline-instruction">Click on the following investors to explore Salty&#39;s Funding Partners</div>
 
-<nav class="timeline-nav funding-nav"><a class="active" data-section="All in Capital" href="#">All in Capital</a> <a data-section="Anicut Capital" href="#">Anicut Capital</a> <a data-section="Suashish Diamonds" href="#">Suashish Diamonds</a> <a data-section="JK Group" href="#">JK Group</a> <a data-section="Angel Investors" href="#">Angel Investors</a></nav>
+    <nav class="timeline-nav funding-nav"><a class="active" data-section="All in Capital" href="#">All in Capital</a> <a
+            data-section="Anicut Capital" href="#">Anicut Capital</a> <a data-section="Suashish Diamonds"
+            href="#">Suashish Diamonds</a> <a data-section="JK Group" href="#">JK Group</a> <a
+            data-section="Angel Investors" href="#">Angel Investors</a></nav>
 
-<div id="funding-timeline-container">
-<section class="year-section">
-<div class="year-image"><img alt="All in Capital Infographic" src="https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/All in capital.png" /></div>
+    <div id="funding-timeline-container">
+        <section class="year-section">
+            <div class="year-image"><img alt="All in Capital Infographic"
+                    src="https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/All in capital.png" />
+            </div>
 
-<div class="chapter-text">
-<h2><strong>All in Capital</strong></h2>
+            <div class="chapter-text">
+                <h2><strong>All in Capital</strong></h2>
 
-<p>As a lead investor in Salty&rsquo;s seed funding round, All in Capital provided significant financial support to fuel the company&rsquo;s early growth.</p>
+                <p>As a lead investor in Salty&rsquo;s seed funding round, All in Capital provided significant financial
+                    support to fuel the company&rsquo;s early growth.</p>
 
-<ul>
-	<li>Contributed to the ₹5&ndash;₹5.4 crore seed funding round in Early 2024.</li>
-	<li>Offered strategic guidance in scaling Salty&rsquo;s e-commerce operations.</li>
-	<li>Connected Salty with key industry players in the fashion and jewelry market.</li>
-</ul>
-</div>
-</section>
-</div>
+                <ul>
+                    <li>Contributed to the ₹5&ndash;₹5.4 crore seed funding round in Early 2024.</li>
+                    <li>Offered strategic guidance in scaling Salty&rsquo;s e-commerce operations.</li>
+                    <li>Connected Salty with key industry players in the fashion and jewelry market.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. Business Model Canvas Timeline
-        const timelineNav = document.querySelector('.timeline-nav:not(.funding-nav)');
-        const timelineContainer = document.getElementById('timeline-container');
-        const timelineData = {
-            "Channels": { image: "https://login.skillizee.io/s/articles/69cdf6ec21e5376ef284b1dd/images/Salty channels new.png", alt: "Channels Infographic", content: `<h2><strong>Channels</strong></h2><p>Salty utilizes multiple channels to reach its customers effectively.</p><ul><li>Official e-commerce website (salty.co.in)</li><li>E-commerce marketplaces</li><li>Social media storefronts (Instagram, Facebook)</li><li>Quick commerce platforms for rapid delivery</li><li>Pop-up shops and offline limited events</li></ul>` },
-            "Key Partners": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/Gemini_Generated_Image_coatudcoatudcoat.png", alt: "Key Partners Infographic", content: `<h2><strong>Key Partners</strong></h2><p>Salty collaborates with a diverse range of partners to ensure a robust supply chain and market presence.</p><ul><li>Material suppliers (metals, enamel, crystals)</li><li>Manufacturing units and artisans</li><li>Quick commerce platforms (Zepto, Blinkit, Instamart)</li><li>Digital marketing agencies</li><li>Social media influencers and content creators</li><li>Logistics and delivery partners</li></ul>` },
-            "Key Activities": { image: "https://login.skillizee.io/s/articles/68e77baa6d5ca415fb349161/images/key activities 1.png", alt: "Key Activities Infographic", content: `<h2><strong>Key Activities</strong></h2><p>Salty's core operations drive its success in the fashion jewelry market.</p><ul><li>Jewelry design and product development</li><li>Manufacturing and quality control</li><li>E-commerce platform management</li><li>Digital marketing and influencer collaborations</li><li>Inventory and supply chain management</li><li>Customer service and community engagement</li></ul>` },
-            "Key Resources": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/key resources 1.1.png", alt: "Key Resources Infographic", content: `<h2><strong>Key Resources</strong></h2><p>Salty leverages various assets to maintain its competitive edge.</p><ul><li>Experienced design and marketing teams</li><li>Strong brand identity and online community</li><li>Manufacturing and supplier relationships</li><li>Technology infrastructure (website, app)</li><li>Inventory and fulfillment centers</li><li>Funding from investors</li></ul>` },
-            "Value Propositions": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/value propositions 1.1.png", alt: "Value Propositions Infographic", content: `<h2><strong>Value Propositions</strong></h2><p>Salty offers unique value to its customers through innovative offerings.</p><ul><li>Trendy, high-quality fashion jewelry at affordable prices</li><li>Fast and frequent product drops aligned with youth fashion trends</li><li>Convenient online shopping and fast delivery (including same-day)</li><li>Personalized driven collections</li><li>Inclusive designs for young men and women</li><li>Easy returns and customer-friendly policies</li></ul>` },
-            "Customer Relationships": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/customer relationships 1.1.jpg", alt: "Customer Relationships Infographic", content: `<h2><strong>Customer Relationships</strong></h2><p>Salty builds strong connections with its audience through engagement strategies.</p><ul><li>Engaging social media presence and influencer partnerships</li><li>Personalized marketing and direct communication</li><li>Community building through campaigns and collaborations</li><li>Responsive customer support and easy returns policy</li></ul>` },
-            "Customer Segments": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/Customer segments 1.1.png", alt: "Customer Segments Infographic", content: `<h2><strong>Customer Segments</strong></h2><p>Salty targets specific demographics with tailored offerings.</p><ul><li>Gen Z and millennials</li><li>Fashion-conscious youth in metro and tier 2/3 cities</li><li>Men and women seeking stylish, affordable jewelry</li><li>Social media active and digital-first shoppers</li><li>Shop Store or offline store at Broadway in Ambience Mall, Vasant Kunj, Delhi</li></ul>` },
-            "Cost Structure": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/cost structure 1.1.png", alt: "Cost Structure Infographic", content: `<h2><strong>Cost Structure</strong></h2><p>Salty manages various costs to ensure profitability.</p><ul><li>Raw materials and manufacturing</li><li>Marketing and influencer partnerships</li><li>Technology development and maintenance</li><li>Logistics, warehousing and quick commerce fees</li><li>Personnel costs and customer service</li><li>Packaging and quality control</li><li>Salary to employees</li></ul>` },
-            "Revenue Streams": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/revenue streams 1.1.png", alt: "Revenue Streams Infographic", content: `<h2><strong>Revenue Streams</strong></h2><p>Salty generates revenue through diverse channels.</p><ul><li>Online sales via the official website</li><li>Sales on third-party e-commerce platforms</li><li>Bulk/combo sales and gifting packages</li><li>Influencer-driven promotions and affiliate marketing</li></ul>` }
-        };
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Business Model Canvas Timeline
+            const timelineNav = document.querySelector('.timeline-nav:not(.funding-nav)');
+            const timelineContainer = document.getElementById('timeline-container');
+            const timelineData = {
+                "Channels": { image: "https://login.skillizee.io/s/articles/69cdf6ec21e5376ef284b1dd/images/Salty channels new.png", alt: "Channels Infographic", content: `<h2><strong>Channels</strong></h2><p>Salty utilizes multiple channels to reach its customers effectively.</p><ul><li>Official e-commerce website (salty.co.in)</li><li>E-commerce marketplaces</li><li>Social media storefronts (Instagram, Facebook)</li><li>Quick commerce platforms for rapid delivery</li><li>Pop-up shops and offline limited events</li></ul>` },
+                "Key Partners": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/Gemini_Generated_Image_coatudcoatudcoat.png", alt: "Key Partners Infographic", content: `<h2><strong>Key Partners</strong></h2><p>Salty collaborates with a diverse range of partners to ensure a robust supply chain and market presence.</p><ul><li>Material suppliers (metals, enamel, crystals)</li><li>Manufacturing units and artisans</li><li>Quick commerce platforms (Zepto, Blinkit, Instamart)</li><li>Digital marketing agencies</li><li>Social media influencers and content creators</li><li>Logistics and delivery partners</li></ul>` },
+                "Key Activities": { image: "https://login.skillizee.io/s/articles/68e77baa6d5ca415fb349161/images/key activities 1.png", alt: "Key Activities Infographic", content: `<h2><strong>Key Activities</strong></h2><p>Salty's core operations drive its success in the fashion jewelry market.</p><ul><li>Jewelry design and product development</li><li>Manufacturing and quality control</li><li>E-commerce platform management</li><li>Digital marketing and influencer collaborations</li><li>Inventory and supply chain management</li><li>Customer service and community engagement</li></ul>` },
+                "Key Resources": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/key resources 1.1.png", alt: "Key Resources Infographic", content: `<h2><strong>Key Resources</strong></h2><p>Salty leverages various assets to maintain its competitive edge.</p><ul><li>Experienced design and marketing teams</li><li>Strong brand identity and online community</li><li>Manufacturing and supplier relationships</li><li>Technology infrastructure (website, app)</li><li>Inventory and fulfillment centers</li><li>Funding from investors</li></ul>` },
+                "Value Propositions": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/value propositions 1.1.png", alt: "Value Propositions Infographic", content: `<h2><strong>Value Propositions</strong></h2><p>Salty offers unique value to its customers through innovative offerings.</p><ul><li>Trendy, high-quality fashion jewelry at affordable prices</li><li>Fast and frequent product drops aligned with youth fashion trends</li><li>Convenient online shopping and fast delivery (including same-day)</li><li>Personalized driven collections</li><li>Inclusive designs for young men and women</li><li>Easy returns and customer-friendly policies</li></ul>` },
+                "Customer Relationships": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/customer relationships 1.1.jpg", alt: "Customer Relationships Infographic", content: `<h2><strong>Customer Relationships</strong></h2><p>Salty builds strong connections with its audience through engagement strategies.</p><ul><li>Engaging social media presence and influencer partnerships</li><li>Personalized marketing and direct communication</li><li>Community building through campaigns and collaborations</li><li>Responsive customer support and easy returns policy</li></ul>` },
+                "Customer Segments": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/Customer segments 1.1.png", alt: "Customer Segments Infographic", content: `<h2><strong>Customer Segments</strong></h2><p>Salty targets specific demographics with tailored offerings.</p><ul><li>Gen Z and millennials</li><li>Fashion-conscious youth in metro and tier 2/3 cities</li><li>Men and women seeking stylish, affordable jewelry</li><li>Social media active and digital-first shoppers</li><li>Shop Store or offline store at Broadway in Ambience Mall, Vasant Kunj, Delhi</li></ul>` },
+                "Cost Structure": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/cost structure 1.1.png", alt: "Cost Structure Infographic", content: `<h2><strong>Cost Structure</strong></h2><p>Salty manages various costs to ensure profitability.</p><ul><li>Raw materials and manufacturing</li><li>Marketing and influencer partnerships</li><li>Technology development and maintenance</li><li>Logistics, warehousing and quick commerce fees</li><li>Personnel costs and customer service</li><li>Packaging and quality control</li><li>Salary to employees</li></ul>` },
+                "Revenue Streams": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/revenue streams 1.1.png", alt: "Revenue Streams Infographic", content: `<h2><strong>Revenue Streams</strong></h2><p>Salty generates revenue through diverse channels.</p><ul><li>Online sales via the official website</li><li>Sales on third-party e-commerce platforms</li><li>Bulk/combo sales and gifting packages</li><li>Influencer-driven promotions and affiliate marketing</li></ul>` }
+            };
 
-        timelineNav.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
-                e.preventDefault();
-                const section = e.target.dataset.section;
-                timelineContainer.innerHTML = '';
-                const yearSection = document.createElement('section');
-                yearSection.className = 'year-section';
-                yearSection.innerHTML = `
+            timelineNav.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const section = e.target.dataset.section;
+                    timelineContainer.innerHTML = '';
+                    const yearSection = document.createElement('section');
+                    yearSection.className = 'year-section';
+                    yearSection.innerHTML = `
                     <div class="year-image">
                         <img alt="${timelineData[section].alt}" src="${timelineData[section].image}">
                     </div>
                     <div class="chapter-text">${timelineData[section].content}</div>
                 `;
-                timelineContainer.appendChild(yearSection);
-                timelineNav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
-                e.target.classList.add('active');
-            }
-        });
-        timelineNav.querySelector('[data-section="Channels"]').click();
+                    timelineContainer.appendChild(yearSection);
+                    timelineNav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    e.target.classList.add('active');
+                }
+            });
+            timelineNav.querySelector('[data-section="Channels"]').click();
 
-        // 2. Funding Timeline Navigation
-        const fundingNav = document.querySelector('.funding-nav');
-        const fundingContainer = document.getElementById('funding-timeline-container');
-        const fundingData = {
-            "All in Capital": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/All in capital.png", alt: "All in Capital Infographic", content: `<h2><strong>All in Capital</strong></h2><p>As a lead investor in Salty's seed funding round, All in Capital provided significant financial support to fuel the company's early growth.</p><ul><li>Contributed to the ₹5–₹5.4 crore seed funding round in Early 2024.</li><li>Offered strategic guidance in scaling Salty's e-commerce operations.</li><li>Connected Salty with key industry players in the fashion and jewelry market.</li></ul>` },
-            "Anicut Capital": { image: "https://login.skillizee.io/s/articles/691c24a79a12f07cec255b26/images/anicut-capital-logo 2.png", alt: "Anicut Capital Infographic", content: `<h2><strong>Anicut Capital</strong></h2><p>Anicut Capital, a co-lead investor, played a pivotal role in Salty's seed funding, supporting its vision to redefine fashion jewelry.</p><ul><li>Contributed to the ₹5–₹5.4 crore seed funding round in Early 2024.</li><li>Provided expertise in operational scaling and market expansion.</li><li>Supported Salty's entry into tier 2 and tier 3 cities.</li></ul>` },
-            "Suashish Diamonds": { image: "https://login.skillizee.io/s/articles/691c24a79a12f07cec255b26/images/suashish 2.png", alt: "Suashish Diamonds Infographic", content: `<h2><strong>Suashish Diamonds</strong></h2><p>Suashish Diamonds brought deep industry knowledge to Salty, enhancing its supply chain and product quality.</p><ul><li>Participated as an investor in the ₹5–₹5.4 crore seed funding round in Early 2024.</li><li>Provided access to premium material suppliers for high-quality jewelry production.</li><li>Advised on maintaining competitive pricing in the fashion jewelry market.</li></ul>` },
-            "JK Group": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/JK.png", alt: "JK Group Infographic", content: `<h2><strong>JK Group</strong></h2><p> Sich Group's investment bolstered Salty's manufacturing capabilities and market reach.</p><ul><li>Contributed to the ₹5–₹5.4 crore seed funding round in Early 2024.</li><li>Supported enhancements in Salty's manufacturing processes.</li><li>Facilitated partnerships with quick commerce platforms for faster delivery.</li></ul>` },
-            "Angel Investors": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/Angle investors.png", alt: "Angel Investors Infographic", content: `<h2><strong>Angel Investors</strong></h2><p>A group of angel investors provided crucial early-stage funding, enabling Salty to accelerate its growth trajectory.</p><ul><li>Participated in the ₹5–₹5.4 crore seed funding round in Early 2024.</li><li>Offered mentorship and networking opportunities with industry experts.</li><li>Supported Salty's focus on digital-first marketing and customer engagement.</li></ul>` }
-        };
+            // 2. Funding Timeline Navigation
+            const fundingNav = document.querySelector('.funding-nav');
+            const fundingContainer = document.getElementById('funding-timeline-container');
+            const fundingData = {
+                "All in Capital": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/All in capital.png", alt: "All in Capital Infographic", content: `<h2><strong>All in Capital</strong></h2><p>As a lead investor in Salty's seed funding round, All in Capital provided significant financial support to fuel the company's early growth.</p><ul><li>Contributed to the ₹5–₹5.4 crore seed funding round in Early 2024.</li><li>Offered strategic guidance in scaling Salty's e-commerce operations.</li><li>Connected Salty with key industry players in the fashion and jewelry market.</li></ul>` },
+                "Anicut Capital": { image: "https://login.skillizee.io/s/articles/691c24a79a12f07cec255b26/images/anicut-capital-logo 2.png", alt: "Anicut Capital Infographic", content: `<h2><strong>Anicut Capital</strong></h2><p>Anicut Capital, a co-lead investor, played a pivotal role in Salty's seed funding, supporting its vision to redefine fashion jewelry.</p><ul><li>Contributed to the ₹5–₹5.4 crore seed funding round in Early 2024.</li><li>Provided expertise in operational scaling and market expansion.</li><li>Supported Salty's entry into tier 2 and tier 3 cities.</li></ul>` },
+                "Suashish Diamonds": { image: "https://login.skillizee.io/s/articles/691c24a79a12f07cec255b26/images/suashish 2.png", alt: "Suashish Diamonds Infographic", content: `<h2><strong>Suashish Diamonds</strong></h2><p>Suashish Diamonds brought deep industry knowledge to Salty, enhancing its supply chain and product quality.</p><ul><li>Participated as an investor in the ₹5–₹5.4 crore seed funding round in Early 2024.</li><li>Provided access to premium material suppliers for high-quality jewelry production.</li><li>Advised on maintaining competitive pricing in the fashion jewelry market.</li></ul>` },
+                "JK Group": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/JK.png", alt: "JK Group Infographic", content: `<h2><strong>JK Group</strong></h2><p> Sich Group's investment bolstered Salty's manufacturing capabilities and market reach.</p><ul><li>Contributed to the ₹5–₹5.4 crore seed funding round in Early 2024.</li><li>Supported enhancements in Salty's manufacturing processes.</li><li>Facilitated partnerships with quick commerce platforms for faster delivery.</li></ul>` },
+                "Angel Investors": { image: "https://login.skillizee.io/s/articles/68d64f8a74ab990b674f6176/images/Angle investors.png", alt: "Angel Investors Infographic", content: `<h2><strong>Angel Investors</strong></h2><p>A group of angel investors provided crucial early-stage funding, enabling Salty to accelerate its growth trajectory.</p><ul><li>Participated in the ₹5–₹5.4 crore seed funding round in Early 2024.</li><li>Offered mentorship and networking opportunities with industry experts.</li><li>Supported Salty's focus on digital-first marketing and customer engagement.</li></ul>` }
+            };
 
-        fundingNav.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
-                e.preventDefault();
-                const section = e.target.dataset.section;
-                fundingContainer.innerHTML = '';
-                const yearSection = document.createElement('section');
-                yearSection.className = 'year-section';
-                yearSection.innerHTML = `
+            fundingNav.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const section = e.target.dataset.section;
+                    fundingContainer.innerHTML = '';
+                    const yearSection = document.createElement('section');
+                    yearSection.className = 'year-section';
+                    yearSection.innerHTML = `
                     <div class="year-image">
                         <img alt="${fundingData[section].alt}" src="${fundingData[section].image}">
                     </div>
                     <div class="chapter-text">${fundingData[section].content}</div>
                 `;
-                fundingContainer.appendChild(yearSection);
-                fundingNav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
-                e.target.classList.add('active');
-            }
+                    fundingContainer.appendChild(yearSection);
+                    fundingNav.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                    e.target.classList.add('active');
+                }
+            });
+            fundingNav.querySelector('[data-section="All in Capital"]').click();
+
+
         });
-        fundingNav.querySelector('[data-section="All in Capital"]').click();
-
-
-    });
-</script>
+    </script>
 
 
 
 
+    
 <script>
-  // Standardized Theme & Fullscreen Logic
-  (function() {
+  // Foolproof Theme & Fullscreen Logic
+  document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('theme-toggle');
     const fullscreenBtn = document.getElementById('fullscreen-btn');
-    if (localStorage.getItem('theme') === 'light') {
-      document.body.classList.add('light');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      body.classList.add('light');
       if (themeToggle) themeToggle.classList.add('on');
     }
+
     if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('light');
-        themeToggle.classList.toggle('on');
-        localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      themeToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        body.classList.toggle('light');
+        this.classList.toggle('on');
+        localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
       });
     }
+
     if (fullscreenBtn) {
-      fullscreenBtn.addEventListener('click', () => {
+      fullscreenBtn.addEventListener('click', function(e) {
+        e.preventDefault();
         if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen().catch(err => console.error(err));
+          document.documentElement.requestFullscreen().catch(err => console.error("Fullscreen error:", err));
         } else {
           document.exitFullscreen();
         }
       });
-      document.addEventListener('fullscreenchange', () => {
+      document.addEventListener('fullscreenchange', function() {
         if (document.fullscreenElement) {
           fullscreenBtn.classList.add('active');
           fullscreenBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>';
@@ -339,9 +864,8 @@
         }
       });
     }
-  })();
+  });
 </script>
 </body>
+
 </html>
-
-
