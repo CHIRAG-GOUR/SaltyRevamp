@@ -1,15 +1,9 @@
-<div>
-<div>
-<div>
-<div>
-<div>
-<div><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<title></title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
 <link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet" /><script src="https://cdn.tailwindcss.com"></script><script>
         tailwind.config = {
             theme: {
@@ -659,11 +653,6 @@
 </style>
 </head>
 <body>
-<div class="top-controls">
-<button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
-<div id="theme-toggle"><span class="icon moon">🌙</span>
-<div class="knob">&nbsp;</div>
-<span class="icon sun">☀️</span></div></div>
     <div class="top-controls" style="position: absolute; z-index: 100;">
         <div id="theme-toggle"><span class="icon moon">🌙</span><div class="knob">&nbsp;</div><span class="icon sun">☀️</span></div>
         <button id="fullscreen-btn" title="Enter Fullscreen"><svg viewbox="0 0 24 24"> <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path> </svg></button>
@@ -903,7 +892,7 @@ Activities: Q&amp;A: Ask the Founder, Quiz Module 5, Experiential Learning: Chal
             }
         }
 
-        function checkAnswer大陸(element, isCorrect) {
+        function checkAnswer(element, isCorrect) {
             const feedback = document.getElementById('quizFeedback');
             if (isCorrect) {
                 element.classList.add('correct');
@@ -991,17 +980,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  
-        fullscreenBtn.classList.add('fullscreen-active');
-        fullscreenBtn.title = "Exit Fullscreen";
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().then(() => {
+          fullscreenBtn.classList.add('fullscreen-active');
+          fullscreenBtn.title = "Exit Fullscreen";
+        }).catch(err => {
+          console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
       } else {
-        document.exitFullscreen();
-        fullscreenBtn.classList.remove('fullscreen-active');
-        fullscreenBtn.title = "Enter Fullscreen";
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+          fullscreenBtn.classList.remove('fullscreen-active');
+          fullscreenBtn.title = "Enter Fullscreen";
+        }
       }
     });
-
-    
   }
 });
 </script>
